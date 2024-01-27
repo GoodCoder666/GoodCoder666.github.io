@@ -1,0 +1,638 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>GitHub访问慢的原因以及解决办法 -
+    GoodCoder666的个人博客</title>
+<link rel="shortcut icon" href="https://goodcoder666.github.io/favicon.ico" />
+<link
+  href="https://npm.onmicrosoft.cn/remixicon@2.2.0/fonts/remixicon.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://goodcoder666.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://goodcoder666.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="GitHub访问慢的原因以及解决办法 -
+    GoodCoder666的个人博客 - Atom Feed"
+  href="https://goodcoder666.github.io/atom.xml" />
+
+
+
+    <meta name="description" content="注意：由于某些特殊原因，本文没有在CSDN上发布，因此这里是本文唯一可见的地址。
+前言
+相信大家工作时都难免会遇到。。。
+
+$ git push
+Error: Failed to connect to github.com port 443..." />
+    <meta
+      property="og:title"
+      content="GitHub访问慢的原因以及解决办法 - GoodCoder666的个人博客" />
+    <meta property="og:description" content="注意：由于某些特殊原因，本文没有在CSDN上发布，因此这里是本文唯一可见的地址。
+前言
+相信大家工作时都难免会遇到。。。
+
+$ git push
+Error: Failed to connect to github.com port 443..." />
+    <meta property="og:type" content="articles" />
+    <meta property="og:url" content="https://goodcoder666.github.io/post/speed-up-github-access/" />
+    <meta
+      property="og:image"
+      content="https://goodcoder666.github.io/images/avatar.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta
+      name="twitter:title"
+      content="GitHub访问慢的原因以及解决办法 - GoodCoder666的个人博客" />
+    <meta name="twitter:description" content="注意：由于某些特殊原因，本文没有在CSDN上发布，因此这里是本文唯一可见的地址。
+前言
+相信大家工作时都难免会遇到。。。
+
+$ git push
+Error: Failed to connect to github.com port 443..." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://goodcoder666.github.io/post/speed-up-github-access/" />
+
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/default-skin/default-skin.min.css" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/css/prism-synthwave84.css" />
+     
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/KaTeX/0.11.1/katex.min.css" />
+    
+  </head>
+
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <a
+        href="https://goodcoder666.github.io"
+        class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+        GoodCoder666的个人博客
+      </a>
+      <div class="max-w-4xl w-full mx-auto">
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+          <h1
+            class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+            GitHub访问慢的原因以及解决办法
+          </h1>
+          
+          <div class="mb-8 flex flex-wrap">
+            <div class="text-gray-400 text-sm mr-4">
+              2022-07-16 · 10 min read
+            </div>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/github/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              GitHub
+            </a>
+            
+          </div>
+          <div class="markdown mb-8" v-pre><p><strong>注意：由于某些特殊原因，本文没有在CSDN上发布，因此这里是本文唯一可见的地址。</strong></p>
+<h2 id="前言">前言</h2>
+<p>相信大家工作时都难免会遇到。。。</p>
+<img src="https://img-blog.csdnimg.cn/5e12a885887f4565b0bf6c4470b3db7c.png" alt="GitHub 网页版无法访问" referrerpolicy="no-referrer" />
+<pre><code class="language-shell">$ git push
+Error: Failed to connect to github.com port 443: Timed out
+
+$ git push
+Error: OpenSSL SSL_read: Connection was reset, errno 10054
+
+$ 滚
+滚: command not found
+
+$ sudo rm -rf /*
+</code></pre>
+<h2 id="原因分析">原因分析</h2>
+<p>先上<a href="https://www.ipaddress.com/">ipaddress</a>查一下<a href="https://ipaddress.com/website/github.com">GitHub的IP地址</a>（有时会403），如图所示：<br>
+<img src="https://img-blog.csdnimg.cn/311374cfd9514f39b0e1f7c1102b753d.png" alt="GitHub 第一次查询结果" referrerpolicy="no-referrer" /></p>
+<p>过一会再查一下：<br>
+<img src="https://img-blog.csdnimg.cn/cac53a8226b645b3b7fa1adf93c77257.png" alt="GitHub 第二次查询结果" referrerpolicy="no-referrer" /></p>
+<p>！！！两次结果不一样！！！</p>
+<p>后来发现，<code>GitHub</code>的服务器IP变化极其频繁，平均每半小时变一次，最快时3~5分钟就能变一次。我们知道，系统中有个叫<strong>DNS 解析缓存</strong>的东西，会存下来我们DNS的解析结果（也就是最近访问的网站的服务器IP），因此需要想办法<strong>重新获得正确的IP</strong>！！！</p>
+<p>下面提供三种方法，可供参考，希望对大家有帮助。</p>
+<h2 id="解决方法">解决方法</h2>
+<h3 id="1-刷新dns解析缓存">1. 刷新DNS解析缓存</h3>
+<p><mark><strong>注意：此方法仅适用于Windows系统。</strong></mark><br>
+可以配合后面的修改DNS方法，效果更佳。</p>
+<h4 id="11-手动刷新">1.1 手动刷新</h4>
+<p>在<code>GitHub</code>访问不了的时候，按下<kbd>Win</kbd>+<kbd>R</kbd>，执行：</p>
+<pre><code>ipconfig /flushdns
+</code></pre>
+<p>这就是大名鼎鼎的「<strong>Windows DNS缓存刷新命令</strong>」。<br>
+若看到下列输出，则算成功：</p>
+<pre><code>Windows IP 配置
+
+已成功刷新 DNS 解析缓存。
+</code></pre>
+<p>这时，重新打开<code>GitHub</code>或使用<code>git</code>远程操作，就大概率能成功了。<br>
+这样有些麻烦，因为每次都必须得执行命令解决问题，下面有“进阶版”——自动执行：</p>
+<h4 id="12-自动刷新">1.2 自动刷新</h4>
+<p>这种方法与上面的“手动刷新”原理相同，但无需每次手动输入命令，方便很多：<br>
+打开<code>notepad</code>，输入：</p>
+<pre><code class="language-powershell">@echo off
+:a
+ipconfig /flushdns &gt; NUL
+echo [INFO %time:~0,8%] 已成功刷新 DNS 解析缓存。
+echo 1分钟将再次刷新。按下任意键以立即刷新...
+timeout /t 60 &gt; NUL
+echo.
+goto a
+</code></pre>
+<p>按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>另存为，选择一个位置，保存为<code>.bat</code>后缀名的批处理文件（选择“所有文件”再自己输入后缀名），注意<strong>编码使用ANSI</strong>，否则会乱码！</p>
+<p>下面直接双击刚才保存好的文件打开，会看到这样的输出：</p>
+<pre><code>[INFO HH:MM:SS] 已成功刷新 DNS 解析缓存。
+1分钟将再次刷新。按下任意键以立即刷新...
+</code></pre>
+<p>这时，可将窗口最小化，程序会每分钟自动刷新一次，如果想提前刷新可以在里面按下任意键，会自动再刷新。</p>
+<p>如果想更改刷新频率，可以在bat代码中修改：</p>
+<pre><code class="language-powershell">@echo off
+:a
+ipconfig /flushdns &gt; NUL
+echo [INFO %time:~0,8%] 已成功刷新 DNS 解析缓存。
+echo 1分钟将再次刷新。按下任意键以立即刷新...
+timeout /t [freq (s), &quot;60&quot;=1min] &gt; NUL
+echo.
+goto a
+</code></pre>
+<h3 id="2-使用github520项目">2. 使用GitHub520项目</h3>
+<p><mark><strong>GitHub520 项目地址：<a href="https://github.com/521xueweihan/GitHub520">https://github.com/521xueweihan/GitHub520</a></strong></mark><br>
+<mark><strong>官网：<a href="https://swh.app/">https://swh.app/</a></strong></mark>（有时会打不开）<br>
+<strong>镜像地址（非官方，自己弄的）：<a href="https://gitee.com/GoodCoder666/GitHub520">https://gitee.com/GoodCoder666/GitHub520</a></strong></p>
+<p>这个项目的工作原理是，通过程序自动从<a href="https://www.ipaddress.com/">ipaddress</a>实时获取GitHub服务器的IP，并修改对应HOSTS，达到代替默认DNS进行IP解析的作用。</p>
+<p>参考文档：<a href="https://github.com/521xueweihan/GitHub520/blob/main/README.md">GitHub520 README</a><br>
+镜像地址：<a href="https://gitee.com/goodcoder666/GitHub520/blob/main/README.md">https://gitee.com/goodcoder666/GitHub520/blob/main/README.md</a></p>
+<h4 id="21-基础方法">2.1 基础方法</h4>
+<p>打开<a href="https://raw.hellogithub.com/hosts">https://raw.hellogithub.com/hosts</a>，复制内容，添加到系统<a href="https://baike.baidu.com/item/hosts/10474546">HOSTS</a>文件的最后边。刷新一下DNS或重启电脑，启用新的IP解析。<strong>如果访问不了需要再次更新。</strong></p>
+<h4 id="22-switchhosts">2.2 SwitchHosts</h4>
+<p>上述的方法明显太麻烦了，那有没有方法让电脑自动刷新呢？答案是肯定的。<br>
+使用「<a href="https://github.com/oldj/SwitchHosts">SwitchHosts</a>」，就能实现自动刷新。</p>
+<p>使用步骤：</p>
+<ol>
+<li>
+<p>从<a href="https://github.com/oldj/SwitchHosts/releases">Release</a>页面下载安装，并打开软件，应该能看到类似于下面的界面（不同操作系统下文件内容略有不同）：<br>
+<img src="https://img-blog.csdnimg.cn/8c45bce813944daf9286ad249ee8c586.png" alt="SwitchHosts 主界面" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>点击左上角的“+”号，弹出如下界面：<br>
+<img src="https://img-blog.csdnimg.cn/16a35446d5704641ace999fb812cc68d.png" alt="SwitchHosts 添加界面" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>选择“远程”，输入：<br>
+标题：<code>GitHub520</code>（随意）<br>
+URL：<code>https://raw.hellogithub.com/hosts</code><br>
+自动刷新：任意，尽量选择5分钟或15分钟<br>
+<img src="https://img-blog.csdnimg.cn/e037884d48094c1bb699cd4659eff587.png" alt="SwitchHosts 添加示意图" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>点击“确定”，完成。</p>
+</li>
+</ol>
+<img src="https://img-blog.csdnimg.cn/2cdcdd8819c94d558853ed26b0e25207.png" alt="Tip" referrerpolicy="no-referrer" />
+<p><strong>Tip：如果遇到这种情况，请提升 SwitchHosts 进程权限（Windows下的管理员身份运行等）</strong></p>
+<h4 id="23-one-liner适用于类unix系统">2.3 One-liner（适用于类Unix系统）</h4>
+<p><code>sed -i &quot;/# GitHub520 Host Start/Q&quot; /etc/hosts &amp;&amp; curl https://raw.hellogithub.com/hosts &gt;&gt; /etc/hosts</code><br>
+自动更新<code>/etc/hosts</code>文件，可以添加到cron定时执行。使用前确保Github520内容在该文件最后部分。</p>
+<h4 id="24-adguard-home-用户">2.4 AdGuard Home 用户</h4>
+<p>在 <strong>过滤器&gt;DNS 封锁清单&gt;添加阻止列表&gt;添加一个自定义列表</strong>，配置如下：</p>
+<ul>
+<li>
+<p>名称: 随意</p>
+</li>
+<li>
+<p>URL: <code>https://raw.hellogithub.com/hosts</code>（和上面 SwitchHosts 使用的一样）</p>
+</li>
+</ul>
+<p>如图：</p>
+<img src="https://img-blog.csdnimg.cn/a31865764bc54e6d91b1c92e5b31f016.png" alt="AdGuardHome-01" referrerpolicy="no-referrer" />
+<p>更新间隔在 <strong>设置&gt;常规设置&gt;过滤器更新间隔（设置一小时一次即可）</strong>，记得勾选上 <strong>使用过滤器和 Hosts 文件以拦截指定域名</strong></p>
+<img src="https://img-blog.csdnimg.cn/b1452e58bc204eb48dcc10dfdb4ba3ac.png" alt="AdGuardHome-02" referrerpolicy="no-referrer" />
+<p><strong>Tip</strong>：不要添加在 <strong>DNS 允许清单</strong> 内，只能添加在 <strong>DNS 封锁清单</strong> 才管用。另外，AdGuard for Mac、AdGuard for Windows、AdGuard for Android、AdGuard for IOS 等等 <strong>AdGuard 家族软件</strong> 添加方法均类似。</p>
+<h4 id="25-fasterhosts">2.5 FasterHosts</h4>
+<p><a href="https://github.com/gauseen/faster-hosts">FasterHosts</a> 是个 Chrome 插件，主要原理是拦截浏览器的部分请求，将 <code>domain</code> 替换成访问速度较快的那个。HOSTS 资源来自 <a href="https://github.com/521xueweihan/GitHub520">GitHub520</a>，每 1 小时更新一次。</p>
+<blockquote>
+<ol>
+<li>下载 <a href="https://github.com/gauseen/faster-hosts/archive/master.zip">FasterHosts</a> 然后解压，找到 <code>extension</code> 子目录</li>
+<li>打开 Chrome，输入: <code>chrome://extensions/</code></li>
+<li>打开「开发者模式」</li>
+<li>选择「加载已解压的扩展程序」，然后定位到刚才解压的文件夹里面的 <code>extension</code> 目录，确定</li>
+<li>安装好了，可关闭「开发者模式」</li>
+</ol>
+</blockquote>
+<p><strong>Tip: Chromium 内核的浏览器都可以使用，其他主流的 Chromium 浏览器还有Edge，Yandex等。</strong></p>
+<h3 id="3-使用gitee镜像规避问题">3. 使用Gitee镜像规避问题</h3>
+<p>Gitee相当于“中国版GitHub”，相对来说访问速度和稳定性都会好很多。<br>
+那么使用Gitee官方提供的镜像功能，可以暂时规避网络上的问题。</p>
+<p><mark><strong>注意事项：</strong></mark><br>
+<mark><strong>(1) 前三种方法只能解决无法访问的问题，但是下载速度太慢时也可以使用本法。</strong></mark><br>
+<mark><strong>(2) 本方法仅针对代码仓库的访问问题，无法访问GitHub主页。</strong></mark></p>
+<h4 id="31-克隆非自己的存储库">3.1 克隆非自己的存储库</h4>
+<p>我们以Pygame的GitHub仓库（<a href="https://github.com/pygame/pygame">https://github.com/pygame/pygame</a>）为例：</p>
+<ol>
+<li>
+<p>打开存储库，复制Git地址（只能选HTTPS）。如果打不开也没事，直接在GitHub的repo地址后面加上<code>.git</code>就行了。<br>
+<img src="https://img-blog.csdnimg.cn/47da0eab48b74bcda403453bd595bb98.png" alt="复制Git地址" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>打开Gitee，选择<a href="https://gitee.com/projects/import/url">从GitHub/GitLab导入仓库</a>，填写信息：<br>
+<img src="https://img-blog.csdnimg.cn/5fc01e9ac95d4a668b9ccaa21341a48b.png#pic_center" alt="Gitee 导入仓库" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>点击“导入”，等待自动跳转：<br>
+<img src="https://img-blog.csdnimg.cn/fd7c095d0aa544d9b84355a84197013d.png" alt="等待处理" referrerpolicy="no-referrer" /></p>
+</li>
+</ol>
+<img src="https://img-blog.csdnimg.cn/f9db74acd7a64081ae7a9705fac42351.png" alt="加载完成" referrerpolicy="no-referrer" />
+<h4 id="32-创建pushpull镜像">3.2 创建push/pull镜像</h4>
+<p>这种方法主要针对<strong>自己拥有/管理的代码库</strong>网络访问不稳定的情况。原理就是创建<code>Personal Access Token</code>（PAT）并交给Gitee，push镜像会将Gitee上的修改自动同步到GitHub上，而pull镜像则相反，会自动检测GitHub上的修改并同步至Gitee。</p>
+<p>下面我们来分别介绍两种镜像的使用方式。</p>
+<h5 id="321-使用前创建-github-上的-personal-access-token-pat">3.2.1 使用前：创建 GitHub 上的 Personal Access Token (PAT)</h5>
+<ol>
+<li>
+<p>打开<a href="https://github.com/settings/tokens">Personal Access Tokens</a>，选择“Generate new token”，如图：<br>
+<img src="https://img-blog.csdnimg.cn/d7b2836f5a96405f916cd071a89c9d29.png" alt="创建PAT Token" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>输入密码，转到“New Token”界面，填写信息，其中Note随意填写，Expiration为期限，建议选择60天，后面的权限建议勾选repo、workflow（仅push镜像）、repo_hook（仅pull镜像）。<img src="https://img-blog.csdnimg.cn/98127c9bc6164f378382ba4b8567d61d.png" alt="Token 生成" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>点击下面的“Generate token”，生成令牌，点击复制：<br>
+<img src="https://img-blog.csdnimg.cn/e753efbf9c984403a800f77e43a6b2f2.png" alt="new token" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>完成！请看下面的“镜像配置”部分。</p>
+</li>
+</ol>
+<h5 id="322-push镜像配置">3.2.2 Push镜像配置</h5>
+<p>Gitee提供的镜像既可以用私有GitHub存储库，也可以配置公开的。为了方便演示，我们以私有的为例。</p>
+<p>现在我在GitHub上创建了一个仓库<code>GoodCoder666/test-mirror</code>（私有），如下：<br>
+<img src="https://img-blog.csdnimg.cn/c4cffaea437e4578a7667ac65b1ad65d.png" alt="test-mirror代码库" referrerpolicy="no-referrer" /></p>
+<p>然后使用3.1中的的方法导入，效果如下：<br>
+<img src="https://img-blog.csdnimg.cn/b99a0f20616f4a02a45510521a7f724c.png" alt="test-mirror镜像" referrerpolicy="no-referrer" /></p>
+<p>仓库就绪，下面创建镜像。</p>
+<ol>
+<li>
+<p>选择管理<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>仓库镜像管理<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>添加镜像，如图（需绑定对应GitHub账号）：<br>
+<img src="https://img-blog.csdnimg.cn/8c24191899e445bc91a9f5921d2b5256.png" alt="添加镜像" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>选择镜像方向Push和GitHub仓库，再输入刚刚生成好的Token，如图：<br>
+<img src="https://img-blog.csdnimg.cn/61f4a9b8c69e451899a15b0fed71eeb9.png" alt="镜像信息选择" referrerpolicy="no-referrer" /></p>
+</li>
+<li>
+<p>点击“添加”，效果图：<br>
+<img src="https://img-blog.csdnimg.cn/343ca4137b6540d19c99fe5b3c413649.png" alt="镜像效果" referrerpolicy="no-referrer" /></p>
+</li>
+</ol>
+<p>此时，在Gitee上作出更改，会自动实时同步到GitHub上（可能有1~2分钟的延迟）<br>
+比如现在修改了Gitee这边：<br>
+<img src="https://img-blog.csdnimg.cn/60ad9a15b0854e33add01a202afe8b5e.png" alt="Gitee 修改" referrerpolicy="no-referrer" /></p>
+<p>然后看GitHub：<br>
+<img src="https://img-blog.csdnimg.cn/1f61bee2635a4b70b91e7d683933bcaa.png" alt="GitHub 同步" referrerpolicy="no-referrer" /></p>
+<p>注意这里的<code>gitee-org</code>，只有在Gitee网页版更改时会出现（<s>我也不知道为啥</s>），<code>git push</code>时则正常。</p>
+<h5 id="333-pull镜像配置">3.3.3 Pull镜像配置</h5>
+<p>与Push镜像相似，不同之处为Push是Gitee-&gt;GitHub，而Pull实为GitHub-&gt;Gitee的镜像。镜像配置请参考<code>3.3.2 Push镜像配置</code>，注意Token需勾选<code>admin:repo_hook</code>。</p>
+<h3 id="4-更换dns解析服务器">4. 更换DNS解析服务器</h3>
+<p>根据自己的网络情况，选择下表中的一种推荐的首选/备选DNS服务器地址，按照<a href="https://zhuanlan.zhihu.com/p/265364903">这里</a>的方法修改DNS（此方法适用于Windows，其他操作系统请自行百度）</p>
+<table>
+<thead>
+<tr>
+<th>DNS组合</th>
+<th>首选DNS</th>
+<th>备选DNS</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNNIC+114</td>
+<td><code>1.2.4.8</code></td>
+<td><code>114.114.114.114</code></td>
+<td><strong>强烈推荐/成功率最高/响应最快</strong></td>
+</tr>
+<tr>
+<td>Google+114</td>
+<td><code>8.8.8.8</code></td>
+<td><code>114.114.114.114</code></td>
+<td>成功率较高/响应较快/主流搭配</td>
+</tr>
+<tr>
+<td>纯114DNS</td>
+<td><code>114.114.114.114</code></td>
+<td><code>114.114.115.115</code></td>
+<td>成功率较高/响应很快</td>
+</tr>
+<tr>
+<td>114+Cloudflare</td>
+<td><code>114.114.114.114</code></td>
+<td><code>1.1.1.1</code></td>
+<td>成功率较高/1.1.1.1响应稍慢</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结">总结</h2>
+<p>GitHub访问慢的主要原因是由于DNS的问题导致的（也有部分CDN问题没有提及），刚才的三种方法分别是：</p>
+<ul>
+<li>DNS刷新</li>
+<li>GitHub520</li>
+<li>Gitee镜像</li>
+<li>更换DNS解析服务器</li>
+</ul>
+<p>需要注意的是，没有方法能保证<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">%</span></span></span></span>成功（Gitee镜像除外，但功能有限），然而成功率最高的是<strong>修改DNS</strong>，基本上可以说是<strong>一劳永逸</strong>。</p>
+<p>希望以上内容能对大家有帮助！</p>
+</div>
+          <!-- Share to Twitter, Weibo, Telegram -->
+          <div class="flex items-center">
+            <div class="mr-4 flex items-center">
+              <i class="ri-share-forward-line text-gray-500"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTwitter">
+              <i class="ri-twitter-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToWeibo">
+              <i class="ri-weibo-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTelegram">
+              <i class="ri-telegram-line"></i>
+            </div>
+          </div>
+        </div>
+
+         
+        <div id="gitalk-container"></div>
+            <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  CSDN: <a href="https://blog.csdn.net/write_1m_lines" target="_blank">write_1m_lines</a> E-mail: stanley_shao@163.com
+</footer>
+
+      </div>
+
+      <!-- TOC Container -->
+      <div
+        class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+        @click="showToc = true">
+        <i class="ri-file-list-line"></i>
+      </div>
+
+      <div
+        class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+        :class="{ '-mr-64': !showToc }">
+        <div class="flex mb-4 justify-end">
+          <div
+            class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+            @click="showToc = false">
+            <i class="ri-close-line text-lg"></i>
+          </div>
+        </div>
+        <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90">原因分析</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</a>
+<ul>
+<li><a href="#1-%E5%88%B7%E6%96%B0dns%E8%A7%A3%E6%9E%90%E7%BC%93%E5%AD%98">1. 刷新DNS解析缓存</a>
+<ul>
+<li><a href="#11-%E6%89%8B%E5%8A%A8%E5%88%B7%E6%96%B0">1.1 手动刷新</a></li>
+<li><a href="#12-%E8%87%AA%E5%8A%A8%E5%88%B7%E6%96%B0">1.2 自动刷新</a></li>
+</ul>
+</li>
+<li><a href="#2-%E4%BD%BF%E7%94%A8github520%E9%A1%B9%E7%9B%AE">2. 使用GitHub520项目</a>
+<ul>
+<li><a href="#21-%E5%9F%BA%E7%A1%80%E6%96%B9%E6%B3%95">2.1 基础方法</a></li>
+<li><a href="#22-switchhosts">2.2 SwitchHosts</a></li>
+<li><a href="#23-one-liner%E9%80%82%E7%94%A8%E4%BA%8E%E7%B1%BBunix%E7%B3%BB%E7%BB%9F">2.3 One-liner（适用于类Unix系统）</a></li>
+<li><a href="#24-adguard-home-%E7%94%A8%E6%88%B7">2.4 AdGuard Home 用户</a></li>
+<li><a href="#25-fasterhosts">2.5 FasterHosts</a></li>
+</ul>
+</li>
+<li><a href="#3-%E4%BD%BF%E7%94%A8gitee%E9%95%9C%E5%83%8F%E8%A7%84%E9%81%BF%E9%97%AE%E9%A2%98">3. 使用Gitee镜像规避问题</a>
+<ul>
+<li><a href="#31-%E5%85%8B%E9%9A%86%E9%9D%9E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%AD%98%E5%82%A8%E5%BA%93">3.1 克隆非自己的存储库</a></li>
+<li><a href="#32-%E5%88%9B%E5%BB%BApushpull%E9%95%9C%E5%83%8F">3.2 创建push/pull镜像</a>
+<ul>
+<li><a href="#321-%E4%BD%BF%E7%94%A8%E5%89%8D%E5%88%9B%E5%BB%BA-github-%E4%B8%8A%E7%9A%84-personal-access-token-pat">3.2.1 使用前：创建 GitHub 上的 Personal Access Token (PAT)</a></li>
+<li><a href="#322-push%E9%95%9C%E5%83%8F%E9%85%8D%E7%BD%AE">3.2.2 Push镜像配置</a></li>
+<li><a href="#333-pull%E9%95%9C%E5%83%8F%E9%85%8D%E7%BD%AE">3.3.3 Pull镜像配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-%E6%9B%B4%E6%8D%A2dns%E8%A7%A3%E6%9E%90%E6%9C%8D%E5%8A%A1%E5%99%A8">4. 更换DNS解析服务器</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      </div>
+
+      <!-- Back to top -->
+      <div
+        class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+        @click="backToUp"
+        v-show="scrolled">
+        <i class="ri-arrow-up-line"></i>
+      </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.14/vue.min.js"></script>
+    <script src="https://goodcoder666.github.io/media/scripts/main.js"></script>
+
+    <!-- Code Highlight -->
+    
+    <script src="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+    
+
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+    <script>
+      //拿到预览框架，也就是上面的html代码
+      var pswpElement = document.querySelectorAll('.pswp')[0]
+      //定义图片数组变量
+      var imgitems
+      /**
+       * 用于显示预览界面
+       * @param index 图片数组下标
+       */
+      function viewImg(index) {
+        //其它选项这里不做过多阐述，详情见官网
+        var pswpoptions = {
+          index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+          bgOpacity: 0.7, // 背景透明度，0-1
+          maxSpreadZoom: 3, // 缩放级别，不要太大
+        }
+        //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          imgitems,
+          pswpoptions
+        )
+        gallery.init()
+      }
+      /**
+       * 用于添加图片点击事件
+       * @param img 图片元素
+       * @param index 所属下标（在imgitems中的位置）
+       */
+      function addImgClick(img, index) {
+        img.onclick = function () {
+          viewImg(index)
+        }
+      }
+      /**
+       * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+       * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+       * 异步加载图片可在图片元素创建完成后调用此方法
+       */
+      function initImg() {
+        //重置图片数组
+        imgitems = []
+        //查找class:markdown 下的所有img元素并遍历
+        var imgs = document.querySelectorAll('.markdown img')
+        for (var i = 0; i < imgs.length; i++) {
+          var img = imgs[i]
+          //本站相册初始为loading图片，真实图片放在data-src
+          var ds = img.getAttribute('data-src')
+          //创建image对象，用于获取图片宽高
+          var imgtemp = new Image()
+          //判断是否存在data-src
+          if (ds != null && ds.length > 0) {
+            imgtemp.src = ds
+          } else {
+            imgtemp.src = img.src
+          }
+          //判断是否存在缓存
+          if (imgtemp.complete) {
+            var imgobj = {
+              src: imgtemp.src,
+              w: imgtemp.width,
+              h: imgtemp.height,
+            }
+            imgitems[i] = imgobj
+            addImgClick(img, i)
+          } else {
+            console.log('进来了2')
+            imgtemp.index = i
+            imgtemp.img = img
+            imgtemp.onload = function () {
+              var imgobj = {
+                src: this.src,
+                w: this.width,
+                h: this.height,
+              }
+              //不要使用push，因为onload前后顺序会不同
+              imgitems[this.index] = imgobj
+              //添加点击事件
+              addImgClick(this.img, this.index)
+            }
+          }
+        }
+      }
+      //初始化
+      initImg()
+    </script>
+       <link rel="stylesheet" href="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.css" />
+<script
+  type="application/javascript"
+  src="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.min.js"></script>
+
+<script type="application/javascript">
+  var gitalk = new Gitalk({
+    clientID: '1ee93190dd0241204315',
+    clientSecret: '664a703c700862951fa5fa55c2de1672aa7c4051',
+    repo: 'gitalk-comments',
+    owner: 'GoodCoder666',
+    admin: ['GoodCoder666'],
+    id: location.pathname.substring(0, 49), // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+  
+  </body>
+</html>

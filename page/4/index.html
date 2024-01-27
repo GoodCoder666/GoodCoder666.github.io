@@ -1,0 +1,389 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>GoodCoder666的个人博客</title>
+<link rel="shortcut icon" href="https://goodcoder666.github.io/favicon.ico" />
+<link
+  href="https://npm.onmicrosoft.cn/remixicon@2.2.0/fonts/remixicon.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://goodcoder666.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://goodcoder666.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="GoodCoder666的个人博客 - Atom Feed"
+  href="https://goodcoder666.github.io/atom.xml" />
+
+
+
+    <meta name="description" content="天生我材必有用，千金散尽还复来。" />
+  </head>
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <div
+  class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300"
+  :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div
+      class="w-8 h-8 flex justify-center items-center rounded-full md:hidden"
+      @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav
+    class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block"
+    :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+    <a
+      href="/"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      首页
+    </a>
+    
+    <a
+      href="/archives"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      归档
+    </a>
+    
+    <a
+      href="/tags"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      标签
+    </a>
+    
+    <a
+      href="/post/about"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      关于
+    </a>
+    
+    <a
+      href="https://goodcoder666.github.io/atom.xml"
+      target="_blank"
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+
+      <div
+        class="max-w-4xl w-full mx-auto pt-32">
+        
+
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+          
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc244/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AtCoder Beginner Contest 244 D~F 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2022-03-20</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      D - Swap Hats
+题目大意
+有333个Takahashi，他们帽子的颜色分别为S1,S2,S3S_1,S_2,S_3S1​,S2​,S3​。
+我们现在想通过正好101810^{18}1018次操作，使得Si=TiS_i=T_iSi...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc244/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/py_codelinescounter/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        【Python】72行实现代码行数统计，简单实用！
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2022-03-15</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      0. 前言
+最近突然想知道自己总共写了多少行代码，于是做了这样一个小工具……
+1. 准备工作
+先考虑一下希望得到的效果：
+
+
+
+Language（语言）
+Lines（代码行数）
+Size（代码文件总大小）
+Files（代码文件总数）
+
+
+
+...
+    </div>
+    <a href="https://goodcoder666.github.io/post/py_codelinescounter/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc242/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AtCoder Beginner Contest 242 C~E 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2022-03-08</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      C - 1111gal password
+题目大意
+给定正整数NNN，求符合下列条件的整数XXX的个数，对998244353998244353998244353取模：
+
+XXX是NNN位的正整数
+XXX的每一位数都在[1,9][1,9][1...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc242/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc241/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AtCoder Beginner Contest 241 (Sponsored by Panasonic) D~F 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2022-03-05</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      D - Sequence Query
+题目大意
+我们有一个空序列AAA。请依次处理QQQ个命令，每个命令有三种类型，每种类型的格式如下：
+
+1 x：将xxx加入AAA（不去重）
+2 x k：求在AAA的≤x\le x≤x的元素中，第kkk大...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc241/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc239/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        Denso Create Programming Contest 2022 (AtCoder Beginner Contest 239) C~E 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2022-02-25</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      C - Knight Fork
+题目大意
+在二维平面上是否有一个整数坐标点到(x1,y1)(x_1,y_1)(x1​,y1​)和(x2,y2)(x_2,y_2)(x2​,y2​)的欧几里得距离都是5\sqrt55​？
+输入格式
+x1 y1 ...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc239/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc205/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AtCoder Beginner Contest 205 A~E 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2021-07-07</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      A - kcal
+题目大意
+我们有一种每100100100毫升含有AAA千卡热量的饮料。BBB毫升的这种饮料含有多少千卡热量？
+0≤A,B≤10000\le A, B\le 10000≤A,B≤1000
+输入格式
+A BA~BA B
+输出格...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc205/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc199/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AtCoder Beginner Contest 199 (Sponsored by Panasonic) A~E 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2021-06-13</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      A - Square Inequality
+题目大意
+给定三个整数A,B,CA,B,CA,B,C。判断A2+B2&lt;C2A^2+B^2&lt;C^2A2+B2&lt;C2是否成立。
+0≤A,B,C≤10000\le A,B,C\le 1...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc199/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc200/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        KYOCERA Programming Contest 2021 (AtCoder Beginner Contest 200) A~E 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2021-06-10</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      A - Century
+题目大意
+公元NNN年在第几个世纪中？
+
+一个世纪是由100100100个年份组成的一个区间。如，111世纪为[1,100][1,100][1,100]年，222世纪为[101,200][101,200][101,2...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc200/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc204/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AtCoder Beginner Contest 204 A~E 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2021-06-07</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      A - Rock-paper-scissors
+三个人玩石头剪刀布平局，其中两个出的分别是x,yx,yx,y，求另一个人出的。
+0≤x,y≤20\le x,y\le 20≤x,y≤2（0,1,20,1,20,1,2分别表示石头，剪刀，布）
+...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc204/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc202/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AISing Programming Contest 2021 (AtCoder Beginner Contest 202) A~E 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2021-06-06</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      A - Three Dice
+一个人抛了三个骰子，它们的顶面分别是a,b,ca,b,ca,b,c。求它们的底面之和。
+这里用的骰子是标准骰子，即两个相对的面之和为777。
+1≤a,b,c≤61\le a,b,c\le 61≤a,b,c≤6
+...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc202/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+
+        </div>
+
+        
+<div class="my-4 flex justify-between px-4 md:px-0">
+  
+  <a href="https://goodcoder666.github.io/page/3/" class="btn btn-white">
+    <i class="ri-arrow-left-line mr-4"></i>
+    上一页
+  </a>
+   
+  <a href="https://goodcoder666.github.io/page/5/" class="btn btn-white">
+    下一页
+    <i class="ri-arrow-right-line ml-4"></i>
+  </a>
+  
+</div>
+
+ <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  CSDN: <a href="https://blog.csdn.net/write_1m_lines" target="_blank">write_1m_lines</a> E-mail: stanley_shao@163.com
+</footer>
+
+      </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.14/vue.min.js"></script>
+    <script src="https://goodcoder666.github.io/media/scripts/main.js"></script>
+  </body>
+  
+</html>

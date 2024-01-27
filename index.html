@@ -1,0 +1,441 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>GoodCoder666的个人博客</title>
+<link rel="shortcut icon" href="https://goodcoder666.github.io/favicon.ico" />
+<link
+  href="https://npm.onmicrosoft.cn/remixicon@2.2.0/fonts/remixicon.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://goodcoder666.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://goodcoder666.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="GoodCoder666的个人博客 - Atom Feed"
+  href="https://goodcoder666.github.io/atom.xml" />
+
+
+
+    <meta name="description" content="天生我材必有用，千金散尽还复来。" />
+  </head>
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <div
+  class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300"
+  :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div
+      class="w-8 h-8 flex justify-center items-center rounded-full md:hidden"
+      @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav
+    class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block"
+    :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+    <a
+      href="/"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      首页
+    </a>
+    
+    <a
+      href="/archives"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      归档
+    </a>
+    
+    <a
+      href="/tags"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      标签
+    </a>
+    
+    <a
+      href="/post/about"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      关于
+    </a>
+    
+    <a
+      href="https://goodcoder666.github.io/atom.xml"
+      target="_blank"
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+
+      <div
+        class="max-w-4xl w-full mx-auto ">
+         <header
+  class="flex py-16 md:py-32 mt-12 flex-col md:flex-row px-4 md:px-0 animated fadeIn">
+  <div class="flex-1 order-2 md:order-1 md:pr-16">
+    <div class="text-4xl font-bold text-center md:text-left">
+      GoodCoder666的个人博客
+    </div>
+    <div class="text-xl text-gray-500 mt-4 text-center md:text-left">
+      天生我材必有用，千金散尽还复来。
+    </div>
+    
+    <div class="mt-8 text-center md:text-left">
+      <a
+        href="/post/about"
+        arget="_blank"
+        class="text-sm bg-yellow-50 dark:bg-indigo-500 dark:text-gray-700 font-semibold px-4 py-2 inline-block yellow-btn transition-fast rounded"
+        >关于</a
+      >
+    </div>
+     
+    <div class="mt-8 flex items-center">
+           
+      <a
+        href="mailto:stanley_shao@163.com"
+        target="_blank"
+        class="mr-2 w-8 h-8 inline-flex items-center justify-center text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast">
+        <i class="ri-mail-line"></i>
+      </a>
+          
+      <a
+        href="https://github.com/GoodCoder666"
+        target="_blank"
+        class="mr-2 w-8 h-8 inline-flex items-center justify-center text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast">
+        <i class="ri-github-line"></i>
+      </a>
+              
+      <a
+        href="https://www.zhihu.com/people/oh-no-78-71"
+        target="_blank"
+        class="mr-2 w-8 h-8 inline-flex items-center justify-center text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast">
+        <i class="ri-zhihu-line"></i>
+      </a>
+                    
+    </div>
+    
+  </div>
+  <div
+    class="md:mx-8 flex-shrink-0 self-start rounded-full border-4 border-dotted border-transparent hover:border-yellow-50 p-2 w-32 h-32 order-1 md:order-2 mx-auto s3-dotted">
+    <img
+      class="rounded-full object-cover"
+      src="https://goodcoder666.github.io/images/avatar.png?v=1706321339556"
+      alt="GoodCoder666的个人博客"
+      width="100%"
+      height="100%" />
+  </div>
+</header>
+ 
+
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+          
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <i
+    class="ri-star-line text-orange-200 absolute text-2xl left-0 ml-1 rotate-90"></i>
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/happy2024/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        元旦快乐 &amp; 新年目标
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2024-01-01</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      🌟 祝大家 202420242024 元旦快乐！🌟
+🎉 愿你们在新的一年里，万事尽可期待，眼里有光，脸上带笑，心中常怀温暖与爱！🎉
+2023 年的小目标：
+
+ CSP-S 一等
+ NOIP 一等
+ 一个 300+ Star 的开源项...
+    </div>
+    <a href="https://goodcoder666.github.io/post/happy2024/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <i
+    class="ri-star-line text-orange-200 absolute text-2xl left-0 ml-1 rotate-90"></i>
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/atcoder-all/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AtCoder题解集锦
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2022-04-15</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      本文在CSDN随时更新，详见：
+https://blog.csdn.net/write_1m_lines/article/details/124204736
+...
+    </div>
+    <a href="https://goodcoder666.github.io/post/atcoder-all/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/mathematica-intro/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        Mathematica 入门
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2024-01-25</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      前言
+Wolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的科学计算软件。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 MATLAB 和 Maple 等。
+M...
+    </div>
+    <a href="https://goodcoder666.github.io/post/mathematica-intro/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc334/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        UNIQUE VISION Programming Contest 2023 Christmas (AtCoder Beginner Contest 334) A~G 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2023-12-24</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      A - Christmas Present
+题目大意
+给定两个正整数 B,GB,GB,G（1≤B,G≤10001\le B,G\le 10001≤B,G≤1000 且 B≠GB\ne GB​=G），判断哪个更大。
+分析
+模拟即可。
+代码
+...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc334/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/csps2023-t3/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        洛谷 P9754 [CSP-S 2023] 结构体 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2023-10-29</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      题目传送门
+洛谷博客 CSDN
+CSP-S 2023 T3 结构体 题解
+基本思路
+本题主要考查编码能力，所以直接给出基本思路：
+
+由于可以递归式的创建元素，最多可以同时存在 100100100^{100}100100 个不同的基础类型的元...
+    </div>
+    <a href="https://goodcoder666.github.io/post/csps2023-t3/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc318/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AtCoder Beginner Contest 318 G - Typical Path Problem 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2023-09-03</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      G - Typical Path Problem
+题目大意
+给定一张 NNN 个点、MMM 条边的简单无向图 GGG 和三个整数 A,B,CA,B,CA,B,C。
+是否存在一条从顶点 AAA 到 CCC，且经过 BBB 的简单路径？
+数据范...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc318/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc298/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        TOYOTA MOTOR CORPORATION Programming Contest 2023#1 (AtCoder Beginner Contest 298) A~G 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2023-04-19</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      好久没写题解了，这就来水一篇。
+A - Job Interview
+题目大意
+给定一个长为 NNN 的字符串 SSS，由 o、-、x 组成。
+判断 SSS 是否符合下列条件：
+
+SSS 中至少有一个 o。
+SSS 中没有 x。
+
+1≤N≤1...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc298/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/algonotes-lca/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        【算法笔记】最近公共祖先（LCA）问题求解——倍增算法
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2023-01-06</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      0. 前言
+最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。
+这种算法应用很广泛，可以很容易解决树上最短路等问题。
+为了方便，我们记某点集 S={...
+    </div>
+    <a href="https://goodcoder666.github.io/post/algonotes-lca/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/algonotes-rmq/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        【算法笔记】【专题】RMQ 问题：ST表/树状数组/线段树
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2023-01-05</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      0. 前言
+好久没更算法笔记专栏了，正好学了新算法来更新……
+这也是本专栏的第一个专题问题，涉及到三种数据结构，如果写得有问题请各位大佬多多指教，谢谢！
+1. 关于 RMQ 问题
+RMQ 的全称是 Range Minimum/Maximum...
+    </div>
+    <a href="https://goodcoder666.github.io/post/algonotes-rmq/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/abc274/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        AtCoder Beginner Contest 274 A~E 题解
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2022-10-24</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      吐槽：这比赛名字为啥没有英文版。。。
+A - Batting Average
+题目大意
+给定整数A,BA,BA,B，输出BA\frac BAAB​，保留三位小数。
+1≤A≤101\le A\le 101≤A≤10
+0≤B≤A0\le B\l...
+    </div>
+    <a href="https://goodcoder666.github.io/post/abc274/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+
+        </div>
+
+        
+<div class="my-4 flex justify-between px-4 md:px-0">
+   
+  <a href="https://goodcoder666.github.io/page/2" class="btn btn-white">
+    下一页
+    <i class="ri-arrow-right-line ml-4"></i>
+  </a>
+  
+</div>
+
+ <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  CSDN: <a href="https://blog.csdn.net/write_1m_lines" target="_blank">write_1m_lines</a> E-mail: stanley_shao@163.com
+</footer>
+
+      </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.14/vue.min.js"></script>
+    <script src="https://goodcoder666.github.io/media/scripts/main.js"></script>
+  </body>
+  
+</html>

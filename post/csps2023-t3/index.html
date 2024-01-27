@@ -1,0 +1,939 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>洛谷 P9754 [CSP-S 2023] 结构体 题解 -
+    GoodCoder666的个人博客</title>
+<link rel="shortcut icon" href="https://goodcoder666.github.io/favicon.ico" />
+<link
+  href="https://npm.onmicrosoft.cn/remixicon@2.2.0/fonts/remixicon.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://goodcoder666.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://goodcoder666.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="洛谷 P9754 [CSP-S 2023] 结构体 题解 -
+    GoodCoder666的个人博客 - Atom Feed"
+  href="https://goodcoder666.github.io/atom.xml" />
+
+
+
+    <meta name="description" content="题目传送门
+洛谷博客 CSDN
+CSP-S 2023 T3 结构体 题解
+基本思路
+本题主要考查编码能力，所以直接给出基本思路：
+
+由于可以递归式的创建元素，最多可以同时存在 100100100^{100}100100 个不同的基础类型的元..." />
+    <meta
+      property="og:title"
+      content="洛谷 P9754 [CSP-S 2023] 结构体 题解 - GoodCoder666的个人博客" />
+    <meta property="og:description" content="题目传送门
+洛谷博客 CSDN
+CSP-S 2023 T3 结构体 题解
+基本思路
+本题主要考查编码能力，所以直接给出基本思路：
+
+由于可以递归式的创建元素，最多可以同时存在 100100100^{100}100100 个不同的基础类型的元..." />
+    <meta property="og:type" content="articles" />
+    <meta property="og:url" content="https://goodcoder666.github.io/post/csps2023-t3/" />
+    <meta
+      property="og:image"
+      content="https://goodcoder666.github.io/images/avatar.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta
+      name="twitter:title"
+      content="洛谷 P9754 [CSP-S 2023] 结构体 题解 - GoodCoder666的个人博客" />
+    <meta name="twitter:description" content="题目传送门
+洛谷博客 CSDN
+CSP-S 2023 T3 结构体 题解
+基本思路
+本题主要考查编码能力，所以直接给出基本思路：
+
+由于可以递归式的创建元素，最多可以同时存在 100100100^{100}100100 个不同的基础类型的元..." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://goodcoder666.github.io/post/csps2023-t3/" />
+
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/default-skin/default-skin.min.css" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/css/prism-synthwave84.css" />
+     
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/KaTeX/0.11.1/katex.min.css" />
+    
+  </head>
+
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <a
+        href="https://goodcoder666.github.io"
+        class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+        GoodCoder666的个人博客
+      </a>
+      <div class="max-w-4xl w-full mx-auto">
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+          <h1
+            class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+            洛谷 P9754 [CSP-S 2023] 结构体 题解
+          </h1>
+          
+          <div class="mb-8 flex flex-wrap">
+            <div class="text-gray-400 text-sm mr-4">
+              2023-10-29 · 16 min read
+            </div>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/cpp/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              C++
+            </a>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/oi/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              算法竞赛
+            </a>
+            
+          </div>
+          <div class="markdown mb-8" v-pre><p><a href="https://www.luogu.com.cn/problem/P9754">题目传送门</a><br>
+<a href="https://www.luogu.com.cn/blog/best-blogs/solution-p9754">洛谷博客</a> <a href="https://blog.csdn.net/write_1m_lines/article/details/134758697">CSDN</a></p>
+<h2 id="csp-s-2023-t3-结构体-题解">CSP-S 2023 T3 结构体 题解</h2>
+<h3 id="基本思路">基本思路</h3>
+<p>本题主要考查编码能力，所以直接给出基本思路：</p>
+<ul>
+<li>由于可以递归式的创建元素，最多可以同时存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10</mn><msup><mn>0</mn><mn>100</mn></msup></mrow><annotation encoding="application/x-tex">100^{100}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span> 个不同的基础类型的元素。即使算上最大地址的限制，元素的数量也能达到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">10^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span>。显然，<strong>依次构造每个元素，在空间和时间上都是无法接受的。</strong></li>
+<li>然而，由于询问数量有限，<strong>真正能在查询时用到的元素数量相对很少</strong>。因此，我们只需维护一个顶层元素（不隶属于任何其他元素的元素）列表，再根据查询的地址或名称<strong>逐层向下找到需要的元素</strong>即可。以下是四种操作的具体做法：
+<ul>
+<li>对于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi><mi>p</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">op=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>：储存当前类型信息，计算大小和对齐要求并输出。</li>
+<li>对于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi><mi>p</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">op=2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>：用一个变量记录当前第一个可分配内存的地址，操作时先对齐后计算、输出。</li>
+<li>对于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi><mi>p</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">op=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>：从顶层开始，逐层向下寻找，计算地址并输出。</li>
+<li>对于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi><mi>p</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">op=4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span>：从顶层开始，维护当前考查的元素地址，并与给定地址比对，最终输出底层元素名称。</li>
+</ul>
+</li>
+</ul>
+<p>由以上思路，很容易想到下面三种类型的存储方式：</p>
+<ol>
+<li>用<strong>类型名称</strong>作为类型的唯一的标识符。这是最直观的做法，但是效率低下且使用起来较为繁琐，pass。</li>
+<li>用 map <strong>将类型名称映射到序号</strong>，来代表一种数据类型。相比第一种做法，效率高了很多，但是写起来仍然很麻烦，pass。</li>
+<li>用结构体存储类型信息，并<strong>使用指针来处理类型之间的关联</strong>。这种做法不仅高效，而且编码时也很直观，所以我们将采用这种存储方式。</li>
+</ol>
+<h3 id="分步详解">分步详解</h3>
+<h4 id="准备">准备</h4>
+<p>用 <code>LL</code> 表示 <code>long long</code>，<code>setmax(x, y)</code> 等同于 <code>x = max(x, y)</code>：</p>
+<pre><code class="language-cpp">inline void setmax(int&amp; x, int y)
+{
+    if(x &lt; y) x = y;
+}
+
+using LL = long long;
+</code></pre>
+<h4 id="数据类型的存储">数据类型的存储</h4>
+<p>定义 <strong><code>struct DataType</code></strong>，表示一种数据类型：</p>
+<pre><code class="language-cpp">struct DataType
+{
+    const string name; // 类型名
+    LL size, actual_size; // 对齐后的大小和实际大小（有数据的部分的长度）
+    int indent; // 对齐要求
+    vector&lt;pair&lt;DataType*, string&gt;&gt; members; // 类型成员，&lt;成员类型指针，成员名称&gt; 方式存储
+};
+</code></pre>
+<p><strong>对齐</strong>操作，依照如下公式：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">对</mi><mi mathvariant="normal">齐</mi><mi mathvariant="normal">后</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">地</mi><mi mathvariant="normal">址</mi></mrow><mo>=</mo><mo>⌈</mo><mfrac><mrow><mi mathvariant="normal">对</mi><mi mathvariant="normal">齐</mi><mi mathvariant="normal">前</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">地</mi><mi mathvariant="normal">址</mi></mrow><mrow><mi mathvariant="normal">对</mi><mi mathvariant="normal">齐</mi><mi mathvariant="normal">要</mi><mi mathvariant="normal">求</mi></mrow></mfrac><mo>⌉</mo><mo>×</mo><mrow><mi mathvariant="normal">对</mi><mi mathvariant="normal">齐</mi><mi mathvariant="normal">要</mi><mi mathvariant="normal">求</mi></mrow></mrow><annotation encoding="application/x-tex">{对齐后的地址} = \lceil \frac {对齐前的地址} {对齐要求} \rceil \times {对齐要求}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord"><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">齐</span><span class="mord cjk_fallback">后</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">地</span><span class="mord cjk_fallback">址</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.436em;vertical-align:-0.686em;"></span><span class="mopen">⌈</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.677em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">齐</span><span class="mord cjk_fallback">要</span><span class="mord cjk_fallback">求</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">齐</span><span class="mord cjk_fallback">前</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">地</span><span class="mord cjk_fallback">址</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord"><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">齐</span><span class="mord cjk_fallback">要</span><span class="mord cjk_fallback">求</span></span></span></span></span></span></p>
+<pre><code class="language-cpp">inline LL shift(LL addr)
+{
+    return addr % indent? (addr / indent + 1) * indent: addr;
+}
+</code></pre>
+<p><strong>维护</strong>操作，用于操作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 后计算大小：</p>
+<pre><code class="language-cpp">inline void maintain()
+{
+    size = indent = 0;
+    for(const auto&amp; m: members)
+    {
+        setmax(indent, m.first-&gt;indent);
+        size = m.first-&gt;shift(size) + m.first-&gt;size;
+    }
+    actual_size = size;
+    size = shift(size);
+}
+</code></pre>
+<p>注意 <code>shift</code> 和 <code>maintain</code> 都是 <code>DataType</code> 的成员函数。</p>
+<p>主函数中，用一个 <strong><code>unordered_map</code> 记录类型名到数据类型的映射关系</strong>：</p>
+<pre><code class="language-cpp">unordered_map&lt;string, DataType*&gt; types;
+</code></pre>
+<p><strong>添加基本类型</strong>：</p>
+<pre><code class="language-cpp">auto add_base_type = [&amp;](string name, int size) -&gt; void {
+    DataType* t = new DataType(name);
+    t-&gt;size = t-&gt;indent = t-&gt;actual_size = size;
+    types[name] = t;
+};
+add_base_type(&quot;byte&quot;, 1);
+add_base_type(&quot;short&quot;, 2);
+add_base_type(&quot;int&quot;, 4);
+add_base_type(&quot;long&quot;, 8);
+</code></pre>
+<h4 id="操作-1定义类型">操作 1：定义类型</h4>
+<p>由于 <code>DataType</code> 中已经实现维护操作，简单处理一下输入即可：</p>
+<pre><code class="language-cpp">string s;
+int k;
+cin &gt;&gt; s &gt;&gt; k;
+DataType* type = new DataType(s);
+types[s] = type;
+type-&gt;members.resize(k);
+for(auto&amp; m: type-&gt;members)
+{
+    string t;
+    cin &gt;&gt; t &gt;&gt; m.second;
+    m.first = types[t];
+}
+type-&gt;maintain();
+cout &lt;&lt; type-&gt;size &lt;&lt; ' ' &lt;&lt; type-&gt;indent &lt;&lt; '\n';
+</code></pre>
+<h4 id="操作-2定义元素">操作 2：定义元素</h4>
+<p>根据「基本思路」中给出的做法，<strong>维护当前第一个可分配的地址和顶层元素列表</strong>：</p>
+<pre><code class="language-cpp">LL cur_addr = 0LL;
+vector&lt;Object&gt; toplevel_objects;
+</code></pre>
+<p><code>Object</code> 的定义：</p>
+<pre><code class="language-cpp">struct Object
+{
+    DataType* type; // 类型
+    string name; // 名称
+    LL addr; // 地址
+};
+</code></pre>
+<p><strong>计算地址并保存元素</strong>：</p>
+<pre><code class="language-cpp">Object obj;
+string t;
+cin &gt;&gt; t &gt;&gt; obj.name; // 输入
+obj.type = types[t]; // 找到类型指针
+obj.addr = obj.type-&gt;shift(cur_addr); // 对齐
+cur_addr = obj.addr + obj.type-&gt;size; // 更新可分配的地址
+toplevel_objects.push_back(obj); // 保存元素
+</code></pre>
+<p><strong>输出元素地址</strong>：</p>
+<pre><code class="language-cpp">cout &lt;&lt; obj.addr &lt;&lt; '\n';
+</code></pre>
+<h4 id="操作-3访问元素">操作 3：访问元素</h4>
+<p>定义一个辅助函数，类似于 Python 中的 <code>split()</code>，将一个字符串根据指定分隔符分成若干段：</p>
+<pre><code class="language-cpp">inline void split(const string&amp; s, char sep, vector&lt;string&gt;&amp; res)
+{
+    string t;
+    for(char c: s)
+        if(c == sep)
+            res.push_back(t), t.clear();
+        else t += c;
+    res.push_back(t);
+}
+</code></pre>
+<p>先<strong>处理字符串并找到顶层元素</strong>：</p>
+<pre><code class="language-cpp">// 读入
+string s;
+cin &gt;&gt; s;
+// 分割
+vector&lt;string&gt; ord;
+split(s, '.', ord);
+// 根据名称匹配顶层元素
+LL addr;
+DataType* type;
+for(auto&amp; obj: toplevel_objects)
+    if(obj.name == ord[0])
+    {
+        addr = obj.addr;
+        type = obj.type;
+        break;
+    }
+</code></pre>
+<p><strong>逐层向下，计算地址</strong>：</p>
+<pre><code class="language-cpp">// ord[0] 对应顶层元素名称，删掉
+ord.erase(ord.begin());
+// 逐层向下遍历
+for(string&amp; s: ord)
+    for(auto&amp; m: type-&gt;members)
+    {
+        addr = m.first-&gt;shift(addr); // 地址对齐
+        if(m.second == s) // 名称匹配
+        {
+            type = m.first; // 找到下一层，向下遍历
+            break;
+        }
+        addr += m.first-&gt;size; // 地址移到下一个元素
+    }
+</code></pre>
+<p><strong>输出最终地址</strong>：</p>
+<pre><code class="language-cpp">cout &lt;&lt; addr &lt;&lt; '\n';
+</code></pre>
+<h4 id="操作-4访问地址">操作 4：访问地址</h4>
+<p>同操作 3，<strong>先找到顶层元素</strong>：</p>
+<pre><code class="language-cpp">LL addr;
+cin &gt;&gt; addr;
+if(addr &gt;= cur_addr) // 大于最高有效地址，直接挂掉
+{
+    cout &lt;&lt; &quot;ERR\n&quot;;
+    continue;
+}
+DataType* type = nullptr;
+LL f_addr = 0LL; // 当前考察的地址
+string res; // 结果字符串
+for(auto&amp; obj: toplevel_objects)
+{
+    if(addr &lt; obj.addr) goto bad; // 特判由于对齐导致的地址无效
+    if(addr &lt; obj.addr + obj.type-&gt;size) // 地址在当前范围内，记录结果
+    {
+        type = obj.type;
+        res = obj.name;
+        f_addr = obj.addr;
+        break;
+    }
+}
+</code></pre>
+<p><strong>向下寻找并输出</strong>：</p>
+<pre><code class="language-cpp">// 循环条件：(1) 地址有效 (2) 不是基本类型（类型有成员）
+while(addr &lt; f_addr + type-&gt;actual_size &amp;&amp; !type-&gt;members.empty())
+    for(auto&amp; m: type-&gt;members)
+    {
+        f_addr = m.first-&gt;shift(f_addr); // 对齐
+        if(addr &lt; f_addr) goto bad; // 特判，同上
+        if(addr &lt; f_addr + m.first-&gt;size)
+        {
+            type = m.first;
+            res.push_back('.');
+            res += m.second;
+            break;
+        }
+        f_addr += m.first-&gt;size;
+    }
+if(addr &lt; f_addr + type-&gt;actual_size) cout &lt;&lt; res &lt;&lt; '\n'; // 地址有效则输出结果
+else cout &lt;&lt; &quot;ERR\n&quot;; // 地址无效
+continue;
+bad: cout &lt;&lt; &quot;ERR\n&quot;; // 前面使用的 bad 标签
+</code></pre>
+<h3 id="完整代码">完整代码</h3>
+<p>下面是赛时代码，也是前面讲解中使用的：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;unordered_map&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+inline void setmax(int&amp; x, int y)
+{
+    if(x &lt; y) x = y;
+}
+
+using LL = long long;
+
+struct DataType
+{
+    const string name;
+    LL size, actual_size;
+    int indent;
+    vector&lt;pair&lt;DataType*, string&gt;&gt; members;
+    inline DataType(const string&amp; n): name(n) {}
+    inline LL shift(LL addr)
+    {
+        return addr % indent? (addr / indent + 1) * indent: addr;
+    }
+    inline void maintain()
+    {
+        size = indent = 0;
+        for(const auto&amp; m: members)
+        {
+            setmax(indent, m.first-&gt;indent);
+            size = m.first-&gt;shift(size) + m.first-&gt;size;
+        }
+        actual_size = size;
+        size = shift(size);
+    }
+};
+
+struct Object
+{
+    DataType* type;
+    string name;
+    LL addr;
+};
+
+inline void split(const string&amp; s, char sep, vector&lt;string&gt;&amp; res)
+{
+    string t;
+    for(char c: s)
+        if(c == sep)
+            res.push_back(t), t.clear();
+        else t += c;
+    res.push_back(t);
+}
+
+int main()
+{
+    ios::sync_with_stdio(false); cin.tie(nullptr);
+    unordered_map&lt;string, DataType*&gt; types;
+    auto add_base_type = [&amp;](string name, int size) -&gt; void {
+        DataType* t = new DataType(name);
+        t-&gt;size = t-&gt;indent = t-&gt;actual_size = size;
+        types[name] = t;
+    };
+    add_base_type(&quot;byte&quot;, 1);
+    add_base_type(&quot;short&quot;, 2);
+    add_base_type(&quot;int&quot;, 4);
+    add_base_type(&quot;long&quot;, 8);
+    int q;
+    cin &gt;&gt; q;
+    vector&lt;Object&gt; toplevel_objects;
+    LL cur_addr = 0LL;
+    while(q--)
+    {
+        int op;
+        cin &gt;&gt; op;
+        if(op == 1)
+        {
+            string s;
+            int k;
+            cin &gt;&gt; s &gt;&gt; k;
+            DataType* type = new DataType(s);
+            types[s] = type;
+            type-&gt;members.resize(k);
+            for(auto&amp; m: type-&gt;members)
+            {
+                string t;
+                cin &gt;&gt; t &gt;&gt; m.second;
+                m.first = types[t];
+            }
+            type-&gt;maintain();
+            cout &lt;&lt; type-&gt;size &lt;&lt; ' ' &lt;&lt; type-&gt;indent &lt;&lt; '\n';
+        }
+        else if(op == 2)
+        {
+            Object obj;
+            string t;
+            cin &gt;&gt; t &gt;&gt; obj.name;
+            obj.type = types[t];
+            obj.addr = obj.type-&gt;shift(cur_addr);
+            cur_addr = obj.addr + obj.type-&gt;size;
+            toplevel_objects.push_back(obj);
+            cout &lt;&lt; obj.addr &lt;&lt; '\n';
+        }
+        else if(op == 3)
+        {
+            string s;
+            cin &gt;&gt; s;
+            vector&lt;string&gt; ord;
+            split(s, '.', ord);
+            LL addr;
+            DataType* type;
+            for(auto&amp; obj: toplevel_objects)
+                if(obj.name == ord[0])
+                {
+                    addr = obj.addr;
+                    type = obj.type;
+                    break;
+                }
+            ord.erase(ord.begin());
+            for(string&amp; s: ord)
+                for(auto&amp; m: type-&gt;members)
+                {
+                    addr = m.first-&gt;shift(addr);
+                    if(m.second == s)
+                    {
+                        type = m.first;
+                        break;
+                    }
+                    addr += m.first-&gt;size;
+                }
+            cout &lt;&lt; addr &lt;&lt; '\n';
+        }
+        else // op == 4
+        {
+            LL addr;
+            cin &gt;&gt; addr;
+            if(addr &gt;= cur_addr)
+            {
+                cout &lt;&lt; &quot;ERR\n&quot;;
+                continue;
+            }
+            DataType* type = nullptr;
+            LL f_addr = 0LL;
+            string res;
+            for(auto&amp; obj: toplevel_objects)
+            {
+                if(addr &lt; obj.addr) goto bad;
+                if(addr &lt; obj.addr + obj.type-&gt;size)
+                {
+                    type = obj.type;
+                    res = obj.name;
+                    f_addr = obj.addr;
+                    break;
+                }
+            }
+            while(addr &lt; f_addr + type-&gt;actual_size &amp;&amp; !type-&gt;members.empty())
+                for(auto&amp; m: type-&gt;members)
+                {
+                    f_addr = m.first-&gt;shift(f_addr);
+                    if(addr &lt; f_addr) goto bad;
+                    if(addr &lt; f_addr + m.first-&gt;size)
+                    {
+                        type = m.first;
+                        res.push_back('.');
+                        res += m.second;
+                        break;
+                    }
+                    f_addr += m.first-&gt;size;
+                }
+            if(addr &lt; f_addr + type-&gt;actual_size) cout &lt;&lt; res &lt;&lt; '\n';
+            else cout &lt;&lt; &quot;ERR\n&quot;;
+            continue;
+            bad: cout &lt;&lt; &quot;ERR\n&quot;;
+        }
+    }
+    for(auto it=types.begin(); it!=types.end(); it++)
+        delete it-&gt;second;
+    return 0;
+}
+</code></pre>
+<p>程序共计 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>180</mn></mrow><annotation encoding="application/x-tex">180</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mord">0</span></span></span></span> 行，长度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4.64</mn><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">B</mi></mrow></mrow><annotation encoding="application/x-tex">4.64\mathrm{KB}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">.</span><span class="mord">6</span><span class="mord">4</span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">B</span></span></span></span></span>，运行用时 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>73</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">73\mathrm{ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mord">3</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span></span>。</p>
+<p>实际上 <code>Object</code> 的定义没有必要，也不需要存储每个顶层元素的地址，同时还可以稍加压行：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+using LL = long long;
+
+struct DataType {
+    const string name;
+    LL size, actual_size;
+    int indent;
+    vector&lt;pair&lt;DataType*, string&gt;&gt; members;
+    inline DataType(const string&amp; n): name(n) {}
+    inline LL shift(LL addr) {
+        return addr % indent? (addr / indent + 1) * indent: addr;
+    }
+    inline void maintain() {
+        size = indent = 0;
+        for(const auto&amp; m: members)
+        {
+            indent = max(indent, m.first-&gt;indent);
+            size = m.first-&gt;shift(size) + m.first-&gt;size;
+        }
+        actual_size = size;
+        size = shift(size);
+    }
+};
+
+inline void split(const string&amp; s, char sep, vector&lt;string&gt;&amp; res) {
+    string t;
+    for(char c: s)
+        if(c == sep) res.push_back(t), t.clear();
+        else t += c;
+    res.push_back(t);
+}
+
+int main() {
+    ios::sync_with_stdio(false); cin.tie(nullptr);
+    unordered_map&lt;string, DataType*&gt; types;
+    auto add_base_type = [&amp;](string name, int size) -&gt; void {
+        DataType* t = new DataType(name);
+        t-&gt;size = t-&gt;indent = t-&gt;actual_size = size;
+        types[name] = t;
+    };
+    add_base_type(&quot;byte&quot;, 1);
+    add_base_type(&quot;short&quot;, 2);
+    add_base_type(&quot;int&quot;, 4);
+    add_base_type(&quot;long&quot;, 8);
+    int q;
+    cin &gt;&gt; q;
+    vector&lt;pair&lt;DataType*, string&gt;&gt; toplevel_objects;
+    LL cur_addr = 0LL;
+    while(q--) {
+        int op;
+        cin &gt;&gt; op;
+        if(op == 1) {
+            string s;
+            int k;
+            cin &gt;&gt; s &gt;&gt; k;
+            DataType* type = new DataType(s);
+            types[s] = type;
+            type-&gt;members.resize(k);
+            for(auto&amp; m: type-&gt;members) {
+                string t;
+                cin &gt;&gt; t &gt;&gt; m.second;
+                m.first = types[t];
+            }
+            type-&gt;maintain();
+            cout &lt;&lt; type-&gt;size &lt;&lt; ' ' &lt;&lt; type-&gt;indent &lt;&lt; '\n';
+        }
+        else if(op == 2) {
+            string t, name;
+            cin &gt;&gt; t &gt;&gt; name;
+            DataType* type = types[t];
+            cur_addr = type-&gt;shift(cur_addr);
+            cout &lt;&lt; cur_addr &lt;&lt; '\n';
+            cur_addr += type-&gt;size;
+            toplevel_objects.emplace_back(type, name);
+        }
+        else if(op == 3) {
+            string s;
+            cin &gt;&gt; s;
+            vector&lt;string&gt; ord;
+            split(s, '.', ord);
+            LL addr = 0LL;
+            DataType* type;
+            for(auto&amp; obj: toplevel_objects) {
+                addr = obj.first-&gt;shift(addr);
+                if(obj.second == ord[0]) {
+                    type = obj.first;
+                    break;
+                }
+                addr += obj.first-&gt;size;
+            }
+            ord.erase(ord.begin());
+            for(string&amp; s: ord)
+                for(auto&amp; m: type-&gt;members) {
+                    addr = m.first-&gt;shift(addr);
+                    if(m.second == s) {
+                        type = m.first;
+                        break;
+                    }
+                    addr += m.first-&gt;size;
+                }
+            cout &lt;&lt; addr &lt;&lt; '\n';
+        }
+        else {
+            LL addr;
+            cin &gt;&gt; addr;
+            if(addr &gt;= cur_addr) {
+                cout &lt;&lt; &quot;ERR\n&quot;;
+                continue;
+            }
+            DataType* type = nullptr;
+            LL f_addr = 0LL;
+            string res;
+            for(auto&amp; obj: toplevel_objects) {
+                f_addr = obj.first-&gt;shift(f_addr);
+                if(addr &lt; f_addr) goto bad;
+                if(addr &lt; f_addr + obj.first-&gt;size) {
+                    type = obj.first;
+                    res = obj.second;
+                    break;
+                }
+                f_addr += obj.first-&gt;size;
+            }
+            while(addr &lt; f_addr + type-&gt;actual_size &amp;&amp; !type-&gt;members.empty())
+                for(auto&amp; m: type-&gt;members) {
+                    f_addr = m.first-&gt;shift(f_addr);
+                    if(addr &lt; f_addr) goto bad;
+                    if(addr &lt; f_addr + m.first-&gt;size) {
+                        type = m.first;
+                        res.push_back('.');
+                        res += m.second;
+                        break;
+                    }
+                    f_addr += m.first-&gt;size;
+                }
+            if(addr &lt; f_addr + type-&gt;actual_size) cout &lt;&lt; res &lt;&lt; '\n';
+            else cout &lt;&lt; &quot;ERR\n&quot;;
+            continue;
+            bad: cout &lt;&lt; &quot;ERR\n&quot;;
+        }
+    }
+    for(auto it=types.begin(); it!=types.end(); it++)
+        delete it-&gt;second;
+    return 0;
+}
+</code></pre>
+<p>这样只有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>146</mn></mrow><annotation encoding="application/x-tex">146</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mord">6</span></span></span></span> 行，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4.51</mn><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">B</mi></mrow></mrow><annotation encoding="application/x-tex">4.51\mathrm{KB}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">.</span><span class="mord">5</span><span class="mord">1</span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">B</span></span></span></span></span>。</p>
+<p>不过个人觉得写个 <code>Object</code> 更清楚，所以讲解的时候就没改啦~</p>
+<h4 id="后记">后记</h4>
+<p>算法固然重要，但是编码能力也很重要！强烈建议各位 OIer 重视大模拟，不在这种题上挂分~</p>
+<p>写大模拟需要注意的几个点：</p>
+<ul>
+<li>变量名写清楚，全写 <code>a</code>、<code>b</code>、<code>c</code>、<code>d</code> 到后面自己都不知道是啥，没法调试</li>
+<li>该用指针就用指针，不要害怕，用多了会发现真的很好用</li>
+<li>适当使用类和结构体，尽量不要全部使用 <code>int</code> 数组</li>
+<li>时间复杂度允许的情况下，可读性比性能重要！！（比如本题没有使用二分查找）</li>
+</ul>
+<p>祝大家在 NOIP 2023 取得好成绩！<s>求赞qwq</s></p>
+</div>
+          <!-- Share to Twitter, Weibo, Telegram -->
+          <div class="flex items-center">
+            <div class="mr-4 flex items-center">
+              <i class="ri-share-forward-line text-gray-500"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTwitter">
+              <i class="ri-twitter-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToWeibo">
+              <i class="ri-weibo-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTelegram">
+              <i class="ri-telegram-line"></i>
+            </div>
+          </div>
+        </div>
+
+         
+        <div id="gitalk-container"></div>
+            <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  CSDN: <a href="https://blog.csdn.net/write_1m_lines" target="_blank">write_1m_lines</a> E-mail: stanley_shao@163.com
+</footer>
+
+      </div>
+
+      <!-- TOC Container -->
+      <div
+        class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+        @click="showToc = true">
+        <i class="ri-file-list-line"></i>
+      </div>
+
+      <div
+        class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+        :class="{ '-mr-64': !showToc }">
+        <div class="flex mb-4 justify-end">
+          <div
+            class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+            @click="showToc = false">
+            <i class="ri-close-line text-lg"></i>
+          </div>
+        </div>
+        <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#csp-s-2023-t3-%E7%BB%93%E6%9E%84%E4%BD%93-%E9%A2%98%E8%A7%A3">CSP-S 2023 T3 结构体 题解</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF">基本思路</a></li>
+<li><a href="#%E5%88%86%E6%AD%A5%E8%AF%A6%E8%A7%A3">分步详解</a>
+<ul>
+<li><a href="#%E5%87%86%E5%A4%87">准备</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AD%98%E5%82%A8">数据类型的存储</a></li>
+<li><a href="#%E6%93%8D%E4%BD%9C-1%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B">操作 1：定义类型</a></li>
+<li><a href="#%E6%93%8D%E4%BD%9C-2%E5%AE%9A%E4%B9%89%E5%85%83%E7%B4%A0">操作 2：定义元素</a></li>
+<li><a href="#%E6%93%8D%E4%BD%9C-3%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0">操作 3：访问元素</a></li>
+<li><a href="#%E6%93%8D%E4%BD%9C-4%E8%AE%BF%E9%97%AE%E5%9C%B0%E5%9D%80">操作 4：访问地址</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81">完整代码</a>
+<ul>
+<li><a href="#%E5%90%8E%E8%AE%B0">后记</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+      </div>
+
+      <!-- Back to top -->
+      <div
+        class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+        @click="backToUp"
+        v-show="scrolled">
+        <i class="ri-arrow-up-line"></i>
+      </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.14/vue.min.js"></script>
+    <script src="https://goodcoder666.github.io/media/scripts/main.js"></script>
+
+    <!-- Code Highlight -->
+    
+    <script src="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+    
+
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+    <script>
+      //拿到预览框架，也就是上面的html代码
+      var pswpElement = document.querySelectorAll('.pswp')[0]
+      //定义图片数组变量
+      var imgitems
+      /**
+       * 用于显示预览界面
+       * @param index 图片数组下标
+       */
+      function viewImg(index) {
+        //其它选项这里不做过多阐述，详情见官网
+        var pswpoptions = {
+          index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+          bgOpacity: 0.7, // 背景透明度，0-1
+          maxSpreadZoom: 3, // 缩放级别，不要太大
+        }
+        //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          imgitems,
+          pswpoptions
+        )
+        gallery.init()
+      }
+      /**
+       * 用于添加图片点击事件
+       * @param img 图片元素
+       * @param index 所属下标（在imgitems中的位置）
+       */
+      function addImgClick(img, index) {
+        img.onclick = function () {
+          viewImg(index)
+        }
+      }
+      /**
+       * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+       * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+       * 异步加载图片可在图片元素创建完成后调用此方法
+       */
+      function initImg() {
+        //重置图片数组
+        imgitems = []
+        //查找class:markdown 下的所有img元素并遍历
+        var imgs = document.querySelectorAll('.markdown img')
+        for (var i = 0; i < imgs.length; i++) {
+          var img = imgs[i]
+          //本站相册初始为loading图片，真实图片放在data-src
+          var ds = img.getAttribute('data-src')
+          //创建image对象，用于获取图片宽高
+          var imgtemp = new Image()
+          //判断是否存在data-src
+          if (ds != null && ds.length > 0) {
+            imgtemp.src = ds
+          } else {
+            imgtemp.src = img.src
+          }
+          //判断是否存在缓存
+          if (imgtemp.complete) {
+            var imgobj = {
+              src: imgtemp.src,
+              w: imgtemp.width,
+              h: imgtemp.height,
+            }
+            imgitems[i] = imgobj
+            addImgClick(img, i)
+          } else {
+            console.log('进来了2')
+            imgtemp.index = i
+            imgtemp.img = img
+            imgtemp.onload = function () {
+              var imgobj = {
+                src: this.src,
+                w: this.width,
+                h: this.height,
+              }
+              //不要使用push，因为onload前后顺序会不同
+              imgitems[this.index] = imgobj
+              //添加点击事件
+              addImgClick(this.img, this.index)
+            }
+          }
+        }
+      }
+      //初始化
+      initImg()
+    </script>
+       <link rel="stylesheet" href="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.css" />
+<script
+  type="application/javascript"
+  src="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.min.js"></script>
+
+<script type="application/javascript">
+  var gitalk = new Gitalk({
+    clientID: '1ee93190dd0241204315',
+    clientSecret: '664a703c700862951fa5fa55c2de1672aa7c4051',
+    repo: 'gitalk-comments',
+    owner: 'GoodCoder666',
+    admin: ['GoodCoder666'],
+    id: location.pathname.substring(0, 49), // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+  
+  </body>
+</html>

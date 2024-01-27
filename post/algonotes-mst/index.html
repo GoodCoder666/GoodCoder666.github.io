@@ -1,0 +1,677 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>【算法笔记】Kruskal/Prim算法——求解最小生成树问题 -
+    GoodCoder666的个人博客</title>
+<link rel="shortcut icon" href="https://goodcoder666.github.io/favicon.ico" />
+<link
+  href="https://npm.onmicrosoft.cn/remixicon@2.2.0/fonts/remixicon.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://goodcoder666.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://goodcoder666.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="【算法笔记】Kruskal/Prim算法——求解最小生成树问题 -
+    GoodCoder666的个人博客 - Atom Feed"
+  href="https://goodcoder666.github.io/atom.xml" />
+
+
+
+    <meta name="description" content="前言
+生活中经常遇到类似这种的问题：
+
+公路修建
+有一些城市，城市之间要修建高速公路，每两个城市之间都可以修双向的路。其中每两个城市之间修路都需要花费对应的金额。请问如何修路，使得总花费的金额最少，且任意两个城市之间都可以直接或间接通过修建..." />
+    <meta
+      property="og:title"
+      content="【算法笔记】Kruskal/Prim算法——求解最小生成树问题 - GoodCoder666的个人博客" />
+    <meta property="og:description" content="前言
+生活中经常遇到类似这种的问题：
+
+公路修建
+有一些城市，城市之间要修建高速公路，每两个城市之间都可以修双向的路。其中每两个城市之间修路都需要花费对应的金额。请问如何修路，使得总花费的金额最少，且任意两个城市之间都可以直接或间接通过修建..." />
+    <meta property="og:type" content="articles" />
+    <meta property="og:url" content="https://goodcoder666.github.io/post/algonotes-mst/" />
+    <meta
+      property="og:image"
+      content="https://goodcoder666.github.io/images/avatar.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta
+      name="twitter:title"
+      content="【算法笔记】Kruskal/Prim算法——求解最小生成树问题 - GoodCoder666的个人博客" />
+    <meta name="twitter:description" content="前言
+生活中经常遇到类似这种的问题：
+
+公路修建
+有一些城市，城市之间要修建高速公路，每两个城市之间都可以修双向的路。其中每两个城市之间修路都需要花费对应的金额。请问如何修路，使得总花费的金额最少，且任意两个城市之间都可以直接或间接通过修建..." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://goodcoder666.github.io/post/algonotes-mst/" />
+
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/default-skin/default-skin.min.css" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/css/prism-synthwave84.css" />
+     
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/KaTeX/0.11.1/katex.min.css" />
+    
+  </head>
+
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <a
+        href="https://goodcoder666.github.io"
+        class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+        GoodCoder666的个人博客
+      </a>
+      <div class="max-w-4xl w-full mx-auto">
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+          <h1
+            class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+            【算法笔记】Kruskal/Prim算法——求解最小生成树问题
+          </h1>
+          
+          <div class="mb-8 flex flex-wrap">
+            <div class="text-gray-400 text-sm mr-4">
+              2022-08-15 · 11 min read
+            </div>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/algonotes/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              算法笔记
+            </a>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/oi/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              算法竞赛
+            </a>
+            
+          </div>
+          <div class="markdown mb-8" v-pre><h2 id="前言">前言</h2>
+<p>生活中经常遇到类似这种的问题：</p>
+<blockquote>
+<p><strong>公路修建</strong><br>
+有一些城市，城市之间要修建高速公路，每两个城市之间都可以修双向的路。其中每两个城市之间修路都需要花费对应的金额。请问如何修路，使得总花费的金额最少，且任意两个城市之间都可以直接或间接通过修建的路来通行？</p>
+</blockquote>
+<p>实际上，我们可以把这种问题抽象化，把城市看作图的顶点，公路看作带权的无向边，这样整个国家就被抽象成了一张<strong>带权无向图</strong>。又因为要求总花费最小，所以修的路一定组成一棵<strong>生成树</strong>，于是转换成下面的问题：</p>
+<blockquote>
+<p>给定一张带权无向图<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span></span></span></span>，求它的一棵<a href="https://baike.baidu.com/item/%E7%94%9F%E6%88%90%E6%A0%91%E7%AE%97%E6%B3%95/21511961">生成树</a>，使其中<strong>所有边权之和最小</strong>。</p>
+</blockquote>
+<p>实际上，这就是大名鼎鼎的「<strong>最小生成树问题</strong>」。<br>
+比如看下面这张图：</p>
+<img src="https://img-blog.csdnimg.cn/c7f71e4fb80846909a33373971867728.png" alt="MST-Graph" referrerpolicy="no-referrer" />
+<p>其中，标绿的部分即为其最小生成树。</p>
+<p>对于这种问题，很多数学家都有所研究。但毕竟是数学家，不懂计算机，就只管算法的正确性，不管实现起来的<strong>简单性、可行性和效率</strong>，所以很多算法都被人们所抛弃。不过，还是有两种算法脱颖而出，它们就是标题中的——Kruskal 和 Prim。</p>
+<p>模板：<a href="https://www.luogu.com.cn/problem/P3366">洛谷 P3366【模板】最小生成树</a><br>
+数据范围：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>≤</mo><mn>5000</mn><mo separator="true">,</mo><mi>M</mi><mo>≤</mo><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup><mo separator="true">,</mo><mi>w</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">N\le5000,M\le2\times10^5,w\le 10^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span>。</p>
+<h2 id="kruskal">Kruskal</h2>
+<p>Kruskal算法是由Joseph Kruskal于1956年提出的最小生成树算法，时间复杂度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>m</mi><mi>log</mi><mo>⁡</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(m\log m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>。下面来看这种算法的流程。</p>
+<h3 id="kruskal-算法流程">Kruskal 算法流程</h3>
+<ol>
+<li>将所有边<strong>按权值从小到大排序</strong>，依次遍历每一条边；</li>
+<li>对于每一条边，如果在当前子图中连上之后不会形成环，则选择这条边作为最小生成树的一部分，加入子图；</li>
+<li>选择<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>条边后即可结束算法。</li>
+</ol>
+<h3 id="并查集-加快算法速度">并查集 - 加快算法速度</h3>
+<p>在正式实现Kruskal算法之前，我们还需要先了解一下并查集。如果判定是否会出现环的部分使用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>DFS</mtext></mrow><annotation encoding="application/x-tex">\text{DFS}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">DFS</span></span></span></span></span>，则时间复杂度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>m</mi><mo>+</mo><mi>m</mi><mi>log</mi><mo>⁡</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(nm+m\log m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>，费时费力。若使用并查集来实现，则代码非常简单，且时间复杂度仅为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>m</mi><mi>log</mi><mo>⁡</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(m\log m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>（排序的耗时）。并查集模板：</p>
+<pre><code class="language-cpp">class dsu
+{
+private:
+	const int n;
+	int* fa;
+public:
+	inline dsu(int count): n(count) // 初始化大小为n的并查集
+	{
+		fa = new int[n]; // 申请新的内存
+		for(int i=0; i&lt;n; i++)
+			fa[i] = i; // 初始化fa[i]=i
+	}
+	inline ~dsu() { delete[] fa; }  // 销毁存储空间，防止内存泄露
+	inline int size() { return n; } // 返回并查集大小
+	int find(int x) { return fa[x] == x? x: fa[x] = find(fa[x]); } // 查找父亲+路径压缩
+	inline bool same(int x, int y) { return find(x) == find(y); } // x,y是否在同一个连通分量里？
+	inline void merge(int x, int y) { fa[find(x)] = find(y); } // 合并x、y，即连接x&lt;-&gt;y这条双向边
+	inline bool connected() // 判断整个图是否连通
+	{
+		int p = find(0);
+		for(int i=0; i&lt;n; i++)
+			if(find(i) != p)
+				return false;
+		return true;
+	}
+};
+</code></pre>
+<p>使用并查集后，算法时间复杂度降到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>m</mi><mi>log</mi><mo>⁡</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(m\log m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>，即排序的时间复杂度。下面来看代码。</p>
+<h3 id="参考代码">参考代码</h3>
+<p>如果对并查集不熟悉的读者可以先复制模板写代码，<s>后面再仔细研究TA</s><br>
+单次Kruskal算法的排序建议用<code>priority_queue</code>（比<code>sort</code>效率更高），如果要多次Kruskal则需要提前排好序。</p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+// 代表一条边，方便排序
+struct Edge
+{
+	int from, to, weight;
+	inline bool operator &lt;(const Edge&amp; e2) const
+	{
+		return weight &gt; e2.weight; // 注意：使用优先队列时要把大小倒过来过来
+	}
+	inline void read()
+	{
+		scanf(&quot;%d%d%d&quot;, &amp;from, &amp;to, &amp;weight);
+		from --, to --;
+	}
+};
+
+// 并查集模板
+class dsu
+{
+private:
+	const int n;
+	int* fa;
+public:
+	inline dsu(int count): n(count)
+	{
+		fa = new int[n];
+		for(int i=0; i&lt;n; i++)
+			fa[i] = i;
+	}
+	inline ~dsu() { delete[] fa; }
+	inline int size() { return n; }
+	int find(int x) { return fa[x] == x? x: fa[x] = find(fa[x]); }
+	inline bool same(int x, int y) { return find(x) == find(y); }
+	inline void merge(int x, int y) { fa[find(x)] = find(y); }
+	inline bool connected()
+	{
+		int p = find(0);
+		for(int i=0; i&lt;n; i++)
+			if(find(i) != p)
+				return false;
+		return true;
+	}
+};
+
+int main()
+{
+	int n, m;
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m); // 读入顶点数和边数
+	priority_queue&lt;Edge&gt; q; // 初始化优先队列，用于排序
+	while(m--)
+	{
+		Edge e;
+		e.read();  // 读入一条边
+		q.push(e); // 放入队列进行排序
+	}
+	int ans = 0, // 记录总权值
+		cnt = 0; // 当前选择边的个数
+	dsu d(n);    // 初始化并查集
+	while(!q.empty() &amp;&amp; cnt &lt; n - 1) // 遍历所有边，选择了n-1条边即可退出
+	{
+		auto [u, v, w] = q.top(); q.pop(); // 弹出边权最小的边
+		if(!d.same(u, v))  // 如果连通后不会形成环
+		{
+			d.merge(u, v);    // 连上这条边
+			ans += w, cnt ++; // 更新答案和计数
+		}
+	}
+	if(cnt == n - 1) printf(&quot;%d\n&quot;, ans); // 如果最终选择了n-1条边，输出答案
+	else puts(&quot;orz&quot;); // 否则...
+	return 0;
+}
+</code></pre>
+<p>最后一段也可以写成这样（不用<code>cnt</code>计数，输出答案时判定连通，速度稍慢）：</p>
+<pre><code class="language-cpp">int ans = 0;
+dsu d(n);
+while(!q.empty())
+{
+	auto [u, v, w] = q.top(); q.pop();
+	if(!d.same(u, v))
+	{
+		d.merge(u, v);
+		ans += w;
+	}
+}
+if(d.connected()) printf(&quot;%d\n&quot;, ans);
+else puts(&quot;orz&quot;);
+</code></pre>
+<h2 id="prim">Prim</h2>
+<p>Prim算法于1930年由捷克数学家Vojtěch Jarník发现，在1957年又由美国计算机科学家Robert C. Prim独立发现。1959年，Edsger Wybe Dijkstra（没错，就是<a href="https://blog.csdn.net/write_1m_lines/article/details/126316941">Dijkstra</a>算法的发明者）再次发现了该算法。因此，在某些场合，Prim算法又被称为DJP算法、Jarník算法或Prim－Jarník算法。</p>
+<h3 id="prim-算法流程">Prim 算法流程</h3>
+<p>Prim与<a href="https://blog.csdn.net/write_1m_lines/article/details/126316941">Dijkstra</a>很相似，将顶点分为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>两个集合，具体流程如下：</p>
+<ol>
+<li>初始时，所有顶点全部在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>中，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>为空集。</li>
+<li>从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>中选择任意顶点，移动到集合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>；</li>
+<li>重复以下步骤，直到所有顶点都在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>中：
+<ul>
+<li>选择一条边<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo separator="true">,</mo><mi>w</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(u,v,w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span>，使得<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>在点集<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>中，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>在点集<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>中，且权值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>最小；</li>
+<li>将这条边加入最小生成树，并将<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>移入点集<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>。</li>
+</ul>
+</li>
+</ol>
+<p>Prim算法的原始写法就不多说了，这里和Dijkstra一样，介绍<code>priority_queue</code>和<code>set</code>优化。</p>
+<h3 id="优先队列优化">优先队列优化</h3>
+<p>运行时间：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>328</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">328\mathrm{ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">2</span><span class="mord">8</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span></span><br>
+时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n\log m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+#define maxn 5005
+#define INF 2147483647
+using namespace std;
+
+using pii = pair&lt;int, int&gt;;
+vector&lt;pii&gt; G[maxn];
+int dis[maxn];
+
+int main()
+{
+	int n, m;
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	while(m--)
+	{
+		int u, v, w;
+		scanf(&quot;%d%d%d&quot;, &amp;u, &amp;v, &amp;w);
+		G[--u].emplace_back(--v, w);
+		G[v].emplace_back(u, w);
+	}
+	for(int i=1; i&lt;n; i++)
+		dis[i] = INF;
+	priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt;&gt; q;
+	q.emplace(0, 0);
+	int ans = 0, left = n;
+	while(!q.empty() &amp;&amp; left &gt; 0)
+	{
+		auto [d, v] = q.top(); q.pop();
+		if(d != dis[v]) continue;
+		dis[v] = -INF, left --, ans += d;
+		for(auto [u, w]: G[v])
+			if(w &lt; dis[u])
+				q.emplace(dis[u] = w, u);
+	}
+	if(left) puts(&quot;orz&quot;);
+	else printf(&quot;%d\n&quot;, ans);
+	return 0;
+}
+</code></pre>
+<h3 id="set优化">set优化</h3>
+<p>运行时间：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>351</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">351\mathrm{ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">5</span><span class="mord">1</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span></span><br>
+时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define maxn 5005
+#define INF 2147483647
+using namespace std;
+
+using pii = pair&lt;int, int&gt;;
+vector&lt;pii&gt; G[maxn];
+int dis[maxn];
+
+int main()
+{
+	int n, m;
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	while(m--)
+	{
+		int u, v, w;
+		scanf(&quot;%d%d%d&quot;, &amp;u, &amp;v, &amp;w);
+		G[--u].emplace_back(--v, w);
+		G[v].emplace_back(u, w);
+	}
+	for(int i=1; i&lt;n; i++)
+		dis[i] = INF;
+	set&lt;pii&gt; s;
+	s.emplace(0, 0);
+	int ans = 0, left = n;
+	while(!s.empty() &amp;&amp; left &gt; 0)
+	{
+		auto it = s.begin();
+		auto [d, v] = *it; s.erase(it);
+		dis[v] = -INF, left --, ans += d;
+		for(auto [u, w]: G[v])
+			if(w &lt; dis[u])
+			{
+				if(dis[u] != INF)
+					s.erase(pii(dis[u], u));
+				s.emplace(dis[u] = w, u);
+			}
+	}
+	if(left) puts(&quot;orz&quot;);
+	else printf(&quot;%d\n&quot;, ans);
+	return 0;
+}
+</code></pre>
+<h2 id="习题">习题</h2>
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1551">洛谷 P1551 亲戚</a>（并查集练习）</li>
+<li><a href="https://www.luogu.com.cn/problem/UVA1151">UVA1151 买还是建 Buy or Build</a>（Kruskal）</li>
+<li><a href="https://www.luogu.com.cn/problem/UVA1395">UVA1395 苗条的生成树 Slim Span</a>（Kruskal）</li>
+<li><a href="https://www.luogu.com.cn/problem/P1265">洛谷 P1265 公路修建</a>（Prim）</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>我们来看一下Kruskal、Prim两种算法的对比：</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>Kruskal</th>
+<th>Prim</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间复杂度</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>m</mi><mi>log</mi><mo>⁡</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(m\log m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n\log m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></td>
+</tr>
+<tr>
+<td>运行时间<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>255</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">255\mathrm{ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span><span class="mord">5</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>328</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">328\mathrm{ms}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">2</span><span class="mord">8</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span></span></td>
+</tr>
+<tr>
+<td>编码难度</td>
+<td>低</td>
+<td>中</td>
+</tr>
+<tr>
+<td>适用域</td>
+<td>稀疏图</td>
+<td>稠密图</td>
+</tr>
+</tbody>
+</table>
+<p>由此可见，大部分题目首选Kruskal，有特殊需要时才使用Prim。<br>
+本篇文章到此结束，如果觉得好的话就请给个三连，感谢大家的支持！</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>此处为优先队列优化的复杂度，<code>set</code>优化为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal O(n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>在<a href="https://www.luogu.com.cn/problem/P3366">洛谷 P3366</a>上的提交结果，Kruskal算法使用并查集+优先队列，Prim使用优先队列优化 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div>
+          <!-- Share to Twitter, Weibo, Telegram -->
+          <div class="flex items-center">
+            <div class="mr-4 flex items-center">
+              <i class="ri-share-forward-line text-gray-500"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTwitter">
+              <i class="ri-twitter-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToWeibo">
+              <i class="ri-weibo-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTelegram">
+              <i class="ri-telegram-line"></i>
+            </div>
+          </div>
+        </div>
+
+         
+        <div id="gitalk-container"></div>
+            <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  CSDN: <a href="https://blog.csdn.net/write_1m_lines" target="_blank">write_1m_lines</a> E-mail: stanley_shao@163.com
+</footer>
+
+      </div>
+
+      <!-- TOC Container -->
+      <div
+        class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+        @click="showToc = true">
+        <i class="ri-file-list-line"></i>
+      </div>
+
+      <div
+        class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+        :class="{ '-mr-64': !showToc }">
+        <div class="flex mb-4 justify-end">
+          <div
+            class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+            @click="showToc = false">
+            <i class="ri-close-line text-lg"></i>
+          </div>
+        </div>
+        <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#kruskal">Kruskal</a>
+<ul>
+<li><a href="#kruskal-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B">Kruskal 算法流程</a></li>
+<li><a href="#%E5%B9%B6%E6%9F%A5%E9%9B%86-%E5%8A%A0%E5%BF%AB%E7%AE%97%E6%B3%95%E9%80%9F%E5%BA%A6">并查集 - 加快算法速度</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81">参考代码</a></li>
+</ul>
+</li>
+<li><a href="#prim">Prim</a>
+<ul>
+<li><a href="#prim-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B">Prim 算法流程</a></li>
+<li><a href="#%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96">优先队列优化</a></li>
+<li><a href="#set%E4%BC%98%E5%8C%96">set优化</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B9%A0%E9%A2%98">习题</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      </div>
+
+      <!-- Back to top -->
+      <div
+        class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+        @click="backToUp"
+        v-show="scrolled">
+        <i class="ri-arrow-up-line"></i>
+      </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.14/vue.min.js"></script>
+    <script src="https://goodcoder666.github.io/media/scripts/main.js"></script>
+
+    <!-- Code Highlight -->
+    
+    <script src="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+    
+
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+    <script>
+      //拿到预览框架，也就是上面的html代码
+      var pswpElement = document.querySelectorAll('.pswp')[0]
+      //定义图片数组变量
+      var imgitems
+      /**
+       * 用于显示预览界面
+       * @param index 图片数组下标
+       */
+      function viewImg(index) {
+        //其它选项这里不做过多阐述，详情见官网
+        var pswpoptions = {
+          index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+          bgOpacity: 0.7, // 背景透明度，0-1
+          maxSpreadZoom: 3, // 缩放级别，不要太大
+        }
+        //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          imgitems,
+          pswpoptions
+        )
+        gallery.init()
+      }
+      /**
+       * 用于添加图片点击事件
+       * @param img 图片元素
+       * @param index 所属下标（在imgitems中的位置）
+       */
+      function addImgClick(img, index) {
+        img.onclick = function () {
+          viewImg(index)
+        }
+      }
+      /**
+       * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+       * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+       * 异步加载图片可在图片元素创建完成后调用此方法
+       */
+      function initImg() {
+        //重置图片数组
+        imgitems = []
+        //查找class:markdown 下的所有img元素并遍历
+        var imgs = document.querySelectorAll('.markdown img')
+        for (var i = 0; i < imgs.length; i++) {
+          var img = imgs[i]
+          //本站相册初始为loading图片，真实图片放在data-src
+          var ds = img.getAttribute('data-src')
+          //创建image对象，用于获取图片宽高
+          var imgtemp = new Image()
+          //判断是否存在data-src
+          if (ds != null && ds.length > 0) {
+            imgtemp.src = ds
+          } else {
+            imgtemp.src = img.src
+          }
+          //判断是否存在缓存
+          if (imgtemp.complete) {
+            var imgobj = {
+              src: imgtemp.src,
+              w: imgtemp.width,
+              h: imgtemp.height,
+            }
+            imgitems[i] = imgobj
+            addImgClick(img, i)
+          } else {
+            console.log('进来了2')
+            imgtemp.index = i
+            imgtemp.img = img
+            imgtemp.onload = function () {
+              var imgobj = {
+                src: this.src,
+                w: this.width,
+                h: this.height,
+              }
+              //不要使用push，因为onload前后顺序会不同
+              imgitems[this.index] = imgobj
+              //添加点击事件
+              addImgClick(this.img, this.index)
+            }
+          }
+        }
+      }
+      //初始化
+      initImg()
+    </script>
+       <link rel="stylesheet" href="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.css" />
+<script
+  type="application/javascript"
+  src="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.min.js"></script>
+
+<script type="application/javascript">
+  var gitalk = new Gitalk({
+    clientID: '1ee93190dd0241204315',
+    clientSecret: '664a703c700862951fa5fa55c2de1672aa7c4051',
+    repo: 'gitalk-comments',
+    owner: 'GoodCoder666',
+    admin: ['GoodCoder666'],
+    id: location.pathname.substring(0, 49), // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+  
+  </body>
+</html>

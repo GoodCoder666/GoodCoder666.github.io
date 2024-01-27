@@ -1,0 +1,855 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>PyQt6/PySide6：账本项目前端制作【附完整项目地址】 -
+    GoodCoder666的个人博客</title>
+<link rel="shortcut icon" href="https://goodcoder666.github.io/favicon.ico" />
+<link
+  href="https://npm.onmicrosoft.cn/remixicon@2.2.0/fonts/remixicon.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://goodcoder666.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://goodcoder666.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="PyQt6/PySide6：账本项目前端制作【附完整项目地址】 -
+    GoodCoder666的个人博客 - Atom Feed"
+  href="https://goodcoder666.github.io/atom.xml" />
+
+
+
+    <meta name="description" content="0. 前言
+最近在家里闲着没事，正好又看到朋友@studentWheat发了篇用Tkinter做的账本，于是决定跟他一起改进这个程序。
+屏幕截图：
+
+
+
+1. 后端
+后端主要是朋友做的，在这里就不多说了，放个代码：
+src/api.py
+f..." />
+    <meta
+      property="og:title"
+      content="PyQt6/PySide6：账本项目前端制作【附完整项目地址】 - GoodCoder666的个人博客" />
+    <meta property="og:description" content="0. 前言
+最近在家里闲着没事，正好又看到朋友@studentWheat发了篇用Tkinter做的账本，于是决定跟他一起改进这个程序。
+屏幕截图：
+
+
+
+1. 后端
+后端主要是朋友做的，在这里就不多说了，放个代码：
+src/api.py
+f..." />
+    <meta property="og:type" content="articles" />
+    <meta property="og:url" content="https://goodcoder666.github.io/post/pyside6-accountbook/" />
+    <meta
+      property="og:image"
+      content="https://goodcoder666.github.io/images/avatar.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta
+      name="twitter:title"
+      content="PyQt6/PySide6：账本项目前端制作【附完整项目地址】 - GoodCoder666的个人博客" />
+    <meta name="twitter:description" content="0. 前言
+最近在家里闲着没事，正好又看到朋友@studentWheat发了篇用Tkinter做的账本，于是决定跟他一起改进这个程序。
+屏幕截图：
+
+
+
+1. 后端
+后端主要是朋友做的，在这里就不多说了，放个代码：
+src/api.py
+f..." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://goodcoder666.github.io/post/pyside6-accountbook/" />
+
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/default-skin/default-skin.min.css" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/css/prism-synthwave84.css" />
+     
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/KaTeX/0.11.1/katex.min.css" />
+    
+  </head>
+
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <a
+        href="https://goodcoder666.github.io"
+        class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+        GoodCoder666的个人博客
+      </a>
+      <div class="max-w-4xl w-full mx-auto">
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+          <h1
+            class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+            PyQt6/PySide6：账本项目前端制作【附完整项目地址】
+          </h1>
+          
+          <div class="mb-8 flex flex-wrap">
+            <div class="text-gray-400 text-sm mr-4">
+              2022-07-23 · 12 min read
+            </div>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/github/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              GitHub
+            </a>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/qt-tutorial/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Qt教程
+            </a>
+            
+          </div>
+          <div class="markdown mb-8" v-pre><h2 id="0-前言">0. 前言</h2>
+<p>最近在家里闲着没事，正好又看到朋友@<a href="https://blog.csdn.net/qq_67190987">studentWheat</a>发了篇<a href="https://blog.csdn.net/qq_67190987/article/details/124059237">用Tkinter做的账本</a>，于是决定跟他一起改进这个程序。</p>
+<p><strong>屏幕截图：</strong><br>
+<img src="https://img-blog.csdnimg.cn/img_convert/f19c471167900bee8c91483b0d539f30.png" alt="MainWindow" referrerpolicy="no-referrer" /></p>
+<img src="https://img-blog.csdnimg.cn/img_convert/355a2b23c5de1be1db0d770365c0141c.png" alt="dlgAdd" referrerpolicy="no-referrer" />
+<img src="https://img-blog.csdnimg.cn/img_convert/b33acdbe44ddb35f6083ca117a5004b4.png" alt="stat" referrerpolicy="no-referrer" />
+<h2 id="1-后端">1. 后端</h2>
+<p>后端主要是朋友做的，在这里就不多说了，放个代码：<br>
+<code>src/api.py</code></p>
+<pre><code class="language-python">from collections import defaultdict
+
+class ApiError(RuntimeError):
+    pass
+
+def openFile(filename):
+    '''
+    Open file.
+    File format: 4 lines per record for date, event type, money delta, and note.
+    Such as:
+    (file.example, encoding=utf-8)
+      (Record 1)
+        (ln 1) date1
+        (ln 2) event_type1
+        (ln 3) money_delta1
+        (ln 4) note1
+      (Record 2)
+        (ln 5) date2
+        (ln 6) event_type2
+        (ln 7) money_delta2
+        (ln 8) note2
+    @param filename: File name.
+    Returns: data in the format [[date1, event_type1, money_delta1, note1], ...]
+    '''
+    with open(filename, 'r', encoding='utf-8') as f:
+        res = []
+        while date := f.readline():
+            if (etype := f.readline()) and (mdelta := f.readline()) and (note := f.readline()):
+                res.append([date.rstrip('\n'), etype.rstrip('\n'), mdelta.rstrip('\n'), note.rstrip('\n')])
+            else:
+                raise ApiError('Unexpected EOF at ' + filename)
+        return res
+
+def saveFile(filename, data): # Save
+    '''
+    Save with the same format mentioned in openFile().
+    @param filename: File name.
+    @param data: Data with the same format returned in openFile().
+    '''
+    with open(filename, 'w', encoding='utf-8') as f:
+        for line in data:
+            print(*line, sep='\n', file=f)
+
+def query(data, key):
+    return [record for record in data if any(key in x for x in record)] if key else data
+
+def total(data):
+    in_total = out_total = 0
+    for _, _, mdelta, _ in data:
+        mdelta = int(mdelta)
+        if mdelta &lt; 0:
+            out_total -= mdelta
+        else:
+            in_total += mdelta
+    return in_total, out_total
+
+def totalByEvent(data):
+    cnt = defaultdict(lambda: [0, 0])
+    for _, event, mdelta, _ in data:
+        mdelta = int(mdelta)
+        if mdelta &lt; 0:
+            cnt[event][1] -= mdelta
+        else:
+            cnt[event][0] += mdelta
+    return cnt
+
+def totalByDate(data):
+    cnt = defaultdict(lambda: [0, 0])
+    for date, _, mdelta, _ in data:
+        mdelta = int(mdelta)
+        if mdelta &lt; 0:
+            cnt[date][1] -= mdelta
+        else:
+            cnt[date][0] += mdelta
+    return cnt
+</code></pre>
+<p>详见<a href="https://blog.csdn.net/qq_67190987/article/details/125918530">https://blog.csdn.net/qq_67190987/article/details/125918530</a>。</p>
+<h2 id="2-前端">2. 前端</h2>
+<p>正如标题中所说，框架采用Qt6+Python，一般有两种选择（<code>PyQt6</code>和<code>PySide6</code>），我这里使用的是<code>PySide6</code>。</p>
+<h3 id="21-准备资源">2.1 准备资源</h3>
+<p>在<code>src/icons</code>下存好所有图片资源：<br>
+<img src="https://img-blog.csdnimg.cn/ad73d9fd0dd74406ad35fb99d9ed734e.png" alt="图片" referrerpolicy="no-referrer" /></p>
+<h3 id="22-designer-窗口绘制">2.2 Designer 窗口绘制</h3>
+<p>用Qt Designer绘制好各个窗口，如图:</p>
+<img src="https://img-blog.csdnimg.cn/fd9d4e2b895d4bfc9c8d1436057fb0d7.png" alt="QMainWindow" referrerpolicy="no-referrer" />
+<img src="https://img-blog.csdnimg.cn/f356a58a2b434d46bcc4e1fa5a970e38.png" alt="QDialog" referrerpolicy="no-referrer" />
+<h3 id="23-安装依赖项">2.3 安装依赖项</h3>
+<p>准备一份<code>requirements.txt</code>，内容如下：</p>
+<pre><code class="language-python">PySide6&gt;=6.3.1
+</code></pre>
+<p>然后，cmd中输入：</p>
+<pre><code>pip install -r requirements.txt
+</code></pre>
+<p>搞定安装。</p>
+<h3 id="24-编译资源和ui">2.4 编译资源和UI</h3>
+<p>这个就不用多说了，直接用<code>pyside6-uic</code>和<code>pyside6-rcc</code>命令编译文件，编译出的文件列表如下：</p>
+<pre><code>AccountBook
+└─src
+    │  dlgAdd.ui
+    │  dlgCharts.ui
+    │  MainWindow.ui
+    │  res.qrc
+    │  res_rc.py
+    │  ui_dlgAdd.py
+    │  ui_dlgCharts.py
+    │  ui_dlgHelp.py
+    │  ui_MainWindow.py
+</code></pre>
+<h3 id="25-代码编写">2.5 代码编写</h3>
+<p><code>src/dlgAdd.py</code><br>
+“添加账目”窗口，一个简单的<code>QDialog</code>实例。</p>
+<pre><code class="language-python">from PySide6.QtWidgets import *
+from PySide6.QtCore import QDate, QRegularExpression
+from PySide6.QtGui import QRegularExpressionValidator
+from ui_dlgAdd import Ui_Dialog
+
+class dlgAdd(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+        self.ui.dateEdit.setDate(QDate.currentDate())
+        self.ui.moneyEdit.setValidator(QRegularExpressionValidator(QRegularExpression(r'(\+|\-)[1-9]+[0-9]*')))
+        self.ui.buttonBox.button(QDialogButtonBox.Ok).setText('确定')
+        self.ui.buttonBox.button(QDialogButtonBox.Cancel).setText('取消')
+    
+    def getRow(self):
+        date = self.ui.dateEdit.text()
+        event = self.ui.eventEdit.text()
+        money = self.ui.moneyEdit.text()
+        note = self.ui.noteEdit.text()
+        return [date, event, money, note]
+
+    def accept(self):
+        if not self.ui.eventEdit.text():
+            QMessageBox.critical(self, &quot;错误&quot;, &quot;事件不能为空，请重新填写。&quot;)
+            return
+        if self.ui.moneyEdit.text() in ('', '+', '-'):
+            QMessageBox.critical(self, &quot;错误&quot;, &quot;金额不能为空，请重新填写。&quot;)
+            return
+        return super().accept()
+</code></pre>
+<p><code>src/dlgCharts.py</code><br>
+图表展示窗口，使用<code>QtCharts</code>（用法跟<code>PyQt5</code>/<code>PySide2</code>略有区别）绘制柱状图。后续会考虑增加更多图表。</p>
+<pre><code class="language-python">from bisect import bisect_left, bisect_right
+
+from PySide6.QtCore import QDate, Qt
+from PySide6.QtWidgets import *
+from PySide6.QtCharts import QBarCategoryAxis, QBarSeries, QBarSet, QChart, QChartView, QValueAxis
+
+from api import total, totalByDate, totalByEvent
+from ui_dlgCharts import Ui_Dialog
+
+class dlgCharts(QDialog):
+    def __init__(self, data, parent=None):
+        super().__init__(parent)
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+        self.showMaximized()
+
+        self.data = data
+        minDate = QDate.fromString(data[0][0], 'yyyy/MM/dd')
+        maxDate = QDate.fromString(data[-1][0], 'yyyy/MM/dd')
+        self.ui.startDateEdit.setDateRange(minDate, maxDate)
+        self.ui.endDateEdit.setDateRange(minDate, maxDate)
+        self.ui.startDateEdit.setDate(minDate)
+        self.ui.endDateEdit.setDate(maxDate)
+
+        self.__update_totalChart(*total(data))
+        self.__update_eventChart(totalByEvent(data))
+        self.__update_dateChart(totalByDate(data))
+
+        self.ui.startDateEdit.editingFinished.connect(self.__updateCharts)
+        self.ui.endDateEdit.editingFinished.connect(self.__updateCharts)
+
+    @staticmethod
+    def createChart(chartView: QChartView, title, xAxis, yAxisList):
+        chart = QChart()
+        chart.setTitle(title)
+        chart.setAnimationOptions(QChart.SeriesAnimations)
+
+        series = QBarSeries()
+        for axisName, data in yAxisList:
+            barSet = QBarSet(axisName)
+            barSet.append(data)
+            series.append(barSet)
+        chart.addSeries(series)
+
+        axisX = QBarCategoryAxis()
+        axisX.append(xAxis)
+        chart.addAxis(axisX, Qt.AlignBottom)
+        series.attachAxis(axisX)
+
+        axisY = QValueAxis()
+        axisY.setLabelFormat('%d')
+        chart.addAxis(axisY, Qt.AlignLeft)
+        series.attachAxis(axisY)
+
+        chartView.setChart(chart)
+
+    def __update_totalChart(self, total_in, total_out):
+        self.createChart(
+            chartView = self.ui.totalView,
+            title     = '总收支',
+            xAxis     = ['收入', '支出'], 
+            yAxisList = [
+                ('金额', [total_in, total_out])
+            ]
+        )
+
+    def __update_eventChart(self, events):
+        self.createChart(
+            chartView = self.ui.eventView,
+            title     = '收支分类',
+            xAxis     = list(events.keys()),
+            yAxisList = [
+                ('收入', list(map(lambda x: x[0], events.values()))),
+                ('支出', list(map(lambda x: x[1], events.values())))
+            ]
+        )
+
+    def __update_dateChart(self, dates):
+        self.createChart(
+            chartView = self.ui.dateView,
+            title     = '每日收支',
+            xAxis     = list(dates.keys()),
+            yAxisList = [
+                ('收入', list(map(lambda x: x[0], dates.values()))),
+                ('支出', list(map(lambda x: x[1], dates.values())))
+            ]
+        )
+
+    def __updateCharts(self):
+        startDate = self.ui.startDateEdit.text()
+        endDate = self.ui.endDateEdit.text()
+        left = bisect_left(self.data, startDate, key=lambda x: x[0])
+        right = bisect_right(self.data, endDate, key=lambda x: x[0])
+        data = self.data[left:right]
+        self.__update_totalChart(*total(data))
+        self.__update_eventChart(totalByEvent(data))
+        self.__update_dateChart(totalByDate(data))
+</code></pre>
+<p><code>src/main.py</code><br>
+主程序，同时管理主窗口。最麻烦的地方是<code>QTableView</code>，要同时处理搜索和排序问题。</p>
+<pre><code class="language-python">import sys
+from bisect import insort_right
+from functools import partial
+from os.path import basename
+from webbrowser import open_new_tab
+
+from PySide6.QtWidgets import *
+from PySide6.QtCore import Slot, QDate
+from PySide6.QtGui import QStandardItem, QStandardItemModel
+
+from api import ApiError, openFile, query, saveFile
+from dlgAdd import dlgAdd
+from dlgCharts import dlgCharts
+from ui_dlgHelp import Ui_Dialog as Ui_dlgHelp
+from ui_MainWindow import Ui_MainWindow
+
+# Version info
+VERSION = '1.0.1'
+CHANNEL = 'stable'
+BUILD_DATE = '2022-07-01'
+FULL_VERSION = f'{VERSION}-{CHANNEL} ({BUILD_DATE}) on {sys.platform}'
+
+app = QApplication(sys.argv)
+
+class AccountBookMainWindow(QMainWindow):
+    version_str = '账本 ' + VERSION
+    unsaved_tip = '*'
+    SUPPORTED_FILTERS = '账本文件(*.abf);;文本文件(*.txt);;所有文件(*.*)'
+
+    def __init__(self, parent=None):
+        # Initialize window
+        super().__init__(parent)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.setWindowTitle('账本 ' + VERSION)
+        self.labStatus = QLabel(self)
+        self.ui.statusBar.addWidget(self.labStatus)
+
+        # Initialize table
+        self.model = QStandardItemModel(0, 4, self)
+        self.model.setHorizontalHeaderLabels(['日期', '事项', '金额', '备注'])
+        self.ui.table.setModel(self.model)
+        self.ui.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+        self.__data = []
+        self.on_actFile_New_triggered()
+        self.ui.actEdit_Remove.setEnabled(False)
+
+        # Connect slots
+        self.ui.table.selectionModel().selectionChanged.connect(self.__selectionChanged)
+        self.model.itemChanged.connect(self.__itemChanged)
+
+    def __updateTable(self, data):
+        self.model.itemChanged.disconnect(self.__itemChanged)
+        self.model.setRowCount(len(data))
+        for row in range(len(data)):
+            for col in range(len(data[row])):
+                self.model.setItem(row, col, QStandardItem(data[row][col]))
+        self.model.itemChanged.connect(self.__itemChanged)
+
+    def __openFile(self, filename):
+        try:
+            self.__data = openFile(filename)
+        except IOError:
+            QMessageBox.critical(self, '错误', '文件打开失败。请稍后再试。')
+        except ApiError:
+            QMessageBox.critical(self, '错误', '文件格式错误。请检查文件完整性。')
+        except Exception as e:
+            QMessageBox.critical(self, '错误', '未知错误：' + str(e.with_traceback()))
+        else:
+            self.ui.searchEdit.clear()
+            self.__key = ''
+            self.__updateTable(self.__data)
+            self.labStatus.setText(filename)
+            self.setWindowTitle(self.version_str)
+            self.__filename = filename
+
+    def __saveFile(self, filename):
+        try:
+            saveFile(filename, self.__data)
+        except IOError:
+            QMessageBox.critical(self, '错误', '文件保存错误。请稍后再试。')
+        except Exception as e:
+            QMessageBox.critical(self, '错误', '未知错误：' + str(e.with_traceback()))
+        else:
+            self.labStatus.setText('保存成功：' + filename)
+            self.setWindowTitle(self.version_str)
+            self.__filename = filename
+
+    @Slot()
+    def on_actFile_New_triggered(self):
+        self.__filename = self.__key = ''
+        self.setWindowTitle(self.unsaved_tip + self.version_str)
+        self.labStatus.setText('新文件')
+        self.model.setRowCount(0)
+        self.__data.clear()
+
+    @Slot()
+    def on_actFile_Open_triggered(self):
+        filename, _ = QFileDialog.getOpenFileName(self, '打开', filter=self.SUPPORTED_FILTERS)
+        if filename:
+            self.__openFile(filename)
+
+    @Slot()
+    def on_actFile_Save_triggered(self):
+        if self.__filename:
+            self.__saveFile(self.__filename)
+        else:
+            filename, _ = QFileDialog.getSaveFileName(self, '保存', filter=self.SUPPORTED_FILTERS)
+            if filename:
+                self.__saveFile(filename)
+
+    @Slot()
+    def on_actFile_SaveAs_triggered(self):
+        filename, _ = QFileDialog.getSaveFileName(self, '另存为', filter=self.SUPPORTED_FILTERS)
+        if filename:
+            self.__saveFile(filename)
+
+    @Slot()
+    def on_actHelp_About_triggered(self):
+        dialog = QDialog(self)
+        ui = Ui_dlgHelp()
+        ui.setupUi(dialog)
+        for link in (ui.githubLink, ui.giteeLink, ui.licenseLink, ui.readmeLink):
+            link.clicked.connect(partial(open_new_tab, link.description()))
+        ui.labVersion.setText('版本号：' + FULL_VERSION)
+        ui.btnUpdate.clicked.connect(partial(open_new_tab, 'https://github.com/GoodCoder666/AccountBook/releases'))
+        dialog.exec()
+
+    @Slot()
+    def on_actHelp_AboutQt_triggered(self):
+        QMessageBox.aboutQt(self, '关于Qt')
+
+    @Slot()
+    def on_actEdit_Add_triggered(self):
+        dialog = dlgAdd(self)
+        if dialog.exec() == QDialog.Accepted:
+            row = dialog.getRow()
+            insort_right(self.__data, row)
+            self.__updateTable(query(self.__data, self.__key))
+            self.setWindowTitle(self.unsaved_tip + self.version_str)
+
+    @Slot()
+    def on_actEdit_Remove_triggered(self):
+        rows = list(set(map(lambda idx: idx.row(), self.ui.table.selectedIndexes())))
+        for row in rows:
+            self.__data.remove([self.model.item(row, col).text() for col in range(self.model.columnCount())])
+        self.model.itemChanged.disconnect(self.__itemChanged)
+        self.model.removeRows(rows[0], len(rows))
+        self.model.itemChanged.connect(self.__itemChanged)
+        self.setWindowTitle(self.unsaved_tip + self.version_str)
+
+    def __selectionChanged(self):
+        self.ui.actEdit_Remove.setEnabled(self.ui.table.selectionModel().hasSelection())
+
+    def __itemChanged(self, item: QStandardItem):
+        i, j, new = item.row(), item.column(), item.text()
+        if (old := self.__data[i][j]) == new: return
+        if j == 0 and not QDate.fromString(new, 'yyyy/MM/dd').isValid():
+            QMessageBox.critical(self, '错误', '日期格式错误。')
+            self.model.itemChanged.disconnect(self.__itemChanged)
+            item.setText(old)
+            self.model.itemChanged.connect(self.__itemChanged)
+            return
+        row = self.__data.pop(i)
+        row[j] = new
+        insort_right(self.__data, row)
+        self.__updateTable(query(self.__data, self.__key))
+        self.setWindowTitle(self.unsaved_tip + self.version_str)
+
+    @Slot()
+    def on_searchEdit_textChanged(self):
+        self.__key = self.ui.searchEdit.text()
+        self.__updateTable(query(self.__data, self.__key))
+
+    @Slot()
+    def on_actStat_Show_triggered(self):
+        if self.__data:
+            dlgCharts(self.__data, self).exec()
+        else:
+            QMessageBox.information(self, '提示', '请添加数据以使用统计功能。')
+
+    def closeEvent(self, event):
+        if not self.windowTitle().startswith(self.unsaved_tip): return
+        filename = basename(self.__filename) if self.__filename else '新文件'
+        messageBox = QMessageBox(
+            parent=self, icon=QMessageBox.Warning, windowTitle='提示',
+            text=f'是否要保存对 {filename} 的更改？', informativeText='如果不保存，你的更改将丢失。',
+            standardButtons=QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel
+        )
+        messageBox.setButtonText(QMessageBox.Save, '保存')
+        messageBox.setButtonText(QMessageBox.Discard, '不保存')
+        messageBox.setButtonText(QMessageBox.Cancel, '取消')
+        reply = messageBox.exec()
+        if reply == QMessageBox.Save:
+            self.on_actFile_Save_triggered()
+            event.accept()
+        elif reply == QMessageBox.Discard:
+            event.accept()
+        else:
+            event.ignore()
+
+    def dropEvent(self, event):
+        self.__openFile(event.mimeData().text()[8:]) # [8:] is to get rid of 'file:///'
+
+mainform = AccountBookMainWindow()
+mainform.show()
+
+sys.exit(app.exec())
+</code></pre>
+<h2 id="3-总结">3. 总结</h2>
+<p>本项目到此结束。</p>
+<p>【附：项目地址】</p>
+<ul>
+<li>GitHub 地址：<a href="https://github.com/GoodCoder666/AccountBook">https://github.com/GoodCoder666/AccountBook</a></li>
+<li>Gitee 镜像地址：<a href="https://gitee.com/GoodCoder666/AccountBook">https://gitee.com/GoodCoder666/AccountBook</a></li>
+</ul>
+<p>记得点个Star哦~</p>
+<hr>
+<p>创作不易，若您喜欢这篇文章就请点个三连吧！万分感激！！！</p>
+</div>
+          <!-- Share to Twitter, Weibo, Telegram -->
+          <div class="flex items-center">
+            <div class="mr-4 flex items-center">
+              <i class="ri-share-forward-line text-gray-500"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTwitter">
+              <i class="ri-twitter-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToWeibo">
+              <i class="ri-weibo-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTelegram">
+              <i class="ri-telegram-line"></i>
+            </div>
+          </div>
+        </div>
+
+         
+        <div id="gitalk-container"></div>
+            <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  CSDN: <a href="https://blog.csdn.net/write_1m_lines" target="_blank">write_1m_lines</a> E-mail: stanley_shao@163.com
+</footer>
+
+      </div>
+
+      <!-- TOC Container -->
+      <div
+        class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+        @click="showToc = true">
+        <i class="ri-file-list-line"></i>
+      </div>
+
+      <div
+        class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+        :class="{ '-mr-64': !showToc }">
+        <div class="flex mb-4 justify-end">
+          <div
+            class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+            @click="showToc = false">
+            <i class="ri-close-line text-lg"></i>
+          </div>
+        </div>
+        <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#0-%E5%89%8D%E8%A8%80">0. 前言</a></li>
+<li><a href="#1-%E5%90%8E%E7%AB%AF">1. 后端</a></li>
+<li><a href="#2-%E5%89%8D%E7%AB%AF">2. 前端</a>
+<ul>
+<li><a href="#21-%E5%87%86%E5%A4%87%E8%B5%84%E6%BA%90">2.1 准备资源</a></li>
+<li><a href="#22-designer-%E7%AA%97%E5%8F%A3%E7%BB%98%E5%88%B6">2.2 Designer 窗口绘制</a></li>
+<li><a href="#23-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E9%A1%B9">2.3 安装依赖项</a></li>
+<li><a href="#24-%E7%BC%96%E8%AF%91%E8%B5%84%E6%BA%90%E5%92%8Cui">2.4 编译资源和UI</a></li>
+<li><a href="#25-%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99">2.5 代码编写</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%80%BB%E7%BB%93">3. 总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      </div>
+
+      <!-- Back to top -->
+      <div
+        class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+        @click="backToUp"
+        v-show="scrolled">
+        <i class="ri-arrow-up-line"></i>
+      </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.14/vue.min.js"></script>
+    <script src="https://goodcoder666.github.io/media/scripts/main.js"></script>
+
+    <!-- Code Highlight -->
+    
+    <script src="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+    
+
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+    <script>
+      //拿到预览框架，也就是上面的html代码
+      var pswpElement = document.querySelectorAll('.pswp')[0]
+      //定义图片数组变量
+      var imgitems
+      /**
+       * 用于显示预览界面
+       * @param index 图片数组下标
+       */
+      function viewImg(index) {
+        //其它选项这里不做过多阐述，详情见官网
+        var pswpoptions = {
+          index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+          bgOpacity: 0.7, // 背景透明度，0-1
+          maxSpreadZoom: 3, // 缩放级别，不要太大
+        }
+        //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          imgitems,
+          pswpoptions
+        )
+        gallery.init()
+      }
+      /**
+       * 用于添加图片点击事件
+       * @param img 图片元素
+       * @param index 所属下标（在imgitems中的位置）
+       */
+      function addImgClick(img, index) {
+        img.onclick = function () {
+          viewImg(index)
+        }
+      }
+      /**
+       * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+       * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+       * 异步加载图片可在图片元素创建完成后调用此方法
+       */
+      function initImg() {
+        //重置图片数组
+        imgitems = []
+        //查找class:markdown 下的所有img元素并遍历
+        var imgs = document.querySelectorAll('.markdown img')
+        for (var i = 0; i < imgs.length; i++) {
+          var img = imgs[i]
+          //本站相册初始为loading图片，真实图片放在data-src
+          var ds = img.getAttribute('data-src')
+          //创建image对象，用于获取图片宽高
+          var imgtemp = new Image()
+          //判断是否存在data-src
+          if (ds != null && ds.length > 0) {
+            imgtemp.src = ds
+          } else {
+            imgtemp.src = img.src
+          }
+          //判断是否存在缓存
+          if (imgtemp.complete) {
+            var imgobj = {
+              src: imgtemp.src,
+              w: imgtemp.width,
+              h: imgtemp.height,
+            }
+            imgitems[i] = imgobj
+            addImgClick(img, i)
+          } else {
+            console.log('进来了2')
+            imgtemp.index = i
+            imgtemp.img = img
+            imgtemp.onload = function () {
+              var imgobj = {
+                src: this.src,
+                w: this.width,
+                h: this.height,
+              }
+              //不要使用push，因为onload前后顺序会不同
+              imgitems[this.index] = imgobj
+              //添加点击事件
+              addImgClick(this.img, this.index)
+            }
+          }
+        }
+      }
+      //初始化
+      initImg()
+    </script>
+       <link rel="stylesheet" href="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.css" />
+<script
+  type="application/javascript"
+  src="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.min.js"></script>
+
+<script type="application/javascript">
+  var gitalk = new Gitalk({
+    clientID: '1ee93190dd0241204315',
+    clientSecret: '664a703c700862951fa5fa55c2de1672aa7c4051',
+    repo: 'gitalk-comments',
+    owner: 'GoodCoder666',
+    admin: ['GoodCoder666'],
+    id: location.pathname.substring(0, 49), // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+  
+  </body>
+</html>

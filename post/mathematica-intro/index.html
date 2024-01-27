@@ -1,0 +1,656 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Mathematica 入门 -
+    GoodCoder666的个人博客</title>
+<link rel="shortcut icon" href="https://goodcoder666.github.io/favicon.ico" />
+<link
+  href="https://npm.onmicrosoft.cn/remixicon@2.2.0/fonts/remixicon.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://goodcoder666.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://goodcoder666.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="Mathematica 入门 -
+    GoodCoder666的个人博客 - Atom Feed"
+  href="https://goodcoder666.github.io/atom.xml" />
+
+
+
+    <meta name="description" content="前言
+Wolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的科学计算软件。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 MATLAB 和 Maple 等。
+M..." />
+    <meta
+      property="og:title"
+      content="Mathematica 入门 - GoodCoder666的个人博客" />
+    <meta property="og:description" content="前言
+Wolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的科学计算软件。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 MATLAB 和 Maple 等。
+M..." />
+    <meta property="og:type" content="articles" />
+    <meta property="og:url" content="https://goodcoder666.github.io/post/mathematica-intro/" />
+    <meta
+      property="og:image"
+      content="https://goodcoder666.github.io/images/avatar.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta
+      name="twitter:title"
+      content="Mathematica 入门 - GoodCoder666的个人博客" />
+    <meta name="twitter:description" content="前言
+Wolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的科学计算软件。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 MATLAB 和 Maple 等。
+M..." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://goodcoder666.github.io/post/mathematica-intro/" />
+
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/default-skin/default-skin.min.css" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/css/prism-synthwave84.css" />
+     
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/KaTeX/0.11.1/katex.min.css" />
+    
+  </head>
+
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <a
+        href="https://goodcoder666.github.io"
+        class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+        GoodCoder666的个人博客
+      </a>
+      <div class="max-w-4xl w-full mx-auto">
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+          <h1
+            class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+            Mathematica 入门
+          </h1>
+          
+          <div class="mb-8 flex flex-wrap">
+            <div class="text-gray-400 text-sm mr-4">
+              2024-01-25 · 11 min read
+            </div>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/mathematica-and-wolfram-language/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Mathematica &amp; Wolfram Language
+            </a>
+            
+          </div>
+          <div class="markdown mb-8" v-pre><h2 id="前言">前言</h2>
+<p>Wolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的<strong>科学计算软件</strong>。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 <a href="https://ww2.mathworks.cn/products/matlab.html">MATLAB</a> 和 <a href="https://www.maplesoft.com.cn/products/maple/">Maple</a> 等。</p>
+<p>MMA 官网：<a href="https://www.wolfram.com/mathematica/">https://www.wolfram.com/mathematica/</a></p>
+<p>MMA 的安装及激活：<a href="https://zhuanlan.zhihu.com/p/632361071">Mathematica安装激活极简教程 - 科研小飞 (知乎)</a></p>
+<p>本文适合<strong>有一定编程基础</strong>的读者。当然，如果你不了解编程也没关系，直接跳过相关部分即可。屏幕截图全部来自 Windows 11，Mathematica 13.3。（最新版本 14.0 已经在 2023 年 12 月发布，语法向下兼容）</p>
+<img src="https://img-blog.csdnimg.cn/direct/112aba89359146bda726c2583bb093bd.png" alt="演示使用的 MMA 版本" referrerpolicy="no-referrer" />
+<center>演示使用的 MMA 版本</center>
+<h2 id="1-界面">1. 界面</h2>
+<p>安装并正确激活 MMA 后，新建笔记本，应该能看到如下的界面：</p>
+<img src="https://img-blog.csdnimg.cn/direct/6919e0ffe1b547288da811a3ca7b79e0.png#pic_center" alt="MMA 基本界面" referrerpolicy="no-referrer" />
+<p>一张图带你快速熟悉 MMA 的界面：</p>
+<img src="https://img-blog.csdnimg.cn/direct/34422ae4a1ea4a5d825ae8d41c54c74e.png" alt="MMA 界面简介" referrerpolicy="no-referrer" />
+<p>几个需要注意的点：</p>
+<ul>
+<li><kbd>Enter</kbd> 默认换行，执行代码需要用 <kbd>Shift</kbd>+<kbd>Enter</kbd>。</li>
+<li>指令面板左侧的红三角形也可执行代码，灰色的正方形用于终止正在进行的运算。</li>
+<li>MMA 带有 Notebook（笔记本）功能，由于其主要用于计算而不是笔记，本文不详细介绍，若需要使用可自行查阅相关资料。</li>
+</ul>
+<p>对于任意输入或输出，按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>即可显示输入（代码）形式，按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>即可显示数学形式。后面会对两种显示形式进行详细讲解。</p>
+<h2 id="2-语法">2. 语法</h2>
+<p>Mathematica 实质是一个 Wolfram Language 的解释器，所以使用它之前必须学习 WL 的语法。<br>
+这里介绍基本语法和常用的指令。</p>
+<h3 id="21-帮助文档">2.1 帮助文档</h3>
+<p>首先来了解帮助文档的使用。输入 <code>? Solve</code> 来获取 <code>Solve</code> 函数的说明：</p>
+<img src="https://img-blog.csdnimg.cn/direct/9ea4175340cc4ff2ab109a7e5a77db6b.png" alt="help-solve" referrerpolicy="no-referrer" />
+<p><code>?</code> 后面可以跟任何函数名，MMA 会直接在笔记本中输出简化版的帮助文档。可以选择输出右上角的 <code>i</code> 来获取更详细的文档（优先打开<a href="https://zhuanlan.zhihu.com/p/589034642">离线文档</a>，不存在则默认打开<a href="https://reference.wolfram.com/language/index.html.zh">在线文档</a>）。菜单栏中的 “帮助 -&gt; Wolfram 参考资料” 可以打开完整版文档。</p>
+<h3 id="22-注释">2.2 注释</h3>
+<pre><code class="language-mathematica">(* 注释 *)
+</code></pre>
+<p>如上，MMA 的注释使用 <code>(*</code> 和 <code>*)</code> 来标注，用法类似于 C/C++ 中的 <code>/*</code> 和 <code>*/</code>。注释可以添加在代码的任何位置，它们会被自动忽略。例如：</p>
+<pre><code class="language-mathematica">1 + 1 (*Hello*)
+1 + (*World*)1 
+</code></pre>
+<p>这两行代码在实际执行中与 <code>1 + 1</code> 无区别：</p>
+<img src="https://img-blog.csdnimg.cn/direct/402d84b038dd4de489820068d1b9719a.png" alt="comment-test" referrerpolicy="no-referrer" />
+<h3 id="23-括号">2.3 括号</h3>
+<p>在学习 MMA 的函数之前，一定要先学会括号的使用！！<br>
+官方参考文档：<a href="https://reference.wolfram.com/language/howto/UseBracketsAndBracesCorrectly.html.zh">正确使用括号和大括号</a></p>
+<p>MMA 中共有四种括号，分别为 <code>()</code>、<code>[]</code>、<code>{}</code> 和 <code>[[]]</code>，具体作用如下：</p>
+<h4 id="圆括号">圆括号 <code>()</code></h4>
+<p>用作对表达式编组和确定运算的优先次序：</p>
+<img src="https://img-blog.csdnimg.cn/direct/58e5d694ac0a489db616a7592a6365da.png" alt="圆括号的使用" referrerpolicy="no-referrer" />
+<h4 id="方括号">方括号 <code>[]</code></h4>
+<p>表示函数的调用和传参：</p>
+<img src="https://img-blog.csdnimg.cn/direct/f7e712535b0f4acbb3bb11fbc4ad78bd.png" alt="方括号的使用" referrerpolicy="no-referrer" />
+<h4 id="大括号">大括号 <code>{}</code></h4>
+<p>表示列表：</p>
+<img src="https://img-blog.csdnimg.cn/direct/e0ffd6c3e3c347cc8b9c217cd6060187.png" alt="大括号的使用" referrerpolicy="no-referrer" />
+<p>列表的具体使用后续会介绍。</p>
+<h4 id="双方括号">双方括号 <code>[[]]</code></h4>
+<p>表示对列表元素的访问，实质是函数 <code>Part</code> 的简写形式：</p>
+<img src="https://img-blog.csdnimg.cn/direct/9012e88ed8564074987dc0e7af292bdb.png" alt="双方括号的使用" referrerpolicy="no-referrer" />
+<p>同样会在后面具体介绍。</p>
+<h3 id="24-运算与表达式">2.4 运算与表达式</h3>
+<p>MMA 支持基本的数学运算，见下表：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>符号形式</th>
+<th>函数形式</th>
+<th>数学形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加法</td>
+<td><code>a + b</code></td>
+<td><code>Plus[a, b]</code></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a+b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span></td>
+</tr>
+<tr>
+<td>减法</td>
+<td><code>a - b</code></td>
+<td><code>Subtract[a, b]</code></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>−</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a-b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span></td>
+</tr>
+<tr>
+<td>乘法</td>
+<td><code>a * b</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></td>
+<td><code>Times[a, b]</code></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>×</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a\times b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span></td>
+</tr>
+<tr>
+<td>除法</td>
+<td><code>a / b</code></td>
+<td><code>Divide[a, b]</code></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mi>a</mi><mi>b</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac ab</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></td>
+</tr>
+<tr>
+<td>幂</td>
+<td><code>a ^ b</code></td>
+<td><code>Power[a, b]</code></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>a</mi><mi>b</mi></msup></mrow><annotation encoding="application/x-tex">a^b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span></span></span></span></td>
+</tr>
+<tr>
+<td>模余</td>
+<td>-</td>
+<td><code>Mod[a, b]</code></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mi>b</mi></mrow><annotation encoding="application/x-tex">a\bmod b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace" style="margin-right:0.05555555555555555em;"></span><span class="mbin"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span></td>
+</tr>
+</tbody>
+</table>
+<p>数字和符号都可以参与运算：</p>
+<img src="https://img-blog.csdnimg.cn/direct/8a37ca559ae74c4192403869698c6d1c.png" alt="数字和符号的运算" referrerpolicy="no-referrer" />
+<p><strong>表达式</strong>是一个或多个运算/函数调用的组合，使用<code>()</code>指定优先级。上图中 <code>4*5</code>、<code>a+a</code>、<code>3 x y/y</code> 都是合法的表达式。</p>
+<p>需要注意的是，MMA 只会对输入的表达式进行约分、合并同类项，而<strong>不会自动执行需要展开的化简</strong>。必要时可以使用 <code>Simplify</code> 或 <code>FullSimplify</code> 函数：</p>
+<img src="https://img-blog.csdnimg.cn/direct/bb47c48652954fa6ac55353990664d70.png" alt="化简示例" referrerpolicy="no-referrer" />
+<p>关于函数的使用，后面会详解。</p>
+<h4 id="布尔表达式">布尔表达式</h4>
+<p>表达式也可以是等式或不等式：</p>
+<img src="https://img-blog.csdnimg.cn/direct/4becc92235ef4064a4527f7ca37b7881.png" alt="等式和不等式" referrerpolicy="no-referrer" />
+<blockquote>
+<p>注意<strong>等式用两个等号 <code>==</code> 连接</strong>，单个等号表示变量赋值。<br>
+不等式可以用 <code>!=</code>（不等于）、<code>&gt;</code>（大于）、<code>&gt;=</code>（大于等于）、<code>&lt;</code>（小于）、<code>&lt;=</code>（小于等于）连接。<code>!=</code>、<code>&gt;=</code> 和 <code>&lt;=</code> 在输入时会自动转换为相应的数学符号。</p>
+</blockquote>
+<p>这类返回值为 <code>True</code>（真）或  <code>False</code>（假）的表达式，我们统称为<strong>布尔表达式</strong>。可以用 <code>&amp;&amp;</code> 和 <code>||</code> 运算符来连接两个布尔表达式，分别表示“与”“或”，所得结果仍为布尔表达式。</p>
+<p>绝大部分布尔表达式都不能自动化简，但可以通过 <code>Simplify</code>、<code>FullSimplify</code> 或 <code>Solve</code>、<code>Reduce</code> 来化简或求解：</p>
+<img src="https://img-blog.csdnimg.cn/direct/848e0c512d734ca38c377f415b5fd0ed.png" alt="布尔表达式的化简与求解" referrerpolicy="no-referrer" />
+<h3 id="25-变量与常数">2.5 变量与常数</h3>
+<p>MMA 中，使用 <code>变量名 = 值</code> 的形式来声明或赋值变量：</p>
+<img src="https://img-blog.csdnimg.cn/direct/6255b11c87364019964b65be4e251005.png" alt="创建变量" referrerpolicy="no-referrer" />
+<p>由上方 <code>10a + 3</code> 的计算结果可知，<strong>表达式中所有已声明的变量都会被替换成变量值</strong>。变量的声明也可以包含其他变量和符号，此时仍符合变量替换法则：</p>
+<img src="https://img-blog.csdnimg.cn/direct/7c42bc4920744dca9eabbeccdd0b7201.png" alt="替换" referrerpolicy="no-referrer" />
+<p>用于解方程的 <code>Solve</code> 函数没有返回 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> 的解，而是返回 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 的解，说明表达式在解析时 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> 被自动替换为了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>。</p>
+<blockquote>
+<p>除此之外，还可以用类似于 Python 的语法，<strong>同时赋值多个变量</strong>：</p>
+<pre><code class="language-mathematica">{a, b, c} = {1, 2, 3}
+</code></pre>
+<p>这行代码可以把变量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a,b,c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span></span></span></span> 分别赋值为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">1,2,3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span></span></span></span>。</p>
+</blockquote>
+<p>若要取消声明一个变量，可以使用 <code>Clear[变量名]</code>：</p>
+<img src="https://img-blog.csdnimg.cn/direct/76019d721a9343b29706bff3a01cc00e.png" alt="Clear的使用" referrerpolicy="no-referrer" />
+<p>在使用 MMA 的过程中，我们会发现某些特定符号不能声明为变量，且有一个固定不变的值。这些是<strong>内置常量</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>名称</th>
+<th>近似值</th>
+<th>数学形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Pi</code></td>
+<td>圆周率</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3.141592654</mn></mrow><annotation encoding="application/x-tex">3.141592654</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">.</span><span class="mord">1</span><span class="mord">4</span><span class="mord">1</span><span class="mord">5</span><span class="mord">9</span><span class="mord">2</span><span class="mord">6</span><span class="mord">5</span><span class="mord">4</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span></td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>自然常数</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2.718281828</mn></mrow><annotation encoding="application/x-tex">2.718281828</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">7</span><span class="mord">1</span><span class="mord">8</span><span class="mord">2</span><span class="mord">8</span><span class="mord">1</span><span class="mord">8</span><span class="mord">2</span><span class="mord">8</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">\mathrm e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathrm">e</span></span></span></span></td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>虚数单位</td>
+<td>-</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span></td>
+</tr>
+<tr>
+<td><code>Infinity</code></td>
+<td>无穷大</td>
+<td>-</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span></td>
+</tr>
+<tr>
+<td><code>Degree</code></td>
+<td>度</td>
+<td>-</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">°</mi></mrow><annotation encoding="application/x-tex">\degree</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">°</span></span></span></span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="26-函数">2.6 函数</h3>
+<p>在前面的讲解中，我们多次提到<strong>函数</strong>。现在，让我们详细解读函数的使用。</p>
+<h4 id="调用">调用</h4>
+<p>要调用一个函数，只需输入 <code>函数名[参数1, 参数2, ...]</code> 即可：</p>
+<img src="https://img-blog.csdnimg.cn/direct/8236b08fae7c4376a120767265ff16cc.png" alt="函数的调用1" referrerpolicy="no-referrer" />
+<p>对于只有一个参数的函数，可以用 <code>参数 // 函数名</code> 的形式调用。这种形式常用于 <code>Simplify</code>（化简）、<code>FullSimplify</code>（完全简化）和 <code>N</code>（数值运算）的调用：</p>
+<img src="https://img-blog.csdnimg.cn/direct/d82042de15094cb99a0eec8fd251eb47.png" alt="函数调用2" referrerpolicy="no-referrer" />
+<p>这种写法的最大优点在于可以链式调用：</p>
+<img src="https://img-blog.csdnimg.cn/direct/cc14c704d16c47b1b91fd326be867090.png" alt="链式调用" referrerpolicy="no-referrer" />
+<h4 id="定义">定义</h4>
+<p>说完了函数的调用，再来说说新函数的定义。</p>
+<p>MMA 中，<strong>定义新函数的语法为 <code>函数名[参数1_, 参数2_, ...] := 返回值</code></strong>。注意<strong>每个参数名后面都要加一个下划线</strong>（<code>_</code>）。</p>
+<blockquote>
+<p>定义新函数推荐用 <code>:=</code>，但使用 <code>=</code> 也可行。</p>
+</blockquote>
+<img src="https://img-blog.csdnimg.cn/direct/06917299e9ae477ea35869f27bf88e40.png" alt="定义新函数" referrerpolicy="no-referrer" />
+<blockquote>
+<p><strong>拓展 - 定义递归函数</strong><br>
+参考下面定义斐波那契数列的格式：<br>
+<img src="https://img-blog.csdnimg.cn/direct/c7d67417e4bf4633b9567d340d93619f.png" alt="斐波那契数列" referrerpolicy="no-referrer" /></p>
+</blockquote>
+<h2 id="3-内置函数">3. 内置函数</h2>
+<p>MMA 中有将近 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6000</mn></mrow><annotation encoding="application/x-tex">6000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 个内置函数<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>，它们都以大写字母开头。下面介绍几种常用的内置函数：</p>
+<h3 id="31-数值运算-n">3.1 数值运算 N</h3>
+<p>数值运算函数 <code>N</code>：</p>
+<ul>
+<li><code>N[expr]</code> 给出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">r</mi></mrow><annotation encoding="application/x-tex">\mathrm{expr}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">e</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">r</span></span></span></span></span> 的数值值</li>
+<li><code>N[expr, n]</code> 尝试给出具有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 位精度的结果</li>
+</ul>
+<p>使用示例：</p>
+<img src="https://img-blog.csdnimg.cn/direct/54310db32f264945bda2c7f07feae452.png" alt="N示例" referrerpolicy="no-referrer" />
+<h3 id="32-三角函数">3.2 三角函数</h3>
+<p>MMA 内置了各类三角函数，它们全部使用习惯名称且首字母大写（<code>Sin</code>、<code>Sinh</code>、<code>ArcSin</code>），这里不一一阐释。<br>
+只说一个注意点，MMA 中<strong>三角函数的参数默认是弧度</strong>，若要使用角度必须加上 <code>Degree</code> 单位：</p>
+<img src="https://img-blog.csdnimg.cn/direct/6590ad463ea84bd9ba05ee7d8391e684.png" alt="三角函数" referrerpolicy="no-referrer" />
+<h3 id="33-解方程和不等式-solvereduce">3.3 解方程和不等式 Solve/Reduce</h3>
+<p>解方程 <code>Solve</code>：</p>
+<img src="https://img-blog.csdnimg.cn/direct/7116c38bbc1e4227a3961781e220efb5.png" alt="Solve解方程" referrerpolicy="no-referrer" />
+<p>解不等式用 <code>Reduce</code>：</p>
+<img src="https://img-blog.csdnimg.cn/direct/42d15525da044ced8c1aeab6cbb9154f.png" alt="Reduce解不等式" referrerpolicy="no-referrer" />
+<p><code>Reduce</code> 还有更高级的使用，可以约化各种表达式：</p>
+<img src="https://img-blog.csdnimg.cn/direct/87587ee59dea4152996bbe65a685c5f3.png" alt="Reduce的高级应用" referrerpolicy="no-referrer" />
+<p>这句话说的是：求解 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a,b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span></span></span></span> 的范围，使得存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 满足等式 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>x</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">ax=b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>。实际上就是在求解使一元一次方程有解的参数值。<strong>注意 <code>Solve</code> 和 <code>Reduce</code> 不一定总返回最简形式的表达式</strong>，很多情况下需要手动调用 <code>Simplify</code> 或 <code>FullSimplify</code> 进行化简。感兴趣的读者可以自行测试上面的例子中不使用 <code>Simplify</code> 的返回结果。</p>
+<h3 id="34-解方程的其他方法-nsolvefindinstance">3.4 解方程的其他方法 NSolve/FindInstance</h3>
+<p><code>NSolve</code> 用法同 <code>Solve</code>，但会返回数值解而不是精确解。相当于 <code>Solve[...] // N</code>。<br>
+<code>FindInstance</code> 用法同 <code>Solve</code>，但添加了一个参数表示至多返回解的个数（默认为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>）：</p>
+<img src="https://img-blog.csdnimg.cn/direct/5b7fc0d03da64fd49b105ae483c00a4c.png" alt="FindInstance的使用" referrerpolicy="no-referrer" />
+<h3 id="35-极点值-maximizeminimize">3.5 极点值 Maximize/Minimize</h3>
+<p><code>Minimize</code> 返回函数（在限制条件下）的最小值以及取到最小值的（一种）变量值：</p>
+<img src="https://img-blog.csdnimg.cn/direct/3f35817b03434e74a19e87429980d4cb.png" alt="Minimize的使用" referrerpolicy="no-referrer" />
+<p>如上图中的示例，<code>Minimize</code> 支持多个变量，可以指定条件，也可指定求解域。<br>
+<code>Maximize</code> 用法完全相同，返回最大值，此处略过。</p>
+<h3 id="36-偏导-d">3.6 偏导 D</h3>
+<p>偏导 <code>D</code> 的两种最常用用法：</p>
+<ul>
+<li><code>D[f, x]</code> 给出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 关于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 的偏导。</li>
+<li><code>D[f, {x, n}]</code> 给出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 关于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 阶偏导。</li>
+</ul>
+<p>示例略。注意 <code>f'[x]</code> 可以直接求出 <code>f[x]</code> 的导数：</p>
+<img src="https://img-blog.csdnimg.cn/direct/60f8dd1fb1b447c6b3ecf58baff71daf.png" alt="符号求导" referrerpolicy="no-referrer" />
+<h3 id="37-积分-integrate">3.7 积分 Integrate</h3>
+<p>积分 <code>Integrate</code>：</p>
+<ul>
+<li><code>Integrate[f, x]</code> 给出不定积分 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∫</mo><mi>f</mi><mtext> </mtext><mi mathvariant="normal">d</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\int f~\mathrm{d}x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.11112em;vertical-align:-0.30612em;"></span><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord mathrm">d</span></span><span class="mord mathdefault">x</span></span></span></span>。</li>
+<li><code>Integrate[f, {x, x_min, x_max}]</code> 给出定积分 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∫</mo><msub><mi>x</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><msub><mi>x</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></msubsup><mi>f</mi><mtext> </mtext><mi mathvariant="normal">d</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\int_{x_{min}}^{x_{max}} f~\mathrm{d}x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3152119999999998em;vertical-align:-0.45592em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.859292em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.2579em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.45592em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord mathrm">d</span></span><span class="mord mathdefault">x</span></span></span></span>。</li>
+<li><code>Integrate[f, {x, x_min, x_max}, {y, y_min, y_max}, ...]</code> 给出多重积分 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∫</mo><msub><mi>x</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><msub><mi>x</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></msubsup><mi mathvariant="normal">d</mi><mi>x</mi><msubsup><mo>∫</mo><msub><mi>y</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><msub><mi>y</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></msubsup><mi mathvariant="normal">d</mi><mi>y</mi><mo>…</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">\int_{x_{min}}^{x_{max}} \mathrm{d}x \int_{y_{min}}^{y_{max}} \mathrm{d}y\dots f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.35122em;vertical-align:-0.49192800000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.859292em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.2579em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.45592em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathrm">d</span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8592920000000002em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.2579000000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.49192800000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathrm">d</span></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span>。</li>
+</ul>
+<p>一个简单的定积分示例：</p>
+<img src="https://img-blog.csdnimg.cn/direct/1b2a7f8c31d741c0a26f93a8cd9bccd9.png" alt="Integrate求定积分" referrerpolicy="no-referrer" />
+<h3 id="38-展开-expandexpandall">3.8 展开 Expand/ExpandAll</h3>
+<p><code>Expand</code> 很好理解，<code>Expand[expr]</code> 会展开表达式 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">r</mi></mrow><annotation encoding="application/x-tex">\mathrm{expr}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">e</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">r</span></span></span></span></span> 中的乘积和正整数幂。限于篇幅，这里不提供使用范例，可参考<a href="https://reference.wolfram.com/language/ref/Expand.html">官方文档</a>。<br>
+<code>ExpandAll</code> 在 <code>Expand</code> 的基础上，会展开表达式中<strong>任意位置</strong>的乘积和整数幂。如表达式 <code>Sin[(1 + x)^3]</code>，<code>Expand</code> 不会展开其中的 <code>(1+x)^3</code>，而 <code>ExpandAll</code> 会。</p>
+<h3 id="39-因式分解-factor">3.9 因式分解 Factor</h3>
+<p><code>Factor[poly]</code>：在整数上对一个多项式分解因式。使用示例参考<a href="https://reference.wolfram.com/language/ref/Factor.html">官方文档</a>。</p>
+<h3 id="310-绘图-plotplot3d">3.10 绘图 Plot/Plot3D</h3>
+<p><code>Plot</code> 和 <code>Plot3D</code> 的用法较为复杂，这里只介绍最基本的函数绘图：</p>
+<img src="https://img-blog.csdnimg.cn/direct/26ace912b56345f783c061700892b1b4.png" alt="Plot和Plot3D" referrerpolicy="no-referrer" />
+<p>两个语句分别绘制：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>sin</mi><mo>⁡</mo><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\sin(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 的图像，其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>2</mn><mi>π</mi><mo>≤</mo><mi>x</mi><mo>≤</mo><mn>2</mn><mi>π</mi></mrow><annotation encoding="application/x-tex">-2\pi\le x\le 2\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>；</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>sin</mi><mo>⁡</mo><mo>(</mo><mi>x</mi><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">\sin(x+y^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">sin</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的图像，其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>3</mn><mo>≤</mo><mi>x</mi><mo>≤</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">-3\le x\le 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">−</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>2</mn><mo>≤</mo><mi>y</mi><mo>≤</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">-2\le y\le 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>。</li>
+</ul>
+<h2 id="4-总结">4. 总结</h2>
+<p>我自己当初学习 MMA 时，被网上杂乱的教程搞得混乱不堪。因此就想写一篇教程，涵盖所有常用语法知识点，并让初学者避开我自己踩的一些坑。<br>
+初衷是写个<em>简明</em>的教程，结果一写就是八千多字…… 也感谢认真读到这里的读者们！<br>
+后续可能还会更一些用 Mathematica 解决数学和实际问题的文章，敬请期待！</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>乘法也可简写为 <code>a b</code>（中间必须有空格）。MMA 中，大部分空格可省略，但是<strong>乘法的空格不能省略</strong>（若写作没有空格的 <code>ab</code> 会被认为是一个变量）。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://www.wolfram.com/language/fast-introduction-for-programmers/en/built-in-functions/">https://www.wolfram.com/language/fast-introduction-for-programmers/en/built-in-functions/</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div>
+          <!-- Share to Twitter, Weibo, Telegram -->
+          <div class="flex items-center">
+            <div class="mr-4 flex items-center">
+              <i class="ri-share-forward-line text-gray-500"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTwitter">
+              <i class="ri-twitter-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToWeibo">
+              <i class="ri-weibo-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTelegram">
+              <i class="ri-telegram-line"></i>
+            </div>
+          </div>
+        </div>
+
+         
+        <div id="gitalk-container"></div>
+            <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  CSDN: <a href="https://blog.csdn.net/write_1m_lines" target="_blank">write_1m_lines</a> E-mail: stanley_shao@163.com
+</footer>
+
+      </div>
+
+      <!-- TOC Container -->
+      <div
+        class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+        @click="showToc = true">
+        <i class="ri-file-list-line"></i>
+      </div>
+
+      <div
+        class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+        :class="{ '-mr-64': !showToc }">
+        <div class="flex mb-4 justify-end">
+          <div
+            class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+            @click="showToc = false">
+            <i class="ri-close-line text-lg"></i>
+          </div>
+        </div>
+        <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#1-%E7%95%8C%E9%9D%A2">1. 界面</a></li>
+<li><a href="#2-%E8%AF%AD%E6%B3%95">2. 语法</a>
+<ul>
+<li><a href="#21-%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3">2.1 帮助文档</a></li>
+<li><a href="#22-%E6%B3%A8%E9%87%8A">2.2 注释</a></li>
+<li><a href="#23-%E6%8B%AC%E5%8F%B7">2.3 括号</a>
+<ul>
+<li><a href="#%E5%9C%86%E6%8B%AC%E5%8F%B7">圆括号 <code>()</code></a></li>
+<li><a href="#%E6%96%B9%E6%8B%AC%E5%8F%B7">方括号 <code>[]</code></a></li>
+<li><a href="#%E5%A4%A7%E6%8B%AC%E5%8F%B7">大括号 <code>{}</code></a></li>
+<li><a href="#%E5%8F%8C%E6%96%B9%E6%8B%AC%E5%8F%B7">双方括号 <code>[[]]</code></a></li>
+</ul>
+</li>
+<li><a href="#24-%E8%BF%90%E7%AE%97%E4%B8%8E%E8%A1%A8%E8%BE%BE%E5%BC%8F">2.4 运算与表达式</a>
+<ul>
+<li><a href="#%E5%B8%83%E5%B0%94%E8%A1%A8%E8%BE%BE%E5%BC%8F">布尔表达式</a></li>
+</ul>
+</li>
+<li><a href="#25-%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E6%95%B0">2.5 变量与常数</a></li>
+<li><a href="#26-%E5%87%BD%E6%95%B0">2.6 函数</a>
+<ul>
+<li><a href="#%E8%B0%83%E7%94%A8">调用</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0">3. 内置函数</a>
+<ul>
+<li><a href="#31-%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97-n">3.1 数值运算 N</a></li>
+<li><a href="#32-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0">3.2 三角函数</a></li>
+<li><a href="#33-%E8%A7%A3%E6%96%B9%E7%A8%8B%E5%92%8C%E4%B8%8D%E7%AD%89%E5%BC%8F-solvereduce">3.3 解方程和不等式 Solve/Reduce</a></li>
+<li><a href="#34-%E8%A7%A3%E6%96%B9%E7%A8%8B%E7%9A%84%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95-nsolvefindinstance">3.4 解方程的其他方法 NSolve/FindInstance</a></li>
+<li><a href="#35-%E6%9E%81%E7%82%B9%E5%80%BC-maximizeminimize">3.5 极点值 Maximize/Minimize</a></li>
+<li><a href="#36-%E5%81%8F%E5%AF%BC-d">3.6 偏导 D</a></li>
+<li><a href="#37-%E7%A7%AF%E5%88%86-integrate">3.7 积分 Integrate</a></li>
+<li><a href="#38-%E5%B1%95%E5%BC%80-expandexpandall">3.8 展开 Expand/ExpandAll</a></li>
+<li><a href="#39-%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3-factor">3.9 因式分解 Factor</a></li>
+<li><a href="#310-%E7%BB%98%E5%9B%BE-plotplot3d">3.10 绘图 Plot/Plot3D</a></li>
+</ul>
+</li>
+<li><a href="#4-%E6%80%BB%E7%BB%93">4. 总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      </div>
+
+      <!-- Back to top -->
+      <div
+        class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+        @click="backToUp"
+        v-show="scrolled">
+        <i class="ri-arrow-up-line"></i>
+      </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.14/vue.min.js"></script>
+    <script src="https://goodcoder666.github.io/media/scripts/main.js"></script>
+
+    <!-- Code Highlight -->
+    
+    <script src="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+    
+
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+    <script>
+      //拿到预览框架，也就是上面的html代码
+      var pswpElement = document.querySelectorAll('.pswp')[0]
+      //定义图片数组变量
+      var imgitems
+      /**
+       * 用于显示预览界面
+       * @param index 图片数组下标
+       */
+      function viewImg(index) {
+        //其它选项这里不做过多阐述，详情见官网
+        var pswpoptions = {
+          index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+          bgOpacity: 0.7, // 背景透明度，0-1
+          maxSpreadZoom: 3, // 缩放级别，不要太大
+        }
+        //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          imgitems,
+          pswpoptions
+        )
+        gallery.init()
+      }
+      /**
+       * 用于添加图片点击事件
+       * @param img 图片元素
+       * @param index 所属下标（在imgitems中的位置）
+       */
+      function addImgClick(img, index) {
+        img.onclick = function () {
+          viewImg(index)
+        }
+      }
+      /**
+       * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+       * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+       * 异步加载图片可在图片元素创建完成后调用此方法
+       */
+      function initImg() {
+        //重置图片数组
+        imgitems = []
+        //查找class:markdown 下的所有img元素并遍历
+        var imgs = document.querySelectorAll('.markdown img')
+        for (var i = 0; i < imgs.length; i++) {
+          var img = imgs[i]
+          //本站相册初始为loading图片，真实图片放在data-src
+          var ds = img.getAttribute('data-src')
+          //创建image对象，用于获取图片宽高
+          var imgtemp = new Image()
+          //判断是否存在data-src
+          if (ds != null && ds.length > 0) {
+            imgtemp.src = ds
+          } else {
+            imgtemp.src = img.src
+          }
+          //判断是否存在缓存
+          if (imgtemp.complete) {
+            var imgobj = {
+              src: imgtemp.src,
+              w: imgtemp.width,
+              h: imgtemp.height,
+            }
+            imgitems[i] = imgobj
+            addImgClick(img, i)
+          } else {
+            console.log('进来了2')
+            imgtemp.index = i
+            imgtemp.img = img
+            imgtemp.onload = function () {
+              var imgobj = {
+                src: this.src,
+                w: this.width,
+                h: this.height,
+              }
+              //不要使用push，因为onload前后顺序会不同
+              imgitems[this.index] = imgobj
+              //添加点击事件
+              addImgClick(this.img, this.index)
+            }
+          }
+        }
+      }
+      //初始化
+      initImg()
+    </script>
+       <link rel="stylesheet" href="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.css" />
+<script
+  type="application/javascript"
+  src="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.min.js"></script>
+
+<script type="application/javascript">
+  var gitalk = new Gitalk({
+    clientID: '1ee93190dd0241204315',
+    clientSecret: '664a703c700862951fa5fa55c2de1672aa7c4051',
+    repo: 'gitalk-comments',
+    owner: 'GoodCoder666',
+    admin: ['GoodCoder666'],
+    id: location.pathname.substring(0, 49), // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+  
+  </body>
+</html>

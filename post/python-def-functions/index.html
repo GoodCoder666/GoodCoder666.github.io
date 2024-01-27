@@ -1,0 +1,516 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Python函数之def定义函数 -
+    GoodCoder666的个人博客</title>
+<link rel="shortcut icon" href="https://goodcoder666.github.io/favicon.ico" />
+<link
+  href="https://npm.onmicrosoft.cn/remixicon@2.2.0/fonts/remixicon.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://goodcoder666.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://goodcoder666.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="Python函数之def定义函数 -
+    GoodCoder666的个人博客 - Atom Feed"
+  href="https://goodcoder666.github.io/atom.xml" />
+
+
+
+    <meta name="description" content="链接
+想研究Python函数？看这里
+函数怎样取名？看这里
+有参数的函数还可以怎么传参？看这里
+一、无参数函数
+结构
+def &amp;lt;函数名&amp;gt;(): # 强制要求
+	&amp;lt;函数体&amp;gt; # 可省略
+	return &amp;lt;返回值&amp;..." />
+    <meta
+      property="og:title"
+      content="Python函数之def定义函数 - GoodCoder666的个人博客" />
+    <meta property="og:description" content="链接
+想研究Python函数？看这里
+函数怎样取名？看这里
+有参数的函数还可以怎么传参？看这里
+一、无参数函数
+结构
+def &amp;lt;函数名&amp;gt;(): # 强制要求
+	&amp;lt;函数体&amp;gt; # 可省略
+	return &amp;lt;返回值&amp;..." />
+    <meta property="og:type" content="articles" />
+    <meta property="og:url" content="https://goodcoder666.github.io/post/python-def-functions/" />
+    <meta
+      property="og:image"
+      content="https://goodcoder666.github.io/images/avatar.png" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1200" />
+    <meta
+      name="twitter:title"
+      content="Python函数之def定义函数 - GoodCoder666的个人博客" />
+    <meta name="twitter:description" content="链接
+想研究Python函数？看这里
+函数怎样取名？看这里
+有参数的函数还可以怎么传参？看这里
+一、无参数函数
+结构
+def &amp;lt;函数名&amp;gt;(): # 强制要求
+	&amp;lt;函数体&amp;gt; # 可省略
+	return &amp;lt;返回值&amp;..." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://goodcoder666.github.io/post/python-def-functions/" />
+
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/default-skin/default-skin.min.css" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/css/prism-synthwave84.css" />
+     
+    <link
+      rel="stylesheet"
+      href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/KaTeX/0.11.1/katex.min.css" />
+    
+  </head>
+
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <a
+        href="https://goodcoder666.github.io"
+        class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+        GoodCoder666的个人博客
+      </a>
+      <div class="max-w-4xl w-full mx-auto">
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+          <h1
+            class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+            Python函数之def定义函数
+          </h1>
+          
+          <div class="mb-8 flex flex-wrap">
+            <div class="text-gray-400 text-sm mr-4">
+              2020-04-21 · 3 min read
+            </div>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/python-functions/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Python函数
+            </a>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/syntax/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              语法
+            </a>
+            
+            <a
+              href="https://goodcoder666.github.io/tag/python/"
+              class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Python
+            </a>
+            
+          </div>
+          <div class="markdown mb-8" v-pre><h1 id="链接">链接</h1>
+<p>想研究<code>Python</code>函数？<a href="https://goodcoder666.github.io/tag/python-functions/">看这里</a><br>
+函数怎样取名？<a href="https://goodcoder666.github.io/post/python-naming-standards/">看这里</a><br>
+有参数的函数还可以怎么传参？<a href="https://goodcoder666.github.io/post/python-functions-argpack/">看这里</a></p>
+<h1 id="一-无参数函数">一、无参数函数</h1>
+<h2 id="结构">结构</h2>
+<pre><code class="language-python">def &lt;函数名&gt;(): # 强制要求
+	&lt;函数体&gt; # 可省略
+	return &lt;返回值&gt; # 可省略
+</code></pre>
+<h2 id="程序举例">程序举例</h2>
+<p>用函数的<code>Hello world</code>程序：</p>
+<pre><code class="language-python"># prints 'Hello World\nDone'
+# Author: GoodCoder666
+def getHelloWorldString():
+	return 'Hello World'
+def print_hello_world():
+	print(getHelloWorldString())
+print_hello_world()
+print('Done')
+# 输出：
+# Hello World
+# Done
+</code></pre>
+<h3 id="程序流程">程序流程</h3>
+<pre><code class="language-mermaid">flowchat
+st=&gt;start: 开始，调用print_hello_world()
+e=&gt;end: 结束
+get_str_call=&gt;operation: print_hello_world()调用getHelloWorldString()
+return_str=&gt;operation: getHelloWorldString()返回 'Hello world'
+print_hi=&gt;inputoutput: 回到print_hello_world()，输出Hello world
+done=&gt;inputoutput: 回到主程序，输出Done
+
+st-&gt;get_str_call-&gt;return_str-&gt;print_hi-&gt;done-&gt;e
+</code></pre>
+<h1 id="二-有参数函数">二、有参数函数</h1>
+<h2 id="补充知识">补充知识</h2>
+<p>参数 (<em>parameter</em>)：给函数的值，在函数中相当于变量：</p>
+<pre><code class="language-python">def param_test(a, b):
+	a, b = b, a
+	print(a, b)
+param_test(5, 6) # 输出：6 5
+</code></pre>
+<p>以上程序等同于：</p>
+<pre><code class="language-python">def param_test():
+	a, b = 5, 6
+	#-----以下部分相同-----#
+	a, b = b, a
+	print(a, b)
+param_test() # 输出：6 5
+</code></pre>
+<h2 id="结构-2">结构</h2>
+<pre><code class="language-python">def &lt;函数名&gt;(&lt;参数列表&gt;): # 强制要求
+	&lt;函数体&gt; # 可省略
+	return &lt;返回值&gt; # 可省略
+</code></pre>
+<p>其中，参数列表中的参数用<code>,</code>隔开，例如<code>a, b</code> 、<code>c</code>（如果只有一个参数直接写）</p>
+<h2 id="程序举例-2">程序举例</h2>
+<pre><code class="language-python"># prints 'Hi, {name}!'
+# Author: GoodCoder666
+def get_greet_str(name):
+	return 'Hi, ' + name + '!'
+
+def greet(name):
+	print(get_greet_str(name))
+
+greet(input(&quot;What's your name? &quot;))
+print('Done')
+# 输入: GoodCoder666
+# 输出
+# Hi, GoodCoder666!
+# Done
+</code></pre>
+<h3 id="程序流程-2">程序流程</h3>
+<pre><code class="language-mermaid">flowchat
+st=&gt;start: 开始，调用input(&quot;What's your name?&quot;)
+e=&gt;end: 结束
+call_greet=&gt;operation: input返回用户名，调用greet(&lt;用户名&gt;)
+call_get_greet_str=&gt;operation: greet调用get_greet_str(&lt;用户名&gt;)
+print_hi=&gt;inputoutput: 回到get_greet_str，输出get_greet_str的返回值
+done=&gt;inputoutput: 回到主程序，输出Done
+
+st-&gt;call_greet-&gt;call_get_greet_str-&gt;print_hi-&gt;done-&gt;e
+</code></pre>
+<h1 id="函数也是对象">函数也是对象</h1>
+<p>一个函数也是一个对象。</p>
+<h2 id="证明">证明</h2>
+<p>先定义两个函数：</p>
+<pre><code class="language-python">def a(a, b):
+	return a + b
+def b():
+	return a(1, 2)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>是否支持/存在</th>
+<th>证明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>赋值</td>
+<td>Y</td>
+<td><code>c = a</code>可执行；执行后<code>c</code>可被调用</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>Y</td>
+<td>执行<code>type(a)</code>，返回<code>class &lt;'function'&gt;</code></td>
+</tr>
+<tr>
+<td>类型</td>
+<td>Y</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+          <!-- Share to Twitter, Weibo, Telegram -->
+          <div class="flex items-center">
+            <div class="mr-4 flex items-center">
+              <i class="ri-share-forward-line text-gray-500"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTwitter">
+              <i class="ri-twitter-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToWeibo">
+              <i class="ri-weibo-line"></i>
+            </div>
+            <div
+              class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+              @click="shareToTelegram">
+              <i class="ri-telegram-line"></i>
+            </div>
+          </div>
+        </div>
+
+         
+        <div id="gitalk-container"></div>
+            <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  CSDN: <a href="https://blog.csdn.net/write_1m_lines" target="_blank">write_1m_lines</a> E-mail: stanley_shao@163.com
+</footer>
+
+      </div>
+
+      <!-- TOC Container -->
+      <div
+        class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+        @click="showToc = true">
+        <i class="ri-file-list-line"></i>
+      </div>
+
+      <div
+        class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+        :class="{ '-mr-64': !showToc }">
+        <div class="flex mb-4 justify-end">
+          <div
+            class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+            @click="showToc = false">
+            <i class="ri-close-line text-lg"></i>
+          </div>
+        </div>
+        <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li><a href="#%E9%93%BE%E6%8E%A5">链接</a></li>
+<li><a href="#%E4%B8%80-%E6%97%A0%E5%8F%82%E6%95%B0%E5%87%BD%E6%95%B0">一、无参数函数</a>
+<ul>
+<li><a href="#%E7%BB%93%E6%9E%84">结构</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E4%B8%BE%E4%BE%8B">程序举例</a>
+<ul>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B">程序流程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-%E6%9C%89%E5%8F%82%E6%95%B0%E5%87%BD%E6%95%B0">二、有参数函数</a>
+<ul>
+<li><a href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86">补充知识</a></li>
+<li><a href="#%E7%BB%93%E6%9E%84-2">结构</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E4%B8%BE%E4%BE%8B-2">程序举例</a>
+<ul>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B-2">程序流程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0%E4%B9%9F%E6%98%AF%E5%AF%B9%E8%B1%A1">函数也是对象</a>
+<ul>
+<li><a href="#%E8%AF%81%E6%98%8E">证明</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      </div>
+
+      <!-- Back to top -->
+      <div
+        class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+        @click="backToUp"
+        v-show="scrolled">
+        <i class="ri-arrow-up-line"></i>
+      </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter"></div>
+        <button
+          class="pswp__button pswp__button--close"
+          title="Close (Esc)"></button>
+        <button
+          class="pswp__button pswp__button--fs"
+          title="Toggle fullscreen"></button>
+        <button
+          class="pswp__button pswp__button--zoom"
+          title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button
+        class="pswp__button pswp__button--arrow--left"
+        title="Previous (arrow left)"></button>
+      <button
+        class="pswp__button pswp__button--arrow--right"
+        title="Next (arrow right)"></button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.14/vue.min.js"></script>
+    <script src="https://goodcoder666.github.io/media/scripts/main.js"></script>
+
+    <!-- Code Highlight -->
+    
+    <script src="https://jsd.onmicrosoft.cn/gh/GoodCoder666/GoodCoder666.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+    
+
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+    <script>
+      //拿到预览框架，也就是上面的html代码
+      var pswpElement = document.querySelectorAll('.pswp')[0]
+      //定义图片数组变量
+      var imgitems
+      /**
+       * 用于显示预览界面
+       * @param index 图片数组下标
+       */
+      function viewImg(index) {
+        //其它选项这里不做过多阐述，详情见官网
+        var pswpoptions = {
+          index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+          bgOpacity: 0.7, // 背景透明度，0-1
+          maxSpreadZoom: 3, // 缩放级别，不要太大
+        }
+        //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          imgitems,
+          pswpoptions
+        )
+        gallery.init()
+      }
+      /**
+       * 用于添加图片点击事件
+       * @param img 图片元素
+       * @param index 所属下标（在imgitems中的位置）
+       */
+      function addImgClick(img, index) {
+        img.onclick = function () {
+          viewImg(index)
+        }
+      }
+      /**
+       * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+       * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+       * 异步加载图片可在图片元素创建完成后调用此方法
+       */
+      function initImg() {
+        //重置图片数组
+        imgitems = []
+        //查找class:markdown 下的所有img元素并遍历
+        var imgs = document.querySelectorAll('.markdown img')
+        for (var i = 0; i < imgs.length; i++) {
+          var img = imgs[i]
+          //本站相册初始为loading图片，真实图片放在data-src
+          var ds = img.getAttribute('data-src')
+          //创建image对象，用于获取图片宽高
+          var imgtemp = new Image()
+          //判断是否存在data-src
+          if (ds != null && ds.length > 0) {
+            imgtemp.src = ds
+          } else {
+            imgtemp.src = img.src
+          }
+          //判断是否存在缓存
+          if (imgtemp.complete) {
+            var imgobj = {
+              src: imgtemp.src,
+              w: imgtemp.width,
+              h: imgtemp.height,
+            }
+            imgitems[i] = imgobj
+            addImgClick(img, i)
+          } else {
+            console.log('进来了2')
+            imgtemp.index = i
+            imgtemp.img = img
+            imgtemp.onload = function () {
+              var imgobj = {
+                src: this.src,
+                w: this.width,
+                h: this.height,
+              }
+              //不要使用push，因为onload前后顺序会不同
+              imgitems[this.index] = imgobj
+              //添加点击事件
+              addImgClick(this.img, this.index)
+            }
+          }
+        }
+      }
+      //初始化
+      initImg()
+    </script>
+       <link rel="stylesheet" href="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.css" />
+<script
+  type="application/javascript"
+  src="https://npm.onmicrosoft.cn/gitalk/dist/gitalk.min.js"></script>
+
+<script type="application/javascript">
+  var gitalk = new Gitalk({
+    clientID: '1ee93190dd0241204315',
+    clientSecret: '664a703c700862951fa5fa55c2de1672aa7c4051',
+    repo: 'gitalk-comments',
+    owner: 'GoodCoder666',
+    admin: ['GoodCoder666'],
+    id: location.pathname.substring(0, 49), // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+  
+  </body>
+</html>

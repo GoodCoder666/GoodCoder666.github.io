@@ -1,0 +1,363 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>GoodCoder666的个人博客</title>
+<link rel="shortcut icon" href="https://goodcoder666.github.io/favicon.ico" />
+<link
+  href="https://npm.onmicrosoft.cn/remixicon@2.2.0/fonts/remixicon.css"
+  rel="stylesheet" />
+<link
+  rel="stylesheet"
+  href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/animate.css/3.7.2/animate.min.css" />
+<link
+  rel="stylesheet"
+  href="https://goodcoder666.github.io/media/css/tailwind.css" />
+<link rel="stylesheet" href="https://goodcoder666.github.io/styles/main.css" />
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="GoodCoder666的个人博客 - Atom Feed"
+  href="https://goodcoder666.github.io/atom.xml" />
+
+
+
+    <meta name="description" content="天生我材必有用，千金散尽还复来。" />
+  </head>
+  <body>
+    <div class="antialiased flex flex-col min-h-screen" id="app">
+      <div
+  class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300"
+  :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div
+      class="w-8 h-8 flex justify-center items-center rounded-full md:hidden"
+      @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav
+    class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block"
+    :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+    <a
+      href="/"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      首页
+    </a>
+    
+    <a
+      href="/archives"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      归档
+    </a>
+    
+    <a
+      href="/tags"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      标签
+    </a>
+    
+    <a
+      href="/post/about"
+      target=""
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      关于
+    </a>
+    
+    <a
+      href="https://goodcoder666.github.io/atom.xml"
+      target="_blank"
+      class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+
+      <div class="max-w-4xl w-full mx-auto pt-32">
+        <h1 class="text-2xl font-bold pb-8 flex justify-center items-center">
+          <i class="ri-hashtag"></i>
+          Python
+        </h1>
+        <div
+          class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+          
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/py_codelinescounter/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        【Python】72行实现代码行数统计，简单实用！
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2022-03-15</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      0. 前言
+最近突然想知道自己总共写了多少行代码，于是做了这样一个小工具……
+1. 准备工作
+先考虑一下希望得到的效果：
+
+
+
+Language（语言）
+Lines（代码行数）
+Size（代码文件总大小）
+Files（代码文件总数）
+
+
+
+...
+    </div>
+    <a href="https://goodcoder666.github.io/post/py_codelinescounter/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/spyderfix/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        Anaconda Spyder点击无响应解决
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2020-07-12</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      问题分析
+可能是升级或卸载了spyder依赖的包，导致spyder无法正常运行。
+我升级了PyQt5，spyder要求PyQt5&lt;5.13，而安装的最新版本为5.15，导致spyder启动时出现问题。
+解决方法
+打开Anaconda ...
+    </div>
+    <a href="https://goodcoder666.github.io/post/spyderfix/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/pypi-tsmirror/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        pip速度太慢解决（使用清华镜像）
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2020-07-12</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      python的包管理工具pip速度太慢，经常下载时报错，可以使用清华镜像代替默认下载源。以下两种方法任何电脑都可以使用，演示电脑为Windows 10 版本1909。
+临时方法
+使用pip下载时，临时使用镜像（命令行）：
+pip insta...
+    </div>
+    <a href="https://goodcoder666.github.io/post/pypi-tsmirror/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/pws-tencent-us-19ncov/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        【python爬虫】从腾讯API爬取美国疫情数据+制表
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2020-06-03</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      最近（文章撰写时间为2020/6/1 18:40）疫情在中国情况好转，却在美国暴虐。
+本篇文章将爬取腾讯提供的美国疫情数据并制表。
+1. 爬取数据
+调用API接口
+接口：https://api.inews.qq.com/newsqa/v1/...
+    </div>
+    <a href="https://goodcoder666.github.io/post/pws-tencent-us-19ncov/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/python-lambda-functions/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        Python函数之lambda函数
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2020-04-21</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      温馨提示：如果读者没有学过def定义函数，请先看这里
+定义形式
+&lt;函数名&gt; = lambda &lt;参数列表&gt;: &lt;返回值&gt;
+
+等同于：
+def &lt;函数名&gt;(&lt;参数列表&gt;):
+	ret...
+    </div>
+    <a href="https://goodcoder666.github.io/post/python-lambda-functions/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/python-def-functions/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        Python函数之def定义函数
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2020-04-21</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      链接
+想研究Python函数？看这里
+函数怎样取名？看这里
+有参数的函数还可以怎么传参？看这里
+一、无参数函数
+结构
+def &lt;函数名&gt;(): # 强制要求
+	&lt;函数体&gt; # 可省略
+	return &lt;返回值&...
+    </div>
+    <a href="https://goodcoder666.github.io/post/python-def-functions/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/python-naming-standards/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        【Python】对象（包括类、函数）取名方法
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2020-04-20</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      先上干货，通用的：
+字母：A-Z a-z
+下划线：_
+数字：0-9（注意：数字不能在开头）
+理论上可以使用中文变量名，但强烈不建议使用。
+合法名字举例
+abcdef	GoodCoder	AD_fhrygfuigfr
+A_a_007	__NA...
+    </div>
+    <a href="https://goodcoder666.github.io/post/python-naming-standards/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/tkinter-text-undo-redo/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        tkinter Text edit_undo()/edit_redo() 没反应解决方法
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2020-03-24</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      问题
+tkinter.Text调用edit_undo()和edit_redo()没反应。
+问题分析
+这是因为没有设置Text的undo参数为True，设置后才能“激活”edit_undo()和edit_redo()。
+这个错误难发现是因为它...
+    </div>
+    <a href="https://goodcoder666.github.io/post/tkinter-text-undo-redo/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+<div
+  class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+  
+  <div class="flex-1 order-2 md:order-1">
+    <h2 class="text-2xl font-semibold mb-4">
+      <a
+        href="https://goodcoder666.github.io/post/python-functions-argpack/"
+        class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+        Python函数之*[参数名]和**[参数名]的用处
+      </a>
+    </h2>
+    <div class="mb-4 text-xs text-gray-500">2020-03-03</div>
+    <div class="mb-4 text-gray-500 dark:text-gray-300">
+      一、*[参数名]
+调用
+合法调用
+普通调用
+*参数名一般写成*args, 如：
+def func(*args):
+	print(args)
+
+可以试着调用func：
+&gt;&gt;&gt; func(1)
+(1,)
+&gt;&gt;&gt...
+    </div>
+    <a href="https://goodcoder666.github.io/post/python-functions-argpack/" class="btn">
+      阅读更多
+    </a>
+  </div>
+  
+</div>
+
+
+        </div>
+
+        
+ <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  CSDN: <a href="https://blog.csdn.net/write_1m_lines" target="_blank">write_1m_lines</a> E-mail: stanley_shao@163.com
+</footer>
+
+      </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.14/vue.min.js"></script>
+    <script src="https://goodcoder666.github.io/media/scripts/main.js"></script>
+  </body>
+</html>
