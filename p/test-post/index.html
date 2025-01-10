@@ -11,7 +11,8 @@
 <meta property='og:url' content='https://goodcoder666.github.io/p/test-post/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='测试' /><meta property='article:published_time' content='2025-01-10T09:37:49&#43;08:00'/><meta property='article:modified_time' content='2025-01-10T09:37:49&#43;08:00'/>
-<meta name="twitter:title" content="【算法笔记】【专题】RMQ 问题：ST表/树状数组/线段树">
+<meta name="twitter:site" content="@stanleys09">
+    <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【算法笔记】【专题】RMQ 问题：ST表/树状数组/线段树">
 <meta name="twitter:description" content="小测试~">
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -112,7 +113,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com'
+                        href='https://x.com/stanleys09'
                         target="_blank"
                         title="Twitter"
                         rel="me"
@@ -132,6 +133,46 @@
             
         </ol><ol class="menu" id="main-menu">
         
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
         
         <li class="menu-bottom-section">
             <ol class="menu">
@@ -163,6 +204,26 @@
 </aside>
 
     <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
         
             
                 
@@ -283,7 +344,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 12 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -392,17 +453,15 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 </blockquote>
 <p>ST表的初始化时间复杂度为$\mathcal O(N\log N)$，单次查询时间复杂度为$\mathcal O(1)$。</p>
 <h4 id="存储结构">存储结构
-</h4><p>ST表的本质是一个$N\times\lceil\log N\rceil$的二维数组，其定义如下（令$A$表示原数组，求最小值同理）：
-$$
-st[i][j]=\max{A_i,A_{i+1},\dots,A_{i+2^j-1}}
-$$
+</h4>$$
+st[i][j]=\max\{A_i,A_{i+1},\dots,A_{i+2^j-1}\}
+$$<p>
 也就是说，$st[i][j]$表示从$A_i$开始，$2^j$个元素中的最大值。这运用了<strong>倍增</strong>的思想。</p>
 <p>下面考虑如何快速初始化整个数组。</p>
 <h4 id="初始化">初始化
-</h4><p>根据<strong>倍增</strong>的常用算法，使用类似于DP的方式填满整个表：
-$$
-st[i][j]=\max{st[i][j-1],st[i+2^{j-1}][j-1]}
-$$
+</h4>$$
+st[i][j]=\max\{st[i][j-1],st[i+2^{j-1}][j-1]\}
+$$<p>
 填表时，<strong>先枚举$j$，再枚举$i$</strong>。由于整个表共有大约$N\log N$个状态，而计算一个状态值的时间复杂度为$\mathcal O(1)$，所以初始化的总时间复杂度为$\mathcal O(N\log N)$。</p>
 <p>伪代码如下：</p>
 <div class="highlight"><div class="chroma">
@@ -459,15 +518,14 @@ $\to~$如果检查到了多余的元素，且多余的正好大于原区间的�
 </blockquote>
 <p>要满足上述条件，我们可以<strong>让$a$尽可能靠近$r$，让$b$尽可能靠近$l$</strong>，来达到这样的效果。
 此时，我们还需要满足并集的条件$l\le a,b\le r$，因此我们需要找到最大的$k$，使得$a=l+2^k$，$b=r-2^k$。</p>
-<p>则有
 $$
-\left{ \begin{array}{c}
-l+2^k\le r \
+\left\{ \begin{array}{c} 
+l+2^k\le r \\
 r-2^k\ge l
-\end{array} \right.<del>\to</del> 2^k\le r-l\
-<del>\
-\to</del>k\le \log_2(r-l)
-$$
+\end{array} \right.~~\to~~ 2^k\le r-l\\
+~\\
+\to~k\le \log_2(r-l)
+$$<p>
 又因为$k$必须是整数，所以取$k=\lfloor\log_2(r-l)\rfloor$即可。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -694,23 +752,20 @@ $$
 <p>现在回过来考虑 RMQ 的查询，Min/Max运算不可逆，所以很明显不能用这种计算方式。
 下面我们来介绍针对 RMQ 的树状数组设计。</p>
 <h4 id="rmq-树状数组">RMQ 树状数组
-</h4><p>我们令$f(l,r)$表示<code>rangeMax(l, r)</code>，即$[l,r]$的区间最大值。
-令$t=r-\mathrm{lowbit}(r)$，$A$表示原序列，$B$表示树状数组，考虑如下递推式：
-$$
+</h4>$$
 f(l,r)=\begin{cases}
-\max{B_r,f(l,t)} &amp; (t\ge l)\
-\max{A_r,f(l,r-1)} &amp; (t&lt;l)\
--\infty &amp; (l &lt; r)
+\max\{B_r,f(l,t)\} & (t\ge l)\\
+\max\{A_r,f(l,r-1)\} & (t<l)\\
+-\infty & (l < r)
 \end{cases}
-$$</p>
-<blockquote>
+$$<blockquote>
 <p><strong>等式$1$ 证明</strong>
-根据树状数组的定义，$B_i=\max{A_{i-\mathrm{lowbit}(i)+1},\dots,A_i}=f(i-\mathrm{lowbit}(i)+1,i)$。
-又有$f(l,r)=\max{f(l,t),f(t+1,r)}$，由于$f(t+1,r)=f(r-\mathrm{lowbit}(r)+1,r)=B_r$，所以当$t\ge l$时，$f(l,r)=\max{B_r,f(l,t)}$。</p>
+根据树状数组的定义，$B_i=\max\{A_{i-\mathrm{lowbit}(i)+1},\dots,A_i\}=f(i-\mathrm{lowbit}(i)+1,i)$。
+又有$f(l,r)=\max\{f(l,t),f(t+1,r)\}$，由于$f(t+1,r)=f(r-\mathrm{lowbit}(r)+1,r)=B_r$，所以当$t\ge l$时，$f(l,r)=\max\{B_r,f(l,t)\}$。</p>
 </blockquote>
 <blockquote>
 <p><strong>等式$2$ 证明</strong>
-根据$\max$操作的结合律可得：$f(l,r)=\max{f(l,r-1),f(r,r)}=\max{f(l,r-1),A_r}$。
+根据$\max$操作的结合律可得：$f(l,r)=\max\{f(l,r-1),f(r,r)\}=\max\{f(l,r-1),A_r\}$。
 这个等式对于任意$r$都成立，但出于时间考虑，我们尽可能使用等式$1$（如果全用等式$2$就退化成了$\mathcal O(N)$的暴力）。</p>
 </blockquote>
 <p>代码实现：</p>
@@ -955,7 +1010,7 @@ $$</p>
 <p>一般的，若一个结点对应的区间为$[l,r]$：</p>
 <ul>
 <li>$l=r$：此结点为叶子结点。</li>
-<li>$l&lt;r$，令$m=\lfloor\frac{l+r}2\rfloor$：
+<li>$l<r$，令$m=\lfloor\frac{l+r}2\rfloor$：
 <ul>
 <li>左子结点对应的区间为$[l,m]$。</li>
 <li>右子结点对应的区间为$[m+1,r]$。</li>
@@ -1266,7 +1321,7 @@ $$</p>
   </tbody>
 </table></div>
 <p>可以看出，<strong>ST表写起来简单省事，运行时间也是最快</strong>，不过内存占用稍高，毕竟空间复杂度是$\mathcal O(N\log N)$；
-树状数组可以说是均衡了时间与空间，<strong>尽量使用非递归查询</strong>，比递归速度快$53%$，当然如果想省事也可以使用递归式查询；
+树状数组可以说是均衡了时间与空间，<strong>尽量使用非递归查询</strong>，比递归速度快$53\%$，当然如果想省事也可以使用递归式查询；
 线段树可以说是完全输给了树状数组（非递归），不过线段树功能比较多，用来做 RMQ 可以说是大材小用。所以<strong>线段树在 RMQ 问题中没什么优势</strong>，有一些缺点还是可以理解的。</p>
 <hr>
 <p>本文到此结束，希望大家给个三连！
@@ -1350,29 +1405,6 @@ $$</p>
      
     
         
-    <div class="disqus-container">
-    
-</div>
-
-<style>
-    .disqus-container {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-    }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (typeof DISQUS == 'object') {
-            DISQUS.reset({
-                reload: true
-            });
-        }
-    })
-</script>
-
     
 
     <footer class="site-footer">
