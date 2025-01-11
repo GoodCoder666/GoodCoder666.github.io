@@ -13,14 +13,14 @@
         
         <guid>https://goodcoder666.github.io/p/test-post/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言
-&lt;/h2&gt;&lt;p&gt;好久没更算法笔记专栏了，正好学了新算法来更新……
+&lt;/h2&gt;&lt;p&gt;好久没更算法笔记专栏了，正好学了新算法来更新……&lt;br&gt;
 这也是本专栏的第一个专题问题，涉及到三种数据结构，如果写得有问题请各位大佬多多指教，谢谢！&lt;/p&gt;
 &lt;h2 id=&#34;关于-rmq-问题&#34;&gt;关于 RMQ 问题
 &lt;/h2&gt;&lt;p&gt;RMQ 的全称是 &lt;em&gt;Range Minimum/Maximum Query&lt;/em&gt;，即区间最大/最小值问题。&lt;/p&gt;
 &lt;p&gt;本文中，我们的算法以求最大值为例（最小值基本一致）。题面如下：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;给定一个长为$N$的序列$A=(A_1,A_2,\dots,A_N)$。
-有$Q$个询问，第$i$个询问如下：
+&lt;p&gt;给定一个长为$N$的序列$A=(A_1,A_2,\dots,A_N)$。&lt;br&gt;
+有$Q$个询问，第$i$个询问如下：&lt;br&gt;
 $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\displaystyle\max_{j=l_i}^{r_i} A_j$。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;下面，我们将从暴力算法开始，逐步讲解 RMQ 问题的常用解法。&lt;/p&gt;
@@ -37,7 +37,7 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 &lt;/ul&gt;
 &lt;h2 id=&#34;解法&#34;&gt;解法
 &lt;/h2&gt;&lt;h3 id=&#34;暴力法&#34;&gt;暴力法
-&lt;/h3&gt;&lt;p&gt;我们先读取序列$A$，再逐个读取询问，对于每个询问直接遍历$A_l\dots A_r$，最终输出结果。
+&lt;/h3&gt;&lt;p&gt;我们先读取序列$A$，再逐个读取询问，对于每个询问直接遍历$A_l\dots A_r$，最终输出结果。&lt;br&gt;
 总时间复杂度为$\mathcal O(\sum r_i-l_i)=\mathcal O(NQ)$。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -108,13 +108,13 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 &lt;h4 id=&#34;存储结构&#34;&gt;存储结构
 &lt;/h4&gt;$$
 st[i][j]=\max\{A_i,A_{i+1},\dots,A_{i+2^j-1}\}
-$$&lt;p&gt;
+$$&lt;p&gt;&lt;br&gt;
 也就是说，$st[i][j]$表示从$A_i$开始，$2^j$个元素中的最大值。这运用了&lt;strong&gt;倍增&lt;/strong&gt;的思想。&lt;/p&gt;
 &lt;p&gt;下面考虑如何快速初始化整个数组。&lt;/p&gt;
 &lt;h4 id=&#34;初始化&#34;&gt;初始化
 &lt;/h4&gt;$$
 st[i][j]=\max\{st[i][j-1],st[i+2^{j-1}][j-1]\}
-$$&lt;p&gt;
+$$&lt;p&gt;&lt;br&gt;
 填表时，&lt;strong&gt;先枚举$j$，再枚举$i$&lt;/strong&gt;。由于整个表共有大约$N\log N$个状态，而计算一个状态值的时间复杂度为$\mathcal O(1)$，所以初始化的总时间复杂度为$\mathcal O(N\log N)$。&lt;/p&gt;
 &lt;p&gt;伪代码如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -163,13 +163,13 @@ $$&lt;p&gt;
 &lt;/div&gt;&lt;h4 id=&#34;查询&#34;&gt;查询
 &lt;/h4&gt;&lt;p&gt;对于$[l,r)$区间的 RMQ 查询，根据ST表的原理，我们要找到两个区间$[l,a)$和$[b,r)$，使得它们的&lt;strong&gt;并集&lt;/strong&gt;正好为$[l,r)$。即：$l\le b\le a\le r$。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;为什么是&lt;strong&gt;并集&lt;/strong&gt;?
-$\to~$因为$\max(a,a)=a$，所以重复的不影响结果。
-$\to~$如果出现遗漏，且遗漏的正好为最大/最小值，那会影响最终结果，所以不能遗漏。
-$\to~$如果检查到了多余的元素，且多余的正好大于原区间的最大值，会使查询结果变大，所以不能有多余。
+&lt;p&gt;为什么是&lt;strong&gt;并集&lt;/strong&gt;?&lt;br&gt;
+$\to~$因为$\max(a,a)=a$，所以重复的不影响结果。&lt;br&gt;
+$\to~$如果出现遗漏，且遗漏的正好为最大/最小值，那会影响最终结果，所以不能遗漏。&lt;br&gt;
+$\to~$如果检查到了多余的元素，且多余的正好大于原区间的最大值，会使查询结果变大，所以不能有多余。&lt;br&gt;
 综上，必须满足$[l,a)$和$[b,r)$的&lt;strong&gt;并集&lt;/strong&gt;正好为$[l,r)$才能查询。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;要满足上述条件，我们可以&lt;strong&gt;让$a$尽可能靠近$r$，让$b$尽可能靠近$l$&lt;/strong&gt;，来达到这样的效果。
+&lt;p&gt;要满足上述条件，我们可以&lt;strong&gt;让$a$尽可能靠近$r$，让$b$尽可能靠近$l$&lt;/strong&gt;，来达到这样的效果。&lt;br&gt;
 此时，我们还需要满足并集的条件$l\le a,b\le r$，因此我们需要找到最大的$k$，使得$a=l+2^k$，$b=r-2^k$。&lt;/p&gt;
 $$
 \left\{ \begin{array}{c} 
@@ -178,7 +178,7 @@ r-2^k\ge l
 \end{array} \right.~~\to~~ 2^k\le r-l\\
 ~\\
 \to~k\le \log_2(r-l)
-$$&lt;p&gt;
+$$&lt;p&gt;&lt;br&gt;
 又因为$k$必须是整数，所以取$k=\lfloor\log_2(r-l)\rfloor$即可。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -282,7 +282,7 @@ $$&lt;p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;img src=&#34;https://img2024.cnblogs.com/blog/1983749/202501/1983749-20250110094558284-184210083.png&#34; alt=&#34;AC&#34; referrerpolicy=&#34;no-referrer&#34; /&gt;
-&lt;p&gt;运行时间：$128\mathrm{ms}$
+&lt;p&gt;运行时间：$128\mathrm{ms}$&lt;br&gt;
 使用内存：$6.90\mathrm{MB}$&lt;/p&gt;
 &lt;h3 id=&#34;树状数组&#34;&gt;树状数组
 &lt;/h3&gt;&lt;p&gt;关于树状数组的原理我已经在&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126441412&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -402,23 +402,23 @@ $$&lt;p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;也就是用$(A_1+A_2+\dots+A_r)-(A_1+A_2+\dots+A_{l-1})=A_l+\dots+A_r$。&lt;/p&gt;
-&lt;p&gt;现在回过来考虑 RMQ 的查询，Min/Max运算不可逆，所以很明显不能用这种计算方式。
+&lt;p&gt;现在回过来考虑 RMQ 的查询，Min/Max运算不可逆，所以很明显不能用这种计算方式。&lt;br&gt;
 下面我们来介绍针对 RMQ 的树状数组设计。&lt;/p&gt;
 &lt;h4 id=&#34;rmq-树状数组&#34;&gt;RMQ 树状数组
 &lt;/h4&gt;$$
 f(l,r)=\begin{cases}
 \max\{B_r,f(l,t)\} &amp; (t\ge l)\\
-\max\{A_r,f(l,r-1)\} &amp; (t&lt;l)\\
+\max\{A_r,f(l,r-1)\} &amp; (t &lt; l)\\
 -\infty &amp; (l &lt; r)
 \end{cases}
 $$&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;等式$1$ 证明&lt;/strong&gt;
-根据树状数组的定义，$B_i=\max\{A_{i-\mathrm{lowbit}(i)+1},\dots,A_i\}=f(i-\mathrm{lowbit}(i)+1,i)$。
+&lt;p&gt;&lt;strong&gt;等式$1$ 证明&lt;/strong&gt;&lt;br&gt;
+根据树状数组的定义，$B_i=\max\{A_{i-\mathrm{lowbit}(i)+1},\dots,A_i\}=f(i-\mathrm{lowbit}(i)+1,i)$。&lt;br&gt;
 又有$f(l,r)=\max\{f(l,t),f(t+1,r)\}$，由于$f(t+1,r)=f(r-\mathrm{lowbit}(r)+1,r)=B_r$，所以当$t\ge l$时，$f(l,r)=\max\{B_r,f(l,t)\}$。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;等式$2$ 证明&lt;/strong&gt;
-根据$\max$操作的结合律可得：$f(l,r)=\max\{f(l,r-1),f(r,r)\}=\max\{f(l,r-1),A_r\}$。
+&lt;p&gt;&lt;strong&gt;等式$2$ 证明&lt;/strong&gt;&lt;br&gt;
+根据$\max$操作的结合律可得：$f(l,r)=\max\{f(l,r-1),f(r,r)\}=\max\{f(l,r-1),A_r\}$。&lt;br&gt;
 这个等式对于任意$r$都成立，但出于时间考虑，我们尽可能使用等式$1$（如果全用等式$2$就退化成了$\mathcal O(N)$的暴力）。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;代码实现：&lt;/p&gt;
@@ -444,7 +444,7 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这种查询方式的时间复杂度不好估算，可粗略地记为$\mathcal O(\log N)$。实际情况下，运行时间可能稍大于这个值。
+&lt;/div&gt;&lt;p&gt;这种查询方式的时间复杂度不好估算，可粗略地记为$\mathcal O(\log N)$。实际情况下，运行时间可能稍大于这个值。&lt;br&gt;
 另外，此算法对&lt;strong&gt;任意满足结合律的运算&lt;/strong&gt;（如&lt;code&gt;gcd&lt;/code&gt;，&lt;code&gt;lcm&lt;/code&gt;）都有效。&lt;/p&gt;
 &lt;h4 id=&#34;完整实现-1&#34;&gt;完整实现
 &lt;/h4&gt;&lt;p&gt;下面给出用树状数组解决&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P1816&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -546,7 +546,7 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;img src=&#34;https://img2024.cnblogs.com/blog/1983749/202501/1983749-20250110094558531-760698708.png&#34; alt=&#34;AC&#34; referrerpolicy=&#34;no-referrer&#34; /&gt;
-&lt;p&gt;运行时间：$207\mathrm{ms}$
+&lt;p&gt;运行时间：$207\mathrm{ms}$&lt;br&gt;
 使用内存：$1.10\mathrm{MB}$&lt;/p&gt;
 &lt;p&gt;另外，我们还可以把&lt;code&gt;rangeMin&lt;/code&gt;写成非递归的形式，以进一步节省运行时间：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -652,7 +652,7 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;img src=&#34;https://img2024.cnblogs.com/blog/1983749/202501/1983749-20250110094558019-1274906428.png&#34; alt=&#34;AC&#34; referrerpolicy=&#34;no-referrer&#34; /&gt;
-&lt;p&gt;运行时间：$135\mathrm{ms}$
+&lt;p&gt;运行时间：$135\mathrm{ms}$&lt;br&gt;
 使用内存：$1.14\mathrm{MB}$&lt;/p&gt;
 &lt;h3 id=&#34;线段树&#34;&gt;线段树
 &lt;/h3&gt;&lt;p&gt;线段树和树状数组一样，都是解决区间问题的树状结构。不过线段树的应用范围更加广泛，时间复杂度与树状数组基本一致，但每种操作都有一个$3\thicksim4$之间的常数。线段树建树（初始化）的时间复杂度为$\mathcal O(N)$，单次区间查询的时间复杂度为$\mathcal O(\log N)$。&lt;/p&gt;
@@ -662,8 +662,8 @@ $$&lt;blockquote&gt;
 &lt;p&gt;从树的角度考虑，$n_1=0$，即没有子结点数量为$1$的结点。&lt;/p&gt;
 &lt;p&gt;一般的，若一个结点对应的区间为$[l,r]$：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$l=r$：此结点为叶子结点。&lt;/li&gt;
-&lt;li&gt;$l&lt;r$，令$m=\lfloor\frac{l+r}2\rfloor$：
+&lt;li&gt;$l = r$：此结点为叶子结点。&lt;/li&gt;
+&lt;li&gt;$l &lt; r$，令$m=\lfloor\frac{l+r}2\rfloor$：
 &lt;ul&gt;
 &lt;li&gt;左子结点对应的区间为$[l,m]$。&lt;/li&gt;
 &lt;li&gt;右子结点对应的区间为$[m+1,r]$。&lt;/li&gt;
@@ -671,15 +671,15 @@ $$&lt;blockquote&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;顺便纠正一下线段树的几个误区：
-&lt;del&gt;&lt;strong&gt;线段树是一棵完全二叉树。&lt;/strong&gt;&lt;/del&gt;
-请仔细看看图。
-&lt;del&gt;&lt;strong&gt;线段树是一棵二叉搜索树。&lt;/strong&gt;&lt;/del&gt;
+&lt;p&gt;顺便纠正一下线段树的几个误区：&lt;br&gt;
+&lt;del&gt;&lt;strong&gt;线段树是一棵完全二叉树。&lt;/strong&gt;&lt;/del&gt;&lt;br&gt;
+请仔细看看图。&lt;br&gt;
+&lt;del&gt;&lt;strong&gt;线段树是一棵二叉搜索树。&lt;/strong&gt;&lt;/del&gt;&lt;br&gt;
 反正我是没找到哪里这样定义的。&lt;a class=&#34;link&#34; href=&#34;https://baike.baidu.com/item/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/7077855&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;百度百科&lt;/a&gt; &lt;a class=&#34;link&#34; href=&#34;https://oi-wiki.org/ds/bst/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;OI Wiki&lt;/a&gt;
-&lt;del&gt;&lt;strong&gt;线段树上同一深度的结点所对应的区间长度一定相等。&lt;/strong&gt;&lt;/del&gt;
-看看图，$[1,3]$和$[4,5]$两个区间，长度明显不相等。
+    &gt;OI Wiki&lt;/a&gt;&lt;br&gt;
+&lt;del&gt;&lt;strong&gt;线段树上同一深度的结点所对应的区间长度一定相等。&lt;/strong&gt;&lt;/del&gt;&lt;br&gt;
+看看图，$[1,3]$和$[4,5]$两个区间，长度明显不相等。&lt;br&gt;
 特例：当$N$是$2$的整数次幂时，这句话一定成立。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;存储结构-1&#34;&gt;存储结构
@@ -712,7 +712,7 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#define par(x) (x &amp;gt;&amp;gt; 1) &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 父亲结点
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;下文中，我们令$N$表示元素个数，$A$表示原数组，$C$表示线段树（数组形式存储）。
+&lt;/div&gt;&lt;p&gt;下文中，我们令$N$表示元素个数，$A$表示原数组，$C$表示线段树（数组形式存储）。&lt;br&gt;
 可以证明，线段树的结点个数不会超过$4N-5$，所以我们可以把$C$的长度设为$4N$。&lt;/p&gt;
 &lt;h4 id=&#34;建树初始化&#34;&gt;建树（初始化）
 &lt;/h4&gt;&lt;p&gt;对于一个结点数据的计算，我们可以先递归地初始化其左子树，再到右子树，最后两儿子的数据取$\max$即可。&lt;/p&gt;
@@ -890,7 +890,7 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;img src=&#34;https://img2024.cnblogs.com/blog/1983749/202501/1983749-20250110094558563-591983151.png&#34; alt=&#34;AC&#34; referrerpolicy=&#34;no-referrer&#34; /&gt;
-&lt;p&gt;运行时间：$163\mathrm{ms}$
+&lt;p&gt;运行时间：$163\mathrm{ms}$&lt;br&gt;
 使用内存：$1.78\mathrm{MB}$&lt;/p&gt;
 &lt;h2 id=&#34;总结&#34;&gt;总结
 &lt;/h2&gt;&lt;p&gt;我们来对比一下四种算法，从理论的角度：&lt;/p&gt;
@@ -973,11 +973,11 @@ $$&lt;blockquote&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;可以看出，&lt;strong&gt;ST表写起来简单省事，运行时间也是最快&lt;/strong&gt;，不过内存占用稍高，毕竟空间复杂度是$\mathcal O(N\log N)$；
-树状数组可以说是均衡了时间与空间，&lt;strong&gt;尽量使用非递归查询&lt;/strong&gt;，比递归速度快$53\%$，当然如果想省事也可以使用递归式查询；
+&lt;p&gt;可以看出，&lt;strong&gt;ST表写起来简单省事，运行时间也是最快&lt;/strong&gt;，不过内存占用稍高，毕竟空间复杂度是$\mathcal O(N\log N)$；&lt;br&gt;
+树状数组可以说是均衡了时间与空间，&lt;strong&gt;尽量使用非递归查询&lt;/strong&gt;，比递归速度快$53\%$，当然如果想省事也可以使用递归式查询；&lt;br&gt;
 线段树可以说是完全输给了树状数组（非递归），不过线段树功能比较多，用来做 RMQ 可以说是大材小用。所以&lt;strong&gt;线段树在 RMQ 问题中没什么优势&lt;/strong&gt;，有一些缺点还是可以理解的。&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;本文到此结束，希望大家给个三连！
+&lt;p&gt;本文到此结束，希望大家给个三连！&lt;br&gt;
 这也是我在$2023$年写的第一篇文章（也是我的第一篇万字长文），祝大家新年快乐！&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;

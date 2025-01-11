@@ -170,7 +170,45 @@
 
 
                 
-                <span>归档</span>
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
             </a>
         </li>
         
@@ -204,26 +242,6 @@
 </aside>
 
     <aside class="sidebar right-sidebar sticky">
-        
-            
-                <form action="/search/" class="search-form widget" >
-        <p>
-            <label>搜索</label>
-            <input name="keyword" required placeholder="输入关键词..." />
-        
-            <button title="搜索">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-            </button>
-        </p>
-    </form>
-            
         
             
                 
@@ -344,7 +362,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 12 分钟
                 </time>
             </div>
         
@@ -360,14 +378,14 @@
     
     
     <h2 id="前言">前言
-</h2><p>好久没更算法笔记专栏了，正好学了新算法来更新……
+</h2><p>好久没更算法笔记专栏了，正好学了新算法来更新……<br>
 这也是本专栏的第一个专题问题，涉及到三种数据结构，如果写得有问题请各位大佬多多指教，谢谢！</p>
 <h2 id="关于-rmq-问题">关于 RMQ 问题
 </h2><p>RMQ 的全称是 <em>Range Minimum/Maximum Query</em>，即区间最大/最小值问题。</p>
 <p>本文中，我们的算法以求最大值为例（最小值基本一致）。题面如下：</p>
 <blockquote>
-<p>给定一个长为$N$的序列$A=(A_1,A_2,\dots,A_N)$。
-有$Q$个询问，第$i$个询问如下：
+<p>给定一个长为$N$的序列$A=(A_1,A_2,\dots,A_N)$。<br>
+有$Q$个询问，第$i$个询问如下：<br>
 $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\displaystyle\max_{j=l_i}^{r_i} A_j$。</p>
 </blockquote>
 <p>下面，我们将从暴力算法开始，逐步讲解 RMQ 问题的常用解法。</p>
@@ -384,7 +402,7 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 </ul>
 <h2 id="解法">解法
 </h2><h3 id="暴力法">暴力法
-</h3><p>我们先读取序列$A$，再逐个读取询问，对于每个询问直接遍历$A_l\dots A_r$，最终输出结果。
+</h3><p>我们先读取序列$A$，再逐个读取询问，对于每个询问直接遍历$A_l\dots A_r$，最终输出结果。<br>
 总时间复杂度为$\mathcal O(\sum r_i-l_i)=\mathcal O(NQ)$。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -455,13 +473,13 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 <h4 id="存储结构">存储结构
 </h4>$$
 st[i][j]=\max\{A_i,A_{i+1},\dots,A_{i+2^j-1}\}
-$$<p>
+$$<p><br>
 也就是说，$st[i][j]$表示从$A_i$开始，$2^j$个元素中的最大值。这运用了<strong>倍增</strong>的思想。</p>
 <p>下面考虑如何快速初始化整个数组。</p>
 <h4 id="初始化">初始化
 </h4>$$
 st[i][j]=\max\{st[i][j-1],st[i+2^{j-1}][j-1]\}
-$$<p>
+$$<p><br>
 填表时，<strong>先枚举$j$，再枚举$i$</strong>。由于整个表共有大约$N\log N$个状态，而计算一个状态值的时间复杂度为$\mathcal O(1)$，所以初始化的总时间复杂度为$\mathcal O(N\log N)$。</p>
 <p>伪代码如下：</p>
 <div class="highlight"><div class="chroma">
@@ -510,13 +528,13 @@ $$<p>
 </div><h4 id="查询">查询
 </h4><p>对于$[l,r)$区间的 RMQ 查询，根据ST表的原理，我们要找到两个区间$[l,a)$和$[b,r)$，使得它们的<strong>并集</strong>正好为$[l,r)$。即：$l\le b\le a\le r$。</p>
 <blockquote>
-<p>为什么是<strong>并集</strong>?
-$\to~$因为$\max(a,a)=a$，所以重复的不影响结果。
-$\to~$如果出现遗漏，且遗漏的正好为最大/最小值，那会影响最终结果，所以不能遗漏。
-$\to~$如果检查到了多余的元素，且多余的正好大于原区间的最大值，会使查询结果变大，所以不能有多余。
+<p>为什么是<strong>并集</strong>?<br>
+$\to~$因为$\max(a,a)=a$，所以重复的不影响结果。<br>
+$\to~$如果出现遗漏，且遗漏的正好为最大/最小值，那会影响最终结果，所以不能遗漏。<br>
+$\to~$如果检查到了多余的元素，且多余的正好大于原区间的最大值，会使查询结果变大，所以不能有多余。<br>
 综上，必须满足$[l,a)$和$[b,r)$的<strong>并集</strong>正好为$[l,r)$才能查询。</p>
 </blockquote>
-<p>要满足上述条件，我们可以<strong>让$a$尽可能靠近$r$，让$b$尽可能靠近$l$</strong>，来达到这样的效果。
+<p>要满足上述条件，我们可以<strong>让$a$尽可能靠近$r$，让$b$尽可能靠近$l$</strong>，来达到这样的效果。<br>
 此时，我们还需要满足并集的条件$l\le a,b\le r$，因此我们需要找到最大的$k$，使得$a=l+2^k$，$b=r-2^k$。</p>
 $$
 \left\{ \begin{array}{c} 
@@ -525,7 +543,7 @@ r-2^k\ge l
 \end{array} \right.~~\to~~ 2^k\le r-l\\
 ~\\
 \to~k\le \log_2(r-l)
-$$<p>
+$$<p><br>
 又因为$k$必须是整数，所以取$k=\lfloor\log_2(r-l)\rfloor$即可。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -629,7 +647,7 @@ $$<p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><img src="https://img2024.cnblogs.com/blog/1983749/202501/1983749-20250110094558284-184210083.png" alt="AC" referrerpolicy="no-referrer" />
-<p>运行时间：$128\mathrm{ms}$
+<p>运行时间：$128\mathrm{ms}$<br>
 使用内存：$6.90\mathrm{MB}$</p>
 <h3 id="树状数组">树状数组
 </h3><p>关于树状数组的原理我已经在<a class="link" href="https://blog.csdn.net/write_1m_lines/article/details/126441412"  target="_blank" rel="noopener"
@@ -749,23 +767,23 @@ $$<p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>也就是用$(A_1+A_2+\dots+A_r)-(A_1+A_2+\dots+A_{l-1})=A_l+\dots+A_r$。</p>
-<p>现在回过来考虑 RMQ 的查询，Min/Max运算不可逆，所以很明显不能用这种计算方式。
+<p>现在回过来考虑 RMQ 的查询，Min/Max运算不可逆，所以很明显不能用这种计算方式。<br>
 下面我们来介绍针对 RMQ 的树状数组设计。</p>
 <h4 id="rmq-树状数组">RMQ 树状数组
 </h4>$$
 f(l,r)=\begin{cases}
 \max\{B_r,f(l,t)\} & (t\ge l)\\
-\max\{A_r,f(l,r-1)\} & (t<l)\\
+\max\{A_r,f(l,r-1)\} & (t < l)\\
 -\infty & (l < r)
 \end{cases}
 $$<blockquote>
-<p><strong>等式$1$ 证明</strong>
-根据树状数组的定义，$B_i=\max\{A_{i-\mathrm{lowbit}(i)+1},\dots,A_i\}=f(i-\mathrm{lowbit}(i)+1,i)$。
+<p><strong>等式$1$ 证明</strong><br>
+根据树状数组的定义，$B_i=\max\{A_{i-\mathrm{lowbit}(i)+1},\dots,A_i\}=f(i-\mathrm{lowbit}(i)+1,i)$。<br>
 又有$f(l,r)=\max\{f(l,t),f(t+1,r)\}$，由于$f(t+1,r)=f(r-\mathrm{lowbit}(r)+1,r)=B_r$，所以当$t\ge l$时，$f(l,r)=\max\{B_r,f(l,t)\}$。</p>
 </blockquote>
 <blockquote>
-<p><strong>等式$2$ 证明</strong>
-根据$\max$操作的结合律可得：$f(l,r)=\max\{f(l,r-1),f(r,r)\}=\max\{f(l,r-1),A_r\}$。
+<p><strong>等式$2$ 证明</strong><br>
+根据$\max$操作的结合律可得：$f(l,r)=\max\{f(l,r-1),f(r,r)\}=\max\{f(l,r-1),A_r\}$。<br>
 这个等式对于任意$r$都成立，但出于时间考虑，我们尽可能使用等式$1$（如果全用等式$2$就退化成了$\mathcal O(N)$的暴力）。</p>
 </blockquote>
 <p>代码实现：</p>
@@ -791,7 +809,7 @@ $$<blockquote>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>这种查询方式的时间复杂度不好估算，可粗略地记为$\mathcal O(\log N)$。实际情况下，运行时间可能稍大于这个值。
+</div><p>这种查询方式的时间复杂度不好估算，可粗略地记为$\mathcal O(\log N)$。实际情况下，运行时间可能稍大于这个值。<br>
 另外，此算法对<strong>任意满足结合律的运算</strong>（如<code>gcd</code>，<code>lcm</code>）都有效。</p>
 <h4 id="完整实现-1">完整实现
 </h4><p>下面给出用树状数组解决<a class="link" href="https://www.luogu.com.cn/problem/P1816"  target="_blank" rel="noopener"
@@ -893,7 +911,7 @@ $$<blockquote>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><img src="https://img2024.cnblogs.com/blog/1983749/202501/1983749-20250110094558531-760698708.png" alt="AC" referrerpolicy="no-referrer" />
-<p>运行时间：$207\mathrm{ms}$
+<p>运行时间：$207\mathrm{ms}$<br>
 使用内存：$1.10\mathrm{MB}$</p>
 <p>另外，我们还可以把<code>rangeMin</code>写成非递归的形式，以进一步节省运行时间：</p>
 <div class="highlight"><div class="chroma">
@@ -999,7 +1017,7 @@ $$<blockquote>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><img src="https://img2024.cnblogs.com/blog/1983749/202501/1983749-20250110094558019-1274906428.png" alt="AC" referrerpolicy="no-referrer" />
-<p>运行时间：$135\mathrm{ms}$
+<p>运行时间：$135\mathrm{ms}$<br>
 使用内存：$1.14\mathrm{MB}$</p>
 <h3 id="线段树">线段树
 </h3><p>线段树和树状数组一样，都是解决区间问题的树状结构。不过线段树的应用范围更加广泛，时间复杂度与树状数组基本一致，但每种操作都有一个$3\thicksim4$之间的常数。线段树建树（初始化）的时间复杂度为$\mathcal O(N)$，单次区间查询的时间复杂度为$\mathcal O(\log N)$。</p>
@@ -1009,8 +1027,8 @@ $$<blockquote>
 <p>从树的角度考虑，$n_1=0$，即没有子结点数量为$1$的结点。</p>
 <p>一般的，若一个结点对应的区间为$[l,r]$：</p>
 <ul>
-<li>$l=r$：此结点为叶子结点。</li>
-<li>$l<r$，令$m=\lfloor\frac{l+r}2\rfloor$：
+<li>$l = r$：此结点为叶子结点。</li>
+<li>$l < r$，令$m=\lfloor\frac{l+r}2\rfloor$：
 <ul>
 <li>左子结点对应的区间为$[l,m]$。</li>
 <li>右子结点对应的区间为$[m+1,r]$。</li>
@@ -1018,15 +1036,15 @@ $$<blockquote>
 </li>
 </ul>
 <blockquote>
-<p>顺便纠正一下线段树的几个误区：
-<del><strong>线段树是一棵完全二叉树。</strong></del>
-请仔细看看图。
-<del><strong>线段树是一棵二叉搜索树。</strong></del>
+<p>顺便纠正一下线段树的几个误区：<br>
+<del><strong>线段树是一棵完全二叉树。</strong></del><br>
+请仔细看看图。<br>
+<del><strong>线段树是一棵二叉搜索树。</strong></del><br>
 反正我是没找到哪里这样定义的。<a class="link" href="https://baike.baidu.com/item/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/7077855"  target="_blank" rel="noopener"
     >百度百科</a> <a class="link" href="https://oi-wiki.org/ds/bst/"  target="_blank" rel="noopener"
-    >OI Wiki</a>
-<del><strong>线段树上同一深度的结点所对应的区间长度一定相等。</strong></del>
-看看图，$[1,3]$和$[4,5]$两个区间，长度明显不相等。
+    >OI Wiki</a><br>
+<del><strong>线段树上同一深度的结点所对应的区间长度一定相等。</strong></del><br>
+看看图，$[1,3]$和$[4,5]$两个区间，长度明显不相等。<br>
 特例：当$N$是$2$的整数次幂时，这句话一定成立。</p>
 </blockquote>
 <h4 id="存储结构-1">存储结构
@@ -1059,7 +1077,7 @@ $$<blockquote>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define par(x) (x &gt;&gt; 1) </span><span class="c1">// 父亲结点
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>下文中，我们令$N$表示元素个数，$A$表示原数组，$C$表示线段树（数组形式存储）。
+</div><p>下文中，我们令$N$表示元素个数，$A$表示原数组，$C$表示线段树（数组形式存储）。<br>
 可以证明，线段树的结点个数不会超过$4N-5$，所以我们可以把$C$的长度设为$4N$。</p>
 <h4 id="建树初始化">建树（初始化）
 </h4><p>对于一个结点数据的计算，我们可以先递归地初始化其左子树，再到右子树，最后两儿子的数据取$\max$即可。</p>
@@ -1237,7 +1255,7 @@ $$<blockquote>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><img src="https://img2024.cnblogs.com/blog/1983749/202501/1983749-20250110094558563-591983151.png" alt="AC" referrerpolicy="no-referrer" />
-<p>运行时间：$163\mathrm{ms}$
+<p>运行时间：$163\mathrm{ms}$<br>
 使用内存：$1.78\mathrm{MB}$</p>
 <h2 id="总结">总结
 </h2><p>我们来对比一下四种算法，从理论的角度：</p>
@@ -1320,11 +1338,11 @@ $$<blockquote>
       </tr>
   </tbody>
 </table></div>
-<p>可以看出，<strong>ST表写起来简单省事，运行时间也是最快</strong>，不过内存占用稍高，毕竟空间复杂度是$\mathcal O(N\log N)$；
-树状数组可以说是均衡了时间与空间，<strong>尽量使用非递归查询</strong>，比递归速度快$53\%$，当然如果想省事也可以使用递归式查询；
+<p>可以看出，<strong>ST表写起来简单省事，运行时间也是最快</strong>，不过内存占用稍高，毕竟空间复杂度是$\mathcal O(N\log N)$；<br>
+树状数组可以说是均衡了时间与空间，<strong>尽量使用非递归查询</strong>，比递归速度快$53\%$，当然如果想省事也可以使用递归式查询；<br>
 线段树可以说是完全输给了树状数组（非递归），不过线段树功能比较多，用来做 RMQ 可以说是大材小用。所以<strong>线段树在 RMQ 问题中没什么优势</strong>，有一些缺点还是可以理解的。</p>
 <hr>
-<p>本文到此结束，希望大家给个三连！
+<p>本文到此结束，希望大家给个三连！<br>
 这也是我在$2023$年写的第一篇文章（也是我的第一篇万字长文），祝大家新年快乐！</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
