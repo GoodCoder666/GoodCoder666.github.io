@@ -2188,7 +2188,7 @@ P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
 &lt;/div&gt;&lt;p&gt;这样可保证每次枚举到的都是大小为$K$的子集，可以大大提高算法效率。&lt;/p&gt;
 &lt;h4 id=&#34;扩展stdbitset&#34;&gt;扩展：std::bitset
 &lt;/h4&gt;&lt;p&gt;&lt;code&gt;bitset&lt;/code&gt;，顾名思义，即为用位运算操作的集合。&lt;br&gt;
-对于元素个数$N\in [1,64]$，集合$\{0,1,\dots,N-1\}$的任意子集都可以用一个$32$或$64$位整数表示出来，操作时间复杂度为$\mathcal O(1)$。那么对于$N&gt;64$，怎么办？我们可以用多个$32$或$64$位无符号整数拼凑为一个$N$位的&lt;code&gt;bitset&lt;/code&gt;，容易发现其操作的时间复杂度为$\mathcal O(\frac Nw)$（$N$位的二进制数可用$\lceil\frac Nw\rceil$个$w$位无符号整数拼凑而成），其中$w$一般为$32$或$64$。&lt;/p&gt;
+对于元素个数$N\in [1,64]$，集合$\{0,1,\dots,N-1\}$的任意子集都可以用一个$32$或$64$位整数表示出来，操作时间复杂度为$\mathcal O(1)$。那么对于$N &gt; 64$，怎么办？我们可以用多个$32$或$64$位无符号整数拼凑为一个$N$位的&lt;code&gt;bitset&lt;/code&gt;，容易发现其操作的时间复杂度为$\mathcal O(\frac Nw)$（$N$位的二进制数可用$\lceil\frac Nw\rceil$个$w$位无符号整数拼凑而成），其中$w$一般为$32$或$64$。&lt;/p&gt;
 &lt;p&gt;C++的&lt;code&gt;Standard Template Library&lt;/code&gt;（&lt;code&gt;STL&lt;/code&gt;）为我们提供了&lt;code&gt;&amp;lt;bitset&amp;gt;&lt;/code&gt;头文件，用于&lt;code&gt;bitset&lt;/code&gt;的定义。&lt;/p&gt;
 &lt;p&gt;用法如下：&lt;/p&gt;
 &lt;table&gt;

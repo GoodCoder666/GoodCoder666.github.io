@@ -1000,7 +1000,7 @@ P.S. 这函数，不知是哪位神仙想出来的……</p>
 </div><p>这样可保证每次枚举到的都是大小为$K$的子集，可以大大提高算法效率。</p>
 <h4 id="扩展stdbitset">扩展：std::bitset
 </h4><p><code>bitset</code>，顾名思义，即为用位运算操作的集合。<br>
-对于元素个数$N\in [1,64]$，集合$\{0,1,\dots,N-1\}$的任意子集都可以用一个$32$或$64$位整数表示出来，操作时间复杂度为$\mathcal O(1)$。那么对于$N>64$，怎么办？我们可以用多个$32$或$64$位无符号整数拼凑为一个$N$位的<code>bitset</code>，容易发现其操作的时间复杂度为$\mathcal O(\frac Nw)$（$N$位的二进制数可用$\lceil\frac Nw\rceil$个$w$位无符号整数拼凑而成），其中$w$一般为$32$或$64$。</p>
+对于元素个数$N\in [1,64]$，集合$\{0,1,\dots,N-1\}$的任意子集都可以用一个$32$或$64$位整数表示出来，操作时间复杂度为$\mathcal O(1)$。那么对于$N > 64$，怎么办？我们可以用多个$32$或$64$位无符号整数拼凑为一个$N$位的<code>bitset</code>，容易发现其操作的时间复杂度为$\mathcal O(\frac Nw)$（$N$位的二进制数可用$\lceil\frac Nw\rceil$个$w$位无符号整数拼凑而成），其中$w$一般为$32$或$64$。</p>
 <p>C++的<code>Standard Template Library</code>（<code>STL</code>）为我们提供了<code>&lt;bitset&gt;</code>头文件，用于<code>bitset</code>的定义。</p>
 <p>用法如下：</p>
 <div class="table-wrapper"><table>

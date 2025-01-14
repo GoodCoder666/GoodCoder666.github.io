@@ -653,7 +653,7 @@
 <p>处理如下 $Q$ 次询问：</p>
 <ul>
 <li><code>1 x</code>：将数字 $x$ 追加至 $S$ 的最后面。保证 $x \in \{1,2,3,4,5,6,7,8,9\}$。</li>
-<li><code>2</code>：删除 $S$ 的第一个字符。保证此时 $|S|>1$。</li>
+<li><code>2</code>：删除 $S$ 的第一个字符。保证此时 $|S| > 1$。</li>
 <li><code>3</code>：输出 $S$ 在十进制中对应的数字，对 $998244353$ 取模。</li>
 </ul>
 <p>$1\le Q\le 6\times 10^5$</p>
@@ -979,7 +979,7 @@ $(r_i,c_i)\ne (r_j,c_j)~~~~~~(i\ne j)$</p>
 <p>容易发现，$f(R,C)=\mathrm{rs}_R+\mathrm{cs}_C-A_{R,C}$。</p>
 <p>然后证明当 $f(R,C)$ 最大时，$\mathrm{rs}_R,\mathrm{cs}_C\ne0$：</p>
 <ul>
-<li>若 $\mathrm{rs}_R=\mathrm{cs}_C=0$，则 $f(r_0,c_0)=x_0>0=f(R,C)$，所以 $(R,C)$ 不是最优解；</li>
+<li>若 $\mathrm{rs}_R=\mathrm{cs}_C=0$，则 $f(r_0,c_0)=x_0 > 0=f(R,C)$，所以 $(R,C)$ 不是最优解；</li>
 <li>若 $\mathrm{rs}_R\ne0,\mathrm{cs}_C=0$，则 $f(R,c_0)=\mathrm{rs}_R+\mathrm{cs}_{c_0}-A_{R,c_0}\ge f(R,C)=\mathrm{rs}_R$，所以 $(R,C)$ 不是最优解（或有多个最优解，但其中至少有一个解 $(x,y)$ 使得 $\mathrm{rs}_x,\mathrm{cs}_y\ne0$）</li>
 <li>$\mathrm{rs}_R=0,\mathrm{cs}_C\ne0$ 同理。</li>
 </ul>
