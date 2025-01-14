@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>集成开发环境/IDE on GoodCoder&#39;s Blog</title>
+        <link>https://goodcoder666.github.io/tags/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/ide/</link>
+        <description>Recent content in 集成开发环境/IDE on GoodCoder&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Sun, 12 Jul 2020 16:03:00 +0800</lastBuildDate><atom:link href="https://goodcoder666.github.io/tags/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/ide/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Anaconda Spyder点击无响应解决</title>
+        <link>https://goodcoder666.github.io/p/spyderfix/</link>
+        <pubDate>Sun, 12 Jul 2020 16:03:00 +0800</pubDate>
+        
+        <guid>https://goodcoder666.github.io/p/spyderfix/</guid>
+        <description>&lt;h1 id=&#34;问题分析&#34;&gt;问题分析
+&lt;/h1&gt;&lt;p&gt;可能是升级或卸载了&lt;code&gt;spyder&lt;/code&gt;依赖的包，导致&lt;code&gt;spyder&lt;/code&gt;无法正常运行。&lt;br&gt;
+我升级了&lt;code&gt;PyQt5&lt;/code&gt;，&lt;code&gt;spyder&lt;/code&gt;要求&lt;code&gt;PyQt5&amp;lt;5.13&lt;/code&gt;，而安装的最新版本为&lt;code&gt;5.15&lt;/code&gt;，导致&lt;code&gt;spyder&lt;/code&gt;启动时出现问题。&lt;/p&gt;
+&lt;h1 id=&#34;解决方法&#34;&gt;解决方法
+&lt;/h1&gt;&lt;p&gt;打开&lt;code&gt;Anaconda Prompt&lt;/code&gt;，执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pip&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;spyder&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;解释：&lt;br&gt;
+&lt;code&gt;pip&lt;/code&gt;会自动根据要安装的包（&lt;code&gt;spyder&lt;/code&gt;也是一个包）安装依赖的包，如&lt;code&gt;spyder&lt;/code&gt;要求&lt;code&gt;PyQt5&amp;lt;5.13&lt;/code&gt;，安装&lt;code&gt;PyQt5 5.15&lt;/code&gt;后&lt;code&gt;pip&lt;/code&gt;会自动识别，并安装&lt;code&gt;PyQt5 5.12.3&lt;/code&gt;（低于&lt;code&gt;5.13&lt;/code&gt;的最高版本）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;20210926 EDIT：&lt;/strong&gt;&lt;br&gt;
+如出现“拒绝访问”一类的错误，加上&lt;code&gt;--user&lt;/code&gt;选项即可。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Eclipse安装包下载慢解决方法</title>
+        <link>https://goodcoder666.github.io/p/eclipseinstmirrors/</link>
+        <pubDate>Fri, 10 Apr 2020 19:48:00 +0800</pubDate>
+        
+        <guid>https://goodcoder666.github.io/p/eclipseinstmirrors/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;最近开始学习&lt;code&gt;Java&lt;/code&gt;，使用经典的&lt;code&gt;Eclipse IDE&lt;/code&gt;，结果发现下载太慢……&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;问题分析&#34;&gt;问题分析
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseinstmirrors/1.png&#34;
+	width=&#34;1422&#34;
+	height=&#34;789&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseinstmirrors/1_hu4910488377192493849.png 480w, https://goodcoder666.github.io/p/eclipseinstmirrors/1_hu9361770724633543836.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;432px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Eclipse&lt;/code&gt;的下载依赖于其他镜像，（在我这里）默认为朝鲜的镜像（可能在不同电脑中默认不同）：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseinstmirrors/2.png&#34;
+	width=&#34;1422&#34;
+	height=&#34;789&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseinstmirrors/2_hu553375260565299400.png 480w, https://goodcoder666.github.io/p/eclipseinstmirrors/2_hu5788816505553058160.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;432px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;Select Another Mirror&lt;/code&gt;：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseinstmirrors/3.png&#34;
+	width=&#34;1422&#34;
+	height=&#34;789&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseinstmirrors/3_hu13732510532123622584.png 480w, https://goodcoder666.github.io/p/eclipseinstmirrors/3_hu6568528990029608319.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;432px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;选择中国的镜像：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseinstmirrors/4.png&#34;
+	width=&#34;768&#34;
+	height=&#34;592&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseinstmirrors/4_hu7667430640652999332.png 480w, https://goodcoder666.github.io/p/eclipseinstmirrors/4_hu2872729416802684924.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;OK&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;129&#34;
+		data-flex-basis=&#34;311px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Eclipse Check For Updates总是检查不到更新-解决方法</title>
+        <link>https://goodcoder666.github.io/p/eclipseupdmirror/</link>
+        <pubDate>Wed, 08 Apr 2020 22:12:00 +0800</pubDate>
+        
+        <guid>https://goodcoder666.github.io/p/eclipseupdmirror/</guid>
+        <description>&lt;p&gt;最近想用流行的&lt;code&gt;Java IDE&lt;/code&gt; —— &lt;code&gt;Eclipse&lt;/code&gt;的&lt;code&gt;Help -&amp;gt; Check For Updates&lt;/code&gt;更新&lt;code&gt;Eclipse&lt;/code&gt;，结果总是说未找到更新：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/1.png&#34;
+	width=&#34;518&#34;
+	height=&#34;153&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/1_hu15157591325649478069.png 480w, https://goodcoder666.github.io/p/eclipseupdmirror/1_hu6790729674687454331.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;No Updates Found 示意图&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;338&#34;
+		data-flex-basis=&#34;812px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;1-检查是否有更新&#34;&gt;1. 检查是否有更新
+&lt;/h1&gt;&lt;p&gt;首先，访问&lt;a class=&#34;link&#34; href=&#34;https://www.eclipse.org/eclipseide/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Eclipse下载地址&lt;/a&gt;获得最新版本（目前为2020-06）：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/2.png&#34;
+	width=&#34;1191&#34;
+	height=&#34;823&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/2_hu12454962277790428279.png 480w, https://goodcoder666.github.io/p/eclipseupdmirror/2_hu14490967159148480032.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2020-06&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;347px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;再看看系统中的&lt;code&gt;Eclipse&lt;/code&gt;版本（&lt;code&gt;Help -&amp;gt; About Eclipse IDE&lt;/code&gt;）：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/3.png&#34;
+	width=&#34;332&#34;
+	height=&#34;410&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/3_hu3472781026325009493.png 480w, https://goodcoder666.github.io/p/eclipseupdmirror/3_hu12121729636635190176.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;前往Help&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;80&#34;
+		data-flex-basis=&#34;194px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/4.png&#34;
+	width=&#34;701&#34;
+	height=&#34;450&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/4_hu16125827177634142639.png 480w, https://goodcoder666.github.io/p/eclipseupdmirror/4_hu11311555701990541561.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;version&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;155&#34;
+		data-flex-basis=&#34;373px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果网上版本和当前版本相等（像图中），那就&lt;code&gt;System.exit(0);&lt;/code&gt;吧。。。别冤枉&lt;code&gt;Eclipse&lt;/code&gt;了。。。&lt;/p&gt;
+&lt;h1 id=&#34;2-有更新但检测不到解决&#34;&gt;2. 有更新但检测不到解决
+&lt;/h1&gt;&lt;p&gt;打开“Available Software Sites”窗口：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/5.png&#34;
+	width=&#34;777&#34;
+	height=&#34;555&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/5_hu17125909839552293110.png 480w, https://goodcoder666.github.io/p/eclipseupdmirror/5_hu528696143672118738.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;336px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;方法一：在提示窗口中，点击“available software sites”链接：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/6.png&#34;
+	width=&#34;518&#34;
+	height=&#34;153&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/6_hu17119065341319916861.png 480w, https://goodcoder666.github.io/p/eclipseupdmirror/6_hu506167652059939367.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;338&#34;
+		data-flex-basis=&#34;812px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;方法二： 点击&lt;code&gt;Window -&amp;gt; Prefrences -&amp;gt; Install/Update -&amp;gt; available software sites&lt;/code&gt;：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/7.png&#34;
+	width=&#34;166&#34;
+	height=&#34;199&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/7_hu7411317569747840212.png 480w, https://goodcoder666.github.io/p/eclipseupdmirror/7_hu18188509554205593122.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;83&#34;
+		data-flex-basis=&#34;200px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;找到&lt;code&gt;Latest Eclipse Release&lt;/code&gt;，在红点处勾上，点击&lt;code&gt;Apply and Close&lt;/code&gt;，重新检查更新即可。&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/8.png&#34;
+	width=&#34;869&#34;
+	height=&#34;555&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/eclipseupdmirror/8_hu13057579892793108893.png 480w, https://goodcoder666.github.io/p/eclipseupdmirror/8_hu9859126573375397709.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;156&#34;
+		data-flex-basis=&#34;375px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

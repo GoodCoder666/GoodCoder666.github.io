@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="A - Div\r题目大意\r两个男孩要分$N$颗糖。问一共有几种分法（每个男孩都必须分到糖）？\n$1\\le N\\le 15$\n输入格式\r$N$\n输出格式\r将答案输出为一个整数。\n样例\r$N$ 输出 $2$ $1$ $1$ $0$ $3$ $2$ 分析\r这题说白了就是将$N$分成$A$和$B$两个正整数的和（$A+B$和$B+A$是两种分法），所以列表如下：\n">
+<title>AtCoder Beginner Contest 198 A~E 题解</title>
+
+<link rel='canonical' href='https://goodcoder666.github.io/p/abc198/'>
+
+<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="AtCoder Beginner Contest 198 A~E 题解">
+<meta property='og:description' content="A - Div\r题目大意\r两个男孩要分$N$颗糖。问一共有几种分法（每个男孩都必须分到糖）？\n$1\\le N\\le 15$\n输入格式\r$N$\n输出格式\r将答案输出为一个整数。\n样例\r$N$ 输出 $2$ $1$ $1$ $0$ $3$ $2$ 分析\r这题说白了就是将$N$分成$A$和$B$两个正整数的和（$A+B$和$B+A$是两种分法），所以列表如下：\n">
+<meta property='og:url' content='https://goodcoder666.github.io/p/abc198/'>
+<meta property='og:site_name' content='GoodCoder&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法竞赛' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2021-04-13T21:29:00&#43;08:00'/><meta property='article:modified_time' content='2021-04-13T21:29:00&#43;08:00'/>
+<meta name="twitter:site" content="@stanleys09">
+    <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="AtCoder Beginner Contest 198 A~E 题解">
+<meta name="twitter:description" content="A - Div\r题目大意\r两个男孩要分$N$颗糖。问一共有几种分法（每个男孩都必须分到糖）？\n$1\\le N\\le 15$\n输入格式\r$N$\n输出格式\r将答案输出为一个整数。\n样例\r$N$ 输出 $2$ $1$ $1$ $0$ $3$ $2$ 分析\r这题说白了就是将$N$分成$A$和$B$两个正整数的和（$A+B$和$B+A$是两种分法），所以列表如下：\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KJPJLGSR3C');
+        }
+      </script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GoodCoder&#39;s Blog</a></h1>
+            <h2 class="site-description">正在迁移到Hugo，原版完整博客在old分支</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GoodCoder666'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/stanleys09'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#题目大意">题目大意</a></li>
+    <li><a href="#输入格式">输入格式</a></li>
+    <li><a href="#输出格式">输出格式</a></li>
+    <li><a href="#样例">样例</a></li>
+    <li><a href="#分析">分析</a></li>
+    <li><a href="#代码">代码</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#题目大意-1">题目大意</a></li>
+    <li><a href="#输入格式-1">输入格式</a></li>
+    <li><a href="#输出格式-1">输出格式</a></li>
+    <li><a href="#样例-1">样例</a></li>
+    <li><a href="#分析-1">分析</a></li>
+    <li><a href="#代码-1">代码</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#题目大意-2">题目大意</a></li>
+    <li><a href="#输入格式-2">输入格式</a></li>
+    <li><a href="#输出格式-2">输出格式</a></li>
+    <li><a href="#样例-2">样例</a></li>
+    <li><a href="#分析-2">分析</a></li>
+    <li><a href="#代码-2">代码</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#题目大意-3">题目大意</a></li>
+    <li><a href="#输入格式-3">输入格式</a></li>
+    <li><a href="#输出格式-3">输出格式</a></li>
+    <li><a href="#样例-3">样例</a></li>
+    <li><a href="#分析-3">分析</a></li>
+    <li><a href="#代码-3">代码</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#题目大意-4">题目大意</a></li>
+    <li><a href="#输入格式-4">输入格式</a></li>
+    <li><a href="#输出格式-4">输出格式</a></li>
+    <li><a href="#样例-4">样例</a></li>
+    <li><a href="#分析-4">分析</a></li>
+    <li><a href="#代码-4">代码</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/abc198/">AtCoder Beginner Contest 198 A~E 题解</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2021/04/13</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="a---divhttpsatcoderjpcontestsabc198tasksabc198_a"><a class="link" href="https://atcoder.jp/contests/abc198/tasks/abc198_a"  target="_blank" rel="noopener"
+    >A - Div</a>
+</h1><h2 id="题目大意">题目大意
+</h2><p>两个男孩要分$N$颗糖。问一共有几种分法（每个男孩都必须分到糖）？</p>
+<p>$1\le N\le 15$</p>
+<h2 id="输入格式">输入格式
+</h2><p>$N$</p>
+<h2 id="输出格式">输出格式
+</h2><p>将答案输出为一个整数。</p>
+<h2 id="样例">样例
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>$N$</th>
+          <th>输出</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$2$</td>
+          <td>$1$</td>
+      </tr>
+      <tr>
+          <td>$1$</td>
+          <td>$0$</td>
+      </tr>
+      <tr>
+          <td>$3$</td>
+          <td>$2$</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="分析">分析
+</h2><p>这题说白了就是将$N$分成$A$和$B$两个<strong>正整数</strong>的和（$A+B$和$B+A$是两种分法），所以列表如下：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>$A$</th>
+          <th>$B$</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$1$</td>
+          <td>$N-1$</td>
+      </tr>
+      <tr>
+          <td>$2$</td>
+          <td>$N-2$</td>
+      </tr>
+      <tr>
+          <td>$\dots$</td>
+          <td>$\dots$</td>
+      </tr>
+      <tr>
+          <td>$N-1$</td>
+          <td>$1$</td>
+      </tr>
+      <tr>
+          <td>这个表一共有$N-1$项，所以我们直接输出$N-1$即可。</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="代码">代码
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="b---palindrome-with-leading-zeroshttpsatcoderjpcontestsabc198tasksabc198_b"><a class="link" href="https://atcoder.jp/contests/abc198/tasks/abc198_b"  target="_blank" rel="noopener"
+    >B - Palindrome with leading zeros</a>
+</h1><h2 id="题目大意-1">题目大意
+</h2><p>给定一个整数$N$。<br>
+是否可以在$N$的十进制表示的前面填上任意（可以为$0$）个<code>0</code>，使得$N$变成一个回文数？</p>
+<p>$0\le N\le 10^9$</p>
+<h2 id="输入格式-1">输入格式
+</h2><p>$N$</p>
+<h2 id="输出格式-1">输出格式
+</h2><p>输出<code>Yes</code>或者<code>No</code>。</p>
+<h2 id="样例-1">样例
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>$N$</th>
+          <th>输出</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$1210$</td>
+          <td><code>Yes</code></td>
+      </tr>
+      <tr>
+          <td>$777$</td>
+          <td><code>Yes</code></td>
+      </tr>
+      <tr>
+          <td>$123456789$</td>
+          <td><code>No</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="分析-1">分析
+</h2><p>如果能在$N$的前面加上一些<code>0</code>使得$N$变成一个回文数，那么将$N$去掉末尾的所有<code>0</code>后也一定能得到一个回文数。所以，我们只需将$N$末尾的<code>0</code>去掉后，再判断它是不是一个回文数即可。</p>
+<h2 id="代码-1">代码
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">s</span><span class="p">[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="o">--</span><span class="n">len</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">s</span><span class="p">[</span><span class="n">len</span> <span class="o">-</span> <span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">puts</span><span class="p">(</span><span class="s">&#34;No&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Yes&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="c---compass-walkinghttpsatcoderjpcontestsabc198tasksabc198_c"><a class="link" href="https://atcoder.jp/contests/abc198/tasks/abc198_c"  target="_blank" rel="noopener"
+    >C - Compass Walking</a>
+</h1><h2 id="题目大意-2">题目大意
+</h2><p>在一个二维的平面上，一个人每一步都只能走<strong>正好</strong>$R$个距离单位。<br>
+这个人从$(0,0)$走到$(X,Y)$至少需要多少步？<br>
+<strong>注意：在二维平面上，两个点$(x_1, y_1)$和$(x_2,y_2)$的距离是$\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$</strong>。</p>
+<p>$1\le R\le 10^5$<br>
+$0\le X,Y\le 10^5$<br>
+$(X,Y)\ne(0,0)$</p>
+<h2 id="输入格式-2">输入格式
+</h2><p>$R~X~Y$</p>
+<h2 id="输出格式-2">输出格式
+</h2><p>输出一行，即最少需要的步数。</p>
+<h2 id="样例-2">样例
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>$R$</th>
+          <th>$X$</th>
+          <th>$Y$</th>
+          <th>输出</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$5$</td>
+          <td>$15$</td>
+          <td>$0$</td>
+          <td>$3$</td>
+      </tr>
+      <tr>
+          <td>$5$</td>
+          <td>$11$</td>
+          <td>$0$</td>
+          <td>$3$</td>
+      </tr>
+      <tr>
+          <td>$3$</td>
+          <td>$4$</td>
+          <td>$4$</td>
+          <td>$2$</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="分析-2">分析
+</h2><p>我们可以先定义$d=\sqrt{X^2+Y^2}$，即$(X,Y)$到$(0,0)$的距离，则有如下解法：</p>
+<ul>
+<li>如果$d=R$，则总共只需要$1$步。</li>
+<li>如果$d<R$，则总共需要$2$步。</li>
+<li>如果$d>R$，总共需要$\lceil\frac d r\rceil$步。</li>
+</ul>
+<p>这样，我们就可以写代码了。</p>
+<h2 id="代码-2">代码
+</h2><p>这题很容易出现精度问题，但我用<code>long double</code>居然卡过去了……</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">long</span> <span class="kt">double</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">hypotl</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">dist</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="n">puts</span><span class="p">(</span><span class="s">&#34;1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">dist</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span> <span class="n">puts</span><span class="p">(</span><span class="s">&#34;2&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="kt">int</span><span class="p">(</span><span class="n">ceill</span><span class="p">(</span><span class="n">dist</span> <span class="o">/</span> <span class="n">r</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="d---send-more-moneyhttpsatcoderjpcontestsabc198tasksabc198_d"><a class="link" href="https://atcoder.jp/contests/abc198/tasks/abc198_d"  target="_blank" rel="noopener"
+    >D - Send More Money</a>
+</h1><h2 id="题目大意-3">题目大意
+</h2><p>注意：本题的时间限制是$5$秒。<br>
+给定三个由小写字母组成的字符串$S_1,S_2,S_3$。<br>
+在这里，相同的字母表示相同的数字，不同的字母表示不同的数字。<br>
+我们要找到一种每个字母对应的数字，并将它们分别填入$S_1,S_2,S_3$，变成三个<strong>无前导$0$的正整数</strong>$N_1,N_2,N_3$，使得$N_1+N_2=N_3$。如果有多组解，找到<strong>任意一组</strong>即可。</p>
+<p>$1\le |S_1|,|S_2|,|S_3|\le 10$</p>
+<h2 id="输入格式-3">输入格式
+</h2><p>$S_1$<br>
+$S_2$<br>
+$S_3$</p>
+<h2 id="输出格式-3">输出格式
+</h2><p>如果有解，输出三行，即$N_1,N_2$和$N_3$；如果无解，输出<code>UNSOLVABLE</code>。</p>
+<h2 id="样例-3">样例
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>$S_1$</th>
+          <th>$S_2$</th>
+          <th>$S_3$</th>
+          <th>输出</th>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>a</code></td>
+          <td><code>b</code></td>
+          <td><code>c</code></td>
+          <td><code>1 2 3</code></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>x</code></td>
+          <td><code>x</code></td>
+          <td><code>y</code></td>
+          <td><code>1 1 2</code></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>p</code></td>
+          <td><code>q</code></td>
+          <td><code>p</code></td>
+          <td><code>UNSOLVABLE</code></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="分析-3">分析
+</h2><p>很容易想到，因为每位能填的数字只有$0$到$9$（一共$10$个），所以如果$S_1,S_2$和$S_3$中总共不同的字母个数超过$10$个，我们就可以直接认为这个等式无解。<br>
+现在，由于这道题时间限制较长，我们就可以暴力枚举每一种字母对应的数字（一共最多有$10!=3628800$种可能），再逐个填入并验证即可。</p>
+<h2 id="代码-3">代码
+</h2><p>这里的枚举我是用全排列做的，当然也可以用回溯法等，方法不限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define maxl 15
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">s1</span><span class="p">[</span><span class="n">maxl</span><span class="p">],</span> <span class="n">s2</span><span class="p">[</span><span class="n">maxl</span><span class="p">],</span> <span class="n">s3</span><span class="p">[</span><span class="n">maxl</span><span class="p">],</span> <span class="n">ch</span><span class="p">[</span><span class="n">maxl</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">set</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">chars</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">pos</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">num</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#define N (num[pos[str[i] - &#39;a&#39;]])
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kr">inline</span> <span class="n">LL</span> <span class="nf">parse</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LL</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">*</span> <span class="mi">10LL</span> <span class="o">+</span> <span class="n">N</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">putchar</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#undef N
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">chars</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">bool</span> <span class="nf">isok</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">num</span><span class="p">[</span><span class="n">pos</span><span class="p">[</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">]]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s%s%s&#34;</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">add</span><span class="p">(</span><span class="n">s1</span><span class="p">),</span> <span class="n">add</span><span class="p">(</span><span class="n">s2</span><span class="p">),</span> <span class="n">add</span><span class="p">(</span><span class="n">s3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">chars</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">11</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">puts</span><span class="p">(</span><span class="s">&#34;UNSOLVABLE&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="nl">x</span><span class="p">:</span> <span class="n">chars</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">pos</span><span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">isok</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isok</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isok</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">parse</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="n">parse</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">==</span> <span class="n">parse</span><span class="p">(</span><span class="n">s3</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">print</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">print</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">print</span><span class="p">(</span><span class="n">s3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">next_permutation</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">10</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;UNSOLVABLE&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>P.S. 这段代码的运行速度不可思议的快…… 居然只花了$109$ms……</p>
+</blockquote>
+<hr>
+<h1 id="e---unique-colorhttpsatcoderjpcontestsabc198tasksabc198_e"><a class="link" href="https://atcoder.jp/contests/abc198/tasks/abc198_e"  target="_blank" rel="noopener"
+    >E - Unique Color</a>
+</h1><h2 id="题目大意-4">题目大意
+</h2><p>给你一棵由编号为$1,2,~\dots,N$的$N$个顶点组成的树。其中，第$i$条边连接着顶点$A_i$和$B_i$。第$i$个顶点的颜色是$C_i$（在这里，颜色用一个整数表示）。<br>
+我们定义一个顶点$x$是<strong>好的</strong>，仅当如下条件成立：</p>
+<ul>
+<li>从顶点$1$到顶点$x$的最短路径上，没有与顶点$x$颜色相同的点（顶点$x$本身除外）。</li>
+</ul>
+<p>找到所有的好的顶点。</p>
+<p>$2\le N\le 10^5$<br>
+$1\le C_i\le 10^5$<br>
+$1\le A_i,B_i\le 10^5$</p>
+<h2 id="输入格式-4">输入格式
+</h2><p>$N$<br>
+$C_1~\dots~C_N$<br>
+$A_1~B_1$<br>
+$\vdots$<br>
+$A_{N-1}~B_{N-1}$</p>
+<h2 id="输出格式-4">输出格式
+</h2><p>输出所有的好的顶点，按升序排序，每行一个。</p>
+<h2 id="样例-4">样例
+</h2><p>略，请自行前往<a class="link" href="https://atcoder.jp/contests/abc198/tasks/abc198_e"  target="_blank" rel="noopener"
+    >AtCoder</a>查看</p>
+<h2 id="分析-4">分析
+</h2><p>其实这题用最朴素的$\text{DFS}$算法就能解决。<br>
+我们在搜索的同时，维护一个$\text{used}$数组，记录每个颜色在路径上是否已经用过。这样，我们就能$\mathcal O(1)$地判断每个点是否是一个好的点，最后排序并输出即可。</p>
+<h2 id="代码-4">代码
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 100005
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">used</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">color</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">par</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">used</span><span class="p">[</span><span class="n">color</span><span class="p">[</span><span class="n">v</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">u</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="n">u</span> <span class="o">!=</span> <span class="n">par</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">used</span><span class="p">[</span><span class="n">color</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">res</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">u</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">u</span> <span class="o">!=</span> <span class="n">par</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">used</span><span class="p">[</span><span class="n">color</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="o">--</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">G</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">G</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">v</span><span class="p">:</span> <span class="n">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/">算法竞赛</a>
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/abc334/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">UNIQUE VISION Programming Contest 2023 Christmas (AtCoder Beginner Contest 334) A~G 题解</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/csps2023-t3/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">洛谷 P9754 [CSP-S 2023] 结构体 题解</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/abc318/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AtCoder Beginner Contest 318 G - Typical Path Problem 题解</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/abc298/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">TOYOTA MOTOR CORPORATION Programming Contest 2023#1 (AtCoder Beginner Contest 298) A~G 题解</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/abc274/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AtCoder Beginner Contest 274 A~E 题解</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 GoodCoder&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

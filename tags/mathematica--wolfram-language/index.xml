@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Mathematica &amp; Wolfram Language on GoodCoder&#39;s Blog</title>
+        <link>https://goodcoder666.github.io/tags/mathematica--wolfram-language/</link>
+        <description>Recent content in Mathematica &amp; Wolfram Language on GoodCoder&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Fri, 26 Jan 2024 17:12:00 +0800</lastBuildDate><atom:link href="https://goodcoder666.github.io/tags/mathematica--wolfram-language/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Mathematica 入门</title>
+        <link>https://goodcoder666.github.io/p/mathematica-intro/</link>
+        <pubDate>Fri, 26 Jan 2024 17:12:00 +0800</pubDate>
+        
+        <guid>https://goodcoder666.github.io/p/mathematica-intro/</guid>
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;Wolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的&lt;strong&gt;科学计算软件&lt;/strong&gt;。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 &lt;a class=&#34;link&#34; href=&#34;https://ww2.mathworks.cn/products/matlab.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MATLAB&lt;/a&gt; 和 &lt;a class=&#34;link&#34; href=&#34;https://www.maplesoft.com.cn/products/maple/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Maple&lt;/a&gt; 等。&lt;/p&gt;
+&lt;p&gt;MMA 官网：&lt;a class=&#34;link&#34; href=&#34;https://www.wolfram.com/mathematica/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.wolfram.com/mathematica/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;MMA 的安装及激活：&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/632361071&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Mathematica安装激活极简教程 - 科研小飞 (知乎)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本文适合&lt;strong&gt;有一定编程基础&lt;/strong&gt;的读者。当然，如果你不了解编程也没关系，直接跳过相关部分即可。屏幕截图全部来自 Windows 11，Mathematica 13.3。（最新版本 14.0 已经在 2023 年 12 月发布，语法向下兼容）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/1.png&#34;
+	width=&#34;684&#34;
+	height=&#34;897&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/1_hu1411914610203747930.png 480w, https://goodcoder666.github.io/p/mathematica-intro/1_hu9484357994769302992.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;演示使用的 MMA 版本&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;76&#34;
+		data-flex-basis=&#34;183px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1-界面&#34;&gt;1. 界面
+&lt;/h2&gt;&lt;p&gt;安装并正确激活 MMA 后，新建笔记本，应该能看到如下的界面：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/2.png&#34;
+	width=&#34;1146&#34;
+	height=&#34;1302&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/2_hu2087877821688053534.png 480w, https://goodcoder666.github.io/p/mathematica-intro/2_hu8012692116287684767.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MMA 基本界面&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;211px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一张图带你快速熟悉 MMA 的界面：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/3.png&#34;
+	width=&#34;1146&#34;
+	height=&#34;430&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/3_hu15341202107679675729.png 480w, https://goodcoder666.github.io/p/mathematica-intro/3_hu16966303832790678616.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MMA 界面简介&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;266&#34;
+		data-flex-basis=&#34;639px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;几个需要注意的点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;kbd&gt;Enter&lt;/kbd&gt; 默认换行，执行代码需要用 &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Enter&lt;/kbd&gt;。&lt;/li&gt;
+&lt;li&gt;指令面板左侧的红三角形也可执行代码，灰色的正方形用于终止正在进行的运算。&lt;/li&gt;
+&lt;li&gt;MMA 带有 Notebook（笔记本）功能，由于其主要用于计算而不是笔记，本文不详细介绍，若需要使用可自行查阅相关资料。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对于任意输入或输出，按下&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;I&lt;/kbd&gt;即可显示输入（代码）形式，按下&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;N&lt;/kbd&gt;即可显示数学形式。后面会对两种显示形式进行详细讲解。&lt;/p&gt;
+&lt;h2 id=&#34;2-语法&#34;&gt;2. 语法
+&lt;/h2&gt;&lt;p&gt;Mathematica 实质是一个 Wolfram Language 的解释器，所以使用它之前必须学习 WL 的语法。&lt;br&gt;
+这里介绍基本语法和常用的指令。&lt;/p&gt;
+&lt;h3 id=&#34;21-帮助文档&#34;&gt;2.1 帮助文档
+&lt;/h3&gt;&lt;p&gt;首先来了解帮助文档的使用。输入 &lt;code&gt;? Solve&lt;/code&gt; 来获取 &lt;code&gt;Solve&lt;/code&gt; 函数的说明：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/4.png&#34;
+	width=&#34;1021&#34;
+	height=&#34;316&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/4_hu8423983145732844250.png 480w, https://goodcoder666.github.io/p/mathematica-intro/4_hu5145486336677538132.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;help-solve&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;323&#34;
+		data-flex-basis=&#34;775px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;?&lt;/code&gt; 后面可以跟任何函数名，MMA 会直接在笔记本中输出简化版的帮助文档。可以选择输出右上角的 &lt;code&gt;i&lt;/code&gt; 来获取更详细的文档（优先打开&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/589034642&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;离线文档&lt;/a&gt;，不存在则默认打开&lt;a class=&#34;link&#34; href=&#34;https://reference.wolfram.com/language/index.html.zh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;在线文档&lt;/a&gt;）。菜单栏中的 “帮助 -&amp;gt; Wolfram 参考资料” 可以打开完整版文档。&lt;/p&gt;
+&lt;h3 id=&#34;22-注释&#34;&gt;2.2 注释
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mathematica&#34; data-lang=&#34;mathematica&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;(* 注释 *)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如上，MMA 的注释使用 &lt;code&gt;(*&lt;/code&gt; 和 &lt;code&gt;*)&lt;/code&gt; 来标注，用法类似于 C/C++ 中的 &lt;code&gt;/*&lt;/code&gt; 和 &lt;code&gt;*/&lt;/code&gt;。注释可以添加在代码的任何位置，它们会被自动忽略。例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mathematica&#34; data-lang=&#34;mathematica&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;(*Hello*)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;(*World*)&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这两行代码在实际执行中与 &lt;code&gt;1 + 1&lt;/code&gt; 无区别：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/5.png&#34;
+	width=&#34;293&#34;
+	height=&#34;211&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/5_hu6237236869037297705.png 480w, https://goodcoder666.github.io/p/mathematica-intro/5_hu6962041320903135877.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;comment-test&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;333px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;23-括号&#34;&gt;2.3 括号
+&lt;/h3&gt;&lt;p&gt;在学习 MMA 的函数之前，一定要先学会括号的使用！！&lt;br&gt;
+官方参考文档：&lt;a class=&#34;link&#34; href=&#34;https://reference.wolfram.com/language/howto/UseBracketsAndBracesCorrectly.html.zh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;正确使用括号和大括号&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;MMA 中共有四种括号，分别为 &lt;code&gt;()&lt;/code&gt;、&lt;code&gt;[]&lt;/code&gt;、&lt;code&gt;{}&lt;/code&gt; 和 &lt;code&gt;[[]]&lt;/code&gt;，具体作用如下：&lt;/p&gt;
+&lt;h4 id=&#34;圆括号-&#34;&gt;圆括号 &lt;code&gt;()&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;用作对表达式编组和确定运算的优先次序：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/6.png&#34;
+	width=&#34;480&#34;
+	height=&#34;245&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/6_hu155435836638834281.png 480w, https://goodcoder666.github.io/p/mathematica-intro/6_hu12455333202292052555.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;圆括号的使用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;195&#34;
+		data-flex-basis=&#34;470px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;方括号-&#34;&gt;方括号 &lt;code&gt;[]&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;表示函数的调用和传参：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/7.png&#34;
+	width=&#34;235&#34;
+	height=&#34;121&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/7_hu17785978881144196376.png 480w, https://goodcoder666.github.io/p/mathematica-intro/7_hu14690897939768520759.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;方括号的使用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;466px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;大括号-&#34;&gt;大括号 &lt;code&gt;{}&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;表示列表：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/8.png&#34;
+	width=&#34;285&#34;
+	height=&#34;93&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/8_hu15024210880933085695.png 480w, https://goodcoder666.github.io/p/mathematica-intro/8_hu9381115656738456915.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;大括号的使用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;306&#34;
+		data-flex-basis=&#34;735px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;列表的具体使用后续会介绍。&lt;/p&gt;
+&lt;h4 id=&#34;双方括号-&#34;&gt;双方括号 &lt;code&gt;[[]]&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;表示对列表元素的访问，实质是函数 &lt;code&gt;Part&lt;/code&gt; 的简写形式：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/9.png&#34;
+	width=&#34;431&#34;
+	height=&#34;212&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/9_hu8828593400947879040.png 480w, https://goodcoder666.github.io/p/mathematica-intro/9_hu6086174361878413492.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;双方括号的使用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;487px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;同样会在后面具体介绍。&lt;/p&gt;
+&lt;h3 id=&#34;24-运算与表达式&#34;&gt;2.4 运算与表达式
+&lt;/h3&gt;&lt;p&gt;MMA 支持基本的数学运算，见下表：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;名称&lt;/th&gt;
+          &lt;th&gt;符号形式&lt;/th&gt;
+          &lt;th&gt;函数形式&lt;/th&gt;
+          &lt;th&gt;数学形式&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;加法&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a + b&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Plus[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a+b$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;减法&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a - b&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Subtract[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a-b$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;乘法&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a * b&lt;/code&gt;&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Times[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a\times b$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;除法&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a / b&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Divide[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$\frac ab$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;幂&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a ^ b&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Power[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a^b$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;模余&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Mod[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a\bmod b$&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;数字和符号都可以参与运算：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/10.png&#34;
+	width=&#34;427&#34;
+	height=&#34;331&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/10_hu9730207018050681207.png 480w, https://goodcoder666.github.io/p/mathematica-intro/10_hu16018264999205582921.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;数字和符号的运算&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;129&#34;
+		data-flex-basis=&#34;309px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;表达式&lt;/strong&gt;是一个或多个运算/函数调用的组合，使用&lt;code&gt;()&lt;/code&gt;指定优先级。上图中 &lt;code&gt;4*5&lt;/code&gt;、&lt;code&gt;a+a&lt;/code&gt;、&lt;code&gt;3 x y/y&lt;/code&gt; 都是合法的表达式。&lt;/p&gt;
+&lt;p&gt;需要注意的是，MMA 只会对输入的表达式进行约分、合并同类项，而&lt;strong&gt;不会自动执行需要展开的化简&lt;/strong&gt;。必要时可以使用 &lt;code&gt;Simplify&lt;/code&gt; 或 &lt;code&gt;FullSimplify&lt;/code&gt; 函数：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/11.png&#34;
+	width=&#34;577&#34;
+	height=&#34;239&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/11_hu6351390492500100476.png 480w, https://goodcoder666.github.io/p/mathematica-intro/11_hu11208013278117900467.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;化简示例&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;241&#34;
+		data-flex-basis=&#34;579px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;关于函数的使用，后面会详解。&lt;/p&gt;
+&lt;h4 id=&#34;布尔表达式&#34;&gt;布尔表达式
+&lt;/h4&gt;&lt;p&gt;表达式也可以是等式或不等式：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/12.png&#34;
+	width=&#34;432&#34;
+	height=&#34;212&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/12_hu7298088402191050618.png 480w, https://goodcoder666.github.io/p/mathematica-intro/12_hu15871701934125077728.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;等式和不等式&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;489px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意&lt;strong&gt;等式用两个等号 &lt;code&gt;==&lt;/code&gt; 连接&lt;/strong&gt;，单个等号表示变量赋值。&lt;br&gt;
+不等式可以用 &lt;code&gt;!=&lt;/code&gt;（不等于）、&lt;code&gt;&amp;gt;&lt;/code&gt;（大于）、&lt;code&gt;&amp;gt;=&lt;/code&gt;（大于等于）、&lt;code&gt;&amp;lt;&lt;/code&gt;（小于）、&lt;code&gt;&amp;lt;=&lt;/code&gt;（小于等于）连接。&lt;code&gt;!=&lt;/code&gt;、&lt;code&gt;&amp;gt;=&lt;/code&gt; 和 &lt;code&gt;&amp;lt;=&lt;/code&gt; 在输入时会自动转换为相应的数学符号。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这类返回值为 &lt;code&gt;True&lt;/code&gt;（真）或  &lt;code&gt;False&lt;/code&gt;（假）的表达式，我们统称为&lt;strong&gt;布尔表达式&lt;/strong&gt;。可以用 &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; 和 &lt;code&gt;||&lt;/code&gt; 运算符来连接两个布尔表达式，分别表示“与”“或”，所得结果仍为布尔表达式。&lt;/p&gt;
+&lt;p&gt;绝大部分布尔表达式都不能自动化简，但可以通过 &lt;code&gt;Simplify&lt;/code&gt;、&lt;code&gt;FullSimplify&lt;/code&gt; 或 &lt;code&gt;Solve&lt;/code&gt;、&lt;code&gt;Reduce&lt;/code&gt; 来化简或求解：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/13.png&#34;
+	width=&#34;646&#34;
+	height=&#34;876&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/13_hu17278854674272214785.png 480w, https://goodcoder666.github.io/p/mathematica-intro/13_hu6588712561222944297.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;布尔表达式的化简与求解&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;73&#34;
+		data-flex-basis=&#34;176px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;25-变量与常数&#34;&gt;2.5 变量与常数
+&lt;/h3&gt;&lt;p&gt;MMA 中，使用 &lt;code&gt;变量名 = 值&lt;/code&gt; 的形式来声明或赋值变量：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/14.png&#34;
+	width=&#34;411&#34;
+	height=&#34;211&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/14_hu3663033510452800550.png 480w, https://goodcoder666.github.io/p/mathematica-intro/14_hu6902463154910647318.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;创建变量&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;467px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;由上方 &lt;code&gt;10a + 3&lt;/code&gt; 的计算结果可知，&lt;strong&gt;表达式中所有已声明的变量都会被替换成变量值&lt;/strong&gt;。变量的声明也可以包含其他变量和符号，此时仍符合变量替换法则：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/15.png&#34;
+	width=&#34;613&#34;
+	height=&#34;361&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/15_hu18037434960568452087.png 480w, https://goodcoder666.github.io/p/mathematica-intro/15_hu6285275180433370240.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;替换&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;169&#34;
+		data-flex-basis=&#34;407px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;用于解方程的 &lt;code&gt;Solve&lt;/code&gt; 函数没有返回 $a$ 的解，而是返回 $x$ 的解，说明表达式在解析时 $a$ 被自动替换为了 $x$。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;除此之外，还可以用类似于 Python 的语法，&lt;strong&gt;同时赋值多个变量&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mathematica&#34; data-lang=&#34;mathematica&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这行代码可以把变量 $a,b,c$ 分别赋值为 $1,2,3$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;若要取消声明一个变量，可以使用 &lt;code&gt;Clear[变量名]&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/16.png&#34;
+	width=&#34;348&#34;
+	height=&#34;353&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/16_hu9733903109846378439.png 480w, https://goodcoder666.github.io/p/mathematica-intro/16_hu3354123148698735827.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Clear的使用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;98&#34;
+		data-flex-basis=&#34;236px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在使用 MMA 的过程中，我们会发现某些特定符号不能声明为变量，且有一个固定不变的值。这些是&lt;strong&gt;内置常量&lt;/strong&gt;：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;常量&lt;/th&gt;
+          &lt;th&gt;名称&lt;/th&gt;
+          &lt;th&gt;近似值&lt;/th&gt;
+          &lt;th&gt;数学形式&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;Pi&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;圆周率&lt;/td&gt;
+          &lt;td&gt;$3.141592654$&lt;/td&gt;
+          &lt;td&gt;$\pi$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;E&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;自然常数&lt;/td&gt;
+          &lt;td&gt;$2.718281828$&lt;/td&gt;
+          &lt;td&gt;$\mathrm e$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;I&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;虚数单位&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;$i$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;Infinity&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;无穷大&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;$\infty$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;Degree&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;度&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;$\degree$&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;26-函数&#34;&gt;2.6 函数
+&lt;/h3&gt;&lt;p&gt;在前面的讲解中，我们多次提到&lt;strong&gt;函数&lt;/strong&gt;。现在，让我们详细解读函数的使用。&lt;/p&gt;
+&lt;h4 id=&#34;调用&#34;&gt;调用
+&lt;/h4&gt;&lt;p&gt;要调用一个函数，只需输入 &lt;code&gt;函数名[参数1, 参数2, ...]&lt;/code&gt; 即可：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/17.png&#34;
+	width=&#34;553&#34;
+	height=&#34;425&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/17_hu11502129482819167942.png 480w, https://goodcoder666.github.io/p/mathematica-intro/17_hu3254074341770831689.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;函数的调用1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;312px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;对于只有一个参数的函数，可以用 &lt;code&gt;参数 // 函数名&lt;/code&gt; 的形式调用。这种形式常用于 &lt;code&gt;Simplify&lt;/code&gt;（化简）、&lt;code&gt;FullSimplify&lt;/code&gt;（完全简化）和 &lt;code&gt;N&lt;/code&gt;（数值运算）的调用：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/18.png&#34;
+	width=&#34;590&#34;
+	height=&#34;421&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/18_hu14228190598289844765.png 480w, https://goodcoder666.github.io/p/mathematica-intro/18_hu14521064358398462261.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;函数调用2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;336px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这种写法的最大优点在于可以链式调用：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/19.png&#34;
+	width=&#34;773&#34;
+	height=&#34;162&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/19_hu10396997090978163643.png 480w, https://goodcoder666.github.io/p/mathematica-intro/19_hu1372064968610252677.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;链式调用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;477&#34;
+		data-flex-basis=&#34;1145px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;定义&#34;&gt;定义
+&lt;/h4&gt;&lt;p&gt;说完了函数的调用，再来说说新函数的定义。&lt;/p&gt;
+&lt;p&gt;MMA 中，&lt;strong&gt;定义新函数的语法为 &lt;code&gt;函数名[参数1_, 参数2_, ...] := 返回值&lt;/code&gt;&lt;/strong&gt;。注意&lt;strong&gt;每个参数名后面都要加一个下划线&lt;/strong&gt;（&lt;code&gt;_&lt;/code&gt;）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;定义新函数推荐用 &lt;code&gt;:=&lt;/code&gt;，但使用 &lt;code&gt;=&lt;/code&gt; 也可行。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/20.png&#34;
+	width=&#34;348&#34;
+	height=&#34;152&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/20_hu8576785873755523124.png 480w, https://goodcoder666.github.io/p/mathematica-intro/20_hu4585779803705063955.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;定义新函数&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;228&#34;
+		data-flex-basis=&#34;549px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;拓展 - 定义递归函数&lt;/strong&gt;&lt;br&gt;
+参考下面定义斐波那契数列的格式：&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/21.png&#34;
+	width=&#34;758&#34;
+	height=&#34;289&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/21_hu2461132375049737524.png 480w, https://goodcoder666.github.io/p/mathematica-intro/21_hu2084775987287008717.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;斐波那契数列&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;262&#34;
+		data-flex-basis=&#34;629px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;3-内置函数&#34;&gt;3. 内置函数
+&lt;/h2&gt;&lt;p&gt;MMA 中有将近 $6000$ 个内置函数&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;，它们都以大写字母开头。下面介绍几种常用的内置函数：&lt;/p&gt;
+&lt;h3 id=&#34;31-数值运算-n&#34;&gt;3.1 数值运算 N
+&lt;/h3&gt;&lt;p&gt;数值运算函数 &lt;code&gt;N&lt;/code&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;N[expr]&lt;/code&gt; 给出 $\mathrm{expr}$ 的数值值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;N[expr, n]&lt;/code&gt; 尝试给出具有 $n$ 位精度的结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用示例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/22.png&#34;
+	width=&#34;414&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/22_hu310168969608550085.png 480w, https://goodcoder666.github.io/p/mathematica-intro/22_hu6025940822146869332.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;N示例&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;97&#34;
+		data-flex-basis=&#34;234px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;32-三角函数&#34;&gt;3.2 三角函数
+&lt;/h3&gt;&lt;p&gt;MMA 内置了各类三角函数，它们全部使用习惯名称且首字母大写（&lt;code&gt;Sin&lt;/code&gt;、&lt;code&gt;Sinh&lt;/code&gt;、&lt;code&gt;ArcSin&lt;/code&gt;），这里不一一阐释。&lt;br&gt;
+只说一个注意点，MMA 中&lt;strong&gt;三角函数的参数默认是弧度&lt;/strong&gt;，若要使用角度必须加上 &lt;code&gt;Degree&lt;/code&gt; 单位：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/23.png&#34;
+	width=&#34;430&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/23_hu9097474707163248689.png 480w, https://goodcoder666.github.io/p/mathematica-intro/23_hu1448429849777072865.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;三角函数&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;101&#34;
+		data-flex-basis=&#34;243px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;33-解方程和不等式-solvereduce&#34;&gt;3.3 解方程和不等式 Solve/Reduce
+&lt;/h3&gt;&lt;p&gt;解方程 &lt;code&gt;Solve&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/24.png&#34;
+	width=&#34;956&#34;
+	height=&#34;657&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/24_hu17516689155522826645.png 480w, https://goodcoder666.github.io/p/mathematica-intro/24_hu6666882671453354033.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Solve解方程&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;145&#34;
+		data-flex-basis=&#34;349px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;解不等式用 &lt;code&gt;Reduce&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/25.png&#34;
+	width=&#34;931&#34;
+	height=&#34;485&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/25_hu13887317408915653641.png 480w, https://goodcoder666.github.io/p/mathematica-intro/25_hu4972572480647116760.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Reduce解不等式&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;191&#34;
+		data-flex-basis=&#34;460px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Reduce&lt;/code&gt; 还有更高级的使用，可以约化各种表达式：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/26.png&#34;
+	width=&#34;719&#34;
+	height=&#34;121&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/26_hu690248974597960530.png 480w, https://goodcoder666.github.io/p/mathematica-intro/26_hu11100787193404740047.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Reduce的高级应用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;594&#34;
+		data-flex-basis=&#34;1426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这句话说的是：求解 $a,b$ 的范围，使得存在 $x$ 满足等式 $ax=b$。实际上就是在求解使一元一次方程有解的参数值。&lt;strong&gt;注意 &lt;code&gt;Solve&lt;/code&gt; 和 &lt;code&gt;Reduce&lt;/code&gt; 不一定总返回最简形式的表达式&lt;/strong&gt;，很多情况下需要手动调用 &lt;code&gt;Simplify&lt;/code&gt; 或 &lt;code&gt;FullSimplify&lt;/code&gt; 进行化简。感兴趣的读者可以自行测试上面的例子中不使用 &lt;code&gt;Simplify&lt;/code&gt; 的返回结果。&lt;/p&gt;
+&lt;h3 id=&#34;34-解方程的其他方法-nsolvefindinstance&#34;&gt;3.4 解方程的其他方法 NSolve/FindInstance
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;NSolve&lt;/code&gt; 用法同 &lt;code&gt;Solve&lt;/code&gt;，但会返回数值解而不是精确解。相当于 &lt;code&gt;Solve[...] // N&lt;/code&gt;。&lt;br&gt;
+&lt;code&gt;FindInstance&lt;/code&gt; 用法同 &lt;code&gt;Solve&lt;/code&gt;，但添加了一个参数表示至多返回解的个数（默认为 $1$）：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/27.png&#34;
+	width=&#34;874&#34;
+	height=&#34;279&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/27_hu8343007225474566389.png 480w, https://goodcoder666.github.io/p/mathematica-intro/27_hu18345258842192805947.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;FindInstance的使用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;313&#34;
+		data-flex-basis=&#34;751px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;35-极点值-maximizeminimize&#34;&gt;3.5 极点值 Maximize/Minimize
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Minimize&lt;/code&gt; 返回函数（在限制条件下）的最小值以及取到最小值的（一种）变量值：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/28.png&#34;
+	width=&#34;650&#34;
+	height=&#34;392&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/28_hu15244761361493858462.png 480w, https://goodcoder666.github.io/p/mathematica-intro/28_hu17242040746426218999.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Minimize的使用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;397px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如上图中的示例，&lt;code&gt;Minimize&lt;/code&gt; 支持多个变量，可以指定条件，也可指定求解域。&lt;br&gt;
+&lt;code&gt;Maximize&lt;/code&gt; 用法完全相同，返回最大值，此处略过。&lt;/p&gt;
+&lt;h3 id=&#34;36-偏导-d&#34;&gt;3.6 偏导 D
+&lt;/h3&gt;&lt;p&gt;偏导 &lt;code&gt;D&lt;/code&gt; 的两种最常用用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;D[f, x]&lt;/code&gt; 给出 $f$ 关于 $x$ 的偏导。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;D[f, {x, n}]&lt;/code&gt; 给出 $f$ 关于 $x$ 的 $n$ 阶偏导。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;示例略。注意 &lt;code&gt;f&#39;[x]&lt;/code&gt; 可以直接求出 &lt;code&gt;f[x]&lt;/code&gt; 的导数：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/29.png&#34;
+	width=&#34;374&#34;
+	height=&#34;146&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/29_hu6094712853263170053.png 480w, https://goodcoder666.github.io/p/mathematica-intro/29_hu7001004289902476875.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;符号求导&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;256&#34;
+		data-flex-basis=&#34;614px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;37-积分-integrate&#34;&gt;3.7 积分 Integrate
+&lt;/h3&gt;&lt;p&gt;积分 &lt;code&gt;Integrate&lt;/code&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Integrate[f, x]&lt;/code&gt; 给出不定积分 $\int f~\mathrm{d}x$。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Integrate[f, {x, x_min, x_max}]&lt;/code&gt; 给出定积分 $\int_{x_{min}}^{x_{max}} f~\mathrm{d}x$。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Integrate[f, {x, x_min, x_max}, {y, y_min, y_max}, ...]&lt;/code&gt; 给出多重积分 $\int_{x_{min}}^{x_{max}} \mathrm{d}x \int_{y_{min}}^{y_{max}} \mathrm{d}y\dots f$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一个简单的定积分示例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/30.png&#34;
+	width=&#34;775&#34;
+	height=&#34;154&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/30_hu6724525724242847623.png 480w, https://goodcoder666.github.io/p/mathematica-intro/30_hu10991573836266866285.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Integrate求定积分&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;503&#34;
+		data-flex-basis=&#34;1207px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;38-展开-expandexpandall&#34;&gt;3.8 展开 Expand/ExpandAll
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Expand&lt;/code&gt; 很好理解，&lt;code&gt;Expand[expr]&lt;/code&gt; 会展开表达式 $\mathrm{expr}$ 中的乘积和正整数幂。限于篇幅，这里不提供使用范例，可参考&lt;a class=&#34;link&#34; href=&#34;https://reference.wolfram.com/language/ref/Expand.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方文档&lt;/a&gt;。&lt;br&gt;
+&lt;code&gt;ExpandAll&lt;/code&gt; 在 &lt;code&gt;Expand&lt;/code&gt; 的基础上，会展开表达式中&lt;strong&gt;任意位置&lt;/strong&gt;的乘积和整数幂。如表达式 &lt;code&gt;Sin[(1 + x)^3]&lt;/code&gt;，&lt;code&gt;Expand&lt;/code&gt; 不会展开其中的 &lt;code&gt;(1+x)^3&lt;/code&gt;，而 &lt;code&gt;ExpandAll&lt;/code&gt; 会。&lt;/p&gt;
+&lt;h3 id=&#34;39-因式分解-factor&#34;&gt;3.9 因式分解 Factor
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Factor[poly]&lt;/code&gt;：在整数上对一个多项式分解因式。使用示例参考&lt;a class=&#34;link&#34; href=&#34;https://reference.wolfram.com/language/ref/Factor.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;310-绘图-plotplot3d&#34;&gt;3.10 绘图 Plot/Plot3D
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Plot&lt;/code&gt; 和 &lt;code&gt;Plot3D&lt;/code&gt; 的用法较为复杂，这里只介绍最基本的函数绘图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/31.png&#34;
+	width=&#34;1014&#34;
+	height=&#34;1228&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/31_hu6012973142232991113.png 480w, https://goodcoder666.github.io/p/mathematica-intro/31_hu15321259495435351894.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Plot和Plot3D&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;82&#34;
+		data-flex-basis=&#34;198px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;两个语句分别绘制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\sin(x)$ 的图像，其中 $-2\pi\le x\le 2\pi$；&lt;/li&gt;
+&lt;li&gt;$\sin(x+y^2)$ 的图像，其中 $-3\le x\le 3$，$-2\le y\le 2$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4-总结&#34;&gt;4. 总结
+&lt;/h2&gt;&lt;p&gt;我自己当初学习 MMA 时，被网上杂乱的教程搞得混乱不堪。因此就想写一篇教程，涵盖所有常用语法知识点，并让初学者避开我自己踩的一些坑。&lt;br&gt;
+初衷是写个&lt;em&gt;简明&lt;/em&gt;的教程，结果一写就是八千多字…… 也感谢认真读到这里的读者们！&lt;br&gt;
+后续可能还会更一些用 Mathematica 解决数学和实际问题的文章，敬请期待！&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;乘法也可简写为 &lt;code&gt;a b&lt;/code&gt;（中间必须有空格）。MMA 中，大部分空格可省略，但是&lt;strong&gt;乘法的空格不能省略&lt;/strong&gt;（若写作没有空格的 &lt;code&gt;ab&lt;/code&gt; 会被认为是一个变量）。&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.wolfram.com/language/fast-introduction-for-programmers/en/built-in-functions/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.wolfram.com/language/fast-introduction-for-programmers/en/built-in-functions/&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

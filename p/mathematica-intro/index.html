@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\rWolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的科学计算软件。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 MATLAB 和 Maple 等。\nMMA 官网：https://www.wolfram.com/mathematica/\n">
+<title>Mathematica 入门</title>
+
+<link rel='canonical' href='https://goodcoder666.github.io/p/mathematica-intro/'>
+
+<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="Mathematica 入门">
+<meta property='og:description' content="前言\rWolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的科学计算软件。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 MATLAB 和 Maple 等。\nMMA 官网：https://www.wolfram.com/mathematica/\n">
+<meta property='og:url' content='https://goodcoder666.github.io/p/mathematica-intro/'>
+<meta property='og:site_name' content='GoodCoder&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Mathematica &amp; Wolfram Language' /><meta property='article:published_time' content='2024-01-26T17:12:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-26T17:12:00&#43;08:00'/>
+<meta name="twitter:site" content="@stanleys09">
+    <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="Mathematica 入门">
+<meta name="twitter:description" content="前言\rWolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的科学计算软件。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 MATLAB 和 Maple 等。\nMMA 官网：https://www.wolfram.com/mathematica/\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KJPJLGSR3C');
+        }
+      </script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GoodCoder&#39;s Blog</a></h1>
+            <h2 class="site-description">正在迁移到Hugo，原版完整博客在old分支</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GoodCoder666'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/stanleys09'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#1-界面">1. 界面</a></li>
+    <li><a href="#2-语法">2. 语法</a>
+      <ol>
+        <li><a href="#21-帮助文档">2.1 帮助文档</a></li>
+        <li><a href="#22-注释">2.2 注释</a></li>
+        <li><a href="#23-括号">2.3 括号</a>
+          <ol>
+            <li><a href="#圆括号-">圆括号 <code>()</code></a></li>
+            <li><a href="#方括号-">方括号 <code>[]</code></a></li>
+            <li><a href="#大括号-">大括号 <code>{}</code></a></li>
+            <li><a href="#双方括号-">双方括号 <code>[[]]</code></a></li>
+          </ol>
+        </li>
+        <li><a href="#24-运算与表达式">2.4 运算与表达式</a>
+          <ol>
+            <li><a href="#布尔表达式">布尔表达式</a></li>
+          </ol>
+        </li>
+        <li><a href="#25-变量与常数">2.5 变量与常数</a></li>
+        <li><a href="#26-函数">2.6 函数</a>
+          <ol>
+            <li><a href="#调用">调用</a></li>
+            <li><a href="#定义">定义</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#3-内置函数">3. 内置函数</a>
+      <ol>
+        <li><a href="#31-数值运算-n">3.1 数值运算 N</a></li>
+        <li><a href="#32-三角函数">3.2 三角函数</a></li>
+        <li><a href="#33-解方程和不等式-solvereduce">3.3 解方程和不等式 Solve/Reduce</a></li>
+        <li><a href="#34-解方程的其他方法-nsolvefindinstance">3.4 解方程的其他方法 NSolve/FindInstance</a></li>
+        <li><a href="#35-极点值-maximizeminimize">3.5 极点值 Maximize/Minimize</a></li>
+        <li><a href="#36-偏导-d">3.6 偏导 D</a></li>
+        <li><a href="#37-积分-integrate">3.7 积分 Integrate</a></li>
+        <li><a href="#38-展开-expandexpandall">3.8 展开 Expand/ExpandAll</a></li>
+        <li><a href="#39-因式分解-factor">3.9 因式分解 Factor</a></li>
+        <li><a href="#310-绘图-plotplot3d">3.10 绘图 Plot/Plot3D</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-总结">4. 总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/mathematica-intro/">Mathematica 入门</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024/01/26</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 7 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言
+</h2><p>Wolfram Mathematica（简称 MMA），是由 Wolfram Research 开发的<strong>科学计算软件</strong>。本文我们将介绍 Mathematica 的界面、语法和基本应用。类似的软件还有 <a class="link" href="https://ww2.mathworks.cn/products/matlab.html"  target="_blank" rel="noopener"
+    >MATLAB</a> 和 <a class="link" href="https://www.maplesoft.com.cn/products/maple/"  target="_blank" rel="noopener"
+    >Maple</a> 等。</p>
+<p>MMA 官网：<a class="link" href="https://www.wolfram.com/mathematica/"  target="_blank" rel="noopener"
+    >https://www.wolfram.com/mathematica/</a></p>
+<p>MMA 的安装及激活：<a class="link" href="https://zhuanlan.zhihu.com/p/632361071"  target="_blank" rel="noopener"
+    >Mathematica安装激活极简教程 - 科研小飞 (知乎)</a></p>
+<p>本文适合<strong>有一定编程基础</strong>的读者。当然，如果你不了解编程也没关系，直接跳过相关部分即可。屏幕截图全部来自 Windows 11，Mathematica 13.3。（最新版本 14.0 已经在 2023 年 12 月发布，语法向下兼容）</p>
+<p><img src="/p/mathematica-intro/1.png"
+	width="684"
+	height="897"
+	srcset="/p/mathematica-intro/1_hu1411914610203747930.png 480w, /p/mathematica-intro/1_hu9484357994769302992.png 1024w"
+	loading="lazy"
+	
+		alt="演示使用的 MMA 版本"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="76"
+		data-flex-basis="183px"
+	
+></p>
+<h2 id="1-界面">1. 界面
+</h2><p>安装并正确激活 MMA 后，新建笔记本，应该能看到如下的界面：</p>
+<p><img src="/p/mathematica-intro/2.png"
+	width="1146"
+	height="1302"
+	srcset="/p/mathematica-intro/2_hu2087877821688053534.png 480w, /p/mathematica-intro/2_hu8012692116287684767.png 1024w"
+	loading="lazy"
+	
+		alt="MMA 基本界面"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="88"
+		data-flex-basis="211px"
+	
+></p>
+<p>一张图带你快速熟悉 MMA 的界面：</p>
+<p><img src="/p/mathematica-intro/3.png"
+	width="1146"
+	height="430"
+	srcset="/p/mathematica-intro/3_hu15341202107679675729.png 480w, /p/mathematica-intro/3_hu16966303832790678616.png 1024w"
+	loading="lazy"
+	
+		alt="MMA 界面简介"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="266"
+		data-flex-basis="639px"
+	
+></p>
+<p>几个需要注意的点：</p>
+<ul>
+<li><kbd>Enter</kbd> 默认换行，执行代码需要用 <kbd>Shift</kbd>+<kbd>Enter</kbd>。</li>
+<li>指令面板左侧的红三角形也可执行代码，灰色的正方形用于终止正在进行的运算。</li>
+<li>MMA 带有 Notebook（笔记本）功能，由于其主要用于计算而不是笔记，本文不详细介绍，若需要使用可自行查阅相关资料。</li>
+</ul>
+<p>对于任意输入或输出，按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>即可显示输入（代码）形式，按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>即可显示数学形式。后面会对两种显示形式进行详细讲解。</p>
+<h2 id="2-语法">2. 语法
+</h2><p>Mathematica 实质是一个 Wolfram Language 的解释器，所以使用它之前必须学习 WL 的语法。<br>
+这里介绍基本语法和常用的指令。</p>
+<h3 id="21-帮助文档">2.1 帮助文档
+</h3><p>首先来了解帮助文档的使用。输入 <code>? Solve</code> 来获取 <code>Solve</code> 函数的说明：</p>
+<p><img src="/p/mathematica-intro/4.png"
+	width="1021"
+	height="316"
+	srcset="/p/mathematica-intro/4_hu8423983145732844250.png 480w, /p/mathematica-intro/4_hu5145486336677538132.png 1024w"
+	loading="lazy"
+	
+		alt="help-solve"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="323"
+		data-flex-basis="775px"
+	
+></p>
+<p><code>?</code> 后面可以跟任何函数名，MMA 会直接在笔记本中输出简化版的帮助文档。可以选择输出右上角的 <code>i</code> 来获取更详细的文档（优先打开<a class="link" href="https://zhuanlan.zhihu.com/p/589034642"  target="_blank" rel="noopener"
+    >离线文档</a>，不存在则默认打开<a class="link" href="https://reference.wolfram.com/language/index.html.zh"  target="_blank" rel="noopener"
+    >在线文档</a>）。菜单栏中的 “帮助 -&gt; Wolfram 参考资料” 可以打开完整版文档。</p>
+<h3 id="22-注释">2.2 注释
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mathematica" data-lang="mathematica"><span class="line"><span class="cl"><span class="c">(* 注释 *)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如上，MMA 的注释使用 <code>(*</code> 和 <code>*)</code> 来标注，用法类似于 C/C++ 中的 <code>/*</code> 和 <code>*/</code>。注释可以添加在代码的任何位置，它们会被自动忽略。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mathematica" data-lang="mathematica"><span class="line"><span class="cl"><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c">(*Hello*)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c">(*World*)</span><span class="mi">1</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这两行代码在实际执行中与 <code>1 + 1</code> 无区别：</p>
+<p><img src="/p/mathematica-intro/5.png"
+	width="293"
+	height="211"
+	srcset="/p/mathematica-intro/5_hu6237236869037297705.png 480w, /p/mathematica-intro/5_hu6962041320903135877.png 1024w"
+	loading="lazy"
+	
+		alt="comment-test"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="138"
+		data-flex-basis="333px"
+	
+></p>
+<h3 id="23-括号">2.3 括号
+</h3><p>在学习 MMA 的函数之前，一定要先学会括号的使用！！<br>
+官方参考文档：<a class="link" href="https://reference.wolfram.com/language/howto/UseBracketsAndBracesCorrectly.html.zh"  target="_blank" rel="noopener"
+    >正确使用括号和大括号</a></p>
+<p>MMA 中共有四种括号，分别为 <code>()</code>、<code>[]</code>、<code>{}</code> 和 <code>[[]]</code>，具体作用如下：</p>
+<h4 id="圆括号-">圆括号 <code>()</code>
+</h4><p>用作对表达式编组和确定运算的优先次序：</p>
+<p><img src="/p/mathematica-intro/6.png"
+	width="480"
+	height="245"
+	srcset="/p/mathematica-intro/6_hu155435836638834281.png 480w, /p/mathematica-intro/6_hu12455333202292052555.png 1024w"
+	loading="lazy"
+	
+		alt="圆括号的使用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="195"
+		data-flex-basis="470px"
+	
+></p>
+<h4 id="方括号-">方括号 <code>[]</code>
+</h4><p>表示函数的调用和传参：</p>
+<p><img src="/p/mathematica-intro/7.png"
+	width="235"
+	height="121"
+	srcset="/p/mathematica-intro/7_hu17785978881144196376.png 480w, /p/mathematica-intro/7_hu14690897939768520759.png 1024w"
+	loading="lazy"
+	
+		alt="方括号的使用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="466px"
+	
+></p>
+<h4 id="大括号-">大括号 <code>{}</code>
+</h4><p>表示列表：</p>
+<p><img src="/p/mathematica-intro/8.png"
+	width="285"
+	height="93"
+	srcset="/p/mathematica-intro/8_hu15024210880933085695.png 480w, /p/mathematica-intro/8_hu9381115656738456915.png 1024w"
+	loading="lazy"
+	
+		alt="大括号的使用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="306"
+		data-flex-basis="735px"
+	
+></p>
+<p>列表的具体使用后续会介绍。</p>
+<h4 id="双方括号-">双方括号 <code>[[]]</code>
+</h4><p>表示对列表元素的访问，实质是函数 <code>Part</code> 的简写形式：</p>
+<p><img src="/p/mathematica-intro/9.png"
+	width="431"
+	height="212"
+	srcset="/p/mathematica-intro/9_hu8828593400947879040.png 480w, /p/mathematica-intro/9_hu6086174361878413492.png 1024w"
+	loading="lazy"
+	
+		alt="双方括号的使用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="203"
+		data-flex-basis="487px"
+	
+></p>
+<p>同样会在后面具体介绍。</p>
+<h3 id="24-运算与表达式">2.4 运算与表达式
+</h3><p>MMA 支持基本的数学运算，见下表：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>名称</th>
+          <th>符号形式</th>
+          <th>函数形式</th>
+          <th>数学形式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>加法</td>
+          <td><code>a + b</code></td>
+          <td><code>Plus[a, b]</code></td>
+          <td>$a+b$</td>
+      </tr>
+      <tr>
+          <td>减法</td>
+          <td><code>a - b</code></td>
+          <td><code>Subtract[a, b]</code></td>
+          <td>$a-b$</td>
+      </tr>
+      <tr>
+          <td>乘法</td>
+          <td><code>a * b</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></td>
+          <td><code>Times[a, b]</code></td>
+          <td>$a\times b$</td>
+      </tr>
+      <tr>
+          <td>除法</td>
+          <td><code>a / b</code></td>
+          <td><code>Divide[a, b]</code></td>
+          <td>$\frac ab$</td>
+      </tr>
+      <tr>
+          <td>幂</td>
+          <td><code>a ^ b</code></td>
+          <td><code>Power[a, b]</code></td>
+          <td>$a^b$</td>
+      </tr>
+      <tr>
+          <td>模余</td>
+          <td>-</td>
+          <td><code>Mod[a, b]</code></td>
+          <td>$a\bmod b$</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>数字和符号都可以参与运算：</p>
+<p><img src="/p/mathematica-intro/10.png"
+	width="427"
+	height="331"
+	srcset="/p/mathematica-intro/10_hu9730207018050681207.png 480w, /p/mathematica-intro/10_hu16018264999205582921.png 1024w"
+	loading="lazy"
+	
+		alt="数字和符号的运算"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="129"
+		data-flex-basis="309px"
+	
+></p>
+<p><strong>表达式</strong>是一个或多个运算/函数调用的组合，使用<code>()</code>指定优先级。上图中 <code>4*5</code>、<code>a+a</code>、<code>3 x y/y</code> 都是合法的表达式。</p>
+<p>需要注意的是，MMA 只会对输入的表达式进行约分、合并同类项，而<strong>不会自动执行需要展开的化简</strong>。必要时可以使用 <code>Simplify</code> 或 <code>FullSimplify</code> 函数：</p>
+<p><img src="/p/mathematica-intro/11.png"
+	width="577"
+	height="239"
+	srcset="/p/mathematica-intro/11_hu6351390492500100476.png 480w, /p/mathematica-intro/11_hu11208013278117900467.png 1024w"
+	loading="lazy"
+	
+		alt="化简示例"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="241"
+		data-flex-basis="579px"
+	
+></p>
+<p>关于函数的使用，后面会详解。</p>
+<h4 id="布尔表达式">布尔表达式
+</h4><p>表达式也可以是等式或不等式：</p>
+<p><img src="/p/mathematica-intro/12.png"
+	width="432"
+	height="212"
+	srcset="/p/mathematica-intro/12_hu7298088402191050618.png 480w, /p/mathematica-intro/12_hu15871701934125077728.png 1024w"
+	loading="lazy"
+	
+		alt="等式和不等式"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="203"
+		data-flex-basis="489px"
+	
+></p>
+<blockquote>
+<p>注意<strong>等式用两个等号 <code>==</code> 连接</strong>，单个等号表示变量赋值。<br>
+不等式可以用 <code>!=</code>（不等于）、<code>&gt;</code>（大于）、<code>&gt;=</code>（大于等于）、<code>&lt;</code>（小于）、<code>&lt;=</code>（小于等于）连接。<code>!=</code>、<code>&gt;=</code> 和 <code>&lt;=</code> 在输入时会自动转换为相应的数学符号。</p>
+</blockquote>
+<p>这类返回值为 <code>True</code>（真）或  <code>False</code>（假）的表达式，我们统称为<strong>布尔表达式</strong>。可以用 <code>&amp;&amp;</code> 和 <code>||</code> 运算符来连接两个布尔表达式，分别表示“与”“或”，所得结果仍为布尔表达式。</p>
+<p>绝大部分布尔表达式都不能自动化简，但可以通过 <code>Simplify</code>、<code>FullSimplify</code> 或 <code>Solve</code>、<code>Reduce</code> 来化简或求解：</p>
+<p><img src="/p/mathematica-intro/13.png"
+	width="646"
+	height="876"
+	srcset="/p/mathematica-intro/13_hu17278854674272214785.png 480w, /p/mathematica-intro/13_hu6588712561222944297.png 1024w"
+	loading="lazy"
+	
+		alt="布尔表达式的化简与求解"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="73"
+		data-flex-basis="176px"
+	
+></p>
+<h3 id="25-变量与常数">2.5 变量与常数
+</h3><p>MMA 中，使用 <code>变量名 = 值</code> 的形式来声明或赋值变量：</p>
+<p><img src="/p/mathematica-intro/14.png"
+	width="411"
+	height="211"
+	srcset="/p/mathematica-intro/14_hu3663033510452800550.png 480w, /p/mathematica-intro/14_hu6902463154910647318.png 1024w"
+	loading="lazy"
+	
+		alt="创建变量"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="467px"
+	
+></p>
+<p>由上方 <code>10a + 3</code> 的计算结果可知，<strong>表达式中所有已声明的变量都会被替换成变量值</strong>。变量的声明也可以包含其他变量和符号，此时仍符合变量替换法则：</p>
+<p><img src="/p/mathematica-intro/15.png"
+	width="613"
+	height="361"
+	srcset="/p/mathematica-intro/15_hu18037434960568452087.png 480w, /p/mathematica-intro/15_hu6285275180433370240.png 1024w"
+	loading="lazy"
+	
+		alt="替换"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="169"
+		data-flex-basis="407px"
+	
+></p>
+<p>用于解方程的 <code>Solve</code> 函数没有返回 $a$ 的解，而是返回 $x$ 的解，说明表达式在解析时 $a$ 被自动替换为了 $x$。</p>
+<blockquote>
+<p>除此之外，还可以用类似于 Python 的语法，<strong>同时赋值多个变量</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mathematica" data-lang="mathematica"><span class="line"><span class="cl"><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这行代码可以把变量 $a,b,c$ 分别赋值为 $1,2,3$。</p>
+</blockquote>
+<p>若要取消声明一个变量，可以使用 <code>Clear[变量名]</code>：</p>
+<p><img src="/p/mathematica-intro/16.png"
+	width="348"
+	height="353"
+	srcset="/p/mathematica-intro/16_hu9733903109846378439.png 480w, /p/mathematica-intro/16_hu3354123148698735827.png 1024w"
+	loading="lazy"
+	
+		alt="Clear的使用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="98"
+		data-flex-basis="236px"
+	
+></p>
+<p>在使用 MMA 的过程中，我们会发现某些特定符号不能声明为变量，且有一个固定不变的值。这些是<strong>内置常量</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>常量</th>
+          <th>名称</th>
+          <th>近似值</th>
+          <th>数学形式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Pi</code></td>
+          <td>圆周率</td>
+          <td>$3.141592654$</td>
+          <td>$\pi$</td>
+      </tr>
+      <tr>
+          <td><code>E</code></td>
+          <td>自然常数</td>
+          <td>$2.718281828$</td>
+          <td>$\mathrm e$</td>
+      </tr>
+      <tr>
+          <td><code>I</code></td>
+          <td>虚数单位</td>
+          <td>-</td>
+          <td>$i$</td>
+      </tr>
+      <tr>
+          <td><code>Infinity</code></td>
+          <td>无穷大</td>
+          <td>-</td>
+          <td>$\infty$</td>
+      </tr>
+      <tr>
+          <td><code>Degree</code></td>
+          <td>度</td>
+          <td>-</td>
+          <td>$\degree$</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="26-函数">2.6 函数
+</h3><p>在前面的讲解中，我们多次提到<strong>函数</strong>。现在，让我们详细解读函数的使用。</p>
+<h4 id="调用">调用
+</h4><p>要调用一个函数，只需输入 <code>函数名[参数1, 参数2, ...]</code> 即可：</p>
+<p><img src="/p/mathematica-intro/17.png"
+	width="553"
+	height="425"
+	srcset="/p/mathematica-intro/17_hu11502129482819167942.png 480w, /p/mathematica-intro/17_hu3254074341770831689.png 1024w"
+	loading="lazy"
+	
+		alt="函数的调用1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="130"
+		data-flex-basis="312px"
+	
+></p>
+<p>对于只有一个参数的函数，可以用 <code>参数 // 函数名</code> 的形式调用。这种形式常用于 <code>Simplify</code>（化简）、<code>FullSimplify</code>（完全简化）和 <code>N</code>（数值运算）的调用：</p>
+<p><img src="/p/mathematica-intro/18.png"
+	width="590"
+	height="421"
+	srcset="/p/mathematica-intro/18_hu14228190598289844765.png 480w, /p/mathematica-intro/18_hu14521064358398462261.png 1024w"
+	loading="lazy"
+	
+		alt="函数调用2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="336px"
+	
+></p>
+<p>这种写法的最大优点在于可以链式调用：</p>
+<p><img src="/p/mathematica-intro/19.png"
+	width="773"
+	height="162"
+	srcset="/p/mathematica-intro/19_hu10396997090978163643.png 480w, /p/mathematica-intro/19_hu1372064968610252677.png 1024w"
+	loading="lazy"
+	
+		alt="链式调用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="477"
+		data-flex-basis="1145px"
+	
+></p>
+<h4 id="定义">定义
+</h4><p>说完了函数的调用，再来说说新函数的定义。</p>
+<p>MMA 中，<strong>定义新函数的语法为 <code>函数名[参数1_, 参数2_, ...] := 返回值</code></strong>。注意<strong>每个参数名后面都要加一个下划线</strong>（<code>_</code>）。</p>
+<blockquote>
+<p>定义新函数推荐用 <code>:=</code>，但使用 <code>=</code> 也可行。</p>
+</blockquote>
+<p><img src="/p/mathematica-intro/20.png"
+	width="348"
+	height="152"
+	srcset="/p/mathematica-intro/20_hu8576785873755523124.png 480w, /p/mathematica-intro/20_hu4585779803705063955.png 1024w"
+	loading="lazy"
+	
+		alt="定义新函数"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="228"
+		data-flex-basis="549px"
+	
+></p>
+<blockquote>
+<p><strong>拓展 - 定义递归函数</strong><br>
+参考下面定义斐波那契数列的格式：<br>
+<img src="/p/mathematica-intro/21.png"
+	width="758"
+	height="289"
+	srcset="/p/mathematica-intro/21_hu2461132375049737524.png 480w, /p/mathematica-intro/21_hu2084775987287008717.png 1024w"
+	loading="lazy"
+	
+		alt="斐波那契数列"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="262"
+		data-flex-basis="629px"
+	
+></p>
+</blockquote>
+<h2 id="3-内置函数">3. 内置函数
+</h2><p>MMA 中有将近 $6000$ 个内置函数<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>，它们都以大写字母开头。下面介绍几种常用的内置函数：</p>
+<h3 id="31-数值运算-n">3.1 数值运算 N
+</h3><p>数值运算函数 <code>N</code>：</p>
+<ul>
+<li><code>N[expr]</code> 给出 $\mathrm{expr}$ 的数值值</li>
+<li><code>N[expr, n]</code> 尝试给出具有 $n$ 位精度的结果</li>
+</ul>
+<p>使用示例：</p>
+<p><img src="/p/mathematica-intro/22.png"
+	width="414"
+	height="423"
+	srcset="/p/mathematica-intro/22_hu310168969608550085.png 480w, /p/mathematica-intro/22_hu6025940822146869332.png 1024w"
+	loading="lazy"
+	
+		alt="N示例"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="97"
+		data-flex-basis="234px"
+	
+></p>
+<h3 id="32-三角函数">3.2 三角函数
+</h3><p>MMA 内置了各类三角函数，它们全部使用习惯名称且首字母大写（<code>Sin</code>、<code>Sinh</code>、<code>ArcSin</code>），这里不一一阐释。<br>
+只说一个注意点，MMA 中<strong>三角函数的参数默认是弧度</strong>，若要使用角度必须加上 <code>Degree</code> 单位：</p>
+<p><img src="/p/mathematica-intro/23.png"
+	width="430"
+	height="423"
+	srcset="/p/mathematica-intro/23_hu9097474707163248689.png 480w, /p/mathematica-intro/23_hu1448429849777072865.png 1024w"
+	loading="lazy"
+	
+		alt="三角函数"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="101"
+		data-flex-basis="243px"
+	
+></p>
+<h3 id="33-解方程和不等式-solvereduce">3.3 解方程和不等式 Solve/Reduce
+</h3><p>解方程 <code>Solve</code>：</p>
+<p><img src="/p/mathematica-intro/24.png"
+	width="956"
+	height="657"
+	srcset="/p/mathematica-intro/24_hu17516689155522826645.png 480w, /p/mathematica-intro/24_hu6666882671453354033.png 1024w"
+	loading="lazy"
+	
+		alt="Solve解方程"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="145"
+		data-flex-basis="349px"
+	
+></p>
+<p>解不等式用 <code>Reduce</code>：</p>
+<p><img src="/p/mathematica-intro/25.png"
+	width="931"
+	height="485"
+	srcset="/p/mathematica-intro/25_hu13887317408915653641.png 480w, /p/mathematica-intro/25_hu4972572480647116760.png 1024w"
+	loading="lazy"
+	
+		alt="Reduce解不等式"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="191"
+		data-flex-basis="460px"
+	
+></p>
+<p><code>Reduce</code> 还有更高级的使用，可以约化各种表达式：</p>
+<p><img src="/p/mathematica-intro/26.png"
+	width="719"
+	height="121"
+	srcset="/p/mathematica-intro/26_hu690248974597960530.png 480w, /p/mathematica-intro/26_hu11100787193404740047.png 1024w"
+	loading="lazy"
+	
+		alt="Reduce的高级应用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="594"
+		data-flex-basis="1426px"
+	
+></p>
+<p>这句话说的是：求解 $a,b$ 的范围，使得存在 $x$ 满足等式 $ax=b$。实际上就是在求解使一元一次方程有解的参数值。<strong>注意 <code>Solve</code> 和 <code>Reduce</code> 不一定总返回最简形式的表达式</strong>，很多情况下需要手动调用 <code>Simplify</code> 或 <code>FullSimplify</code> 进行化简。感兴趣的读者可以自行测试上面的例子中不使用 <code>Simplify</code> 的返回结果。</p>
+<h3 id="34-解方程的其他方法-nsolvefindinstance">3.4 解方程的其他方法 NSolve/FindInstance
+</h3><p><code>NSolve</code> 用法同 <code>Solve</code>，但会返回数值解而不是精确解。相当于 <code>Solve[...] // N</code>。<br>
+<code>FindInstance</code> 用法同 <code>Solve</code>，但添加了一个参数表示至多返回解的个数（默认为 $1$）：</p>
+<p><img src="/p/mathematica-intro/27.png"
+	width="874"
+	height="279"
+	srcset="/p/mathematica-intro/27_hu8343007225474566389.png 480w, /p/mathematica-intro/27_hu18345258842192805947.png 1024w"
+	loading="lazy"
+	
+		alt="FindInstance的使用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="313"
+		data-flex-basis="751px"
+	
+></p>
+<h3 id="35-极点值-maximizeminimize">3.5 极点值 Maximize/Minimize
+</h3><p><code>Minimize</code> 返回函数（在限制条件下）的最小值以及取到最小值的（一种）变量值：</p>
+<p><img src="/p/mathematica-intro/28.png"
+	width="650"
+	height="392"
+	srcset="/p/mathematica-intro/28_hu15244761361493858462.png 480w, /p/mathematica-intro/28_hu17242040746426218999.png 1024w"
+	loading="lazy"
+	
+		alt="Minimize的使用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="165"
+		data-flex-basis="397px"
+	
+></p>
+<p>如上图中的示例，<code>Minimize</code> 支持多个变量，可以指定条件，也可指定求解域。<br>
+<code>Maximize</code> 用法完全相同，返回最大值，此处略过。</p>
+<h3 id="36-偏导-d">3.6 偏导 D
+</h3><p>偏导 <code>D</code> 的两种最常用用法：</p>
+<ul>
+<li><code>D[f, x]</code> 给出 $f$ 关于 $x$ 的偏导。</li>
+<li><code>D[f, {x, n}]</code> 给出 $f$ 关于 $x$ 的 $n$ 阶偏导。</li>
+</ul>
+<p>示例略。注意 <code>f'[x]</code> 可以直接求出 <code>f[x]</code> 的导数：</p>
+<p><img src="/p/mathematica-intro/29.png"
+	width="374"
+	height="146"
+	srcset="/p/mathematica-intro/29_hu6094712853263170053.png 480w, /p/mathematica-intro/29_hu7001004289902476875.png 1024w"
+	loading="lazy"
+	
+		alt="符号求导"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="256"
+		data-flex-basis="614px"
+	
+></p>
+<h3 id="37-积分-integrate">3.7 积分 Integrate
+</h3><p>积分 <code>Integrate</code>：</p>
+<ul>
+<li><code>Integrate[f, x]</code> 给出不定积分 $\int f~\mathrm{d}x$。</li>
+<li><code>Integrate[f, {x, x_min, x_max}]</code> 给出定积分 $\int_{x_{min}}^{x_{max}} f~\mathrm{d}x$。</li>
+<li><code>Integrate[f, {x, x_min, x_max}, {y, y_min, y_max}, ...]</code> 给出多重积分 $\int_{x_{min}}^{x_{max}} \mathrm{d}x \int_{y_{min}}^{y_{max}} \mathrm{d}y\dots f$。</li>
+</ul>
+<p>一个简单的定积分示例：</p>
+<p><img src="/p/mathematica-intro/30.png"
+	width="775"
+	height="154"
+	srcset="/p/mathematica-intro/30_hu6724525724242847623.png 480w, /p/mathematica-intro/30_hu10991573836266866285.png 1024w"
+	loading="lazy"
+	
+		alt="Integrate求定积分"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="503"
+		data-flex-basis="1207px"
+	
+></p>
+<h3 id="38-展开-expandexpandall">3.8 展开 Expand/ExpandAll
+</h3><p><code>Expand</code> 很好理解，<code>Expand[expr]</code> 会展开表达式 $\mathrm{expr}$ 中的乘积和正整数幂。限于篇幅，这里不提供使用范例，可参考<a class="link" href="https://reference.wolfram.com/language/ref/Expand.html"  target="_blank" rel="noopener"
+    >官方文档</a>。<br>
+<code>ExpandAll</code> 在 <code>Expand</code> 的基础上，会展开表达式中<strong>任意位置</strong>的乘积和整数幂。如表达式 <code>Sin[(1 + x)^3]</code>，<code>Expand</code> 不会展开其中的 <code>(1+x)^3</code>，而 <code>ExpandAll</code> 会。</p>
+<h3 id="39-因式分解-factor">3.9 因式分解 Factor
+</h3><p><code>Factor[poly]</code>：在整数上对一个多项式分解因式。使用示例参考<a class="link" href="https://reference.wolfram.com/language/ref/Factor.html"  target="_blank" rel="noopener"
+    >官方文档</a>。</p>
+<h3 id="310-绘图-plotplot3d">3.10 绘图 Plot/Plot3D
+</h3><p><code>Plot</code> 和 <code>Plot3D</code> 的用法较为复杂，这里只介绍最基本的函数绘图：</p>
+<p><img src="/p/mathematica-intro/31.png"
+	width="1014"
+	height="1228"
+	srcset="/p/mathematica-intro/31_hu6012973142232991113.png 480w, /p/mathematica-intro/31_hu15321259495435351894.png 1024w"
+	loading="lazy"
+	
+		alt="Plot和Plot3D"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="82"
+		data-flex-basis="198px"
+	
+></p>
+<p>两个语句分别绘制：</p>
+<ul>
+<li>$\sin(x)$ 的图像，其中 $-2\pi\le x\le 2\pi$；</li>
+<li>$\sin(x+y^2)$ 的图像，其中 $-3\le x\le 3$，$-2\le y\le 2$。</li>
+</ul>
+<h2 id="4-总结">4. 总结
+</h2><p>我自己当初学习 MMA 时，被网上杂乱的教程搞得混乱不堪。因此就想写一篇教程，涵盖所有常用语法知识点，并让初学者避开我自己踩的一些坑。<br>
+初衷是写个<em>简明</em>的教程，结果一写就是八千多字…… 也感谢认真读到这里的读者们！<br>
+后续可能还会更一些用 Mathematica 解决数学和实际问题的文章，敬请期待！</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>乘法也可简写为 <code>a b</code>（中间必须有空格）。MMA 中，大部分空格可省略，但是<strong>乘法的空格不能省略</strong>（若写作没有空格的 <code>ab</code> 会被认为是一个变量）。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a class="link" href="https://www.wolfram.com/language/fast-introduction-for-programmers/en/built-in-functions/"  target="_blank" rel="noopener"
+    >https://www.wolfram.com/language/fast-introduction-for-programmers/en/built-in-functions/</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mathematica--wolfram-language/">Mathematica &amp; Wolfram Language</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 GoodCoder&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
