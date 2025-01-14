@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0. 前言\rDijkstra算法可在$\\mathcal O(m\\log m)$或$\\mathcal O(m\\log n)$的时间内求解无负权单源最短路问题。本文中，我们将详细介绍算法的原理、实现，以及常用的两种优化。\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\rDijkstra算法可在$\\mathcal O(m\\log m)$或$\\mathcal O(m\\log n)$的时间内求解无负权单源最短路问题。本文中，我们将详细介绍算法的原理、实现，以及常用的两种优化。\n">
 <title>【算法笔记】单源最短路问题——Dijkstra算法（无优化/优先队列/set优化）</title>
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/algonotes-dijkstra/'>
 
 <link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【算法笔记】单源最短路问题——Dijkstra算法（无优化/优先队列/set优化）">
-<meta property='og:description' content="0. 前言\rDijkstra算法可在$\\mathcal O(m\\log m)$或$\\mathcal O(m\\log n)$的时间内求解无负权单源最短路问题。本文中，我们将详细介绍算法的原理、实现，以及常用的两种优化。\n">
+<meta property='og:description' content="前言\rDijkstra算法可在$\\mathcal O(m\\log m)$或$\\mathcal O(m\\log n)$的时间内求解无负权单源最短路问题。本文中，我们将详细介绍算法的原理、实现，以及常用的两种优化。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/algonotes-dijkstra/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法竞赛' /><meta property='article:tag' content='算法笔记' /><meta property='article:published_time' content='2022-08-13T12:37:00&#43;08:00'/><meta property='article:modified_time' content='2022-08-13T12:37:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
     <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【算法笔记】单源最短路问题——Dijkstra算法（无优化/优先队列/set优化）">
-<meta name="twitter:description" content="0. 前言\rDijkstra算法可在$\\mathcal O(m\\log m)$或$\\mathcal O(m\\log n)$的时间内求解无负权单源最短路问题。本文中，我们将详细介绍算法的原理、实现，以及常用的两种优化。\n">
+<meta name="twitter:description" content="前言\rDijkstra算法可在$\\mathcal O(m\\log m)$或$\\mathcal O(m\\log n)$的时间内求解无负权单源最短路问题。本文中，我们将详细介绍算法的原理、实现，以及常用的两种优化。\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
@@ -263,16 +263,16 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#0-前言">0. 前言</a></li>
-    <li><a href="#1-流程">1. 流程</a></li>
-    <li><a href="#2-实现">2. 实现</a>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#流程">流程</a></li>
+    <li><a href="#实现">实现</a>
       <ol>
-        <li><a href="#21-朴素实现无优化">2.1 朴素实现（无优化）</a></li>
-        <li><a href="#22-优先队列优化">2.2 优先队列优化</a></li>
-        <li><a href="#23-set优化">2.3 <code>set</code>优化</a></li>
+        <li><a href="#朴素实现无优化">朴素实现（无优化）</a></li>
+        <li><a href="#优先队列优化">优先队列优化</a></li>
+        <li><a href="#set优化"><code>set</code>优化</a></li>
       </ol>
     </li>
-    <li><a href="#3-后记">3. 后记</a></li>
+    <li><a href="#后记">后记</a></li>
   </ol>
 </nav>
         </div>
@@ -344,12 +344,12 @@
     <section class="article-content">
     
     
-    <h2 id="0-前言">0. 前言
+    <h2 id="前言">前言
 </h2><p>Dijkstra算法可在$\mathcal O(m\log m)$或$\mathcal O(m\log n)$的时间内求解无负权单源最短路问题。本文中，我们将详细介绍算法的原理、实现，以及常用的两种优化。</p>
 <p>另外，Dijkstra算法也不要乱用，比如说多源的最短路，用Dijkstra求解的复杂度只有$\mathcal O(nm\log m)$，但太麻烦，如果数据范围允许，直接用<a class="link" href="https://blog.csdn.net/write_1m_lines/article/details/126310381"  target="_blank" rel="noopener"
     >Floyd</a>就能在$\mathcal O(n^3)$的时间内完成任务。</p>
 <p>废话不多说，下面来看Dijkstra算法的流程。</p>
-<h2 id="1-流程">1. 流程
+<h2 id="流程">流程
 </h2><p>将结点分成两个集合：已确定最短路长度的点集（记为$S$集合）的和未确定最短路长度的点集（记为$T$集合）。一开始所有的点都属于$T$集合。</p>
 <p>用$d_v$表示顶点$v$到起始点的距离、$s$表示起始点。<br>
 初始化$d_s=0$，其他点的$d$均为$+\infin$。</p>
@@ -359,14 +359,14 @@
 <li>对于与$v$相邻的每个点$u$，执行松弛操作：<code>dis[u] = min(dis[u], dis[v] + G[v][u])</code>。</li>
 </ol>
 <p>直到$T$集合为空，算法结束。下面来看最简单的实现。</p>
-<h2 id="2-实现">2. 实现
+<h2 id="实现">实现
 </h2><p>本算法的代码可以在<a class="link" href="https://codeforces.com/problemset/problem/20/C"  target="_blank" rel="noopener"
     >CF20C</a>/<a class="link" href="https://www.luogu.com.cn/problem/CF20C"  target="_blank" rel="noopener"
     >洛谷链接</a>提交。后面提供的参考代码的输入输出格式都是基于这道题的。数据范围：$n,m\le 10^5,w_i\le 10^6$。</p>
 <p>在编写代码之前，我们还要考虑一个问题：如何输出最短路径？<br>
 定义一个数组$\mathrm{par}$，$\mathrm{par}[i]$表示最短路径上在点$i$前面的点。初始时，$\mathrm{par}[s]=-1$，表示前面没有点。</p>
 <p>在$v\to u$这条边上更新<code>dis[u] = dis[v] + G[v][u]</code>时，同时更新<code>par[u] = v</code>，最后输出时顺着<code>par[v]</code>的路径往下逆序输出到达的点即可。</p>
-<h3 id="21-朴素实现无优化">2.1 朴素实现（无优化）
+<h3 id="朴素实现无优化">朴素实现（无优化）
 </h3><p>这种实现完全按照算法流程，时间复杂度为$\mathcal O(n^2)$，无法通过例题。下面给出代码。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -507,7 +507,7 @@
 		data-flex-basis="238px"
 	
 ></p>
-<h3 id="22-优先队列优化">2.2 优先队列优化
+<h3 id="优先队列优化">优先队列优化
 </h3><p>优先队列，又称二叉堆，是常用的一种数据结构。可以执行下列操作（$n$为优先队列队列中的元素个数）：</p>
 <ul>
 <li>弹出最小/最大的元素，时间$\mathcal O(\log n)$</li>
@@ -629,7 +629,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>时间复杂度为$\mathcal O(m\log m)$，<strong>可以通过此题</strong>。运行时间：$93\text{ms}$</p>
-<h3 id="23-set优化">2.3 <code>set</code>优化
+<h3 id="set优化"><code>set</code>优化
 </h3><p><code>set</code>又称<strong>集合</strong>，与优先队列相似，支持添加、删除，另外还可以删除任意元素，时间$\mathcal O(\log n)$。要发挥出<code>set</code>的优势，就要在维护时删掉多余的顶点-距离对，防止不必要的<code>dis[v] == d</code>这种判断。</p>
 <p>此时，集合中的元素个数<strong>永远不会超过$N$</strong>，因此总时间复杂度为$\mathcal O(m\log n)$。<br>
 在$m\ge n$，即边数大于顶点数时，这种方法优于<code>priority_queue</code>。不过，一般使用Dijkstra算法的题目中都是$m\le n$，所以<code>set</code>的优化不常用，但下面还是给出代码。</p>
@@ -748,7 +748,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>AC，运行时间：$78\text{ms}$</p>
-<h2 id="3-后记">3. 后记
+<h2 id="后记">后记
 </h2><p>总结一下Dijkstra算法的实现方式：</p>
 <ul>
 <li>暴力（$\mathcal O(n^2)$，TLE ;(）</li>

@@ -12,7 +12,7 @@
         <pubDate>Sat, 23 Jul 2022 08:00:00 +0800</pubDate>
         
         <guid>https://goodcoder666.github.io/p/pyside6-accountbook/</guid>
-        <description>&lt;h2 id=&#34;0-前言&#34;&gt;0. 前言
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;最近在家里闲着没事，正好又看到朋友@&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_67190987&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;studentWheat&lt;/a&gt;发了篇&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_67190987/article/details/124059237&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;用Tkinter做的账本&lt;/a&gt;，于是决定跟他一起改进这个程序。&lt;/p&gt;
@@ -59,7 +59,7 @@
 		data-flex-basis=&#34;231px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;1-后端&#34;&gt;1. 后端
+&lt;h2 id=&#34;后端&#34;&gt;后端
 &lt;/h2&gt;&lt;p&gt;后端主要是朋友做的，在这里就不多说了，放个代码：&lt;br&gt;
 &lt;code&gt;src/api.py&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -220,9 +220,9 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;详见&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_67190987/article/details/125918530&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://blog.csdn.net/qq_67190987/article/details/125918530&lt;/a&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;2-前端&#34;&gt;2. 前端
+&lt;h2 id=&#34;前端&#34;&gt;前端
 &lt;/h2&gt;&lt;p&gt;正如标题中所说，框架采用Qt6+Python，一般有两种选择（&lt;code&gt;PyQt6&lt;/code&gt;和&lt;code&gt;PySide6&lt;/code&gt;），我这里使用的是&lt;code&gt;PySide6&lt;/code&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;21-准备资源&#34;&gt;2.1 准备资源
+&lt;h3 id=&#34;准备资源&#34;&gt;准备资源
 &lt;/h3&gt;&lt;p&gt;在&lt;code&gt;src/icons&lt;/code&gt;下存好所有图片资源：&lt;br&gt;
 &lt;img src=&#34;https://goodcoder666.github.io/p/pyside6-accountbook/4.png&#34;
 	width=&#34;1278&#34;
@@ -238,7 +238,7 @@
 		data-flex-basis=&#34;701px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;22-designer-窗口绘制&#34;&gt;2.2 Designer 窗口绘制
+&lt;h3 id=&#34;designer-窗口绘制&#34;&gt;Designer 窗口绘制
 &lt;/h3&gt;&lt;p&gt;用Qt Designer绘制好各个窗口，如图:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/pyside6-accountbook/5.png&#34;
 	width=&#34;1156&#34;
@@ -268,7 +268,7 @@
 		data-flex-basis=&#34;486px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;23-安装依赖项&#34;&gt;2.3 安装依赖项
+&lt;h3 id=&#34;安装依赖项&#34;&gt;安装依赖项
 &lt;/h3&gt;&lt;p&gt;准备一份&lt;code&gt;requirements.txt&lt;/code&gt;，内容如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -288,7 +288,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;搞定安装。&lt;/p&gt;
-&lt;h3 id=&#34;24-编译资源和ui&#34;&gt;2.4 编译资源和UI
+&lt;h3 id=&#34;编译资源和ui&#34;&gt;编译资源和UI
 &lt;/h3&gt;&lt;p&gt;这个就不用多说了，直接用&lt;code&gt;pyside6-uic&lt;/code&gt;和&lt;code&gt;pyside6-rcc&lt;/code&gt;命令编译文件，编译出的文件列表如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -318,7 +318,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │  ui_MainWindow.py
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;25-代码编写&#34;&gt;2.5 代码编写
+&lt;/div&gt;&lt;h3 id=&#34;代码编写&#34;&gt;代码编写
 &lt;/h3&gt;&lt;p&gt;&lt;code&gt;src/dlgAdd.py&lt;/code&gt;&lt;br&gt;
 “添加账目”窗口，一个简单的&lt;code&gt;QDialog&lt;/code&gt;实例。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1015,7 +1015,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;sys&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;3-总结&#34;&gt;3. 总结
+&lt;/div&gt;&lt;h2 id=&#34;总结&#34;&gt;总结
 &lt;/h2&gt;&lt;p&gt;本项目到此结束。&lt;/p&gt;
 &lt;p&gt;【附：项目地址】&lt;/p&gt;
 &lt;ul&gt;

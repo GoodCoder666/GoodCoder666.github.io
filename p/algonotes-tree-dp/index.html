@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0. 定义\r树形DP，又称树状DP，即在树上进行的DP，是DP（动态规划）算法中较为复杂的一种。\n1. 基础\r令$f[u]=~$与树上顶点$u$有关的某些数据，并按照拓扑序（从叶子节点向上到根节点的顺序）进行$\\text{DP}$，确保在更新一个顶点时其子节点的dp值已经被更新好，以更新当前节点的$\\text{DP}$值。为方便计算，一般写成dfs的形式，如下：\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="定义\r树形DP，又称树状DP，即在树上进行的DP，是DP（动态规划）算法中较为复杂的一种。\n基础\r令$f[u]=~$与树上顶点$u$有关的某些数据，并按照拓扑序（从叶子节点向上到根节点的顺序）进行$\\text{DP}$，确保在更新一个顶点时其子节点的dp值已经被更新好，以更新当前节点的$\\text{DP}$值。为方便计算，一般写成dfs的形式，如下：\n">
 <title>【算法笔记】树形DP算法总结&amp;amp;详解</title>
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/algonotes-tree-dp/'>
 
 <link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【算法笔记】树形DP算法总结&amp;详解">
-<meta property='og:description' content="0. 定义\r树形DP，又称树状DP，即在树上进行的DP，是DP（动态规划）算法中较为复杂的一种。\n1. 基础\r令$f[u]=~$与树上顶点$u$有关的某些数据，并按照拓扑序（从叶子节点向上到根节点的顺序）进行$\\text{DP}$，确保在更新一个顶点时其子节点的dp值已经被更新好，以更新当前节点的$\\text{DP}$值。为方便计算，一般写成dfs的形式，如下：\n">
+<meta property='og:description' content="定义\r树形DP，又称树状DP，即在树上进行的DP，是DP（动态规划）算法中较为复杂的一种。\n基础\r令$f[u]=~$与树上顶点$u$有关的某些数据，并按照拓扑序（从叶子节点向上到根节点的顺序）进行$\\text{DP}$，确保在更新一个顶点时其子节点的dp值已经被更新好，以更新当前节点的$\\text{DP}$值。为方便计算，一般写成dfs的形式，如下：\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/algonotes-tree-dp/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法竞赛' /><meta property='article:tag' content='算法笔记' /><meta property='article:published_time' content='2022-08-12T10:15:00&#43;08:00'/><meta property='article:modified_time' content='2022-08-12T10:15:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
     <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【算法笔记】树形DP算法总结&amp;详解">
-<meta name="twitter:description" content="0. 定义\r树形DP，又称树状DP，即在树上进行的DP，是DP（动态规划）算法中较为复杂的一种。\n1. 基础\r令$f[u]=~$与树上顶点$u$有关的某些数据，并按照拓扑序（从叶子节点向上到根节点的顺序）进行$\\text{DP}$，确保在更新一个顶点时其子节点的dp值已经被更新好，以更新当前节点的$\\text{DP}$值。为方便计算，一般写成dfs的形式，如下：\n">
+<meta name="twitter:description" content="定义\r树形DP，又称树状DP，即在树上进行的DP，是DP（动态规划）算法中较为复杂的一种。\n基础\r令$f[u]=~$与树上顶点$u$有关的某些数据，并按照拓扑序（从叶子节点向上到根节点的顺序）进行$\\text{DP}$，确保在更新一个顶点时其子节点的dp值已经被更新好，以更新当前节点的$\\text{DP}$值。为方便计算，一般写成dfs的形式，如下：\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
@@ -263,27 +263,27 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#0-定义">0. 定义</a></li>
-    <li><a href="#1-基础">1. 基础</a>
+    <li><a href="#定义">定义</a></li>
+    <li><a href="#基础">基础</a>
       <ol>
         <li><a href="#例11子树大小">【例1.1】子树大小</a></li>
         <li><a href="#例12洛谷p1352httpswwwluogucomcnproblemp1352-没有上司的舞会">【例1.2】<a href="https://www.luogu.com.cn/problem/P1352">洛谷P1352</a> 没有上司的舞会</a></li>
         <li><a href="#习题">习题</a></li>
       </ol>
     </li>
-    <li><a href="#2-树上背包">2. 树上背包</a>
+    <li><a href="#树上背包">树上背包</a>
       <ol>
         <li><a href="#例21洛谷p2014httpswwwluogucomcnproblemp2014--acwing-286httpswwwacwingcomproblemcontent288-选课">【例2.1】<a href="https://www.luogu.com.cn/problem/P2014">洛谷P2014</a> / <a href="https://www.acwing.com/problem/content/288/">AcWing 286</a> 选课</a></li>
         <li><a href="#习题-1">习题</a></li>
       </ol>
     </li>
-    <li><a href="#3-换根-dp">3. 换根 DP</a>
+    <li><a href="#换根-dp">换根 DP</a>
       <ol>
         <li><a href="#例31洛谷-p3478httpswwwluogucomcnproblemp3478-poi2008-sta-station">【例3.1】<a href="https://www.luogu.com.cn/problem/P3478">洛谷 P3478</a> [POI2008] STA-Station</a></li>
         <li><a href="#习题-2">习题</a></li>
       </ol>
     </li>
-    <li><a href="#4-后记">4. 后记</a></li>
+    <li><a href="#后记">后记</a></li>
   </ol>
 </nav>
         </div>
@@ -355,9 +355,9 @@
     <section class="article-content">
     
     
-    <h2 id="0-定义">0. 定义
+    <h2 id="定义">定义
 </h2><p><strong>树形DP</strong>，又称<strong>树状DP</strong>，即在树上进行的DP，是DP（动态规划）算法中较为复杂的一种。</p>
-<h2 id="1-基础">1. 基础
+<h2 id="基础">基础
 </h2><p>令$f[u]=~$与树上顶点$u$有关的某些数据，并按照<strong>拓扑序</strong>（从叶子节点向上到根节点的顺序）进行$\text{DP}$，确保在更新一个顶点时<strong>其子节点的dp值已经被更新好</strong>，以更新当前节点的$\text{DP}$值。为方便计算，一般写成dfs的形式，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -586,7 +586,7 @@ $$<p><br>
 <li><a class="link" href="https://www.luogu.com.cn/problem/P3574"  target="_blank" rel="noopener"
     >洛谷 P3574 [POI2014] FAR-FarmCraft</a></li>
 </ul>
-<h2 id="2-树上背包">2. 树上背包
+<h2 id="树上背包">树上背包
 </h2><p>在基本算法之上，树形dp还可以用于树上背包问题。来看一道例题：</p>
 <h3 id="例21洛谷p2014httpswwwluogucomcnproblemp2014--acwing-286httpswwwacwingcomproblemcontent288-选课">【例2.1】<a class="link" href="https://www.luogu.com.cn/problem/P2014"  target="_blank" rel="noopener"
     >洛谷P2014</a> / <a class="link" href="https://www.acwing.com/problem/content/288/"  target="_blank" rel="noopener"
@@ -698,7 +698,7 @@ $$<p><br>
 <li><a class="link" href="https://loj.ac/p/2268"  target="_blank" rel="noopener"
     >LOJ #2268. 「SDOI2017」苹果树</a></li>
 </ul>
-<h2 id="3-换根-dp">3. 换根 DP
+<h2 id="换根-dp">换根 DP
 </h2><p>换根DP，即为不知道根结点时使用的一种树形DP，时间复杂度一般为$\mathcal O(N)$。</p>
 <h3 id="例31洛谷-p3478httpswwwluogucomcnproblemp3478-poi2008-sta-station">【例3.1】<a class="link" href="https://www.luogu.com.cn/problem/P3478"  target="_blank" rel="noopener"
     >洛谷 P3478</a> [POI2008] STA-Station
@@ -933,7 +933,7 @@ $$<p><br>
 <li><a class="link" href="https://atcoder.jp/contests/abc222/tasks/abc222_f"  target="_blank" rel="noopener"
     >ABC 222F - Expensive Expense</a></li>
 </ul>
-<h2 id="4-后记">4. 后记
+<h2 id="后记">后记
 </h2><p><del>好像这玩意也并不是开头所说的那么难…… 记得给个三连哦！</del></p>
 <p>参考文献：</p>
 <ul>

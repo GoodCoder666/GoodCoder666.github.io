@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0. 前言\r最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。\n这种算法应用很广泛，可以很容易解决树上最短路等问题。\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。\n这种算法应用很广泛，可以很容易解决树上最短路等问题。\n">
 <title>【算法笔记】最近公共祖先（LCA）问题求解——倍增算法</title>
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/algonotes-lca/'>
 
 <link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【算法笔记】最近公共祖先（LCA）问题求解——倍增算法">
-<meta property='og:description' content="0. 前言\r最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。\n这种算法应用很广泛，可以很容易解决树上最短路等问题。\n">
+<meta property='og:description' content="前言\r最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。\n这种算法应用很广泛，可以很容易解决树上最短路等问题。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/algonotes-lca/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法竞赛' /><meta property='article:tag' content='算法笔记' /><meta property='article:published_time' content='2023-01-06T23:03:00&#43;08:00'/><meta property='article:modified_time' content='2023-01-06T23:03:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
     <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【算法笔记】最近公共祖先（LCA）问题求解——倍增算法">
-<meta name="twitter:description" content="0. 前言\r最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。\n这种算法应用很广泛，可以很容易解决树上最短路等问题。\n">
+<meta name="twitter:description" content="前言\r最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。\n这种算法应用很广泛，可以很容易解决树上最短路等问题。\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
@@ -263,18 +263,18 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#0-前言">0. 前言</a></li>
-    <li><a href="#1-性质">1. 性质</a></li>
-    <li><a href="#2-求解算法">2. 求解算法</a>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#性质">性质</a></li>
+    <li><a href="#求解算法">求解算法</a>
       <ol>
-        <li><a href="#20-前置知识1树的邻接表存储">2.0 前置知识1：树的邻接表存储</a></li>
-        <li><a href="#21-前置知识2dfs-遍历--结点的深度计算">2.1 前置知识2：DFS 遍历 &amp; 结点的深度计算</a></li>
-        <li><a href="#22-朴素算法">2.2 朴素算法</a></li>
-        <li><a href="#23-倍增">2.3 倍增</a></li>
+        <li><a href="#前置知识1树的邻接表存储">前置知识1：树的邻接表存储</a></li>
+        <li><a href="#前置知识2dfs-遍历--结点的深度计算">前置知识2：DFS 遍历 &amp; 结点的深度计算</a></li>
+        <li><a href="#朴素算法">朴素算法</a></li>
+        <li><a href="#倍增">倍增</a></li>
       </ol>
     </li>
-    <li><a href="#3-习题">3. 习题</a></li>
-    <li><a href="#4-总结">4. 总结</a></li>
+    <li><a href="#习题">习题</a></li>
+    <li><a href="#总结">总结</a></li>
   </ol>
 </nav>
         </div>
@@ -346,7 +346,7 @@
     <section class="article-content">
     
     
-    <h2 id="0-前言">0. 前言
+    <h2 id="前言">前言
 </h2><p>最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。</p>
 <p>这种算法应用很广泛，可以很容易解决树上最短路等问题。</p>
 <p>为了方便，我们记某点集 $S=\{v_1,v_2,\ldots,v_n\}$ 的最近公共祖先为 $\text{LCA}(v_1,v_2,\ldots,v_n)$ 或 $\text{LCA}(S)$。</p>
@@ -356,7 +356,7 @@
 </blockquote>
 <p>例题：<a class="link" href="https://www.luogu.com.cn/problem/P3379"  target="_blank" rel="noopener"
     >洛谷 P3379 【模板】最近公共祖先（LCA）</a></p>
-<h2 id="1-性质">1. 性质
+<h2 id="性质">性质
 </h2><ol>
 <li>$\text{LCA}(\{u\})=u$；</li>
 <li>$u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$；</li>
@@ -366,8 +366,8 @@
 <li>两点的最近公共祖先必定处在树上两点间的最短路上；</li>
 <li>$d(u,v)=h(u)+h(v)-2h(\text{LCA}(u,v))$，其中 $d$ 是树上两点间的距离，$h$ 代表某点到树根的距离。</li>
 </ol>
-<h2 id="2-求解算法">2. 求解算法
-</h2><h3 id="20-前置知识1树的邻接表存储">2.0 前置知识1：树的邻接表存储
+<h2 id="求解算法">求解算法
+</h2><h3 id="前置知识1树的邻接表存储">前置知识1：树的邻接表存储
 </h3><p>简单来说，树的邻接表存储就是<strong>对于每个结点，存储其能通过一条有向或无向边，直接到达的所有结点。</strong><br>
 传统的存储方式是使用链表（或模拟链表），这样实现比较麻烦，也容易写错。<br>
 此处为了更好的可读性我们<strong>使用<code>STL</code>中的可变长度顺序表<code>vector</code></strong>。</p>
@@ -416,7 +416,7 @@
 </span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="21-前置知识2dfs-遍历--结点的深度计算">2.1 前置知识2：DFS 遍历 &amp; 结点的深度计算
+</div><h3 id="前置知识2dfs-遍历--结点的深度计算">前置知识2：DFS 遍历 &amp; 结点的深度计算
 </h3><p>对于两种算法，都需要预处理出每个结点的深度。<br>
 <strong>一个结点的深度定义为这个结点到树根的距离。</strong></p>
 <p>要预处理出所有结点的深度，很简单：<br>
@@ -484,7 +484,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="22-朴素算法">2.2 朴素算法
+</div><h3 id="朴素算法">朴素算法
 </h3><p>令 $u,v$ 表示两个待求 LCA 的结点。需提前预处理出每个结点的父亲（记结点 $v$ 的父亲为 $f_v$）。</p>
 <p>算法步骤：</p>
 <ol>
@@ -624,7 +624,7 @@
 	
 ></p>
 <p>这是因为，这四个点是专门针对朴素算法设计的（正好是一个 Subtask），使算法的时间复杂度达到了最坏情况 $\mathcal O(NQ)$，而 $N,Q\le 5\times 10^5$，所以无法通过测试点。当然，朴素算法在随机树上回答 $Q$ 次询问的时间复杂度还是 $\mathcal O(N+Q\log N)$<del>，被极端数据卡掉也没办法</del>。</p>
-<h3 id="23-倍增">2.3 倍增
+<h3 id="倍增">倍增
 </h3><p>倍增算法是朴素算法的改进算法，也是最经典的 LCA 求法。</p>
 <p>预处理：</p>
 <ul>
@@ -788,14 +788,14 @@ $$
 		data-flex-basis="464px"
 	
 ></p>
-<h2 id="3-习题">3. 习题
+<h2 id="习题">习题
 </h2><ul>
 <li>题目链接：<a class="link" href="https://www.luogu.com.cn/problem/P8805"  target="_blank" rel="noopener"
     >洛谷 P8805 [蓝桥杯 2022 国 B] 机房</a></li>
 <li>题解：<a class="link" href="https://best-blogs.blog.luogu.org/solution-p8805"  target="_blank" rel="noopener"
     >https://best-blogs.blog.luogu.org/solution-p8805</a></li>
 </ul>
-<h2 id="4-总结">4. 总结
+<h2 id="总结">总结
 </h2><p>本文详细讲解了 LCA 问题以及求解 LCA 的两种算法。对比如下：</p>
 <div class="table-wrapper"><table>
   <thead>

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0. 前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n">
 <title>【算法笔记】位运算详解</title>
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/algonotes-bwop/'>
 
 <link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【算法笔记】位运算详解">
-<meta property='og:description' content="0. 前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n">
+<meta property='og:description' content="前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/algonotes-bwop/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法竞赛' /><meta property='article:tag' content='算法笔记' /><meta property='article:published_time' content='2022-10-18T08:30:00&#43;08:00'/><meta property='article:modified_time' content='2022-10-18T08:30:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
     <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【算法笔记】位运算详解">
-<meta name="twitter:description" content="0. 前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n">
+<meta name="twitter:description" content="前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
@@ -263,63 +263,63 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#0-前言">0. 前言</a></li>
-    <li><a href="#1-基本运算">1. 基本运算</a>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#基本运算">基本运算</a>
       <ol>
-        <li><a href="#11-取反">1.1 取反</a></li>
-        <li><a href="#12-按位与">1.2 按位与</a></li>
-        <li><a href="#13-按位或">1.3 按位或</a></li>
-        <li><a href="#14-异或">1.4 异或</a></li>
-        <li><a href="#15-位移">1.5 位移</a></li>
-        <li><a href="#16-练习题">1.6 练习题</a>
+        <li><a href="#取反">取反</a></li>
+        <li><a href="#按位与">按位与</a></li>
+        <li><a href="#按位或">按位或</a></li>
+        <li><a href="#异或">异或</a></li>
+        <li><a href="#位移">位移</a></li>
+        <li><a href="#练习题">练习题</a>
           <ol>
-            <li><a href="#161-判断2的整数次幂">1.6.1 判断的整数次幂</a></li>
-            <li><a href="#162-洛谷-p1100-高低位交换httpswwwluogucomcnproblemp1100">1.6.2 <a href="https://www.luogu.com.cn/problem/P1100">洛谷 P1100 高低位交换</a></a></li>
-            <li><a href="#163-找出不同的数">1.6.3 找出不同的数</a></li>
-            <li><a href="#164-atcoder-beginner-contest-261-e---many-operationshttpsatcoderjpcontestsabc261tasksabc261_e">1.6.4 <a href="https://atcoder.jp/contests/abc261/tasks/abc261_e">AtCoder Beginner Contest 261 E - Many Operations</a></a></li>
+            <li><a href="#判断2的整数次幂">判断的整数次幂</a></li>
+            <li><a href="#洛谷-p1100-高低位交换httpswwwluogucomcnproblemp1100"><a href="https://www.luogu.com.cn/problem/P1100">洛谷 P1100 高低位交换</a></a></li>
+            <li><a href="#找出不同的数">找出不同的数</a></li>
+            <li><a href="#atcoder-beginner-contest-261-e---many-operationshttpsatcoderjpcontestsabc261tasksabc261_e"><a href="https://atcoder.jp/contests/abc261/tasks/abc261_e">AtCoder Beginner Contest 261 E - Many Operations</a></a></li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#2-扩展概念运算">2. 扩展概念&amp;运算</a>
+    <li><a href="#扩展概念运算">扩展概念&amp;运算</a>
       <ol>
-        <li><a href="#21-lowbit">2.1 lowbit</a></li>
-        <li><a href="#22-popcount">2.2 popcount</a></li>
+        <li><a href="#lowbit">lowbit</a></li>
+        <li><a href="#popcount">popcount</a></li>
       </ol>
     </li>
-    <li><a href="#3-builtin-位运算函数">3. builtin 位运算函数</a>
+    <li><a href="#builtin-位运算函数">builtin 位运算函数</a>
       <ol>
-        <li><a href="#31-__builtin_popcount__builtin_popcountll">3.1 __builtin_popcount/__builtin_popcountll</a></li>
-        <li><a href="#32-__builtin_ctz--__buitlin_ctzll">3.2 __builtin_ctz / __buitlin_ctzll</a></li>
-        <li><a href="#33-__buitlin_clz--__buitlin_clzll">3.3 __buitlin_clz / __buitlin_clzll</a></li>
-        <li><a href="#34-__builtin_ffs--__buitlin_ffsll">3.4 __builtin_ffs / __buitlin_ffsll</a></li>
-        <li><a href="#35-__builtin_parity--__builtin_parityll">3.5 __builtin_parity / __builtin_parityll</a></li>
+        <li><a href="#__builtin_popcount__builtin_popcountll">__builtin_popcount/__builtin_popcountll</a></li>
+        <li><a href="#__builtin_ctz--__buitlin_ctzll">__builtin_ctz / __buitlin_ctzll</a></li>
+        <li><a href="#__buitlin_clz--__buitlin_clzll">__buitlin_clz / __buitlin_clzll</a></li>
+        <li><a href="#__builtin_ffs--__buitlin_ffsll">__builtin_ffs / __buitlin_ffsll</a></li>
+        <li><a href="#__builtin_parity--__builtin_parityll">__builtin_parity / __builtin_parityll</a></li>
       </ol>
     </li>
-    <li><a href="#4-位运算的应用">4. 位运算的应用</a>
+    <li><a href="#位运算的应用">位运算的应用</a>
       <ol>
-        <li><a href="#41-子集表示法">4.1 子集表示法</a>
+        <li><a href="#子集表示法">子集表示法</a>
           <ol>
-            <li><a href="#411-子集操作">4.1.1 子集操作</a></li>
-            <li><a href="#412-子集枚举">4.1.2 子集枚举</a></li>
-            <li><a href="#413-扩展stdbitset">4.1.3 扩展：std::bitset</a></li>
+            <li><a href="#子集操作">子集操作</a></li>
+            <li><a href="#子集枚举">子集枚举</a></li>
+            <li><a href="#扩展stdbitset">扩展：std::bitset</a></li>
           </ol>
         </li>
-        <li><a href="#42-深度优先搜索dfs的位运算优化">4.2 深度优先搜索（DFS）的位运算优化</a>
+        <li><a href="#深度优先搜索dfs的位运算优化">深度优先搜索（DFS）的位运算优化</a>
           <ol>
             <li><a href="#附n皇后问题的两种解法耗时对比">附：N皇后问题的两种解法耗时对比</a></li>
           </ol>
         </li>
-        <li><a href="#43-其他应用">4.3 其他应用</a>
+        <li><a href="#其他应用">其他应用</a>
           <ol>
-            <li><a href="#431-两数交换">4.3.1 两数交换</a></li>
-            <li><a href="#432-两数平均数防溢出">4.3.2 两数平均数（防溢出）</a></li>
-            <li><a href="#433-判断一个数是否为2的整数次幂">4.3.3 判断一个数是否为的整数次幂</a></li>
+            <li><a href="#两数交换">两数交换</a></li>
+            <li><a href="#两数平均数防溢出">两数平均数（防溢出）</a></li>
+            <li><a href="#判断一个数是否为2的整数次幂">判断一个数是否为的整数次幂</a></li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#5-总结">5. 总结</a></li>
+    <li><a href="#总结">总结</a></li>
   </ol>
 </nav>
         </div>
@@ -376,7 +376,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 13 分钟
+                    阅读时长: 12 分钟
                 </time>
             </div>
         
@@ -391,13 +391,13 @@
     <section class="article-content">
     
     
-    <h2 id="0-前言">0. 前言
+    <h2 id="前言">前言
 </h2><p>突然想到位运算是个好东西，就来水一波文章了……</p>
 <p>注意：我把能想到的有关位运算的所有内容都放进来了，所以<strong>篇幅较长，请谅解</strong>！若有写的不清楚或者不够详细的地方欢迎在评论区补充，<em><strong>谢谢支持！</strong></em></p>
 <p><strong>本文中参考代码均使用C++编写。</strong></p>
 <p>废话不多说，下面步入正题。</p>
 <hr>
-<h2 id="1-基本运算">1. 基本运算
+<h2 id="基本运算">基本运算
 </h2><p><em>有一定基础的可以跳过该部分。</em></p>
 <p>位运算的简要法则：</p>
 <div class="table-wrapper"><table>
@@ -442,12 +442,12 @@
   </tbody>
 </table></div>
 <p>详细解释：</p>
-<h3 id="11-取反">1.1 取反
+<h3 id="取反">取反
 </h3><p>取反（<code>~x</code>）是最简单的位运算操作，只有一个参数$x$。将参数上的每一位对应取反即可。例如：<br>
 <code>~0011 = 1100</code><br>
 <code>~1011 = 0100</code><br>
 性质：<code>~(~x) = x</code></p>
-<h3 id="12-按位与">1.2 按位与
+<h3 id="按位与">按位与
 </h3><p>按位与（<code>x &amp; y</code>）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：</p>
 <div class="table-wrapper"><table>
   <thead>
@@ -491,7 +491,7 @@
 <li>与$0$：<code>0 &amp; a1 &amp; a2 &amp; a3 &amp; ... = 0</code></li>
 <li>与$\infty$（全$1$）：<code>a &amp; inf = a</code></li>
 </ul>
-<h3 id="13-按位或">1.3 按位或
+<h3 id="按位或">按位或
 </h3><p>按位与（<code>x | y</code>）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：</p>
 <div class="table-wrapper"><table>
   <thead>
@@ -535,7 +535,7 @@
 <li>或$0$：<code>a | 0 = a</code></li>
 <li>或$\infty$（全$1$）：<code>a | inf = inf</code></li>
 </ul>
-<h3 id="14-异或">1.4 异或
+<h3 id="异或">异或
 </h3><p>异或（$x\oplus y$或<code>x ^ y</code>）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：</p>
 <div class="table-wrapper"><table>
   <thead>
@@ -581,7 +581,7 @@
 <li>异或$\infty$（全$1$）：$a\oplus \infty=~$<code>~a</code></li>
 <li>若$a\oplus b=c$，则$a\oplus c=b$。</li>
 </ul>
-<h3 id="15-位移">1.5 位移
+<h3 id="位移">位移
 </h3><p>位移分为左移（<code>&lt;&lt;</code>）和右移（<code>&gt;&gt;</code>）。</p>
 <ul>
 <li><code>a &lt;&lt; b</code>：将$a$末尾添上$b$个$0$的结果。</li>
@@ -593,10 +593,10 @@
 <li><code>a &lt;&lt; b</code>$~=a\times 2^b$</li>
 <li><code>a &gt;&gt; b</code>$~=\lfloor\frac a {2^b}\rfloor$</li>
 </ul>
-<h3 id="16-练习题">1.6 练习题
-</h3><h4 id="161-判断2的整数次幂">1.6.1 判断$2$的整数次幂
+<h3 id="练习题">练习题
+</h3><h4 id="判断2的整数次幂">判断$2$的整数次幂
 </h4><p>题意：给定整数$N$，判断其是否为$2$的整数次幂。</p>
-<h4 id="162-洛谷-p1100-高低位交换httpswwwluogucomcnproblemp1100">1.6.2 <a class="link" href="https://www.luogu.com.cn/problem/P1100"  target="_blank" rel="noopener"
+<h4 id="洛谷-p1100-高低位交换httpswwwluogucomcnproblemp1100"><a class="link" href="https://www.luogu.com.cn/problem/P1100"  target="_blank" rel="noopener"
     >洛谷 P1100 高低位交换</a>
 </h4><p>题意：给定一个$32$位整数$x$，在二进制下交换其前$16$位与后$16$位，输出最终的数。</p>
 <p>答案为<code>ans = (x &gt;&gt; 16) | (x &lt;&lt; 16)</code>，这样解释：</p>
@@ -659,7 +659,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="163-找出不同的数">1.6.3 找出不同的数
+</div><h4 id="找出不同的数">找出不同的数
 </h4><p>给定一个序列$A=(A_1,A_2,\dots,A_{2N+1})$，其中有$N$个数各出现$2$次，还有一个数正好出现$1$次。找到这个数。请尽可能优化程序的时间和空间复杂度。</p>
 <p><strong>- 时间$\mathcal O(N)$或$\mathcal O(N\log N)$，空间$\mathcal O(N)$解法</strong><br>
 简单统计每个数的出现次数，最后找到正好出现$1$次的数。</p>
@@ -708,7 +708,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="164-atcoder-beginner-contest-261-e---many-operationshttpsatcoderjpcontestsabc261tasksabc261_e">1.6.4 <a class="link" href="https://atcoder.jp/contests/abc261/tasks/abc261_e"  target="_blank" rel="noopener"
+</div><h4 id="atcoder-beginner-contest-261-e---many-operationshttpsatcoderjpcontestsabc261tasksabc261_e"><a class="link" href="https://atcoder.jp/contests/abc261/tasks/abc261_e"  target="_blank" rel="noopener"
     >AtCoder Beginner Contest 261 E - Many Operations</a>
 </h4><p>解法：对于$i=1,2,\dots,N$，记录操作$1,2,\dots,i$后每一位上的$0$和$1$分别变成什么，可以在$\mathcal O(N)$的时间内用类似于前缀和的方法完成；最后用位运算快速模拟$N$次连续操作即可，总时间复杂度为$\mathcal O(N)$。</p>
 <div class="highlight"><div class="chroma">
@@ -756,8 +756,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h2 id="2-扩展概念运算">2. 扩展概念&amp;运算
-</h2><h3 id="21-lowbit">2.1 lowbit
+<h2 id="扩展概念运算">扩展概念&amp;运算
+</h2><h3 id="lowbit">lowbit
 </h3><p><code>lowbit(x)</code>即为二进制下$x$的最低位，如<code>lowbit(10010) = 10</code>、<code>lowbit(1) = 1</code>。严格来说$0$没有<code>lowbit</code>，部分情况下可视为<code>lowbit(0) = 1</code>。利用<code>lowbit</code>函数可实现<a class="link" href="https://blog.csdn.net/write_1m_lines/article/details/126441412"  target="_blank" rel="noopener"
     >树状数组</a>等数据结构。</p>
 <p><strong>lowbit 计算方式</strong></p>
@@ -793,7 +793,7 @@
 这种方法常用于<a class="link" href="https://blog.csdn.net/write_1m_lines/article/details/126441412"  target="_blank" rel="noopener"
     >树状数组</a>中，可提升<code>x - lowbit(x)</code>的计算速度。</li>
 </ol>
-<h3 id="22-popcount">2.2 popcount
+<h3 id="popcount">popcount
 </h3><p><code>popcount(x)</code>定义为$x$在二进制下$1$的个数，如<code>popcount(10101) = 3</code>，<code>popcount(0) = 0</code>。</p>
 <p><strong>popcount 计算方式</strong></p>
 <ol>
@@ -851,27 +851,27 @@
 详见<code>3.1 __builtin_popcount/__builtin_popcountll</code>。</li>
 </ol>
 <hr>
-<h2 id="3-builtin-位运算函数">3. builtin 位运算函数
+<h2 id="builtin-位运算函数">builtin 位运算函数
 </h2><p>注意：后面带<code>ll</code>的传入<code>long long</code>类型，不带<code>ll</code>接受<code>int</code>类型。本部分内容按常用程度递减排序。<br>
 参考：<a class="link" href="https://blog.csdn.net/zeekliu/article/details/124848210"  target="_blank" rel="noopener"
     >https://blog.csdn.net/zeekliu/article/details/124848210</a></p>
-<h3 id="31-__builtin_popcount__builtin_popcountll">3.1 __builtin_popcount/__builtin_popcountll
+<h3 id="__builtin_popcount__builtin_popcountll">__builtin_popcount/__builtin_popcountll
 </h3><p>返回参数在二进制下$1$的个数。</p>
-<h3 id="32-__builtin_ctz--__buitlin_ctzll">3.2 __builtin_ctz / __buitlin_ctzll
+<h3 id="__builtin_ctz--__buitlin_ctzll">__builtin_ctz / __buitlin_ctzll
 </h3><p>返回参数在二进制下末尾$0$的个数。</p>
-<h3 id="33-__buitlin_clz--__buitlin_clzll">3.3 __buitlin_clz / __buitlin_clzll
+<h3 id="__buitlin_clz--__buitlin_clzll">__buitlin_clz / __buitlin_clzll
 </h3><p>返回参数在二进制下前导$0$的个数。</p>
-<h3 id="34-__builtin_ffs--__buitlin_ffsll">3.4 __builtin_ffs / __buitlin_ffsll
+<h3 id="__builtin_ffs--__buitlin_ffsll">__builtin_ffs / __buitlin_ffsll
 </h3><p>返回参数在二进制下最后一个1在第几位（从后往前）。<br>
 注意：一般来说，<code>builtin_ffs(x) = __builtin_ctz(x) + 1</code>。当$x=0$时，<code>builtin_ffs(x) = 0</code>。</p>
-<h3 id="35-__builtin_parity--__builtin_parityll">3.5 __builtin_parity / __builtin_parityll
+<h3 id="__builtin_parity--__builtin_parityll">__builtin_parity / __builtin_parityll
 </h3><p>返回参数在二进制下$1$的个数的奇偶性（偶：0，奇：1），即<code>__builtin_parity(x) = __builtin_popcount(x) % 2</code>。<br>
 P.S. 这函数，不知是哪位神仙想出来的……</p>
 <hr>
-<h2 id="4-位运算的应用">4. 位运算的应用
-</h2><h3 id="41-子集表示法">4.1 子集表示法
+<h2 id="位运算的应用">位运算的应用
+</h2><h3 id="子集表示法">子集表示法
 </h3><p>对于集合$\{0,1,\dots,N-1\}$，我们使用一个$N$位的二进制整数$S$来表示它的一个子集。从右往左第$i$位表示子集是否包含了$i$。容易发现，对于任意子集$S$，$S\in [0,2^N-1]$，且对于任意$S\in [0,2^N-1]$，$S$都是$\{0,1,\dots,N-1\}$的一个有效子集。下面我们来讲这种子集表示的具体操作。</p>
-<h4 id="411-子集操作">4.1.1 子集操作
+<h4 id="子集操作">子集操作
 </h4><p>子集的操作如下（规定$N$为集合元素个数）：</p>
 <ul>
 <li>空集：$0$</li>
@@ -885,7 +885,7 @@ P.S. 这函数，不知是哪位神仙想出来的……</p>
 <li>$S$和$T$的并集（$S$和$T$中有任意一个包含的集合）：<code>S | T</code></li>
 <li>$S$和$T$的差集（$S$和$T$中恰好有一个包含的集合）：<code>S ^ T</code></li>
 </ul>
-<h4 id="412-子集枚举">4.1.2 子集枚举
+<h4 id="子集枚举">子集枚举
 </h4><p>讲了这么多，也该到子集的实际应用了吧。下面我们来看子集最初步的应用——子集枚举。</p>
 <p><strong>- 必会：枚举$N$个元素的所有子集</strong><br>
 这个很简单，直接枚举$S\in [0,2^N-1]$即可。代码如下：</p>
@@ -998,7 +998,7 @@ P.S. 这函数，不知是哪位神仙想出来的……</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样可保证每次枚举到的都是大小为$K$的子集，可以大大提高算法效率。</p>
-<h4 id="413-扩展stdbitset">4.1.3 扩展：std::bitset
+<h4 id="扩展stdbitset">扩展：std::bitset
 </h4><p><code>bitset</code>，顾名思义，即为用位运算操作的集合。<br>
 对于元素个数$N\in [1,64]$，集合$\{0,1,\dots,N-1\}$的任意子集都可以用一个$32$或$64$位整数表示出来，操作时间复杂度为$\mathcal O(1)$。那么对于$N>64$，怎么办？我们可以用多个$32$或$64$位无符号整数拼凑为一个$N$位的<code>bitset</code>，容易发现其操作的时间复杂度为$\mathcal O(\frac Nw)$（$N$位的二进制数可用$\lceil\frac Nw\rceil$个$w$位无符号整数拼凑而成），其中$w$一般为$32$或$64$。</p>
 <p>C++的<code>Standard Template Library</code>（<code>STL</code>）为我们提供了<code>&lt;bitset&gt;</code>头文件，用于<code>bitset</code>的定义。</p>
@@ -1128,7 +1128,7 @@ P.S. 这函数，不知是哪位神仙想出来的……</p>
     >AtCoder Beginner Contest 258 G - Triangle</a>
 </h5><p>题意和解法见<a class="link" href="https://blog.csdn.net/write_1m_lines/article/details/125582361#t15"  target="_blank" rel="noopener"
     >https://blog.csdn.net/write_1m_lines/article/details/125582361#t15</a>。</p>
-<h3 id="42-深度优先搜索dfs的位运算优化">4.2 深度优先搜索（DFS）的位运算优化
+<h3 id="深度优先搜索dfs的位运算优化">深度优先搜索（DFS）的位运算优化
 </h3><p>本算法其实还是<strong>二进制表示子集</strong>的一种优化，不过内容较多，所以单独放了出来。</p>
 <p>考虑经典的<strong>八皇后问题</strong>：</p>
 <blockquote>
@@ -1333,8 +1333,8 @@ P.S. 这函数，不知是哪位神仙想出来的……</p>
       </tr>
   </tbody>
 </table></div>
-<h3 id="43-其他应用">4.3 其他应用
-</h3><h4 id="431-两数交换">4.3.1 两数交换
+<h3 id="其他应用">其他应用
+</h3><h4 id="两数交换">两数交换
 </h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1366,7 +1366,7 @@ P.S. 这函数，不知是哪位神仙想出来的……</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="432-两数平均数防溢出">4.3.2 两数平均数（防溢出）
+</div><h4 id="两数平均数防溢出">两数平均数（防溢出）
 </h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1391,7 +1391,7 @@ P.S. 这函数，不知是哪位神仙想出来的……</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="433-判断一个数是否为2的整数次幂">4.3.3 判断一个数是否为$2$的整数次幂
+</div><h4 id="判断一个数是否为2的整数次幂">判断一个数是否为$2$的整数次幂
 </h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1407,7 +1407,7 @@ P.S. 这函数，不知是哪位神仙想出来的……</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h2 id="5-总结">5. 总结
+<h2 id="总结">总结
 </h2><p>本文详细讲解了位运算的使用和扩展。</p>
 <hr>
 <p>创作不易，各位如果觉得好的话就请给个三连，感谢大家的支持！</p>

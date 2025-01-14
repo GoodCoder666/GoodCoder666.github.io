@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="最近（文章撰写时间为2020/6/1 18:40）疫情在中国情况好转，却在美国暴虐。\n本篇文章将爬取腾讯提供的美国疫情数据并制表。\n1. 爬取数据\r调用API接口\r接口：https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoCountryMerge\n观察得到的数据：\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="最近（文章撰写时间为2020/6/1 18:40）疫情在中国情况好转，却在美国暴虐。\n本篇文章将爬取腾讯提供的美国疫情数据并制表。\n爬取数据\r调用API接口\r接口：https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoCountryMerge\n观察得到的数据：\n">
 <title>【python爬虫】从腾讯API爬取美国疫情数据&#43;制表</title>
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/pws-tencent-us-19ncov/'>
 
 <link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【python爬虫】从腾讯API爬取美国疫情数据+制表">
-<meta property='og:description' content="最近（文章撰写时间为2020/6/1 18:40）疫情在中国情况好转，却在美国暴虐。\n本篇文章将爬取腾讯提供的美国疫情数据并制表。\n1. 爬取数据\r调用API接口\r接口：https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoCountryMerge\n观察得到的数据：\n">
+<meta property='og:description' content="最近（文章撰写时间为2020/6/1 18:40）疫情在中国情况好转，却在美国暴虐。\n本篇文章将爬取腾讯提供的美国疫情数据并制表。\n爬取数据\r调用API接口\r接口：https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoCountryMerge\n观察得到的数据：\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/pws-tencent-us-19ncov/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Python' /><meta property='article:tag' content='Python爬虫' /><meta property='article:published_time' content='2020-06-03T13:35:00&#43;08:00'/><meta property='article:modified_time' content='2020-06-03T13:35:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
     <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【python爬虫】从腾讯API爬取美国疫情数据+制表">
-<meta name="twitter:description" content="最近（文章撰写时间为2020/6/1 18:40）疫情在中国情况好转，却在美国暴虐。\n本篇文章将爬取腾讯提供的美国疫情数据并制表。\n1. 爬取数据\r调用API接口\r接口：https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoCountryMerge\n观察得到的数据：\n">
+<meta name="twitter:description" content="最近（文章撰写时间为2020/6/1 18:40）疫情在中国情况好转，却在美国暴虐。\n本篇文章将爬取腾讯提供的美国疫情数据并制表。\n爬取数据\r调用API接口\r接口：https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoCountryMerge\n观察得到的数据：\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
@@ -352,7 +352,7 @@
     <p>最近（文章撰写时间为2020/6/1 18:40）疫情在中国情况好转，却在美国暴虐。<br>
 本篇文章将爬取腾讯提供的美国<a class="link" href="https://news.qq.com/zt2020/page/feiyan.htm#/global"  target="_blank" rel="noopener"
     >疫情数据</a>并制表。</p>
-<h1 id="1-爬取数据">1. 爬取数据
+<h1 id="爬取数据">爬取数据
 </h1><h2 id="调用api接口">调用API接口
 </h2><p>接口：https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoCountryMerge<br>
 观察得到的数据：</p>
@@ -512,7 +512,7 @@ dead：该日累计死亡<br>
 </span></span><span class="line"><span class="cl">    <span class="n">now_confirms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">confirms</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">heals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">deads</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="2-绘图">2. 绘图
+</div><h1 id="绘图">绘图
 </h1><p>参考文章：https://www.cnblogs.com/lone5wolf/p/10870200.html<br>
 由于我在绘图方面还是个小白，所以直接贴出代码，敬请谅解。。。</p>
 <div class="highlight"><div class="chroma">
@@ -580,7 +580,7 @@ dead：该日累计死亡<br>
 		data-flex-basis="355px"
 	
 ></p>
-<h1 id="3-完整代码">3. 完整代码
+<h1 id="完整代码">完整代码
 </h1><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1

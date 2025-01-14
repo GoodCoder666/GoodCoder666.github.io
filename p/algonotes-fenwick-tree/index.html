@@ -267,8 +267,8 @@
     <li><a href="#基本算法">基本算法</a></li>
     <li><a href="#扩展应用">扩展应用</a>
       <ol>
-        <li><a href="#1-求逆序对">1. 求逆序对</a></li>
-        <li><a href="#2-区间更新">2. 区间更新</a></li>
+        <li><a href="#求逆序对">求逆序对</a></li>
+        <li><a href="#区间更新">区间更新</a></li>
       </ol>
     </li>
     <li><a href="#习题">习题</a></li>
@@ -544,7 +544,7 @@ $$<p>按照这样，就可以在$\mathcal O(\log n)$的时间复杂度内求$[0,
 <li>若$i \ne j$，且$A_i=A_j$，则$B_i=B_j$。</li>
 <li>若$i \ne j$，且$A_i>A_j$，则$B_i>B_j$。</li>
 </ul>
-<h3 id="1-求逆序对">1. 求逆序对
+<h3 id="求逆序对">求逆序对
 </h3><p><a class="link" href="https://baike.baidu.com/item/%E9%80%86%E5%BA%8F%E5%AF%B9/11035554"  target="_blank" rel="noopener"
     >逆序对</a>问题是经典的序列问题。众所周知，这类问题可以用归并排序在$\mathcal O(N\log N)$的时间内解决。不过，既然今天讲的是树状数组，<del>那就不能用归并排序</del>，就主要来说一说树状数组的解法。</p>
 <blockquote>
@@ -682,7 +682,7 @@ $\to A_i>A_j$<br>
 </div>
 </div><p>习题：<a class="link" href="https://codeforces.com/problemset/problem/1676/H2"  target="_blank" rel="noopener"
     >CF1676H2 Maximum Crossings (Hard Version)</a></p>
-<h3 id="2-区间更新">2. 区间更新
+<h3 id="区间更新">区间更新
 </h3><p>用过线段树的都知道，树状数组最大的缺点就是无法<strong>直接</strong>实现区间更新。不过，在一些特殊情况<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>下，我们可以通过<strong>差分+离散化</strong>来<strong>间接</strong>实现区间的更新。先来看<a class="link" href="https://www.luogu.com.cn/"  target="_blank" rel="noopener"
     >洛谷</a>上的模板：</p>
 <blockquote>

@@ -12,7 +12,7 @@
         <pubDate>Fri, 06 Jan 2023 23:03:00 +0800</pubDate>
         
         <guid>https://goodcoder666.github.io/p/algonotes-lca/</guid>
-        <description>&lt;h2 id=&#34;0-前言&#34;&gt;0. 前言
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。&lt;/p&gt;
 &lt;p&gt;这种算法应用很广泛，可以很容易解决树上最短路等问题。&lt;/p&gt;
 &lt;p&gt;为了方便，我们记某点集 $S=\{v_1,v_2,\ldots,v_n\}$ 的最近公共祖先为 $\text{LCA}(v_1,v_2,\ldots,v_n)$ 或 $\text{LCA}(S)$。&lt;/p&gt;
@@ -22,7 +22,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;例题：&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P3379&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷 P3379 【模板】最近公共祖先（LCA）&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;1-性质&#34;&gt;1. 性质
+&lt;h2 id=&#34;性质&#34;&gt;性质
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;$\text{LCA}(\{u\})=u$；&lt;/li&gt;
 &lt;li&gt;$u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$；&lt;/li&gt;
@@ -32,8 +32,8 @@
 &lt;li&gt;两点的最近公共祖先必定处在树上两点间的最短路上；&lt;/li&gt;
 &lt;li&gt;$d(u,v)=h(u)+h(v)-2h(\text{LCA}(u,v))$，其中 $d$ 是树上两点间的距离，$h$ 代表某点到树根的距离。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;2-求解算法&#34;&gt;2. 求解算法
-&lt;/h2&gt;&lt;h3 id=&#34;20-前置知识1树的邻接表存储&#34;&gt;2.0 前置知识1：树的邻接表存储
+&lt;h2 id=&#34;求解算法&#34;&gt;求解算法
+&lt;/h2&gt;&lt;h3 id=&#34;前置知识1树的邻接表存储&#34;&gt;前置知识1：树的邻接表存储
 &lt;/h3&gt;&lt;p&gt;简单来说，树的邻接表存储就是&lt;strong&gt;对于每个结点，存储其能通过一条有向或无向边，直接到达的所有结点。&lt;/strong&gt;&lt;br&gt;
 传统的存储方式是使用链表（或模拟链表），这样实现比较麻烦，也容易写错。&lt;br&gt;
 此处为了更好的可读性我们&lt;strong&gt;使用&lt;code&gt;STL&lt;/code&gt;中的可变长度顺序表&lt;code&gt;vector&lt;/code&gt;&lt;/strong&gt;。&lt;/p&gt;
@@ -82,7 +82,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;u&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;21-前置知识2dfs-遍历--结点的深度计算&#34;&gt;2.1 前置知识2：DFS 遍历 &amp;amp; 结点的深度计算
+&lt;/div&gt;&lt;h3 id=&#34;前置知识2dfs-遍历--结点的深度计算&#34;&gt;前置知识2：DFS 遍历 &amp;amp; 结点的深度计算
 &lt;/h3&gt;&lt;p&gt;对于两种算法，都需要预处理出每个结点的深度。&lt;br&gt;
 &lt;strong&gt;一个结点的深度定义为这个结点到树根的距离。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;要预处理出所有结点的深度，很简单：&lt;br&gt;
@@ -150,7 +150,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;22-朴素算法&#34;&gt;2.2 朴素算法
+&lt;/div&gt;&lt;h3 id=&#34;朴素算法&#34;&gt;朴素算法
 &lt;/h3&gt;&lt;p&gt;令 $u,v$ 表示两个待求 LCA 的结点。需提前预处理出每个结点的父亲（记结点 $v$ 的父亲为 $f_v$）。&lt;/p&gt;
 &lt;p&gt;算法步骤：&lt;/p&gt;
 &lt;ol&gt;
@@ -290,7 +290,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这是因为，这四个点是专门针对朴素算法设计的（正好是一个 Subtask），使算法的时间复杂度达到了最坏情况 $\mathcal O(NQ)$，而 $N,Q\le 5\times 10^5$，所以无法通过测试点。当然，朴素算法在随机树上回答 $Q$ 次询问的时间复杂度还是 $\mathcal O(N+Q\log N)$&lt;del&gt;，被极端数据卡掉也没办法&lt;/del&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;23-倍增&#34;&gt;2.3 倍增
+&lt;h3 id=&#34;倍增&#34;&gt;倍增
 &lt;/h3&gt;&lt;p&gt;倍增算法是朴素算法的改进算法，也是最经典的 LCA 求法。&lt;/p&gt;
 &lt;p&gt;预处理：&lt;/p&gt;
 &lt;ul&gt;
@@ -454,14 +454,14 @@ $$
 		data-flex-basis=&#34;464px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;3-习题&#34;&gt;3. 习题
+&lt;h2 id=&#34;习题&#34;&gt;习题
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;题目链接：&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P8805&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷 P8805 [蓝桥杯 2022 国 B] 机房&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;题解：&lt;a class=&#34;link&#34; href=&#34;https://best-blogs.blog.luogu.org/solution-p8805&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://best-blogs.blog.luogu.org/solution-p8805&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;4-总结&#34;&gt;4. 总结
+&lt;h2 id=&#34;总结&#34;&gt;总结
 &lt;/h2&gt;&lt;p&gt;本文详细讲解了 LCA 问题以及求解 LCA 的两种算法。对比如下：&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -511,10 +511,10 @@ $$
         <pubDate>Thu, 05 Jan 2023 22:48:00 +0800</pubDate>
         
         <guid>https://goodcoder666.github.io/p/algonotes-rmq/</guid>
-        <description>&lt;h2 id=&#34;0-前言&#34;&gt;0. 前言
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;好久没更算法笔记专栏了，正好学了新算法来更新……&lt;br&gt;
 这也是本专栏的第一个专题问题，涉及到三种数据结构，如果写得有问题请各位大佬多多指教，谢谢！&lt;/p&gt;
-&lt;h2 id=&#34;1-关于-rmq-问题&#34;&gt;1. 关于 RMQ 问题
+&lt;h2 id=&#34;关于-rmq-问题&#34;&gt;关于 RMQ 问题
 &lt;/h2&gt;&lt;p&gt;RMQ 的全称是 &lt;em&gt;Range Minimum/Maximum Query&lt;/em&gt;，即区间最大/最小值问题。&lt;/p&gt;
 &lt;p&gt;本文中，我们的算法以求最大值为例（最小值基本一致）。题面如下：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -534,8 +534,8 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P8818&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷 P8818 [CSP-S 2022] 策略游戏&lt;/a&gt;（有一定思维难度）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;2-解法&#34;&gt;2. 解法
-&lt;/h2&gt;&lt;h3 id=&#34;21-暴力法&#34;&gt;2.1 暴力法
+&lt;h2 id=&#34;解法&#34;&gt;解法
+&lt;/h2&gt;&lt;h3 id=&#34;暴力法&#34;&gt;暴力法
 &lt;/h3&gt;&lt;p&gt;我们先读取序列$A$，再逐个读取询问，对于每个询问直接遍历$A_l\dots A_r$，最终输出结果。&lt;br&gt;
 总时间复杂度为$\mathcal O(\sum r_i-l_i)=\mathcal O(NQ)$。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -611,19 +611,19 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;肯定还是时间复杂度的锅，&lt;strong&gt;算法需要进一步优化&lt;/strong&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;22-sparse-table&#34;&gt;2.2 Sparse Table
+&lt;h3 id=&#34;sparse-table&#34;&gt;Sparse Table
 &lt;/h3&gt;&lt;p&gt;Sparse Table（以下称ST表）是用于静态求解 RMQ 问题的数据结构。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;静态求解&lt;/strong&gt;是指在&lt;strong&gt;原始序列不改变&lt;/strong&gt;的情况下求解问题。或者说，ST表&lt;strong&gt;不能直接进行修改操作&lt;/strong&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;ST表的初始化时间复杂度为$\mathcal O(N\log N)$，单次查询时间复杂度为$\mathcal O(1)$。&lt;/p&gt;
-&lt;h4 id=&#34;221-存储结构&#34;&gt;2.2.1 存储结构
+&lt;h4 id=&#34;存储结构&#34;&gt;存储结构
 &lt;/h4&gt;$$
 st[i][j]=\max\{A_i,A_{i+1},\dots,A_{i+2^j-1}\}
 $$&lt;p&gt;&lt;br&gt;
 也就是说，$st[i][j]$表示从$A_i$开始，$2^j$个元素中的最大值。这运用了&lt;strong&gt;倍增&lt;/strong&gt;的思想。&lt;/p&gt;
 &lt;p&gt;下面考虑如何快速初始化整个数组。&lt;/p&gt;
-&lt;h4 id=&#34;222-初始化&#34;&gt;2.2.2 初始化
+&lt;h4 id=&#34;初始化&#34;&gt;初始化
 &lt;/h4&gt;$$
 st[i][j]=\max\{st[i][j-1],st[i+2^{j-1}][j-1]\}
 $$&lt;p&gt;&lt;br&gt;
@@ -672,7 +672,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;223-查询&#34;&gt;2.2.3 查询
+&lt;/div&gt;&lt;h4 id=&#34;查询&#34;&gt;查询
 &lt;/h4&gt;&lt;p&gt;对于$[l,r)$区间的 RMQ 查询，根据ST表的原理，我们要找到两个区间$[l,a)$和$[b,r)$，使得它们的&lt;strong&gt;并集&lt;/strong&gt;正好为$[l,r)$。即：$l\le b\le a\le r$。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;为什么是&lt;strong&gt;并集&lt;/strong&gt;?&lt;br&gt;
@@ -710,7 +710,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;224-完整实现&#34;&gt;2.2.4 完整实现
+&lt;/div&gt;&lt;h4 id=&#34;完整实现&#34;&gt;完整实现
 &lt;/h4&gt;&lt;p&gt;下面给出用Sparse Table解决&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P1816&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;例题&lt;/a&gt;的完整代码。总时间复杂度为$\mathcal O(Q+N\log N)$。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -809,10 +809,10 @@ $$&lt;p&gt;&lt;br&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;运行时间：$128\mathrm{ms}$&lt;br&gt;
 使用内存：$6.90\mathrm{MB}$&lt;/p&gt;
-&lt;h3 id=&#34;23-树状数组&#34;&gt;2.3 树状数组
+&lt;h3 id=&#34;树状数组&#34;&gt;树状数组
 &lt;/h3&gt;&lt;p&gt;关于树状数组的原理我已经在&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126441412&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这篇文章&lt;/a&gt;中讲过，这里不再多说了。下面我们考虑如何应用树状数组解决 RMQ 问题。&lt;/p&gt;
-&lt;h4 id=&#34;231-原算法&#34;&gt;2.3.1 原算法
+&lt;h4 id=&#34;原算法&#34;&gt;原算法
 &lt;/h4&gt;&lt;p&gt;树状数组可以用&lt;code&gt;lowbit&lt;/code&gt;操作实现&lt;code&gt;prefixSum&lt;/code&gt;（前缀和）以及&lt;code&gt;update&lt;/code&gt;（更新）操作，时间复杂度均为$\mathcal O(N\log N)$。不仅是加法，&lt;strong&gt;对于任意满足结合律的运算这两种操作都有效。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;我们来简单实现一下支持&lt;code&gt;prefixMax&lt;/code&gt;和&lt;code&gt;update&lt;/code&gt;操作的树状数组：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -929,7 +929,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/div&gt;&lt;p&gt;也就是用$(A_1+A_2+\dots+A_r)-(A_1+A_2+\dots+A_{l-1})=A_l+\dots+A_r$。&lt;/p&gt;
 &lt;p&gt;现在回过来考虑 RMQ 的查询，Min/Max运算不可逆，所以很明显不能用这种计算方式。&lt;br&gt;
 下面我们来介绍针对 RMQ 的树状数组设计。&lt;/p&gt;
-&lt;h4 id=&#34;232-rmq-树状数组&#34;&gt;2.3.2 RMQ 树状数组
+&lt;h4 id=&#34;rmq-树状数组&#34;&gt;RMQ 树状数组
 &lt;/h4&gt;$$
 f(l,r)=\begin{cases}
 \max\{B_r,f(l,t)\} &amp; (t\ge l)\\
@@ -971,7 +971,7 @@ $$&lt;blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这种查询方式的时间复杂度不好估算，可粗略地记为$\mathcal O(\log N)$。实际情况下，运行时间可能稍大于这个值。&lt;br&gt;
 另外，此算法对&lt;strong&gt;任意满足结合律的运算&lt;/strong&gt;（如&lt;code&gt;gcd&lt;/code&gt;，&lt;code&gt;lcm&lt;/code&gt;）都有效。&lt;/p&gt;
-&lt;h4 id=&#34;233-完整实现&#34;&gt;2.3.3 完整实现
+&lt;h4 id=&#34;完整实现-1&#34;&gt;完整实现
 &lt;/h4&gt;&lt;p&gt;下面给出用树状数组解决&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P1816&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;例题&lt;/a&gt;的完整代码。总时间复杂度为$\mathcal O(N+Q\log N)$&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1205,7 +1205,7 @@ $$&lt;blockquote&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;运行时间：$135\mathrm{ms}$&lt;br&gt;
 使用内存：$1.14\mathrm{MB}$&lt;/p&gt;
-&lt;h3 id=&#34;24-线段树&#34;&gt;2.4 线段树
+&lt;h3 id=&#34;线段树&#34;&gt;线段树
 &lt;/h3&gt;&lt;p&gt;线段树和树状数组一样，都是解决区间问题的树状结构。不过线段树的应用范围更加广泛，时间复杂度与树状数组基本一致，但每种操作都有一个$3\thicksim4$之间的常数。线段树建树（初始化）的时间复杂度为$\mathcal O(N)$，单次区间查询的时间复杂度为$\mathcal O(\log N)$。&lt;/p&gt;
 &lt;p&gt;RMQ 问题不涉及修改操作，因此我们暂时不考虑这种操作。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/algonotes-rmq/5.png&#34;
@@ -1246,7 +1246,7 @@ $$&lt;blockquote&gt;
 看看图，$[1,3]$和$[4,5]$两个区间，长度明显不相等。&lt;br&gt;
 特例：当$N$是$2$的整数次幂时，这句话一定成立。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;241-存储结构&#34;&gt;2.4.1 存储结构
+&lt;h4 id=&#34;存储结构-1&#34;&gt;存储结构
 &lt;/h4&gt;&lt;p&gt;线段树采用&lt;strong&gt;堆式储存法&lt;/strong&gt;，根结点为$1$，结点$u$的父亲为$\lfloor\frac u2\rfloor$，左子结点为$2u$，右子结点为$2u+1$。&lt;/p&gt;
 &lt;p&gt;可以用位运算优化：&lt;/p&gt;
 &lt;ul&gt;
@@ -1278,7 +1278,7 @@ $$&lt;blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;下文中，我们令$N$表示元素个数，$A$表示原数组，$C$表示线段树（数组形式存储）。&lt;br&gt;
 可以证明，线段树的结点个数不会超过$4N-5$，所以我们可以把$C$的长度设为$4N$。&lt;/p&gt;
-&lt;h4 id=&#34;242-建树初始化&#34;&gt;2.4.2 建树（初始化）
+&lt;h4 id=&#34;建树初始化&#34;&gt;建树（初始化）
 &lt;/h4&gt;&lt;p&gt;对于一个结点数据的计算，我们可以先递归地初始化其左子树，再到右子树，最后两儿子的数据取$\max$即可。&lt;/p&gt;
 &lt;p&gt;代码实现：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1313,7 +1313,7 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;243-区间查询&#34;&gt;2.4.3 区间查询
+&lt;/div&gt;&lt;h4 id=&#34;区间查询&#34;&gt;区间查询
 &lt;/h4&gt;&lt;p&gt;同样采用递归的方式，设$p$为当前结点，$[l,r]$为当前结点区间，$[a,b]$为当前查询区间，函数返回$[l,r]$和$[a,b]$的&lt;strong&gt;交集&lt;/strong&gt;的&lt;strong&gt;区间和&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;如果$[l,r]$是$[a,b]$的子集（$a\le l\le r\le b$），直接返回当前结点对应的区间和。&lt;/li&gt;
@@ -1346,7 +1346,7 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;244-完整实现&#34;&gt;2.4.4 完整实现
+&lt;/div&gt;&lt;h4 id=&#34;完整实现-2&#34;&gt;完整实现
 &lt;/h4&gt;&lt;p&gt;下面给出用线段树解决&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P1816&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;例题&lt;/a&gt;的完整代码。总时间复杂度为$\mathcal O(N+Q\log N)$。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1469,7 +1469,7 @@ $$&lt;blockquote&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;运行时间：$163\mathrm{ms}$&lt;br&gt;
 使用内存：$1.78\mathrm{MB}$&lt;/p&gt;
-&lt;h2 id=&#34;3-总结&#34;&gt;3. 总结
+&lt;h2 id=&#34;总结&#34;&gt;总结
 &lt;/h2&gt;&lt;p&gt;我们来对比一下四种算法，从理论的角度：&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -1579,13 +1579,13 @@ $$&lt;blockquote&gt;
         <pubDate>Tue, 18 Oct 2022 08:30:00 +0800</pubDate>
         
         <guid>https://goodcoder666.github.io/p/algonotes-bwop/</guid>
-        <description>&lt;h2 id=&#34;0-前言&#34;&gt;0. 前言
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;突然想到位运算是个好东西，就来水一波文章了……&lt;/p&gt;
 &lt;p&gt;注意：我把能想到的有关位运算的所有内容都放进来了，所以&lt;strong&gt;篇幅较长，请谅解&lt;/strong&gt;！若有写的不清楚或者不够详细的地方欢迎在评论区补充，&lt;em&gt;&lt;strong&gt;谢谢支持！&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;本文中参考代码均使用C++编写。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;废话不多说，下面步入正题。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;1-基本运算&#34;&gt;1. 基本运算
+&lt;h2 id=&#34;基本运算&#34;&gt;基本运算
 &lt;/h2&gt;&lt;p&gt;&lt;em&gt;有一定基础的可以跳过该部分。&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;位运算的简要法则：&lt;/p&gt;
 &lt;table&gt;
@@ -1630,12 +1630,12 @@ $$&lt;blockquote&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;详细解释：&lt;/p&gt;
-&lt;h3 id=&#34;11-取反&#34;&gt;1.1 取反
+&lt;h3 id=&#34;取反&#34;&gt;取反
 &lt;/h3&gt;&lt;p&gt;取反（&lt;code&gt;~x&lt;/code&gt;）是最简单的位运算操作，只有一个参数$x$。将参数上的每一位对应取反即可。例如：&lt;br&gt;
 &lt;code&gt;~0011 = 1100&lt;/code&gt;&lt;br&gt;
 &lt;code&gt;~1011 = 0100&lt;/code&gt;&lt;br&gt;
 性质：&lt;code&gt;~(~x) = x&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&#34;12-按位与&#34;&gt;1.2 按位与
+&lt;h3 id=&#34;按位与&#34;&gt;按位与
 &lt;/h3&gt;&lt;p&gt;按位与（&lt;code&gt;x &amp;amp; y&lt;/code&gt;）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -1679,7 +1679,7 @@ $$&lt;blockquote&gt;
 &lt;li&gt;与$0$：&lt;code&gt;0 &amp;amp; a1 &amp;amp; a2 &amp;amp; a3 &amp;amp; ... = 0&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;与$\infty$（全$1$）：&lt;code&gt;a &amp;amp; inf = a&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;13-按位或&#34;&gt;1.3 按位或
+&lt;h3 id=&#34;按位或&#34;&gt;按位或
 &lt;/h3&gt;&lt;p&gt;按位与（&lt;code&gt;x | y&lt;/code&gt;）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -1723,7 +1723,7 @@ $$&lt;blockquote&gt;
 &lt;li&gt;或$0$：&lt;code&gt;a | 0 = a&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;或$\infty$（全$1$）：&lt;code&gt;a | inf = inf&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;14-异或&#34;&gt;1.4 异或
+&lt;h3 id=&#34;异或&#34;&gt;异或
 &lt;/h3&gt;&lt;p&gt;异或（$x\oplus y$或&lt;code&gt;x ^ y&lt;/code&gt;）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -1769,7 +1769,7 @@ $$&lt;blockquote&gt;
 &lt;li&gt;异或$\infty$（全$1$）：$a\oplus \infty=~$&lt;code&gt;~a&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;若$a\oplus b=c$，则$a\oplus c=b$。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;15-位移&#34;&gt;1.5 位移
+&lt;h3 id=&#34;位移&#34;&gt;位移
 &lt;/h3&gt;&lt;p&gt;位移分为左移（&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;）和右移（&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;）。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;a &amp;lt;&amp;lt; b&lt;/code&gt;：将$a$末尾添上$b$个$0$的结果。&lt;/li&gt;
@@ -1781,10 +1781,10 @@ $$&lt;blockquote&gt;
 &lt;li&gt;&lt;code&gt;a &amp;lt;&amp;lt; b&lt;/code&gt;$~=a\times 2^b$&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;a &amp;gt;&amp;gt; b&lt;/code&gt;$~=\lfloor\frac a {2^b}\rfloor$&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;16-练习题&#34;&gt;1.6 练习题
-&lt;/h3&gt;&lt;h4 id=&#34;161-判断2的整数次幂&#34;&gt;1.6.1 判断$2$的整数次幂
+&lt;h3 id=&#34;练习题&#34;&gt;练习题
+&lt;/h3&gt;&lt;h4 id=&#34;判断2的整数次幂&#34;&gt;判断$2$的整数次幂
 &lt;/h4&gt;&lt;p&gt;题意：给定整数$N$，判断其是否为$2$的整数次幂。&lt;/p&gt;
-&lt;h4 id=&#34;162-洛谷-p1100-高低位交换httpswwwluogucomcnproblemp1100&#34;&gt;1.6.2 &lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P1100&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h4 id=&#34;洛谷-p1100-高低位交换httpswwwluogucomcnproblemp1100&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P1100&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷 P1100 高低位交换&lt;/a&gt;
 &lt;/h4&gt;&lt;p&gt;题意：给定一个$32$位整数$x$，在二进制下交换其前$16$位与后$16$位，输出最终的数。&lt;/p&gt;
 &lt;p&gt;答案为&lt;code&gt;ans = (x &amp;gt;&amp;gt; 16) | (x &amp;lt;&amp;lt; 16)&lt;/code&gt;，这样解释：&lt;/p&gt;
@@ -1847,7 +1847,7 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;163-找出不同的数&#34;&gt;1.6.3 找出不同的数
+&lt;/div&gt;&lt;h4 id=&#34;找出不同的数&#34;&gt;找出不同的数
 &lt;/h4&gt;&lt;p&gt;给定一个序列$A=(A_1,A_2,\dots,A_{2N+1})$，其中有$N$个数各出现$2$次，还有一个数正好出现$1$次。找到这个数。请尽可能优化程序的时间和空间复杂度。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;- 时间$\mathcal O(N)$或$\mathcal O(N\log N)$，空间$\mathcal O(N)$解法&lt;/strong&gt;&lt;br&gt;
 简单统计每个数的出现次数，最后找到正好出现$1$次的数。&lt;/p&gt;
@@ -1896,7 +1896,7 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;164-atcoder-beginner-contest-261-e---many-operationshttpsatcoderjpcontestsabc261tasksabc261_e&#34;&gt;1.6.4 &lt;a class=&#34;link&#34; href=&#34;https://atcoder.jp/contests/abc261/tasks/abc261_e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h4 id=&#34;atcoder-beginner-contest-261-e---many-operationshttpsatcoderjpcontestsabc261tasksabc261_e&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://atcoder.jp/contests/abc261/tasks/abc261_e&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;AtCoder Beginner Contest 261 E - Many Operations&lt;/a&gt;
 &lt;/h4&gt;&lt;p&gt;解法：对于$i=1,2,\dots,N$，记录操作$1,2,\dots,i$后每一位上的$0$和$1$分别变成什么，可以在$\mathcal O(N)$的时间内用类似于前缀和的方法完成；最后用位运算快速模拟$N$次连续操作即可，总时间复杂度为$\mathcal O(N)$。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1944,8 +1944,8 @@ $$&lt;blockquote&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;hr&gt;
-&lt;h2 id=&#34;2-扩展概念运算&#34;&gt;2. 扩展概念&amp;amp;运算
-&lt;/h2&gt;&lt;h3 id=&#34;21-lowbit&#34;&gt;2.1 lowbit
+&lt;h2 id=&#34;扩展概念运算&#34;&gt;扩展概念&amp;amp;运算
+&lt;/h2&gt;&lt;h3 id=&#34;lowbit&#34;&gt;lowbit
 &lt;/h3&gt;&lt;p&gt;&lt;code&gt;lowbit(x)&lt;/code&gt;即为二进制下$x$的最低位，如&lt;code&gt;lowbit(10010) = 10&lt;/code&gt;、&lt;code&gt;lowbit(1) = 1&lt;/code&gt;。严格来说$0$没有&lt;code&gt;lowbit&lt;/code&gt;，部分情况下可视为&lt;code&gt;lowbit(0) = 1&lt;/code&gt;。利用&lt;code&gt;lowbit&lt;/code&gt;函数可实现&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126441412&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;树状数组&lt;/a&gt;等数据结构。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;lowbit 计算方式&lt;/strong&gt;&lt;/p&gt;
@@ -1981,7 +1981,7 @@ $$&lt;blockquote&gt;
 这种方法常用于&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126441412&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;树状数组&lt;/a&gt;中，可提升&lt;code&gt;x - lowbit(x)&lt;/code&gt;的计算速度。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;22-popcount&#34;&gt;2.2 popcount
+&lt;h3 id=&#34;popcount&#34;&gt;popcount
 &lt;/h3&gt;&lt;p&gt;&lt;code&gt;popcount(x)&lt;/code&gt;定义为$x$在二进制下$1$的个数，如&lt;code&gt;popcount(10101) = 3&lt;/code&gt;，&lt;code&gt;popcount(0) = 0&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;popcount 计算方式&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
@@ -2039,27 +2039,27 @@ $$&lt;blockquote&gt;
 详见&lt;code&gt;3.1 __builtin_popcount/__builtin_popcountll&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;3-builtin-位运算函数&#34;&gt;3. builtin 位运算函数
+&lt;h2 id=&#34;builtin-位运算函数&#34;&gt;builtin 位运算函数
 &lt;/h2&gt;&lt;p&gt;注意：后面带&lt;code&gt;ll&lt;/code&gt;的传入&lt;code&gt;long long&lt;/code&gt;类型，不带&lt;code&gt;ll&lt;/code&gt;接受&lt;code&gt;int&lt;/code&gt;类型。本部分内容按常用程度递减排序。&lt;br&gt;
 参考：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/zeekliu/article/details/124848210&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://blog.csdn.net/zeekliu/article/details/124848210&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;31-__builtin_popcount__builtin_popcountll&#34;&gt;3.1 __builtin_popcount/__builtin_popcountll
+&lt;h3 id=&#34;__builtin_popcount__builtin_popcountll&#34;&gt;__builtin_popcount/__builtin_popcountll
 &lt;/h3&gt;&lt;p&gt;返回参数在二进制下$1$的个数。&lt;/p&gt;
-&lt;h3 id=&#34;32-__builtin_ctz--__buitlin_ctzll&#34;&gt;3.2 __builtin_ctz / __buitlin_ctzll
+&lt;h3 id=&#34;__builtin_ctz--__buitlin_ctzll&#34;&gt;__builtin_ctz / __buitlin_ctzll
 &lt;/h3&gt;&lt;p&gt;返回参数在二进制下末尾$0$的个数。&lt;/p&gt;
-&lt;h3 id=&#34;33-__buitlin_clz--__buitlin_clzll&#34;&gt;3.3 __buitlin_clz / __buitlin_clzll
+&lt;h3 id=&#34;__buitlin_clz--__buitlin_clzll&#34;&gt;__buitlin_clz / __buitlin_clzll
 &lt;/h3&gt;&lt;p&gt;返回参数在二进制下前导$0$的个数。&lt;/p&gt;
-&lt;h3 id=&#34;34-__builtin_ffs--__buitlin_ffsll&#34;&gt;3.4 __builtin_ffs / __buitlin_ffsll
+&lt;h3 id=&#34;__builtin_ffs--__buitlin_ffsll&#34;&gt;__builtin_ffs / __buitlin_ffsll
 &lt;/h3&gt;&lt;p&gt;返回参数在二进制下最后一个1在第几位（从后往前）。&lt;br&gt;
 注意：一般来说，&lt;code&gt;builtin_ffs(x) = __builtin_ctz(x) + 1&lt;/code&gt;。当$x=0$时，&lt;code&gt;builtin_ffs(x) = 0&lt;/code&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;35-__builtin_parity--__builtin_parityll&#34;&gt;3.5 __builtin_parity / __builtin_parityll
+&lt;h3 id=&#34;__builtin_parity--__builtin_parityll&#34;&gt;__builtin_parity / __builtin_parityll
 &lt;/h3&gt;&lt;p&gt;返回参数在二进制下$1$的个数的奇偶性（偶：0，奇：1），即&lt;code&gt;__builtin_parity(x) = __builtin_popcount(x) % 2&lt;/code&gt;。&lt;br&gt;
 P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;4-位运算的应用&#34;&gt;4. 位运算的应用
-&lt;/h2&gt;&lt;h3 id=&#34;41-子集表示法&#34;&gt;4.1 子集表示法
+&lt;h2 id=&#34;位运算的应用&#34;&gt;位运算的应用
+&lt;/h2&gt;&lt;h3 id=&#34;子集表示法&#34;&gt;子集表示法
 &lt;/h3&gt;&lt;p&gt;对于集合$\{0,1,\dots,N-1\}$，我们使用一个$N$位的二进制整数$S$来表示它的一个子集。从右往左第$i$位表示子集是否包含了$i$。容易发现，对于任意子集$S$，$S\in [0,2^N-1]$，且对于任意$S\in [0,2^N-1]$，$S$都是$\{0,1,\dots,N-1\}$的一个有效子集。下面我们来讲这种子集表示的具体操作。&lt;/p&gt;
-&lt;h4 id=&#34;411-子集操作&#34;&gt;4.1.1 子集操作
+&lt;h4 id=&#34;子集操作&#34;&gt;子集操作
 &lt;/h4&gt;&lt;p&gt;子集的操作如下（规定$N$为集合元素个数）：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;空集：$0$&lt;/li&gt;
@@ -2073,7 +2073,7 @@ P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
 &lt;li&gt;$S$和$T$的并集（$S$和$T$中有任意一个包含的集合）：&lt;code&gt;S | T&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;$S$和$T$的差集（$S$和$T$中恰好有一个包含的集合）：&lt;code&gt;S ^ T&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;412-子集枚举&#34;&gt;4.1.2 子集枚举
+&lt;h4 id=&#34;子集枚举&#34;&gt;子集枚举
 &lt;/h4&gt;&lt;p&gt;讲了这么多，也该到子集的实际应用了吧。下面我们来看子集最初步的应用——子集枚举。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;- 必会：枚举$N$个元素的所有子集&lt;/strong&gt;&lt;br&gt;
 这个很简单，直接枚举$S\in [0,2^N-1]$即可。代码如下：&lt;/p&gt;
@@ -2186,7 +2186,7 @@ P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这样可保证每次枚举到的都是大小为$K$的子集，可以大大提高算法效率。&lt;/p&gt;
-&lt;h4 id=&#34;413-扩展stdbitset&#34;&gt;4.1.3 扩展：std::bitset
+&lt;h4 id=&#34;扩展stdbitset&#34;&gt;扩展：std::bitset
 &lt;/h4&gt;&lt;p&gt;&lt;code&gt;bitset&lt;/code&gt;，顾名思义，即为用位运算操作的集合。&lt;br&gt;
 对于元素个数$N\in [1,64]$，集合$\{0,1,\dots,N-1\}$的任意子集都可以用一个$32$或$64$位整数表示出来，操作时间复杂度为$\mathcal O(1)$。那么对于$N&gt;64$，怎么办？我们可以用多个$32$或$64$位无符号整数拼凑为一个$N$位的&lt;code&gt;bitset&lt;/code&gt;，容易发现其操作的时间复杂度为$\mathcal O(\frac Nw)$（$N$位的二进制数可用$\lceil\frac Nw\rceil$个$w$位无符号整数拼凑而成），其中$w$一般为$32$或$64$。&lt;/p&gt;
 &lt;p&gt;C++的&lt;code&gt;Standard Template Library&lt;/code&gt;（&lt;code&gt;STL&lt;/code&gt;）为我们提供了&lt;code&gt;&amp;lt;bitset&amp;gt;&lt;/code&gt;头文件，用于&lt;code&gt;bitset&lt;/code&gt;的定义。&lt;/p&gt;
@@ -2316,7 +2316,7 @@ P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
     &gt;AtCoder Beginner Contest 258 G - Triangle&lt;/a&gt;
 &lt;/h5&gt;&lt;p&gt;题意和解法见&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/125582361#t15&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://blog.csdn.net/write_1m_lines/article/details/125582361#t15&lt;/a&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;42-深度优先搜索dfs的位运算优化&#34;&gt;4.2 深度优先搜索（DFS）的位运算优化
+&lt;h3 id=&#34;深度优先搜索dfs的位运算优化&#34;&gt;深度优先搜索（DFS）的位运算优化
 &lt;/h3&gt;&lt;p&gt;本算法其实还是&lt;strong&gt;二进制表示子集&lt;/strong&gt;的一种优化，不过内容较多，所以单独放了出来。&lt;/p&gt;
 &lt;p&gt;考虑经典的&lt;strong&gt;八皇后问题&lt;/strong&gt;：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2521,8 +2521,8 @@ P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id=&#34;43-其他应用&#34;&gt;4.3 其他应用
-&lt;/h3&gt;&lt;h4 id=&#34;431-两数交换&#34;&gt;4.3.1 两数交换
+&lt;h3 id=&#34;其他应用&#34;&gt;其他应用
+&lt;/h3&gt;&lt;h4 id=&#34;两数交换&#34;&gt;两数交换
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2554,7 +2554,7 @@ P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;432-两数平均数防溢出&#34;&gt;4.3.2 两数平均数（防溢出）
+&lt;/div&gt;&lt;h4 id=&#34;两数平均数防溢出&#34;&gt;两数平均数（防溢出）
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2579,7 +2579,7 @@ P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;433-判断一个数是否为2的整数次幂&#34;&gt;4.3.3 判断一个数是否为$2$的整数次幂
+&lt;/div&gt;&lt;h4 id=&#34;判断一个数是否为2的整数次幂&#34;&gt;判断一个数是否为$2$的整数次幂
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2595,7 +2595,7 @@ P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;hr&gt;
-&lt;h2 id=&#34;5-总结&#34;&gt;5. 总结
+&lt;h2 id=&#34;总结&#34;&gt;总结
 &lt;/h2&gt;&lt;p&gt;本文详细讲解了位运算的使用和扩展。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;创作不易，各位如果觉得好的话就请给个三连，感谢大家的支持！&lt;/p&gt;
@@ -2807,7 +2807,7 @@ $$&lt;p&gt;按照这样，就可以在$\mathcal O(\log n)$的时间复杂度内�
 &lt;li&gt;若$i \ne j$，且$A_i=A_j$，则$B_i=B_j$。&lt;/li&gt;
 &lt;li&gt;若$i \ne j$，且$A_i&gt;A_j$，则$B_i&gt;B_j$。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;1-求逆序对&#34;&gt;1. 求逆序对
+&lt;h3 id=&#34;求逆序对&#34;&gt;求逆序对
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://baike.baidu.com/item/%E9%80%86%E5%BA%8F%E5%AF%B9/11035554&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;逆序对&lt;/a&gt;问题是经典的序列问题。众所周知，这类问题可以用归并排序在$\mathcal O(N\log N)$的时间内解决。不过，既然今天讲的是树状数组，&lt;del&gt;那就不能用归并排序&lt;/del&gt;，就主要来说一说树状数组的解法。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2945,7 +2945,7 @@ $\to A_i&gt;A_j$&lt;br&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;习题：&lt;a class=&#34;link&#34; href=&#34;https://codeforces.com/problemset/problem/1676/H2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;CF1676H2 Maximum Crossings (Hard Version)&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2-区间更新&#34;&gt;2. 区间更新
+&lt;h3 id=&#34;区间更新&#34;&gt;区间更新
 &lt;/h3&gt;&lt;p&gt;用过线段树的都知道，树状数组最大的缺点就是无法&lt;strong&gt;直接&lt;/strong&gt;实现区间更新。不过，在一些特殊情况&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;下，我们可以通过&lt;strong&gt;差分+离散化&lt;/strong&gt;来&lt;strong&gt;间接&lt;/strong&gt;实现区间的更新。先来看&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷&lt;/a&gt;上的模板：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -3122,9 +3122,9 @@ $\to A_i&gt;A_j$&lt;br&gt;
         <guid>https://goodcoder666.github.io/p/algonotes-knapsack-dp/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://baike.baidu.com/item/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/2416931&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;背包（Knapsack）问题&lt;/a&gt;是经典的动态规划问题，也很有实际价值。&lt;/p&gt;
-&lt;h2 id=&#34;01背包&#34;&gt;01背包
-&lt;/h2&gt;&lt;blockquote&gt;
+    &gt;背包（Knapsack）问题&lt;/a&gt;是经典的动态规划问题，也很有实际价值。&lt;br&gt;
+##背包&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P2871&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷 P2871 [USACO07DEC] Charm Bracelet S&lt;/a&gt;&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://atcoder.jp/contests/dp/tasks/dp_d&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -4130,12 +4130,12 @@ $$&lt;p&gt;&lt;br&gt;
         <pubDate>Sat, 13 Aug 2022 12:37:00 +0800</pubDate>
         
         <guid>https://goodcoder666.github.io/p/algonotes-dijkstra/</guid>
-        <description>&lt;h2 id=&#34;0-前言&#34;&gt;0. 前言
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;Dijkstra算法可在$\mathcal O(m\log m)$或$\mathcal O(m\log n)$的时间内求解无负权单源最短路问题。本文中，我们将详细介绍算法的原理、实现，以及常用的两种优化。&lt;/p&gt;
 &lt;p&gt;另外，Dijkstra算法也不要乱用，比如说多源的最短路，用Dijkstra求解的复杂度只有$\mathcal O(nm\log m)$，但太麻烦，如果数据范围允许，直接用&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126310381&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Floyd&lt;/a&gt;就能在$\mathcal O(n^3)$的时间内完成任务。&lt;/p&gt;
 &lt;p&gt;废话不多说，下面来看Dijkstra算法的流程。&lt;/p&gt;
-&lt;h2 id=&#34;1-流程&#34;&gt;1. 流程
+&lt;h2 id=&#34;流程&#34;&gt;流程
 &lt;/h2&gt;&lt;p&gt;将结点分成两个集合：已确定最短路长度的点集（记为$S$集合）的和未确定最短路长度的点集（记为$T$集合）。一开始所有的点都属于$T$集合。&lt;/p&gt;
 &lt;p&gt;用$d_v$表示顶点$v$到起始点的距离、$s$表示起始点。&lt;br&gt;
 初始化$d_s=0$，其他点的$d$均为$+\infin$。&lt;/p&gt;
@@ -4145,14 +4145,14 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;li&gt;对于与$v$相邻的每个点$u$，执行松弛操作：&lt;code&gt;dis[u] = min(dis[u], dis[v] + G[v][u])&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;直到$T$集合为空，算法结束。下面来看最简单的实现。&lt;/p&gt;
-&lt;h2 id=&#34;2-实现&#34;&gt;2. 实现
+&lt;h2 id=&#34;实现&#34;&gt;实现
 &lt;/h2&gt;&lt;p&gt;本算法的代码可以在&lt;a class=&#34;link&#34; href=&#34;https://codeforces.com/problemset/problem/20/C&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;CF20C&lt;/a&gt;/&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/CF20C&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷链接&lt;/a&gt;提交。后面提供的参考代码的输入输出格式都是基于这道题的。数据范围：$n,m\le 10^5,w_i\le 10^6$。&lt;/p&gt;
 &lt;p&gt;在编写代码之前，我们还要考虑一个问题：如何输出最短路径？&lt;br&gt;
 定义一个数组$\mathrm{par}$，$\mathrm{par}[i]$表示最短路径上在点$i$前面的点。初始时，$\mathrm{par}[s]=-1$，表示前面没有点。&lt;/p&gt;
 &lt;p&gt;在$v\to u$这条边上更新&lt;code&gt;dis[u] = dis[v] + G[v][u]&lt;/code&gt;时，同时更新&lt;code&gt;par[u] = v&lt;/code&gt;，最后输出时顺着&lt;code&gt;par[v]&lt;/code&gt;的路径往下逆序输出到达的点即可。&lt;/p&gt;
-&lt;h3 id=&#34;21-朴素实现无优化&#34;&gt;2.1 朴素实现（无优化）
+&lt;h3 id=&#34;朴素实现无优化&#34;&gt;朴素实现（无优化）
 &lt;/h3&gt;&lt;p&gt;这种实现完全按照算法流程，时间复杂度为$\mathcal O(n^2)$，无法通过例题。下面给出代码。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4293,7 +4293,7 @@ $$&lt;p&gt;&lt;br&gt;
 		data-flex-basis=&#34;238px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;22-优先队列优化&#34;&gt;2.2 优先队列优化
+&lt;h3 id=&#34;优先队列优化&#34;&gt;优先队列优化
 &lt;/h3&gt;&lt;p&gt;优先队列，又称二叉堆，是常用的一种数据结构。可以执行下列操作（$n$为优先队列队列中的元素个数）：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;弹出最小/最大的元素，时间$\mathcal O(\log n)$&lt;/li&gt;
@@ -4415,7 +4415,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;时间复杂度为$\mathcal O(m\log m)$，&lt;strong&gt;可以通过此题&lt;/strong&gt;。运行时间：$93\text{ms}$&lt;/p&gt;
-&lt;h3 id=&#34;23-set优化&#34;&gt;2.3 &lt;code&gt;set&lt;/code&gt;优化
+&lt;h3 id=&#34;set优化&#34;&gt;&lt;code&gt;set&lt;/code&gt;优化
 &lt;/h3&gt;&lt;p&gt;&lt;code&gt;set&lt;/code&gt;又称&lt;strong&gt;集合&lt;/strong&gt;，与优先队列相似，支持添加、删除，另外还可以删除任意元素，时间$\mathcal O(\log n)$。要发挥出&lt;code&gt;set&lt;/code&gt;的优势，就要在维护时删掉多余的顶点-距离对，防止不必要的&lt;code&gt;dis[v] == d&lt;/code&gt;这种判断。&lt;/p&gt;
 &lt;p&gt;此时，集合中的元素个数&lt;strong&gt;永远不会超过$N$&lt;/strong&gt;，因此总时间复杂度为$\mathcal O(m\log n)$。&lt;br&gt;
 在$m\ge n$，即边数大于顶点数时，这种方法优于&lt;code&gt;priority_queue&lt;/code&gt;。不过，一般使用Dijkstra算法的题目中都是$m\le n$，所以&lt;code&gt;set&lt;/code&gt;的优化不常用，但下面还是给出代码。&lt;/p&gt;
@@ -4534,7 +4534,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;AC，运行时间：$78\text{ms}$&lt;/p&gt;
-&lt;h2 id=&#34;3-后记&#34;&gt;3. 后记
+&lt;h2 id=&#34;后记&#34;&gt;后记
 &lt;/h2&gt;&lt;p&gt;总结一下Dijkstra算法的实现方式：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;暴力（$\mathcal O(n^2)$，TLE ;(）&lt;/li&gt;
@@ -4557,11 +4557,11 @@ $$&lt;p&gt;&lt;br&gt;
         <pubDate>Fri, 12 Aug 2022 21:07:00 +0800</pubDate>
         
         <guid>https://goodcoder666.github.io/p/algonotes-floyd/</guid>
-        <description>&lt;h2 id=&#34;0-前言&#34;&gt;0. 前言
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;在图中，如果要求任意两点间的距离，则可以使用&lt;code&gt;Floyd&lt;/code&gt;（$\mathcal O(N^3)$;)）和&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126316941&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Dijkstra&lt;/a&gt;（$\mathcal O(NM\log M)$:)）。对于比较小的数据范围（一般为顶点数$N\le 150$），可以使用Floyd算法。本文将讲述Floyd算法的原理、实现和扩展应用。&lt;/p&gt;
 &lt;p&gt;如果有哪里写得不好请各位dalao多多指教，谢谢！&lt;/p&gt;
-&lt;h2 id=&#34;1-原理&#34;&gt;1. 原理
+&lt;h2 id=&#34;原理&#34;&gt;原理
 &lt;/h2&gt;$$
 f(x,y)=
 \begin{cases}
@@ -4588,7 +4588,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;此时，算法结束，最终$f(x,y)$即为从$x$到$y$的最短路。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意：当给定图为无向图时，对于任意$(x,y)$，$G[x][y]=G[y][x]$，则$f(x,y)=f(y,x)$，可改变计算过程（如变成&lt;code&gt;f[k][x]+f[k][y]&lt;/code&gt;）；但若是有向图，请务必按照伪代码中的顺序编写程序！&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;2-代码&#34;&gt;2. 代码
+&lt;h2 id=&#34;代码&#34;&gt;代码
 &lt;/h2&gt;&lt;p&gt;&lt;code&gt;Floyd&lt;/code&gt;算法的代码可在&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/B3647&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷 B3647&lt;/a&gt;提交。下面给出这题对应的AC代码（注意是按边输入）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -4671,7 +4671,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;3-扩展&#34;&gt;3. 扩展
+&lt;/div&gt;&lt;h2 id=&#34;扩展&#34;&gt;扩展
 &lt;/h2&gt;&lt;p&gt;下面问题来了：如何输出结果路径？其实方法很简单。与&lt;code&gt;Dijkstra&lt;/code&gt;类似但略有不同，设$\text{path}(x, y)=x\to y$的最短路径上的某一点，则状态转移时若$f(x,k)+f(k,y)&lt;f(x,y)$，则不仅要更新$f(x,y)$，还要更新$\text{path}(x,y):=k$。最后，递归输出结果即可。&lt;/p&gt;
 &lt;h3 id=&#34;题面&#34;&gt;题面
 &lt;/h3&gt;&lt;p&gt;给定一张有$N$个点，$M$条边的简单无向图，对于每一对$(i,j)$（$1\le i&lt;j\le N$），求$i\to j$的最短路径上的每一点。&lt;/p&gt;
@@ -4738,7 +4738,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;代码&#34;&gt;代码
+&lt;/div&gt;&lt;h3 id=&#34;代码-1&#34;&gt;代码
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -4854,7 +4854,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;注：由于每条路径的长度不会超过$N$，所以总时间复杂度仍为$\mathcal O(N^3)$。&lt;/p&gt;
-&lt;h2 id=&#34;4-后记&#34;&gt;4. 后记
+&lt;h2 id=&#34;后记&#34;&gt;后记
 &lt;/h2&gt;&lt;p&gt;总结：&lt;code&gt;Floyd&lt;/code&gt;算法时间复杂度为$\mathcal O(N^3)$，写起来很方便。如果觉得好就请给个三连，谢谢支持！&lt;/p&gt;
 </description>
         </item>
@@ -4864,9 +4864,9 @@ $$&lt;p&gt;&lt;br&gt;
         <pubDate>Fri, 12 Aug 2022 10:15:00 +0800</pubDate>
         
         <guid>https://goodcoder666.github.io/p/algonotes-tree-dp/</guid>
-        <description>&lt;h2 id=&#34;0-定义&#34;&gt;0. 定义
+        <description>&lt;h2 id=&#34;定义&#34;&gt;定义
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;树形DP&lt;/strong&gt;，又称&lt;strong&gt;树状DP&lt;/strong&gt;，即在树上进行的DP，是DP（动态规划）算法中较为复杂的一种。&lt;/p&gt;
-&lt;h2 id=&#34;1-基础&#34;&gt;1. 基础
+&lt;h2 id=&#34;基础&#34;&gt;基础
 &lt;/h2&gt;&lt;p&gt;令$f[u]=~$与树上顶点$u$有关的某些数据，并按照&lt;strong&gt;拓扑序&lt;/strong&gt;（从叶子节点向上到根节点的顺序）进行$\text{DP}$，确保在更新一个顶点时&lt;strong&gt;其子节点的dp值已经被更新好&lt;/strong&gt;，以更新当前节点的$\text{DP}$值。为方便计算，一般写成dfs的形式，如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -5095,7 +5095,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P3574&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷 P3574 [POI2014] FAR-FarmCraft&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;2-树上背包&#34;&gt;2. 树上背包
+&lt;h2 id=&#34;树上背包&#34;&gt;树上背包
 &lt;/h2&gt;&lt;p&gt;在基本算法之上，树形dp还可以用于树上背包问题。来看一道例题：&lt;/p&gt;
 &lt;h3 id=&#34;例21洛谷p2014httpswwwluogucomcnproblemp2014--acwing-286httpswwwacwingcomproblemcontent288-选课&#34;&gt;【例2.1】&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P2014&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷P2014&lt;/a&gt; / &lt;a class=&#34;link&#34; href=&#34;https://www.acwing.com/problem/content/288/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -5207,7 +5207,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://loj.ac/p/2268&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;LOJ #2268. 「SDOI2017」苹果树&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;3-换根-dp&#34;&gt;3. 换根 DP
+&lt;h2 id=&#34;换根-dp&#34;&gt;换根 DP
 &lt;/h2&gt;&lt;p&gt;换根DP，即为不知道根结点时使用的一种树形DP，时间复杂度一般为$\mathcal O(N)$。&lt;/p&gt;
 &lt;h3 id=&#34;例31洛谷-p3478httpswwwluogucomcnproblemp3478-poi2008-sta-station&#34;&gt;【例3.1】&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P3478&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷 P3478&lt;/a&gt; [POI2008] STA-Station
@@ -5442,7 +5442,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://atcoder.jp/contests/abc222/tasks/abc222_f&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ABC 222F - Expensive Expense&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;4-后记&#34;&gt;4. 后记
+&lt;h2 id=&#34;后记&#34;&gt;后记
 &lt;/h2&gt;&lt;p&gt;&lt;del&gt;好像这玩意也并不是开头所说的那么难…… 记得给个三连哦！&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;参考文献：&lt;/p&gt;
 &lt;ul&gt;

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="0. 前言\r在图中，如果要求任意两点间的距离，则可以使用Floyd（$\\mathcal O(N^3)$;)）和Dijkstra（$\\mathcal O(NM\\log M)$:)）。对于比较小的数据范围（一般为顶点数$N\\le 150$），可以使用Floyd算法。本文将讲述Floyd算法的原理、实现和扩展应用。\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r在图中，如果要求任意两点间的距离，则可以使用Floyd（$\\mathcal O(N^3)$;)）和Dijkstra（$\\mathcal O(NM\\log M)$:)）。对于比较小的数据范围（一般为顶点数$N\\le 150$），可以使用Floyd算法。本文将讲述Floyd算法的原理、实现和扩展应用。\n">
 <title>【算法笔记】多源最短路问题——Floyd算法</title>
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/algonotes-floyd/'>
 
 <link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【算法笔记】多源最短路问题——Floyd算法">
-<meta property='og:description' content="0. 前言\r在图中，如果要求任意两点间的距离，则可以使用Floyd（$\\mathcal O(N^3)$;)）和Dijkstra（$\\mathcal O(NM\\log M)$:)）。对于比较小的数据范围（一般为顶点数$N\\le 150$），可以使用Floyd算法。本文将讲述Floyd算法的原理、实现和扩展应用。\n">
+<meta property='og:description' content="前言\r在图中，如果要求任意两点间的距离，则可以使用Floyd（$\\mathcal O(N^3)$;)）和Dijkstra（$\\mathcal O(NM\\log M)$:)）。对于比较小的数据范围（一般为顶点数$N\\le 150$），可以使用Floyd算法。本文将讲述Floyd算法的原理、实现和扩展应用。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/algonotes-floyd/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法竞赛' /><meta property='article:tag' content='算法笔记' /><meta property='article:published_time' content='2022-08-12T21:07:00&#43;08:00'/><meta property='article:modified_time' content='2022-08-12T21:07:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
     <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【算法笔记】多源最短路问题——Floyd算法">
-<meta name="twitter:description" content="0. 前言\r在图中，如果要求任意两点间的距离，则可以使用Floyd（$\\mathcal O(N^3)$;)）和Dijkstra（$\\mathcal O(NM\\log M)$:)）。对于比较小的数据范围（一般为顶点数$N\\le 150$），可以使用Floyd算法。本文将讲述Floyd算法的原理、实现和扩展应用。\n">
+<meta name="twitter:description" content="前言\r在图中，如果要求任意两点间的距离，则可以使用Floyd（$\\mathcal O(N^3)$;)）和Dijkstra（$\\mathcal O(NM\\log M)$:)）。对于比较小的数据范围（一般为顶点数$N\\le 150$），可以使用Floyd算法。本文将讲述Floyd算法的原理、实现和扩展应用。\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
@@ -263,17 +263,17 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#0-前言">0. 前言</a></li>
-    <li><a href="#1-原理">1. 原理</a></li>
-    <li><a href="#2-代码">2. 代码</a></li>
-    <li><a href="#3-扩展">3. 扩展</a>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#原理">原理</a></li>
+    <li><a href="#代码">代码</a></li>
+    <li><a href="#扩展">扩展</a>
       <ol>
         <li><a href="#题面">题面</a></li>
         <li><a href="#样例">样例</a></li>
-        <li><a href="#代码">代码</a></li>
+        <li><a href="#代码-1">代码</a></li>
       </ol>
     </li>
-    <li><a href="#4-后记">4. 后记</a></li>
+    <li><a href="#后记">后记</a></li>
   </ol>
 </nav>
         </div>
@@ -345,11 +345,11 @@
     <section class="article-content">
     
     
-    <h2 id="0-前言">0. 前言
+    <h2 id="前言">前言
 </h2><p>在图中，如果要求任意两点间的距离，则可以使用<code>Floyd</code>（$\mathcal O(N^3)$;)）和<a class="link" href="https://blog.csdn.net/write_1m_lines/article/details/126316941"  target="_blank" rel="noopener"
     >Dijkstra</a>（$\mathcal O(NM\log M)$:)）。对于比较小的数据范围（一般为顶点数$N\le 150$），可以使用Floyd算法。本文将讲述Floyd算法的原理、实现和扩展应用。</p>
 <p>如果有哪里写得不好请各位dalao多多指教，谢谢！</p>
-<h2 id="1-原理">1. 原理
+<h2 id="原理">原理
 </h2>$$
 f(x,y)=
 \begin{cases}
@@ -376,7 +376,7 @@ $$<p><br>
 </div>
 </div><p>此时，算法结束，最终$f(x,y)$即为从$x$到$y$的最短路。</p>
 <p><strong>注意：当给定图为无向图时，对于任意$(x,y)$，$G[x][y]=G[y][x]$，则$f(x,y)=f(y,x)$，可改变计算过程（如变成<code>f[k][x]+f[k][y]</code>）；但若是有向图，请务必按照伪代码中的顺序编写程序！</strong></p>
-<h2 id="2-代码">2. 代码
+<h2 id="代码">代码
 </h2><p><code>Floyd</code>算法的代码可在<a class="link" href="https://www.luogu.com.cn/problem/B3647"  target="_blank" rel="noopener"
     >洛谷 B3647</a>提交。下面给出这题对应的AC代码（注意是按边输入）：</p>
 <div class="highlight"><div class="chroma">
@@ -459,7 +459,7 @@ $$<p><br>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="3-扩展">3. 扩展
+</div><h2 id="扩展">扩展
 </h2><p>下面问题来了：如何输出结果路径？其实方法很简单。与<code>Dijkstra</code>类似但略有不同，设$\text{path}(x, y)=x\to y$的最短路径上的某一点，则状态转移时若$f(x,k)+f(k,y)<f(x,y)$，则不仅要更新$f(x,y)$，还要更新$\text{path}(x,y):=k$。最后，递归输出结果即可。</p>
 <h3 id="题面">题面
 </h3><p>给定一张有$N$个点，$M$条边的简单无向图，对于每一对$(i,j)$（$1\le i<j\le N$），求$i\to j$的最短路径上的每一点。</p>
@@ -526,7 +526,7 @@ $$<p><br>
 </span></span><span class="line"><span class="cl"><span class="mi">4</span><span class="o">-&gt;</span><span class="mi">5</span><span class="o">:</span> <span class="mi">4</span> <span class="mi">5</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="代码">代码
+</div><h3 id="代码-1">代码
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -642,7 +642,7 @@ $$<p><br>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>注：由于每条路径的长度不会超过$N$，所以总时间复杂度仍为$\mathcal O(N^3)$。</p>
-<h2 id="4-后记">4. 后记
+<h2 id="后记">后记
 </h2><p>总结：<code>Floyd</code>算法时间复杂度为$\mathcal O(N^3)$，写起来很方便。如果觉得好就请给个三连，谢谢支持！</p>
 
 </section>
