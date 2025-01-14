@@ -330,7 +330,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -460,9 +460,9 @@ $$<p><br>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="扩展">扩展
-</h2><p>下面问题来了：如何输出结果路径？其实方法很简单。与<code>Dijkstra</code>类似但略有不同，设$\text{path}(x, y)=x\to y$的最短路径上的某一点，则状态转移时若$f(x,k)+f(k,y)<f(x,y)$，则不仅要更新$f(x,y)$，还要更新$\text{path}(x,y):=k$。最后，递归输出结果即可。</p>
+</h2><p>下面问题来了：如何输出结果路径？其实方法很简单。与<code>Dijkstra</code>类似但略有不同，设$\text{path}(x, y)=x\to y$的最短路径上的某一点，则状态转移时若$f(x,k)+f(k,y) < f(x,y)$，则不仅要更新$f(x,y)$，还要更新$\text{path}(x,y):=k$。最后，递归输出结果即可。</p>
 <h3 id="题面">题面
-</h3><p>给定一张有$N$个点，$M$条边的简单无向图，对于每一对$(i,j)$（$1\le i<j\le N$），求$i\to j$的最短路径上的每一点。</p>
+</h3><p>给定一张有$N$个点，$M$条边的简单无向图，对于每一对$(i,j)$（$1\le i < j\le N$），求$i\to j$的最短路径上的每一点。</p>
 <h3 id="样例">样例
 </h3><p>输入：</p>
 <div class="highlight"><div class="chroma">

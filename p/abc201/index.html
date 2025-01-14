@@ -763,7 +763,7 @@ $A_{H,1}A_{H,2}A_{H,3}\dots A_{H,W}$</p>
 <li>如果$(i+j)$是偶数：$dp(i,j)=\min(dp(i+1,j)-add(i+1,j),dp(i,j+1)-add(i, j+1))$</li>
 <li>如果$(i+j)$是奇数：$dp(i,j)=\max(dp(i+1,j)+add(i+1,j),dp(i,j+1)+add(i, j+1))$</li>
 </ul>
-<p>所以，最终我们只需要通过$dp(0,0)$判断结果即可。如果$dp(0,0)>0$，则Takahashi胜；如果$dp(0,0)<0$，Aoki胜；否则，游戏平局。<br>
+<p>所以，最终我们只需要通过$dp(0,0)$判断结果即可。如果$dp(0,0) > 0$，则Takahashi胜；如果$dp(0,0) < 0$，Aoki胜；否则，游戏平局。<br>
 程序的总时间复杂度为$\mathcal O(NM)$。</p>
 <h2 id="代码-3">代码
 </h2><p><strong>注意：我这里的dp运用了滚动表的技巧，所以是一维的，当然也可以使用普通的二维dp。</strong></p>

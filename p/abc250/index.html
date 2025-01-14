@@ -347,7 +347,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -460,7 +460,7 @@ $a_1~a_2~\dots~a_n$<br>
 </h1><h2 id="题目大意-1">题目大意
 </h2><p>当一个<strong>正整数</strong>$k$满足以下条件时，我们称其为“与$250$相似的”：</p>
 <ul>
-<li>$k=p\times q^3$，其中$p,q$均为质数，且$p<q$。</li>
+<li>$k=p\times q^3$，其中$p,q$均为质数，且$p < q$。</li>
 </ul>
 <p><strong>求不超过$N$的“与$250$相似的”$k$的个数。</strong></p>
 <p>$1\le N\le 10^{18}$</p>
@@ -494,10 +494,10 @@ $a_1~a_2~\dots~a_n$<br>
 <h2 id="分析-1">分析
 </h2><p>看到数据范围后我们发现$N$太大，不能盲目下手。<br>
 由$k=p\times q^3,k\le N$可知，$p\times q^3\le N\le 10^{18}$。<br>
-又因为$p,q$是质数，且$p<q$可得，$2\le p<q$。<br>
+又因为$p,q$是质数，且$p < q$可得，$2\le p < q$。<br>
 因此，当$p$最小时$q$最大，所以$q\le \sqrt[3]{\frac {N=10^{18}} {p=2}}\approx794000$。</p>
 <p>这时，可以想到<a class="link" href="https://blog.csdn.net/sqcfj/article/details/84656563"  target="_blank" rel="noopener"
-    >筛出质数表</a>，并<strong>对于每个质数$p$计算最大的$q$，此时质数$p<x\le q$都能作为$q$，因此将答案加上$p<x\le q$的质数数量即可</strong>。当$p\ge q$时，退出循环，输出结果即可。</p>
+    >筛出质数表</a>，并<strong>对于每个质数$p$计算最大的$q$，此时质数$p < x\le q$都能作为$q$，因此将答案加上$p < x\le q$的质数数量即可</strong>。当$p\ge q$时，退出循环，输出结果即可。</p>
 <p>计算$q$时可以使用<a class="link" href="https://baike.baidu.com/item/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/10628618"  target="_blank" rel="noopener"
     >二分查找</a>或者<a class="link" href="https://zhuanlan.zhihu.com/p/71643340"  target="_blank" rel="noopener"
     >双指针</a>算法快速处理。<br>

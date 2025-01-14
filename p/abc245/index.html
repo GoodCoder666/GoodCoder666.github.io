@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="A - Good morning\r题目大意\r在同一天里，Takahashi在$A$时$B$分起床，Aoki在$C$时$D$分$1$秒起床，请问谁起床更早？\n$0\\le A,C<24$\n$0\\le B,D<60$\n输入格式\r$A~B~C~D$\n输出格式\r输出起得更早的人的名字（Takahashi或Aoki）。\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="A - Good morning\r题目大意\r在同一天里，Takahashi在$A$时$B$分起床，Aoki在$C$时$D$分$1$秒起床，请问谁起床更早？\n$0\\le A,C < 24$\n$0\\le B,D < 60$\n输入格式\r$A~B~C~D$\n">
 <title>AtCoder Beginner Contest 245 A~E 题解</title>
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/abc245/'>
 
 <link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="AtCoder Beginner Contest 245 A~E 题解">
-<meta property='og:description' content="A - Good morning\r题目大意\r在同一天里，Takahashi在$A$时$B$分起床，Aoki在$C$时$D$分$1$秒起床，请问谁起床更早？\n$0\\le A,C<24$\n$0\\le B,D<60$\n输入格式\r$A~B~C~D$\n输出格式\r输出起得更早的人的名字（Takahashi或Aoki）。\n">
+<meta property='og:description' content="A - Good morning\r题目大意\r在同一天里，Takahashi在$A$时$B$分起床，Aoki在$C$时$D$分$1$秒起床，请问谁起床更早？\n$0\\le A,C < 24$\n$0\\le B,D < 60$\n输入格式\r$A~B~C~D$\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/abc245/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法竞赛' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2022-03-28T21:00:00&#43;08:00'/><meta property='article:modified_time' content='2022-03-28T21:00:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
     <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="AtCoder Beginner Contest 245 A~E 题解">
-<meta name="twitter:description" content="A - Good morning\r题目大意\r在同一天里，Takahashi在$A$时$B$分起床，Aoki在$C$时$D$分$1$秒起床，请问谁起床更早？\n$0\\le A,C<24$\n$0\\le B,D<60$\n输入格式\r$A~B~C~D$\n输出格式\r输出起得更早的人的名字（Takahashi或Aoki）。\n">
+<meta name="twitter:description" content="A - Good morning\r题目大意\r在同一天里，Takahashi在$A$时$B$分起床，Aoki在$C$时$D$分$1$秒起床，请问谁起床更早？\n$0\\le A,C < 24$\n$0\\le B,D < 60$\n输入格式\r$A~B~C~D$\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
@@ -360,7 +360,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -379,8 +379,8 @@
     >A - Good morning</a>
 </h1><h2 id="题目大意">题目大意
 </h2><p>在同一天里，Takahashi在$A$时$B$分起床，Aoki在$C$时$D$分$1$秒起床，请问谁起床更早？</p>
-<p>$0\le A,C<24$<br>
-$0\le B,D<60$</p>
+<p>$0\le A,C < 24$<br>
+$0\le B,D < 60$</p>
 <h2 id="输入格式">输入格式
 </h2><p>$A~B~C~D$</p>
 <h2 id="输出格式">输出格式
@@ -522,7 +522,7 @@ $A_1~\dots~A_N$</p>
 问是否存在序列$X=(X_1,\dots,X_N)$，满足如下条件：</p>
 <ul>
 <li>$X_i=A_i$或$X_i=B_i$</li>
-<li>$|X_i-X_{i+1}|\le K$，其中$1\le i<N$</li>
+<li>$|X_i-X_{i+1}|\le K$，其中$1\le i < N$</li>
 </ul>
 <p>$1\le N\le 2\times 10^5$<br>
 $1\le K\le 10^9$<br>
@@ -619,7 +619,7 @@ C(x)=\sum_{i=0}^{N+M} B_iX^i
 $$<p><br>
 已知$A_0,\dots,A_N$和$C_0,\dots,C_N$且$A(x)\times B(x)=C(x)$（$x\in R$），求$B_0,\dots,B_M$。<br>
 换句话说，给定多项式$A$和$C$每一项的系数，求多项式$B=\frac C A$。</p>
-<p>$1\le N,M<100$<br>
+<p>$1\le N,M < 100$<br>
 $|A_i|\le 100$<br>
 $|C_i|\le 10^6$<br>
 $A_N\ne0,C_{N+M}\ne0$<br>

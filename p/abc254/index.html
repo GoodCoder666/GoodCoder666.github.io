@@ -382,7 +382,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -461,7 +461,7 @@ $100\le N\le 999$</p>
 </h2><p>输出$N$个整数序列$A_0,\dots,A_{N-1}$。它们按如下定义：</p>
 <ul>
 <li>$A_i$的长为$i+1$。</li>
-<li>$A_i$的第$j+1$个元素记为$a_{i,j}$（$0\le j\le i<N$），即：
+<li>$A_i$的第$j+1$个元素记为$a_{i,j}$（$0\le j\le i < N$），即：
 <ul>
 <li>当$j=0$或$j=i$时，$a_{i,j}=1$；</li>
 <li>否则，$a_{i,j}=a_{i-1,j-1}+a_{i-1,j}$。</li>
@@ -747,7 +747,7 @@ $a_1~\dots~a_N$</p>
 </div>
 </div><p>可以不进行操作。</p>
 <h2 id="分析-2">分析
-</h2><p>题目可以看成：在$a_i,a_{K+i},a_{2K+i},\dots$（$1\le i<K$）中的元素是可以两两相邻交换的。那么，根据<strong>冒泡排序</strong>的原理，这些元素是可以直接排序并放入原位置上的。此时，只需依次对于$i=1,2,\dots,K-1$的上述序列并排序、放回原位，最终检查是否已被排成升序即可。</p>
+</h2><p>题目可以看成：在$a_i,a_{K+i},a_{2K+i},\dots$（$1\le i < K$）中的元素是可以两两相邻交换的。那么，根据<strong>冒泡排序</strong>的原理，这些元素是可以直接排序并放入原位置上的。此时，只需依次对于$i=1,2,\dots,K-1$的上述序列并排序、放回原位，最终检查是否已被排成升序即可。</p>
 <h2 id="代码-2">代码
 </h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -961,7 +961,7 @@ $a_1~\dots~a_N$</p>
 </ul>
 <p>$1\le N,Q\le 1.5\times 10^5$<br>
 $0\le M\le \min\{\frac{N(N-1)}2,\frac32N\}$<br>
-$1\le a_i<b_i\le N$，$(a_i,b_i)$互不相同。<br>
+$1\le a_i < b_i\le N$，$(a_i,b_i)$互不相同。<br>
 $1\le x_i\le N$，==$0\le k_i\le 3$==</p>
 <h2 id="输入格式-4">输入格式
 </h2><p>$N~M$<br>

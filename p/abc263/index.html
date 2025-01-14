@@ -357,7 +357,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -469,17 +469,17 @@
 <h1 id="b---ancestorhttpsatcoderjpcontestsabc263tasksabc263_b"><a class="link" href="https://atcoder.jp/contests/abc263/tasks/abc263_b"  target="_blank" rel="noopener"
     >B - Ancestor</a>
 </h1><h2 id="题目大意-1">题目大意
-</h2><p>有$N$个人，第$i$个人的父/母是$P_i$，题目保证$P_i<i$。<br>
+</h2><p>有$N$个人，第$i$个人的父/母是$P_i$，题目保证$P_i < i$。<br>
 问：第$N$个人是第$1$个人的第几代？</p>
 <p>$2\le N\le 50$<br>
-$1\le P_i<i$</p>
+$1\le P_i < i$</p>
 <h2 id="输入格式-1">输入格式
 </h2><p>$N$<br>
 $P_2~P_3~\dots~P_N$</p>
 <h2 id="输出格式-1">输出格式
 </h2><p>输出答案。</p>
 <h2 id="分析-1">分析
-</h2><p>本题可以使用$\text{DFS}$，但没有必要。题目限制条件特别给出了$P_i<i$，因此如果按输入顺序依次处理每个人的世代，一个人的父亲肯定在这个人之前被考察到。</p>
+</h2><p>本题可以使用$\text{DFS}$，但没有必要。题目限制条件特别给出了$P_i < i$，因此如果按输入顺序依次处理每个人的世代，一个人的父亲肯定在这个人之前被考察到。</p>
 <p>下面来看详细过程。<br>
 我们设$\text{depth}_i=~$第$i$个节点的深度，因此答案为$\text{depth}_N$。<br>
 初始时，$\text{depth}_0=0$。对于$i=1\dots N$，依次设置$\text{depth}_i:=\text{depth}_{P_i}+1$。<br>
@@ -706,10 +706,10 @@ $~~~~g_i=($使用操作$2$选择$y\le i$时的后$i$个序列元素的最小和$
 </h1><h2 id="题目大意-4">题目大意
 </h2><p>有$N$个方格，分别是方格$1$，方格$2$，..，方格$N$。<br>
 在方格$1,2,\dots,N-1$上，各有一枚骰子。方格$i$上的骰子会按照相同的概率随机输出$0,1,\dots,A_i$中的一个。</p>
-<p>直到到达方格$N$之前，你每次会前进骰子输出的步数。换句话说，如果你在方格$x$上（$1\le x<N$），骰子输出了数字$y$（$0\le y\le A_i$），你下一步会到达方格$x+y$。</p>
+<p>直到到达方格$N$之前，你每次会前进骰子输出的步数。换句话说，如果你在方格$x$上（$1\le x < N$），骰子输出了数字$y$（$0\le y\le A_i$），你下一步会到达方格$x+y$。</p>
 <p>求到达方格$N$步数的期望值，对$998244353$取模。</p>
 <p>$2\le N\le 2\times 10^5$<br>
-$1\le A_i\le N-i$（$1\le i<N$）</p>
+$1\le A_i\le N-i$（$1\le i < N$）</p>
 <blockquote>
 <p><strong>有理数取模</strong>【<a class="link" href="https://www.luogu.com.cn/problem/P2613"  target="_blank" rel="noopener"
     >洛谷模板：P2613</a>】<br>

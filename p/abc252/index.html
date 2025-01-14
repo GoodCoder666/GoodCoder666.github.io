@@ -372,7 +372,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 9 分钟
                 </time>
             </div>
         
@@ -651,7 +651,7 @@ $S_N$</p>
 </h2><p>给定长为$N$的整数序列$A=(A_1,\dots,A_N)$。<br>
 求符合以下条件的整数对$(i,j,k)$的个数：</p>
 <ul>
-<li>$1\le i<j<k\le N$</li>
+<li>$1\le i < j < k\le N$</li>
 <li>$A_i\ne A_j\ne A_k$</li>
 </ul>
 <p>$3\le N\le 2\times 10^5$<br>
@@ -665,10 +665,10 @@ $A_1~\dots~A_N$</p>
 </h2><p>本题主要有两种思路：</p>
 <ol>
 <li>逆向思维，用总数-不符合条件的；</li>
-<li>将题目转化为求$A_i<A_j<A_k$的$(i,j,k)$的个数。</li>
+<li>将题目转化为求$A_i < A_j < A_k$的$(i,j,k)$的个数。</li>
 </ol>
 <p>这里介绍第一种方法（第二种方法较为简单，不详细说明）。</p>
-<p>首先易得，总共的$1\le i<j<k\le N$有$C_n^3$种取法。<br>
+<p>首先易得，总共的$1\le i < j < k\le N$有$C_n^3$种取法。<br>
 然后考虑$A_i,A_j,A_k$中有重复的个数：</p>
 <ul>
 <li>对于$A$中每个数$x$，我们记录$\text{cnt}_x=A$中$x$出现的次数；</li>
@@ -752,7 +752,7 @@ $A_1~\dots~A_N$</p>
 求任意一颗生成树，使得从点$1$到其他所有点的距离之和最小。</p>
 <p>$2\le N\le 2\times 10^5$<br>
 $N-1\le M\le 2\times 10^5$<br>
-$1\le A_i<B_i\le N$<br>
+$1\le A_i < B_i\le N$<br>
 $(A_i,B_i)\ne(A_j,B_j)$（$i\ne j$）<br>
 $1\le C_i\le 10^9$</p>
 <h2 id="输入格式-4">输入格式
@@ -1125,7 +1125,7 @@ $P_1~\dots~P_N$</p>
 </ul>
 <p>易得，此时$\mathrm{dp}(l,r)$初始化为$\mathrm{dp}(l+1,r)$。</p>
 <ul>
-<li>再考虑区分左右子树，对于每个$k$（$l<k<r$），将$A_l,\dots,A_{k-1}$当作左子树（可能数为$\mathrm{dp}(l+1,k)$），再将$A_k,\dots,A_{r-1}$当作右子树（可能数为$\mathrm{dp}(k,r)$），此时如果$A_l<A_k$则符合题意，将$\mathrm{dp}(l,r)$加上$\mathrm{dp}(l+1,k)\times \mathrm{dp}(k,r)$即可。</li>
+<li>再考虑区分左右子树，对于每个$k$（$l < k < r$），将$A_l,\dots,A_{k-1}$当作左子树（可能数为$\mathrm{dp}(l+1,k)$），再将$A_k,\dots,A_{r-1}$当作右子树（可能数为$\mathrm{dp}(k,r)$），此时如果$A_l < A_k$则符合题意，将$\mathrm{dp}(l,r)$加上$\mathrm{dp}(l+1,k)\times \mathrm{dp}(k,r)$即可。</li>
 </ul>
 <p>至此，本题已结束，时间复杂度为$\mathcal O(N^3)$。</p>
 <h2 id="代码-6">代码

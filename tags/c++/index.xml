@@ -2906,7 +2906,7 @@ $1\le P,Q\le 10$&lt;/p&gt;
 &lt;li&gt;令 $f_{i,j}$ 表示 Ta 在点 $i$，Ao 在点 $j$，下一轮 Ta 移动时 Ta 获胜的概率。&lt;/li&gt;
 &lt;li&gt;令 $g_{i,j}$ 表示 Ta 在点 $i$，Ao 在点 $j$，下一轮 Ao 移动时 Ta 获胜的概率。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;首先考虑初始状态。根据游戏规则，对于任意 $1\le i&lt;n$，$f_{n,i}=g_{n,i}=1,f_{i,n}=g_{i,n}=0$。&lt;/p&gt;
+&lt;p&gt;首先考虑初始状态。根据游戏规则，对于任意 $1\le i &lt; n$，$f_{n,i}=g_{n,i}=1,f_{i,n}=g_{i,n}=0$。&lt;/p&gt;
 &lt;p&gt;转移也很显然：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;对于 Ta 当前走的每种可能的步数 $k=1,2,\dots,P$，有 $f_{i,j}:=f_{i,j}+\frac1Pg_{\min(i+k,N),j}$。&lt;/li&gt;
@@ -3937,17 +3937,17 @@ $N$次操作后是否能到达终点$t$？&lt;strong&gt;注意：必须为最终
 &lt;h1 id=&#34;b---ancestorhttpsatcoderjpcontestsabc263tasksabc263_b&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://atcoder.jp/contests/abc263/tasks/abc263_b&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;B - Ancestor&lt;/a&gt;
 &lt;/h1&gt;&lt;h2 id=&#34;题目大意-1&#34;&gt;题目大意
-&lt;/h2&gt;&lt;p&gt;有$N$个人，第$i$个人的父/母是$P_i$，题目保证$P_i&lt;i$。&lt;br&gt;
+&lt;/h2&gt;&lt;p&gt;有$N$个人，第$i$个人的父/母是$P_i$，题目保证$P_i &lt; i$。&lt;br&gt;
 问：第$N$个人是第$1$个人的第几代？&lt;/p&gt;
 &lt;p&gt;$2\le N\le 50$&lt;br&gt;
-$1\le P_i&lt;i$&lt;/p&gt;
+$1\le P_i &lt; i$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-1&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$N$&lt;br&gt;
 $P_2~P_3~\dots~P_N$&lt;/p&gt;
 &lt;h2 id=&#34;输出格式-1&#34;&gt;输出格式
 &lt;/h2&gt;&lt;p&gt;输出答案。&lt;/p&gt;
 &lt;h2 id=&#34;分析-1&#34;&gt;分析
-&lt;/h2&gt;&lt;p&gt;本题可以使用$\text{DFS}$，但没有必要。题目限制条件特别给出了$P_i&lt;i$，因此如果按输入顺序依次处理每个人的世代，一个人的父亲肯定在这个人之前被考察到。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;本题可以使用$\text{DFS}$，但没有必要。题目限制条件特别给出了$P_i &lt; i$，因此如果按输入顺序依次处理每个人的世代，一个人的父亲肯定在这个人之前被考察到。&lt;/p&gt;
 &lt;p&gt;下面来看详细过程。&lt;br&gt;
 我们设$\text{depth}_i=~$第$i$个节点的深度，因此答案为$\text{depth}_N$。&lt;br&gt;
 初始时，$\text{depth}_0=0$。对于$i=1\dots N$，依次设置$\text{depth}_i:=\text{depth}_{P_i}+1$。&lt;br&gt;
@@ -4174,10 +4174,10 @@ $~~~~g_i=($使用操作$2$选择$y\le i$时的后$i$个序列元素的最小和$
 &lt;/h1&gt;&lt;h2 id=&#34;题目大意-4&#34;&gt;题目大意
 &lt;/h2&gt;&lt;p&gt;有$N$个方格，分别是方格$1$，方格$2$，..，方格$N$。&lt;br&gt;
 在方格$1,2,\dots,N-1$上，各有一枚骰子。方格$i$上的骰子会按照相同的概率随机输出$0,1,\dots,A_i$中的一个。&lt;/p&gt;
-&lt;p&gt;直到到达方格$N$之前，你每次会前进骰子输出的步数。换句话说，如果你在方格$x$上（$1\le x&lt;N$），骰子输出了数字$y$（$0\le y\le A_i$），你下一步会到达方格$x+y$。&lt;/p&gt;
+&lt;p&gt;直到到达方格$N$之前，你每次会前进骰子输出的步数。换句话说，如果你在方格$x$上（$1\le x &lt; N$），骰子输出了数字$y$（$0\le y\le A_i$），你下一步会到达方格$x+y$。&lt;/p&gt;
 &lt;p&gt;求到达方格$N$步数的期望值，对$998244353$取模。&lt;/p&gt;
 &lt;p&gt;$2\le N\le 2\times 10^5$&lt;br&gt;
-$1\le A_i\le N-i$（$1\le i&lt;N$）&lt;/p&gt;
+$1\le A_i\le N-i$（$1\le i &lt; N$）&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;有理数取模&lt;/strong&gt;【&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P2613&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;洛谷模板：P2613&lt;/a&gt;】&lt;br&gt;
@@ -4929,7 +4929,7 @@ $P_1~P_2~\dots~P_N$&lt;/p&gt;
     &gt;E - At Least One&lt;/a&gt;
 &lt;/h1&gt;&lt;h2 id=&#34;题目大意-4&#34;&gt;题目大意
 &lt;/h2&gt;&lt;p&gt;给定整数$M$和$N$对整数：$(A_1,B_1),(A_2,B_2),\dots,(A_N,B_N)$。&lt;br&gt;
-题目保证对于任意$i$，$1\le A_i&lt;B_i\le M$。&lt;/p&gt;
+题目保证对于任意$i$，$1\le A_i &lt; B_i\le M$。&lt;/p&gt;
 &lt;p&gt;符合如下条件的整数序列$S$被称作&lt;strong&gt;好的序列&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;$S$是$(1,2,\dots,M)$的连续子序列；&lt;/li&gt;
@@ -4938,7 +4938,7 @@ $P_1~P_2~\dots~P_N$&lt;/p&gt;
 &lt;p&gt;令$f(k)=($长为$k$的好序列的个数$)$。求$f(1),f(2),\dots,f(M)$。&lt;/p&gt;
 &lt;p&gt;$1\le N\le 2\times 10^5$&lt;br&gt;
 $2\le M\le 2\times 10^5$&lt;br&gt;
-$1\le A_i&lt;B_i\le M$&lt;/p&gt;
+$1\le A_i &lt; B_i\le M$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-4&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$N~M$&lt;br&gt;
 $A_1~B_1$&lt;br&gt;
@@ -5063,7 +5063,7 @@ $A_N~B_N$&lt;/p&gt;
 &lt;p&gt;$2\le S\le 3\times 10^5$&lt;br&gt;
 ==$2\le T\le 3000$==&lt;br&gt;
 $4\le M\le \min(S\times T,3\times 10^5)$&lt;br&gt;
-$1\le u_i\le S&lt;v_i\le S+T$&lt;/p&gt;
+$1\le u_i\le S &lt; v_i\le S+T$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-5&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$S~T~M$&lt;br&gt;
 $u_1~V_1$&lt;br&gt;
@@ -5442,7 +5442,7 @@ $K_Q$&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;求数对$(i,j,k)$的个数，使得：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$1\le i&lt;j&lt;k\le N$&lt;/li&gt;
+&lt;li&gt;$1\le i &lt; j &lt; k\le N$&lt;/li&gt;
 &lt;li&gt;$(i,j,k)$三个点在图中组成一个三角形，即$i,j,k$中任意两点之间有一条连边。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;$3\le N\le 3000$&lt;/p&gt;
@@ -5570,7 +5570,7 @@ $A_{N,1}A_{N,2}\dots A_{N,N}$（注意没有空格，如&lt;code&gt;10110&lt;/co
 &lt;/blockquote&gt;
 &lt;p&gt;正解还是基于上面的朴素算法，可看作：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;依次遍历$A_{i,j}=1$的$(i,j)$（$i&lt;j$）&lt;/li&gt;
+&lt;li&gt;依次遍历$A_{i,j}=1$的$(i,j)$（$i &lt; j$）&lt;/li&gt;
 &lt;li&gt;=&amp;gt; 将答案加上$A[i]$和$A[j]$对应位置上都是$1$的位置个数&lt;/li&gt;
 &lt;li&gt;输出答案，&lt;strong&gt;除以3&lt;/strong&gt;（去掉每个重复算的三次）&lt;/li&gt;
 &lt;/ul&gt;
@@ -5702,7 +5702,7 @@ $100\le N\le 999$&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;输出$N$个整数序列$A_0,\dots,A_{N-1}$。它们按如下定义：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;$A_i$的长为$i+1$。&lt;/li&gt;
-&lt;li&gt;$A_i$的第$j+1$个元素记为$a_{i,j}$（$0\le j\le i&lt;N$），即：
+&lt;li&gt;$A_i$的第$j+1$个元素记为$a_{i,j}$（$0\le j\le i &lt; N$），即：
 &lt;ul&gt;
 &lt;li&gt;当$j=0$或$j=i$时，$a_{i,j}=1$；&lt;/li&gt;
 &lt;li&gt;否则，$a_{i,j}=a_{i-1,j-1}+a_{i-1,j}$。&lt;/li&gt;
@@ -5988,7 +5988,7 @@ $a_1~\dots~a_N$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;可以不进行操作。&lt;/p&gt;
 &lt;h2 id=&#34;分析-2&#34;&gt;分析
-&lt;/h2&gt;&lt;p&gt;题目可以看成：在$a_i,a_{K+i},a_{2K+i},\dots$（$1\le i&lt;K$）中的元素是可以两两相邻交换的。那么，根据&lt;strong&gt;冒泡排序&lt;/strong&gt;的原理，这些元素是可以直接排序并放入原位置上的。此时，只需依次对于$i=1,2,\dots,K-1$的上述序列并排序、放回原位，最终检查是否已被排成升序即可。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;题目可以看成：在$a_i,a_{K+i},a_{2K+i},\dots$（$1\le i &lt; K$）中的元素是可以两两相邻交换的。那么，根据&lt;strong&gt;冒泡排序&lt;/strong&gt;的原理，这些元素是可以直接排序并放入原位置上的。此时，只需依次对于$i=1,2,\dots,K-1$的上述序列并排序、放回原位，最终检查是否已被排成升序即可。&lt;/p&gt;
 &lt;h2 id=&#34;代码-2&#34;&gt;代码
 &lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -6202,7 +6202,7 @@ $a_1~\dots~a_N$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;$1\le N,Q\le 1.5\times 10^5$&lt;br&gt;
 $0\le M\le \min\{\frac{N(N-1)}2,\frac32N\}$&lt;br&gt;
-$1\le a_i&lt;b_i\le N$，$(a_i,b_i)$互不相同。&lt;br&gt;
+$1\le a_i &lt; b_i\le N$，$(a_i,b_i)$互不相同。&lt;br&gt;
 $1\le x_i\le N$，==$0\le k_i\le 3$==&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-4&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$N~M$&lt;br&gt;
@@ -6766,11 +6766,11 @@ $$\text{Ans}=f(N)-g(A)-g(B)+g([A,B])$$&lt;p&gt;&lt;br&gt;
 &lt;/h2&gt;&lt;p&gt;求符合如下条件的$A=(A_1,\dots,A_N)$的个数，对$998244353$取模：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;$1\le A_i\le M$（$1\le i\le N$）&lt;/li&gt;
-&lt;li&gt;$|A_i-A_{i+1}|\ge K$（$1\le i&lt;N$）&lt;/li&gt;
+&lt;li&gt;$|A_i-A_{i+1}|\ge K$（$1\le i &lt; N$）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;$2\le N\le 1000$&lt;br&gt;
 $1\le M\le 5000$&lt;br&gt;
-$0\le K&lt;M$&lt;/p&gt;
+$0\le K &lt; M$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-4&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$N~M~K$&lt;/p&gt;
 &lt;h2 id=&#34;输出格式-4&#34;&gt;输出格式
@@ -7173,7 +7173,7 @@ $S_N$&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;给定长为$N$的整数序列$A=(A_1,\dots,A_N)$。&lt;br&gt;
 求符合以下条件的整数对$(i,j,k)$的个数：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$1\le i&lt;j&lt;k\le N$&lt;/li&gt;
+&lt;li&gt;$1\le i &lt; j &lt; k\le N$&lt;/li&gt;
 &lt;li&gt;$A_i\ne A_j\ne A_k$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;$3\le N\le 2\times 10^5$&lt;br&gt;
@@ -7187,10 +7187,10 @@ $A_1~\dots~A_N$&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;本题主要有两种思路：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;逆向思维，用总数-不符合条件的；&lt;/li&gt;
-&lt;li&gt;将题目转化为求$A_i&lt;A_j&lt;A_k$的$(i,j,k)$的个数。&lt;/li&gt;
+&lt;li&gt;将题目转化为求$A_i &lt; A_j &lt; A_k$的$(i,j,k)$的个数。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;这里介绍第一种方法（第二种方法较为简单，不详细说明）。&lt;/p&gt;
-&lt;p&gt;首先易得，总共的$1\le i&lt;j&lt;k\le N$有$C_n^3$种取法。&lt;br&gt;
+&lt;p&gt;首先易得，总共的$1\le i &lt; j &lt; k\le N$有$C_n^3$种取法。&lt;br&gt;
 然后考虑$A_i,A_j,A_k$中有重复的个数：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;对于$A$中每个数$x$，我们记录$\text{cnt}_x=A$中$x$出现的次数；&lt;/li&gt;
@@ -7274,7 +7274,7 @@ $A_1~\dots~A_N$&lt;/p&gt;
 求任意一颗生成树，使得从点$1$到其他所有点的距离之和最小。&lt;/p&gt;
 &lt;p&gt;$2\le N\le 2\times 10^5$&lt;br&gt;
 $N-1\le M\le 2\times 10^5$&lt;br&gt;
-$1\le A_i&lt;B_i\le N$&lt;br&gt;
+$1\le A_i &lt; B_i\le N$&lt;br&gt;
 $(A_i,B_i)\ne(A_j,B_j)$（$i\ne j$）&lt;br&gt;
 $1\le C_i\le 10^9$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-4&#34;&gt;输入格式
@@ -7647,7 +7647,7 @@ $P_1~\dots~P_N$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;易得，此时$\mathrm{dp}(l,r)$初始化为$\mathrm{dp}(l+1,r)$。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;再考虑区分左右子树，对于每个$k$（$l&lt;k&lt;r$），将$A_l,\dots,A_{k-1}$当作左子树（可能数为$\mathrm{dp}(l+1,k)$），再将$A_k,\dots,A_{r-1}$当作右子树（可能数为$\mathrm{dp}(k,r)$），此时如果$A_l&lt;A_k$则符合题意，将$\mathrm{dp}(l,r)$加上$\mathrm{dp}(l+1,k)\times \mathrm{dp}(k,r)$即可。&lt;/li&gt;
+&lt;li&gt;再考虑区分左右子树，对于每个$k$（$l &lt; k &lt; r$），将$A_l,\dots,A_{k-1}$当作左子树（可能数为$\mathrm{dp}(l+1,k)$），再将$A_k,\dots,A_{r-1}$当作右子树（可能数为$\mathrm{dp}(k,r)$），此时如果$A_l &lt; A_k$则符合题意，将$\mathrm{dp}(l,r)$加上$\mathrm{dp}(l+1,k)\times \mathrm{dp}(k,r)$即可。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;至此，本题已结束，时间复杂度为$\mathcal O(N^3)$。&lt;/p&gt;
 &lt;h2 id=&#34;代码-6&#34;&gt;代码
@@ -7893,7 +7893,7 @@ $a_1~a_2~\dots~a_n$&lt;br&gt;
 &lt;/h1&gt;&lt;h2 id=&#34;题目大意-1&#34;&gt;题目大意
 &lt;/h2&gt;&lt;p&gt;当一个&lt;strong&gt;正整数&lt;/strong&gt;$k$满足以下条件时，我们称其为“与$250$相似的”：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$k=p\times q^3$，其中$p,q$均为质数，且$p&lt;q$。&lt;/li&gt;
+&lt;li&gt;$k=p\times q^3$，其中$p,q$均为质数，且$p &lt; q$。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;求不超过$N$的“与$250$相似的”$k$的个数。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;$1\le N\le 10^{18}$&lt;/p&gt;
@@ -7927,10 +7927,10 @@ $a_1~a_2~\dots~a_n$&lt;br&gt;
 &lt;h2 id=&#34;分析-1&#34;&gt;分析
 &lt;/h2&gt;&lt;p&gt;看到数据范围后我们发现$N$太大，不能盲目下手。&lt;br&gt;
 由$k=p\times q^3,k\le N$可知，$p\times q^3\le N\le 10^{18}$。&lt;br&gt;
-又因为$p,q$是质数，且$p&lt;q$可得，$2\le p&lt;q$。&lt;br&gt;
+又因为$p,q$是质数，且$p &lt; q$可得，$2\le p &lt; q$。&lt;br&gt;
 因此，当$p$最小时$q$最大，所以$q\le \sqrt[3]{\frac {N=10^{18}} {p=2}}\approx794000$。&lt;/p&gt;
 &lt;p&gt;这时，可以想到&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/sqcfj/article/details/84656563&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;筛出质数表&lt;/a&gt;，并&lt;strong&gt;对于每个质数$p$计算最大的$q$，此时质数$p&lt;x\le q$都能作为$q$，因此将答案加上$p&lt;x\le q$的质数数量即可&lt;/strong&gt;。当$p\ge q$时，退出循环，输出结果即可。&lt;/p&gt;
+    &gt;筛出质数表&lt;/a&gt;，并&lt;strong&gt;对于每个质数$p$计算最大的$q$，此时质数$p &lt; x\le q$都能作为$q$，因此将答案加上$p &lt; x\le q$的质数数量即可&lt;/strong&gt;。当$p\ge q$时，退出循环，输出结果即可。&lt;/p&gt;
 &lt;p&gt;计算$q$时可以使用&lt;a class=&#34;link&#34; href=&#34;https://baike.baidu.com/item/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/10628618&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;二分查找&lt;/a&gt;或者&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/71643340&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;双指针&lt;/a&gt;算法快速处理。&lt;br&gt;
@@ -10106,8 +10106,8 @@ $\rarr$ 题解列表&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/w
     &gt;A - Good morning&lt;/a&gt;
 &lt;/h1&gt;&lt;h2 id=&#34;题目大意&#34;&gt;题目大意
 &lt;/h2&gt;&lt;p&gt;在同一天里，Takahashi在$A$时$B$分起床，Aoki在$C$时$D$分$1$秒起床，请问谁起床更早？&lt;/p&gt;
-&lt;p&gt;$0\le A,C&lt;24$&lt;br&gt;
-$0\le B,D&lt;60$&lt;/p&gt;
+&lt;p&gt;$0\le A,C &lt; 24$&lt;br&gt;
+$0\le B,D &lt; 60$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$A~B~C~D$&lt;/p&gt;
 &lt;h2 id=&#34;输出格式&#34;&gt;输出格式
@@ -10249,7 +10249,7 @@ $A_1~\dots~A_N$&lt;/p&gt;
 问是否存在序列$X=(X_1,\dots,X_N)$，满足如下条件：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;$X_i=A_i$或$X_i=B_i$&lt;/li&gt;
-&lt;li&gt;$|X_i-X_{i+1}|\le K$，其中$1\le i&lt;N$&lt;/li&gt;
+&lt;li&gt;$|X_i-X_{i+1}|\le K$，其中$1\le i &lt; N$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;$1\le N\le 2\times 10^5$&lt;br&gt;
 $1\le K\le 10^9$&lt;br&gt;
@@ -10346,7 +10346,7 @@ C(x)=\sum_{i=0}^{N+M} B_iX^i
 $$&lt;p&gt;&lt;br&gt;
 已知$A_0,\dots,A_N$和$C_0,\dots,C_N$且$A(x)\times B(x)=C(x)$（$x\in R$），求$B_0,\dots,B_M$。&lt;br&gt;
 换句话说，给定多项式$A$和$C$每一项的系数，求多项式$B=\frac C A$。&lt;/p&gt;
-&lt;p&gt;$1\le N,M&lt;100$&lt;br&gt;
+&lt;p&gt;$1\le N,M &lt; 100$&lt;br&gt;
 $|A_i|\le 100$&lt;br&gt;
 $|C_i|\le 10^6$&lt;br&gt;
 $A_N\ne0,C_{N+M}\ne0$&lt;br&gt;
@@ -10638,7 +10638,7 @@ $1\le M\le 2000$&lt;br&gt;
 $1\le K\le 2000$&lt;br&gt;
 $1\le S,T,X\le N$&lt;br&gt;
 $X\ne S,X\ne T$&lt;br&gt;
-$1\le U_i&lt;V_i\le N$&lt;br&gt;
+$1\le U_i &lt; V_i\le N$&lt;br&gt;
 $(U_i,V_i)\ne(U_j,V_j)$（$i\ne j$）&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-1&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$N~M~K~S~T~X$&lt;br&gt;
@@ -12426,9 +12426,9 @@ $1\le C\le 10^9$&lt;/p&gt;
 &lt;h2 id=&#34;输出格式-2&#34;&gt;输出格式
 &lt;/h2&gt;&lt;p&gt;本题分如下三种情况输出：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;如果$A^C&lt;B^C$，输出&lt;code&gt;&amp;lt;&lt;/code&gt;；&lt;/li&gt;
-&lt;li&gt;如果$A^C&gt;B^C$，输出&lt;code&gt;&amp;gt;&lt;/code&gt;；&lt;/li&gt;
-&lt;li&gt;如果$A^C=B^C$，输出&lt;code&gt;=&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果$A^C &lt; B^C$，输出&lt;code&gt;&amp;lt;&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;如果$A^C &gt; B^C$，输出&lt;code&gt;&amp;gt;&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;如果$A^C = B^C$，输出&lt;code&gt;=&lt;/code&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;样例-2&#34;&gt;样例
 &lt;/h2&gt;&lt;table&gt;
@@ -12510,7 +12510,7 @@ $1\le C\le 10^9$&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;给定长度为$N$的正整数序列$A=(A_1,A_2,\dots,A_N)$和$Q$次查询。&lt;br&gt;
 在第$i$次查询中，给定正整数$K_i$，求第$K_i$小的&lt;strong&gt;不在&lt;/strong&gt;$A$中的正整数。&lt;/p&gt;
 &lt;p&gt;$1\le N,Q\le 10^5$&lt;br&gt;
-$1\le A_1&lt;A_2&lt;\dots&lt;A_N\le10^{18}$&lt;br&gt;
+$1\le A_1 &lt; A_2 &lt; \dots &lt; A_N\le10^{18}$&lt;br&gt;
 $1\le K_i\le 10^{18}$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-3&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$N~Q$&lt;br&gt;
@@ -12778,12 +12778,12 @@ $0\le K\le N$&lt;/p&gt;
         <description>&lt;h1 id=&#34;a---square-inequalityhttpsatcoderjpcontestsabc199tasksabc199_a&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://atcoder.jp/contests/abc199/tasks/abc199_a&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;A - Square Inequality&lt;/a&gt;
 &lt;/h1&gt;&lt;h2 id=&#34;题目大意&#34;&gt;题目大意
-&lt;/h2&gt;&lt;p&gt;给定三个整数$A,B,C$。判断$A^2+B^2&lt;C^2$是否成立。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;给定三个整数$A,B,C$。判断$A^2+B^2 &lt; C^2$是否成立。&lt;/p&gt;
 &lt;p&gt;$0\le A,B,C\le 1000$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$A~B~C$&lt;/p&gt;
 &lt;h2 id=&#34;输出格式&#34;&gt;输出格式
-&lt;/h2&gt;&lt;p&gt;如果$A^2+B^2&lt;C^2$，输出&lt;code&gt;Yes&lt;/code&gt;；否则，输出&lt;code&gt;No&lt;/code&gt;。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;如果$A^2+B^2 &lt; C^2$，输出&lt;code&gt;Yes&lt;/code&gt;；否则，输出&lt;code&gt;No&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;样例&#34;&gt;样例
 &lt;/h2&gt;&lt;table&gt;
   &lt;thead&gt;
@@ -13089,7 +13089,7 @@ $T_Q~A_Q~B_Q$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;当$T_i=2$，$\mathrm{flipped}:=1-\mathrm{flipped}$；&lt;/li&gt;
 &lt;li&gt;当$T_i=1$且$\mathrm{flipped}=0$时，我们直接交换$A_i$和$B_i$&lt;/li&gt;
-&lt;li&gt;当$T_i=\mathrm{flipped}=1$时，我们发现，一个位置$x$如果$&lt;N$，则实际位置在$x+N$；否则，实际位置在$x-N$。&lt;/li&gt;
+&lt;li&gt;当$T_i=\mathrm{flipped}=1$时，我们发现，一个位置$x$如果$&lt; N$，则实际位置在$x+N$；否则，实际位置在$x-N$。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;这种算法的时间复杂度为$\mathcal O(N+Q)$，可轻松通过此题。&lt;/p&gt;
 &lt;h2 id=&#34;代码-2&#34;&gt;代码
@@ -13928,8 +13928,8 @@ $y~C&#39;_1~C&#39;_2~\dots~C&#39;_y$&lt;/p&gt;
 &lt;li&gt;$8$个元素能组成的子序列有$2^8-1=255$种。（每个元素可以选或不选，去掉全不选的情况）&lt;/li&gt;
 &lt;li&gt;根据抽屉原理，我们将这$255$种子序列按照他们除以$200$的余数分别放入抽屉中，则至少有两个子序列在一个抽屉中，即必定有合法的$A$和$B$。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;当$N&lt;8$时，我们暴力枚举所有可能；&lt;br&gt;
-当$N\ge8$时，我们暴力枚举其中任意$8$个元素组成的所有可能即可找到解。&lt;/p&gt;
+&lt;p&gt;当$N &lt; 8$时，我们暴力枚举所有可能；&lt;br&gt;
+当$N\ge 8$时，我们暴力枚举其中任意$8$个元素组成的所有可能即可找到解。&lt;/p&gt;
 &lt;h2 id=&#34;代码-3&#34;&gt;代码
 &lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -16553,7 +16553,7 @@ $A_{H,1}A_{H,2}A_{H,3}\dots A_{H,W}$&lt;/p&gt;
 &lt;li&gt;如果$(i+j)$是偶数：$dp(i,j)=\min(dp(i+1,j)-add(i+1,j),dp(i,j+1)-add(i, j+1))$&lt;/li&gt;
 &lt;li&gt;如果$(i+j)$是奇数：$dp(i,j)=\max(dp(i+1,j)+add(i+1,j),dp(i,j+1)+add(i, j+1))$&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;所以，最终我们只需要通过$dp(0,0)$判断结果即可。如果$dp(0,0)&gt;0$，则Takahashi胜；如果$dp(0,0)&lt;0$，Aoki胜；否则，游戏平局。&lt;br&gt;
+&lt;p&gt;所以，最终我们只需要通过$dp(0,0)$判断结果即可。如果$dp(0,0) &gt; 0$，则Takahashi胜；如果$dp(0,0) &lt; 0$，Aoki胜；否则，游戏平局。&lt;br&gt;
 程序的总时间复杂度为$\mathcal O(NM)$。&lt;/p&gt;
 &lt;h2 id=&#34;代码-3&#34;&gt;代码
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;注意：我这里的dp运用了滚动表的技巧，所以是一维的，当然也可以使用普通的二维dp。&lt;/strong&gt;&lt;/p&gt;
@@ -17001,9 +17001,9 @@ $(X,Y)\ne(0,0)$&lt;/p&gt;
 &lt;h2 id=&#34;分析-2&#34;&gt;分析
 &lt;/h2&gt;&lt;p&gt;我们可以先定义$d=\sqrt{X^2+Y^2}$，即$(X,Y)$到$(0,0)$的距离，则有如下解法：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;如果$d=R$，则总共只需要$1$步。&lt;/li&gt;
-&lt;li&gt;如果$d&lt;R$，则总共需要$2$步。&lt;/li&gt;
-&lt;li&gt;如果$d&gt;R$，总共需要$\lceil\frac d r\rceil$步。&lt;/li&gt;
+&lt;li&gt;如果$d = R$，则总共只需要$1$步。&lt;/li&gt;
+&lt;li&gt;如果$d &lt; R$，则总共需要$2$步。&lt;/li&gt;
+&lt;li&gt;如果$d &gt; R$，总共需要$\lceil\frac d r\rceil$步。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;这样，我们就可以写代码了。&lt;/p&gt;
 &lt;h2 id=&#34;代码-2&#34;&gt;代码
@@ -17611,7 +17611,7 @@ $c~~d$&lt;/p&gt;
     &gt;C - Doubled&lt;/a&gt;
 &lt;/h1&gt;&lt;h2 id=&#34;题目大意-2&#34;&gt;题目大意
 &lt;/h2&gt;&lt;p&gt;$1$~$N$之间有多少个数是另一个正整数重复两遍得来的？&lt;/p&gt;
-&lt;p&gt;$1\le N&lt;10^{12}$&lt;/p&gt;
+&lt;p&gt;$1\le N &lt; 10^{12}$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-2&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$N$&lt;/p&gt;
 &lt;h2 id=&#34;输出格式-2&#34;&gt;输出格式
@@ -18990,7 +18990,7 @@ Takahashi会重复执行以下操作，直到这个图变为连通图：&lt;/p&g
     &gt;A - Discount&lt;/a&gt;
 &lt;/h1&gt;&lt;h2 id=&#34;题目大意&#34;&gt;题目大意
 &lt;/h2&gt;&lt;p&gt;一件商品原价为$A$元，现价为$B$元，现价优惠了百分之几？&lt;/p&gt;
-&lt;p&gt;$1\le B&lt;A\le 10^5$&lt;/p&gt;
+&lt;p&gt;$1\le B &lt; A\le 10^5$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$A~B$&lt;/p&gt;
 &lt;h2 id=&#34;输出格式&#34;&gt;输出格式
@@ -19745,7 +19745,7 @@ $M$&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;略，请自行前往&lt;a class=&#34;link&#34; href=&#34;https://atcoder.jp/contests/abc192/tasks/abc192_d&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;AtCoder&lt;/a&gt;查看&lt;/p&gt;
 &lt;h2 id=&#34;分析-3&#34;&gt;分析
-&lt;/h2&gt;&lt;p&gt;很明显，这题$n$的范围是$d&lt;n\le M$。我们可以用二分找到最大可能的$N$，再用这个数减去$d$即可。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;很明显，这题$n$的范围是$d &lt; n\le M$。我们可以用二分找到最大可能的$N$，再用这个数减去$d$即可。&lt;/p&gt;
 &lt;h2 id=&#34;代码-3&#34;&gt;代码
 &lt;/h2&gt;&lt;p&gt;写这份代码，需要注意如下三个点：&lt;/p&gt;
 &lt;ul&gt;
@@ -19872,7 +19872,7 @@ $M$&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;一个球的速度是$V~\text{m/s}$，它飞了$T$秒后会隐形，飞了$S$秒时会接触隐形。&lt;br&gt;
 球在飞了$D$米后，人能看见它吗？输出&lt;code&gt;Yes&lt;/code&gt;或者&lt;code&gt;No&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;$1\le V\le 1000$&lt;br&gt;
-$1\le T&lt;S\le 1000$&lt;br&gt;
+$1\le T &lt; S\le 1000$&lt;br&gt;
 $1\le D\le 1000$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$V~T~S~D$&lt;/p&gt;
@@ -20653,7 +20653,7 @@ $X_N~Y_N$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;只有第七个咒语能伤害怪兽。&lt;/p&gt;
 &lt;h2 id=&#34;分析-1&#34;&gt;分析
-&lt;/h2&gt;&lt;p&gt;这题可以遍历每一个$i$，并判断如果$X_i&lt;S$和$Y_i&gt;D$同时成立，输出&lt;code&gt;Yes&lt;/code&gt;；当所有$i$都不符合条件时，输出&lt;code&gt;No&lt;/code&gt;。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;这题可以遍历每一个 $i$，并判断如果 $X_i &lt; S$ 和 $Y_i &gt; D$ 同时成立，输出&lt;code&gt;Yes&lt;/code&gt;；当所有$i$都不符合条件时，输出&lt;code&gt;No&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;代码-1&#34;&gt;代码
 &lt;/h2&gt;&lt;p&gt;我写的这个代码是在输入时处理的，当然也可以输入之后再处理。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -20712,9 +20712,9 @@ $X_N~Y_N$&lt;/p&gt;
 &lt;strong&gt;最多&lt;/strong&gt;能有多少个条件被满足？&lt;/p&gt;
 &lt;p&gt;$2\le N\le 100$&lt;br&gt;
 $1\le M\le 100$&lt;br&gt;
-$1\le A_i&lt;B_i\le N$&lt;br&gt;
+$1\le A_i &lt; B_i\le N$&lt;br&gt;
 $1\le K\le 16$&lt;br&gt;
-$1\le C_i&lt;D_i\le N$&lt;/p&gt;
+$1\le C_i &lt; D_i\le N$&lt;/p&gt;
 &lt;h2 id=&#34;输入格式-2&#34;&gt;输入格式
 &lt;/h2&gt;&lt;p&gt;$N~M$&lt;br&gt;
 $A_1~B_1$&lt;br&gt;

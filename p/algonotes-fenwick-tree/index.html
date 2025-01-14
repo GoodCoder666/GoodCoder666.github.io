@@ -329,7 +329,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -540,9 +540,9 @@ $$<p>按照这样，就可以在$\mathcal O(\log n)$的时间复杂度内求$[0,
 对于序列$A=(A_1,A_2,\dots,A_N)$，我们将$A$中的每个数都按原先的映射到一个$[1,N]$的范围内，这个过程被称为<strong>离散化</strong>。一般来说，离散化时同样的元素映射到同样的值，不同的元素映射到不同的值，<strong>且满足原先的大小关系</strong>。换句话说，令原先的序列为$(A_1,\dots,A_N)$，离散化后的序列为$(B_1,\dots,B_N)$，则满足如下条件：</p>
 <ul>
 <li>$1\le B_i\le N$（$1\le i\le N$）</li>
-<li>若$i \ne j$，且$A_i<A_j$，则$B_i<B_j$。</li>
-<li>若$i \ne j$，且$A_i=A_j$，则$B_i=B_j$。</li>
-<li>若$i \ne j$，且$A_i>A_j$，则$B_i>B_j$。</li>
+<li>若$i \ne j$，且$A_i < A_j$，则$B_i < B_j$。</li>
+<li>若$i \ne j$，且$A_i = A_j$，则$B_i = B_j$。</li>
+<li>若$i \ne j$，且$A_i > A_j$，则$B_i > B_j$。</li>
 </ul>
 <h3 id="求逆序对">求逆序对
 </h3><p><a class="link" href="https://baike.baidu.com/item/%E9%80%86%E5%BA%8F%E5%AF%B9/11035554"  target="_blank" rel="noopener"
@@ -552,8 +552,8 @@ $$<p>按照这样，就可以在$\mathcal O(\log n)$的时间复杂度内求$[0,
     >洛谷 P1908 逆序对</a><br>
 给定一个整数序列$A=(A_1,A_2,\dots,A_N)$，求其中逆序对的个数。<br>
 一个整数对$(i,j)$被称为“逆序对”，当且仅当如下条件满足：<br>
-$\to1\le i<j\le N$<br>
-$\to A_i>A_j$<br>
+$\to 1\le i < j\le N$<br>
+$\to A_i > A_j$<br>
 数据范围：$N\le 10^5,A_i\le 10^9$。</p>
 </blockquote>
 <p>由于$N\le 10^5$，所以暴力的$\mathcal O(N^2)$做法肯定不行。<br>

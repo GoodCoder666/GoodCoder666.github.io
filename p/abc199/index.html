@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="A - Square Inequality\r题目大意\r给定三个整数$A,B,C$。判断$A^2+B^2">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="A - Square Inequality\r题目大意\r给定三个整数$A,B,C$。判断$A^2+B^2 < C^2$是否成立。\n$0\\le A,B,C\\le 1000$\n输入格式\r$A~B~C$\n输出格式\r如果$A^2+B^2 < C^2$，输出Yes；否则，输出No。\n">
 <title>AtCoder Beginner Contest 199 (Sponsored by Panasonic) A~E 题解</title>
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/abc199/'>
 
 <link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="AtCoder Beginner Contest 199 (Sponsored by Panasonic) A~E 题解">
-<meta property='og:description' content="A - Square Inequality\r题目大意\r给定三个整数$A,B,C$。判断$A^2+B^2">
+<meta property='og:description' content="A - Square Inequality\r题目大意\r给定三个整数$A,B,C$。判断$A^2+B^2 < C^2$是否成立。\n$0\\le A,B,C\\le 1000$\n输入格式\r$A~B~C$\n输出格式\r如果$A^2+B^2 < C^2$，输出Yes；否则，输出No。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/abc199/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法竞赛' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2021-06-13T11:31:00&#43;08:00'/><meta property='article:modified_time' content='2021-06-13T11:31:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
     <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="AtCoder Beginner Contest 199 (Sponsored by Panasonic) A~E 题解">
-<meta name="twitter:description" content="A - Square Inequality\r题目大意\r给定三个整数$A,B,C$。判断$A^2+B^2">
+<meta name="twitter:description" content="A - Square Inequality\r题目大意\r给定三个整数$A,B,C$。判断$A^2+B^2 < C^2$是否成立。\n$0\\le A,B,C\\le 1000$\n输入格式\r$A~B~C$\n输出格式\r如果$A^2+B^2 < C^2$，输出Yes；否则，输出No。\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
@@ -396,7 +396,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -414,12 +414,12 @@
     <h1 id="a---square-inequalityhttpsatcoderjpcontestsabc199tasksabc199_a"><a class="link" href="https://atcoder.jp/contests/abc199/tasks/abc199_a"  target="_blank" rel="noopener"
     >A - Square Inequality</a>
 </h1><h2 id="题目大意">题目大意
-</h2><p>给定三个整数$A,B,C$。判断$A^2+B^2<C^2$是否成立。</p>
+</h2><p>给定三个整数$A,B,C$。判断$A^2+B^2 < C^2$是否成立。</p>
 <p>$0\le A,B,C\le 1000$</p>
 <h2 id="输入格式">输入格式
 </h2><p>$A~B~C$</p>
 <h2 id="输出格式">输出格式
-</h2><p>如果$A^2+B^2<C^2$，输出<code>Yes</code>；否则，输出<code>No</code>。</p>
+</h2><p>如果$A^2+B^2 < C^2$，输出<code>Yes</code>；否则，输出<code>No</code>。</p>
 <h2 id="样例">样例
 </h2><div class="table-wrapper"><table>
   <thead>
@@ -725,7 +725,7 @@ $T_Q~A_Q~B_Q$</p>
 <ul>
 <li>当$T_i=2$，$\mathrm{flipped}:=1-\mathrm{flipped}$；</li>
 <li>当$T_i=1$且$\mathrm{flipped}=0$时，我们直接交换$A_i$和$B_i$</li>
-<li>当$T_i=\mathrm{flipped}=1$时，我们发现，一个位置$x$如果$<N$，则实际位置在$x+N$；否则，实际位置在$x-N$。</li>
+<li>当$T_i=\mathrm{flipped}=1$时，我们发现，一个位置$x$如果$< N$，则实际位置在$x+N$；否则，实际位置在$x-N$。</li>
 </ul>
 <p>这种算法的时间复杂度为$\mathcal O(N+Q)$，可轻松通过此题。</p>
 <h2 id="代码-2">代码
