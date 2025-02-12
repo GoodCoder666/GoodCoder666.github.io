@@ -375,7 +375,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以试着调用<code>func</code>：</p>
@@ -505,9 +505,9 @@
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 手动设置*args的参数默认值</span>
 </span></span><span class="line"><span class="cl"><span class="n">DEFAULT_VALUE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># 默认值，可自行改变</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="n">args</span> <span class="o">==</span> <span class="p">():</span> <span class="c1"># 如果为空（用户没有传递参数）:</span>
-</span></span><span class="line"><span class="cl">		<span class="n">args</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span> <span class="c1"># 设为默认值</span>
-</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span> <span class="o">==</span> <span class="p">():</span> <span class="c1"># 如果为空（用户没有传递参数）:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">args</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span> <span class="c1"># 设为默认值</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样，就有默认值了：</p>
@@ -540,7 +540,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="c1"># kwargs = keyword arguments</span>
-</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后调用<code>func</code>，但是这个跟上一个相反，必须是<code>name=value</code>式传参 （这也是为什么它叫<code>kwargs (keyword arguments)</code>）：</p>
@@ -640,9 +640,9 @@
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 手动设置**kwargs的参数默认值</span>
 </span></span><span class="line"><span class="cl"><span class="n">DEFAULT_VALUE</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="c1"># 默认值，可自行改变</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="n">kwargs</span> <span class="o">==</span> <span class="p">{}:</span> <span class="c1"># 如果为空（用户没有传递参数）:</span>
-</span></span><span class="line"><span class="cl">		<span class="n">kwargs</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span> <span class="c1"># 设为默认值</span>
-</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">kwargs</span> <span class="o">==</span> <span class="p">{}:</span> <span class="c1"># 如果为空（用户没有传递参数）:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">kwargs</span> <span class="o">=</span> <span class="n">DEFAULT_VALUE</span> <span class="c1"># 设为默认值</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样，就有默认值了：</p>
