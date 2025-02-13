@@ -86,7 +86,7 @@
 &lt;/h3&gt;&lt;p&gt;对于两种算法，都需要预处理出每个结点的深度。&lt;br&gt;
 &lt;strong&gt;一个结点的深度定义为这个结点到树根的距离。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;要预处理出所有结点的深度，很简单：&lt;br&gt;
-运用&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126263935&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+运用&lt;a class=&#34;link&#34; href=&#34;https://goodcoder666.github.io/p/algonotes-tree-dp/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;树形dp&lt;/a&gt;的方法，令 $h_u$ 表示结点 $u$ 的深度，逐层向下推进：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -810,7 +810,7 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;p&gt;运行时间：$128\mathrm{ms}$&lt;br&gt;
 使用内存：$6.90\mathrm{MB}$&lt;/p&gt;
 &lt;h3 id=&#34;树状数组&#34;&gt;树状数组
-&lt;/h3&gt;&lt;p&gt;关于树状数组的原理我已经在&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126441412&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/h3&gt;&lt;p&gt;关于树状数组的原理我已经在&lt;a class=&#34;link&#34; href=&#34;https://goodcoder666.github.io/p/algonotes-fenwick-tree/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这篇文章&lt;/a&gt;中讲过，这里不再多说了。下面我们考虑如何应用树状数组解决 RMQ 问题。&lt;/p&gt;
 &lt;h4 id=&#34;原算法&#34;&gt;原算法
 &lt;/h4&gt;&lt;p&gt;树状数组可以用&lt;code&gt;lowbit&lt;/code&gt;操作实现&lt;code&gt;prefixSum&lt;/code&gt;（前缀和）以及&lt;code&gt;update&lt;/code&gt;（更新）操作，时间复杂度均为$\mathcal O(N\log N)$。不仅是加法，&lt;strong&gt;对于任意满足结合律的运算这两种操作都有效。&lt;/strong&gt;&lt;/p&gt;
@@ -1946,7 +1946,7 @@ $$&lt;blockquote&gt;
 &lt;/div&gt;&lt;hr&gt;
 &lt;h2 id=&#34;扩展概念运算&#34;&gt;扩展概念&amp;amp;运算
 &lt;/h2&gt;&lt;h3 id=&#34;lowbit&#34;&gt;lowbit
-&lt;/h3&gt;&lt;p&gt;&lt;code&gt;lowbit(x)&lt;/code&gt;即为二进制下$x$的最低位，如&lt;code&gt;lowbit(10010) = 10&lt;/code&gt;、&lt;code&gt;lowbit(1) = 1&lt;/code&gt;。严格来说$0$没有&lt;code&gt;lowbit&lt;/code&gt;，部分情况下可视为&lt;code&gt;lowbit(0) = 1&lt;/code&gt;。利用&lt;code&gt;lowbit&lt;/code&gt;函数可实现&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126441412&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;lowbit(x)&lt;/code&gt;即为二进制下$x$的最低位，如&lt;code&gt;lowbit(10010) = 10&lt;/code&gt;、&lt;code&gt;lowbit(1) = 1&lt;/code&gt;。严格来说$0$没有&lt;code&gt;lowbit&lt;/code&gt;，部分情况下可视为&lt;code&gt;lowbit(0) = 1&lt;/code&gt;。利用&lt;code&gt;lowbit&lt;/code&gt;函数可实现&lt;a class=&#34;link&#34; href=&#34;https://goodcoder666.github.io/p/algonotes-fenwick-tree/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;树状数组&lt;/a&gt;等数据结构。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;lowbit 计算方式&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
@@ -1978,7 +1978,7 @@ $$&lt;blockquote&gt;
 时间复杂度$\mathcal O(1)$。相比(1)来说，代码更短，速度更快。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;x &amp;amp; (x - 1)&lt;/code&gt;&lt;br&gt;
 &lt;strong&gt;注意：&lt;code&gt;x &amp;amp; (x - 1)&lt;/code&gt;不是&lt;code&gt;lowbit(x)&lt;/code&gt;，而是&lt;code&gt;x - lowbit(x)&lt;/code&gt;。&lt;/strong&gt;&lt;br&gt;
-这种方法常用于&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126441412&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+这种方法常用于&lt;a class=&#34;link&#34; href=&#34;https://goodcoder666.github.io/p/algonotes-fenwick-tree/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;树状数组&lt;/a&gt;中，可提升&lt;code&gt;x - lowbit(x)&lt;/code&gt;的计算速度。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;popcount&#34;&gt;popcount
@@ -2314,8 +2314,8 @@ P.S. 这函数，不知是哪位神仙想出来的……&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h5 id=&#34;习题atcoder-beginner-contest-258-g---trianglehttpsatcoderjpcontestsabc258tasksabc258_g&#34;&gt;习题：&lt;a class=&#34;link&#34; href=&#34;https://atcoder.jp/contests/abc258/tasks/abc258_g&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;AtCoder Beginner Contest 258 G - Triangle&lt;/a&gt;
-&lt;/h5&gt;&lt;p&gt;题意和解法见&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/125582361#t15&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://blog.csdn.net/write_1m_lines/article/details/125582361#t15&lt;/a&gt;。&lt;/p&gt;
+&lt;/h5&gt;&lt;p&gt;题意和解法见&lt;a class=&#34;link&#34; href=&#34;https://goodcoder666.github.io/p/abc258/#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;我的题解&lt;/a&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;深度优先搜索dfs的位运算优化&#34;&gt;深度优先搜索（DFS）的位运算优化
 &lt;/h3&gt;&lt;p&gt;本算法其实还是&lt;strong&gt;二进制表示子集&lt;/strong&gt;的一种优化，不过内容较多，所以单独放了出来。&lt;/p&gt;
 &lt;p&gt;考虑经典的&lt;strong&gt;八皇后问题&lt;/strong&gt;：&lt;/p&gt;
@@ -3864,10 +3864,10 @@ $$&lt;p&gt;&lt;br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;prim&#34;&gt;Prim
-&lt;/h2&gt;&lt;p&gt;Prim算法于1930年由捷克数学家Vojtěch Jarník发现，在1957年又由美国计算机科学家Robert C. Prim独立发现。1959年，Edsger Wybe Dijkstra（没错，就是&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126316941&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/h2&gt;&lt;p&gt;Prim算法于1930年由捷克数学家Vojtěch Jarník发现，在1957年又由美国计算机科学家Robert C. Prim独立发现。1959年，Edsger Wybe Dijkstra（没错，就是&lt;a class=&#34;link&#34; href=&#34;https://goodcoder666.github.io/p/algonotes-dijkstra/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Dijkstra&lt;/a&gt;算法的发明者）再次发现了该算法。因此，在某些场合，Prim算法又被称为DJP算法、Jarník算法或Prim－Jarník算法。&lt;/p&gt;
 &lt;h3 id=&#34;prim-算法流程&#34;&gt;Prim 算法流程
-&lt;/h3&gt;&lt;p&gt;Prim与&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126316941&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/h3&gt;&lt;p&gt;Prim与&lt;a class=&#34;link&#34; href=&#34;https://goodcoder666.github.io/p/algonotes-dijkstra/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Dijkstra&lt;/a&gt;很相似，将顶点分为$S$和$T$两个集合，具体流程如下：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;初始时，所有顶点全部在$S$中，$T$为空集。&lt;/li&gt;
@@ -4132,7 +4132,7 @@ $$&lt;p&gt;&lt;br&gt;
         <guid>https://goodcoder666.github.io/p/algonotes-dijkstra/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;Dijkstra算法可在$\mathcal O(m\log m)$或$\mathcal O(m\log n)$的时间内求解无负权单源最短路问题。本文中，我们将详细介绍算法的原理、实现，以及常用的两种优化。&lt;/p&gt;
-&lt;p&gt;另外，Dijkstra算法也不要乱用，比如说多源的最短路，用Dijkstra求解的复杂度只有$\mathcal O(nm\log m)$，但太麻烦，如果数据范围允许，直接用&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126310381&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;p&gt;另外，Dijkstra算法也不要乱用，比如说多源的最短路，用Dijkstra求解的复杂度只有$\mathcal O(nm\log m)$，但太麻烦，如果数据范围允许，直接用&lt;a class=&#34;link&#34; href=&#34;https://goodcoder666.github.io/p/algonotes-floyd/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Floyd&lt;/a&gt;就能在$\mathcal O(n^3)$的时间内完成任务。&lt;/p&gt;
 &lt;p&gt;废话不多说，下面来看Dijkstra算法的流程。&lt;/p&gt;
 &lt;h2 id=&#34;流程&#34;&gt;流程
@@ -4558,7 +4558,7 @@ $$&lt;p&gt;&lt;br&gt;
         
         <guid>https://goodcoder666.github.io/p/algonotes-floyd/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言
-&lt;/h2&gt;&lt;p&gt;在图中，如果要求任意两点间的距离，则可以使用&lt;code&gt;Floyd&lt;/code&gt;（$\mathcal O(N^3)$;)）和&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/write_1m_lines/article/details/126316941&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/h2&gt;&lt;p&gt;在图中，如果要求任意两点间的距离，则可以使用&lt;code&gt;Floyd&lt;/code&gt;（$\mathcal O(N^3)$;)）和&lt;a class=&#34;link&#34; href=&#34;https://goodcoder666.github.io/p/algonotes-dijkstra/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Dijkstra&lt;/a&gt;（$\mathcal O(NM\log M)$:)）。对于比较小的数据范围（一般为顶点数$N\le 150$），可以使用Floyd算法。本文将讲述Floyd算法的原理、实现和扩展应用。&lt;/p&gt;
 &lt;p&gt;如果有哪里写得不好请各位dalao多多指教，谢谢！&lt;/p&gt;
 &lt;h2 id=&#34;原理&#34;&gt;原理
