@@ -286,24 +286,20 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#基本思路">基本思路</a></li>
+    <li><a href="#分步详解">分步详解</a>
       <ol>
-        <li><a href="#基本思路">基本思路</a></li>
-        <li><a href="#分步详解">分步详解</a>
-          <ol>
-            <li><a href="#准备">准备</a></li>
-            <li><a href="#数据类型的存储">数据类型的存储</a></li>
-            <li><a href="#操作-1定义类型">操作 1：定义类型</a></li>
-            <li><a href="#操作-2定义元素">操作 2：定义元素</a></li>
-            <li><a href="#操作-3访问元素">操作 3：访问元素</a></li>
-            <li><a href="#操作-4访问地址">操作 4：访问地址</a></li>
-          </ol>
-        </li>
-        <li><a href="#完整代码">完整代码</a>
-          <ol>
-            <li><a href="#后记">后记</a></li>
-          </ol>
-        </li>
+        <li><a href="#准备">准备</a></li>
+        <li><a href="#数据类型的存储">数据类型的存储</a></li>
+        <li><a href="#操作-1定义类型">操作 1：定义类型</a></li>
+        <li><a href="#操作-2定义元素">操作 2：定义元素</a></li>
+        <li><a href="#操作-3访问元素">操作 3：访问元素</a></li>
+        <li><a href="#操作-4访问地址">操作 4：访问地址</a></li>
+      </ol>
+    </li>
+    <li><a href="#完整代码">完整代码</a>
+      <ol>
+        <li><a href="#后记">后记</a></li>
       </ol>
     </li>
   </ol>
@@ -382,8 +378,8 @@
 <a class="link" href="https://www.luogu.com.cn/blog/best-blogs/solution-p9754"  target="_blank" rel="noopener"
     >洛谷博客</a> <a class="link" href="https://www.cnblogs.com/stanleys/p/18403713/csps2023-t3"  target="_blank" rel="noopener"
     >博客园</a></p>
-<h3 id="基本思路">基本思路
-</h3><p>本题主要考查编码能力，所以直接给出基本思路：</p>
+<h2 id="基本思路">基本思路
+</h2><p>本题主要考查编码能力，所以直接给出基本思路：</p>
 <ul>
 <li>由于可以递归式的创建元素，最多可以同时存在 $100^{100}$ 个不同的基础类型的元素。即使算上最大地址的限制，元素的数量也能达到 $10^{18}$。显然，<strong>依次构造每个元素，在空间和时间上都是无法接受的。</strong></li>
 <li>然而，由于询问数量有限，<strong>真正能在查询时用到的元素数量相对很少</strong>。因此，我们只需维护一个顶层元素（不隶属于任何其他元素的元素）列表，再根据查询的地址或名称<strong>逐层向下找到需要的元素</strong>即可。以下是四种操作的具体做法：
@@ -401,9 +397,9 @@
 <li>用 map <strong>将类型名称映射到序号</strong>，来代表一种数据类型。相比第一种做法，效率高了很多，但是写起来仍然很麻烦，pass。</li>
 <li>用结构体存储类型信息，并<strong>使用指针来处理类型之间的关联</strong>。这种做法不仅高效，而且编码时也很直观，所以我们将采用这种存储方式。</li>
 </ol>
-<h3 id="分步详解">分步详解
-</h3><h4 id="准备">准备
-</h4><p>用 <code>LL</code> 表示 <code>long long</code>，<code>setmax(x, y)</code> 等同于 <code>x = max(x, y)</code>：</p>
+<h2 id="分步详解">分步详解
+</h2><h3 id="准备">准备
+</h3><p>用 <code>LL</code> 表示 <code>long long</code>，<code>setmax(x, y)</code> 等同于 <code>x = max(x, y)</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -422,8 +418,8 @@
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="数据类型的存储">数据类型的存储
-</h4><p>定义 <strong><code>struct DataType</code></strong>，表示一种数据类型：</p>
+</div><h3 id="数据类型的存储">数据类型的存储
+</h3><p>定义 <strong><code>struct DataType</code></strong>，表示一种数据类型：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -524,8 +520,8 @@ $$<div class="highlight"><div class="chroma">
 </span></span><span class="line"><span class="cl"><span class="n">add_base_type</span><span class="p">(</span><span class="s">&#34;long&#34;</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="操作-1定义类型">操作 1：定义类型
-</h4><p>由于 <code>DataType</code> 中已经实现维护操作，简单处理一下输入即可：</p>
+</div><h3 id="操作-1定义类型">操作 1：定义类型
+</h3><p>由于 <code>DataType</code> 中已经实现维护操作，简单处理一下输入即可：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -560,8 +556,8 @@ $$<div class="highlight"><div class="chroma">
 </span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">type</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">type</span><span class="o">-&gt;</span><span class="n">indent</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="操作-2定义元素">操作 2：定义元素
-</h4><p>根据「基本思路」中给出的做法，<strong>维护当前第一个可分配的地址和顶层元素列表</strong>：</p>
+</div><h3 id="操作-2定义元素">操作 2：定义元素
+</h3><p>根据「基本思路」中给出的做法，<strong>维护当前第一个可分配的地址和顶层元素列表</strong>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -621,8 +617,8 @@ $$<div class="highlight"><div class="chroma">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">addr</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="操作-3访问元素">操作 3：访问元素
-</h4><p>定义一个辅助函数，类似于 Python 中的 <code>split()</code>，将一个字符串根据指定分隔符分成若干段：</p>
+</div><h3 id="操作-3访问元素">操作 3：访问元素
+</h3><p>定义一个辅助函数，类似于 Python 中的 <code>split()</code>，将一个字符串根据指定分隔符分成若干段：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -730,8 +726,8 @@ $$<div class="highlight"><div class="chroma">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">addr</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="操作-4访问地址">操作 4：访问地址
-</h4><p>同操作 3，<strong>先找到顶层元素</strong>：</p>
+</div><h3 id="操作-4访问地址">操作 4：访问地址
+</h3><p>同操作 3，<strong>先找到顶层元素</strong>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -825,8 +821,8 @@ $$<div class="highlight"><div class="chroma">
 </span></span><span class="line"><span class="cl"><span class="nl">bad</span><span class="p">:</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="c1">// 前面使用的 bad 标签
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="完整代码">完整代码
-</h3><p>下面是赛时代码，也是前面讲解中使用的：</p>
+</div><h2 id="完整代码">完整代码
+</h2><p>下面是赛时代码，也是前面讲解中使用的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
@@ -1495,8 +1491,8 @@ $$<div class="highlight"><div class="chroma">
 </div>
 </div><p>这样只有 $146$ 行，$4.51\mathrm{KB}$。</p>
 <p>不过个人觉得写个 <code>Object</code> 更清楚，所以讲解的时候就没改啦~</p>
-<h4 id="后记">后记
-</h4><p>算法固然重要，但是编码能力也很重要！强烈建议各位 OIer 重视大模拟，不在这种题上挂分~</p>
+<h3 id="后记">后记
+</h3><p>算法固然重要，但是编码能力也很重要！强烈建议各位 OIer 重视大模拟，不在这种题上挂分~</p>
 <p>写大模拟需要注意的几个点：</p>
 <ul>
 <li>变量名写清楚，全写 <code>a</code>、<code>b</code>、<code>c</code>、<code>d</code> 到后面自己都不知道是啥，没法调试</li>
