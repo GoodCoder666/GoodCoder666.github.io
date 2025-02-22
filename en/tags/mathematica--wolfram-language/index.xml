@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Mathematica &amp; Wolfram Language on GoodCoder&#39;s Blog</title>
+        <link>https://goodcoder666.github.io/en/tags/mathematica--wolfram-language/</link>
+        <description>Recent content in Mathematica &amp; Wolfram Language on GoodCoder&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Fri, 26 Jan 2024 17:12:00 +0800</lastBuildDate><atom:link href="https://goodcoder666.github.io/en/tags/mathematica--wolfram-language/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Getting Started with Mathematica</title>
+        <link>https://goodcoder666.github.io/en/p/mathematica-intro/</link>
+        <pubDate>Fri, 26 Jan 2024 17:12:00 +0800</pubDate>
+        
+        <guid>https://goodcoder666.github.io/en/p/mathematica-intro/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Translation Notice&lt;/strong&gt;&lt;br&gt;
+This article was machine-translated using DeepSeek-R1.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Original Version&lt;/strong&gt;: Authored in Chinese by myself&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accuracy Advisory&lt;/strong&gt;: Potential discrepancies may exist between translations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Precedence&lt;/strong&gt;: The Chinese text shall prevail in case of ambiguity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Feedback&lt;/strong&gt;: Technical suggestions regarding translation quality are welcomed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;preface&#34;&gt;Preface
+&lt;/h2&gt;&lt;p&gt;Wolfram Mathematica (abbreviated as MMA) is a &lt;strong&gt;scientific computing software&lt;/strong&gt; developed by Wolfram Research. This article introduces Mathematica&amp;rsquo;s interface, syntax, and basic applications. Similar software includes &lt;a class=&#34;link&#34; href=&#34;https://ww2.mathworks.cn/products/matlab.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MATLAB&lt;/a&gt; and &lt;a class=&#34;link&#34; href=&#34;https://www.maplesoft.com.cn/products/maple/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Maple&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Official MMA website: &lt;a class=&#34;link&#34; href=&#34;https://www.wolfram.com/mathematica/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.wolfram.com/mathematica/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Installation and activation guide: &lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/632361071&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Mathematica Installation and Activation Tutorial - 科研小飞 (Zhihu)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This article is suitable for readers &lt;strong&gt;with basic programming knowledge&lt;/strong&gt;. However, you can skip programming-related sections if needed. All screenshots are taken from Windows 11, Mathematica 13.3. (The latest version 14.0 was released in December 2023 with backward compatibility)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/1.png&#34;
+	width=&#34;684&#34;
+	height=&#34;897&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/1_hu1411914610203747930.png 480w, https://goodcoder666.github.io/p/mathematica-intro/1_hu9484357994769302992.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MMA version used in demonstration&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;76&#34;
+		data-flex-basis=&#34;183px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;interface&#34;&gt;Interface
+&lt;/h2&gt;&lt;p&gt;After installation and activation, create a new notebook to see the following interface:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/2.png&#34;
+	width=&#34;1146&#34;
+	height=&#34;1302&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/2_hu2087877821688053534.png 480w, https://goodcoder666.github.io/p/mathematica-intro/2_hu8012692116287684767.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Basic MMA interface&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;211px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Quick overview of MMA interface:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/3.png&#34;
+	width=&#34;1146&#34;
+	height=&#34;430&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/3_hu15341202107679675729.png 480w, https://goodcoder666.github.io/p/mathematica-intro/3_hu16966303832790678616.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MMA interface introduction&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;266&#34;
+		data-flex-basis=&#34;639px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Key points:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;kbd&gt;Enter&lt;/kbd&gt; creates new lines; use &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Enter&lt;/kbd&gt; to execute code.&lt;/li&gt;
+&lt;li&gt;The red triangle on the left palette also executes code; the gray square stops computations.&lt;/li&gt;
+&lt;li&gt;MMA&amp;rsquo;s Notebook feature is primarily for computation rather than note-taking. Refer to official documentation for details.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Use &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;I&lt;/kbd&gt; to show input form (code) and &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;N&lt;/kbd&gt; for mathematical form. Detailed explanations follow.&lt;/p&gt;
+&lt;h2 id=&#34;syntax&#34;&gt;Syntax
+&lt;/h2&gt;&lt;p&gt;Mathematica is essentially a Wolfram Language (WL) interpreter. Let&amp;rsquo;s explore basic syntax and common commands.&lt;/p&gt;
+&lt;h3 id=&#34;help-documentation&#34;&gt;Help Documentation
+&lt;/h3&gt;&lt;p&gt;Query function documentation using &lt;code&gt;? Solve&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/4.png&#34;
+	width=&#34;1021&#34;
+	height=&#34;316&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/4_hu8423983145732844250.png 480w, https://goodcoder666.github.io/p/mathematica-intro/4_hu5145486336677538132.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;help-solve&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;323&#34;
+		data-flex-basis=&#34;775px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;?&lt;/code&gt; operator displays brief help for any function. Click the &lt;code&gt;i&lt;/code&gt; icon for detailed documentation (prioritizes &lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/589034642&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;offline docs&lt;/a&gt;, falls back to &lt;a class=&#34;link&#34; href=&#34;https://reference.wolfram.com/language/index.html.zh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;online docs&lt;/a&gt;). Access full documentation via Help -&amp;gt; Wolfram Documentation.&lt;/p&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mathematica&#34; data-lang=&#34;mathematica&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;(* Comment *)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Comments use &lt;code&gt;(*&lt;/code&gt; and &lt;code&gt;*)&lt;/code&gt;, similar to C/C++ &lt;code&gt;/* */&lt;/code&gt;. Examples:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mathematica&#34; data-lang=&#34;mathematica&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;(*Hello*)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;(*World*)&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Both lines execute as &lt;code&gt;1 + 1&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/5.png&#34;
+	width=&#34;293&#34;
+	height=&#34;211&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/5_hu6237236869037297705.png 480w, https://goodcoder666.github.io/p/mathematica-intro/5_hu6962041320903135877.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;comment-test&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;333px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;brackets&#34;&gt;Brackets
+&lt;/h3&gt;&lt;p&gt;Master bracket usage before learning functions!&lt;br&gt;
+Official reference: &lt;a class=&#34;link&#34; href=&#34;https://reference.wolfram.com/language/howto/UseBracketsAndBracesCorrectly.html.zh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Using Brackets and Braces Correctly&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Four bracket types in MMA:&lt;/p&gt;
+&lt;h4 id=&#34;parentheses-&#34;&gt;Parentheses &lt;code&gt;()&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;Group expressions and set operation precedence:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/6.png&#34;
+	width=&#34;480&#34;
+	height=&#34;245&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/6_hu155435836638834281.png 480w, https://goodcoder666.github.io/p/mathematica-intro/6_hu12455333202292052555.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Parentheses usage&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;195&#34;
+		data-flex-basis=&#34;470px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;square-brackets-&#34;&gt;Square Brackets &lt;code&gt;[]&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;Function calls and parameters:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/7.png&#34;
+	width=&#34;235&#34;
+	height=&#34;121&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/7_hu17785978881144196376.png 480w, https://goodcoder666.github.io/p/mathematica-intro/7_hu14690897939768520759.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Square bracket usage&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;466px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;curly-braces-&#34;&gt;Curly Braces &lt;code&gt;{}&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;Create lists:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/8.png&#34;
+	width=&#34;285&#34;
+	height=&#34;93&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/8_hu15024210880933085695.png 480w, https://goodcoder666.github.io/p/mathematica-intro/8_hu9381115656738456915.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Curly brace usage&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;306&#34;
+		data-flex-basis=&#34;735px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;List operations will be explained later.&lt;/p&gt;
+&lt;h4 id=&#34;double-brackets-&#34;&gt;Double Brackets &lt;code&gt;[[]]&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;Access list elements (shorthand for &lt;code&gt;Part&lt;/code&gt; function):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/9.png&#34;
+	width=&#34;431&#34;
+	height=&#34;212&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/9_hu8828593400947879040.png 480w, https://goodcoder666.github.io/p/mathematica-intro/9_hu6086174361878413492.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Double bracket usage&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;487px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;operations-and-expressions&#34;&gt;Operations and Expressions
+&lt;/h3&gt;&lt;p&gt;MMA supports basic mathematical operations:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Name&lt;/th&gt;
+          &lt;th&gt;Symbol&lt;/th&gt;
+          &lt;th&gt;Function Form&lt;/th&gt;
+          &lt;th&gt;Math Form&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Addition&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a + b&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Plus[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a+b$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Subtraction&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a - b&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Subtract[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a-b$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Multiplication&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a * b&lt;/code&gt;&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Times[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a\times b$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Division&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a / b&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Divide[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$\frac ab$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Power&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;a ^ b&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Power[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a^b$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Modulo&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Mod[a, b]&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;$a\bmod b$&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Examples with numbers and symbols:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/10.png&#34;
+	width=&#34;427&#34;
+	height=&#34;331&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/10_hu9730207018050681207.png 480w, https://goodcoder666.github.io/p/mathematica-intro/10_hu16018264999205582921.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Numeric and symbolic operations&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;129&#34;
+		data-flex-basis=&#34;309px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Expressions&lt;/strong&gt; combine operations/function calls. MMA automatically reduces fractions and combines like terms but &lt;strong&gt;doesn&amp;rsquo;t expand expressions&lt;/strong&gt;. Use &lt;code&gt;Simplify&lt;/code&gt; or &lt;code&gt;FullSimplify&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/11.png&#34;
+	width=&#34;577&#34;
+	height=&#34;239&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/11_hu6351390492500100476.png 480w, https://goodcoder666.github.io/p/mathematica-intro/11_hu11208013278117900467.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Simplification example&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;241&#34;
+		data-flex-basis=&#34;579px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;boolean-expressions&#34;&gt;Boolean Expressions
+&lt;/h4&gt;&lt;p&gt;Comparisons return &lt;code&gt;True&lt;/code&gt;/&lt;code&gt;False&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/12.png&#34;
+	width=&#34;432&#34;
+	height=&#34;212&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/12_hu7298088402191050618.png 480w, https://goodcoder666.github.io/p/mathematica-intro/12_hu15871701934125077728.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Equations and inequalities&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;489px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Use &lt;code&gt;==&lt;/code&gt; for equality checks. Single &lt;code&gt;=&lt;/code&gt; assigns variables.&lt;br&gt;
+Use &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; for AND and &lt;code&gt;||&lt;/code&gt; for OR. Simplify with &lt;code&gt;Simplify&lt;/code&gt;, &lt;code&gt;FullSimplify&lt;/code&gt;, or solve with &lt;code&gt;Solve&lt;/code&gt;/&lt;code&gt;Reduce&lt;/code&gt;:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/13.png&#34;
+	width=&#34;646&#34;
+	height=&#34;876&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/13_hu17278854674272214785.png 480w, https://goodcoder666.github.io/p/mathematica-intro/13_hu6588712561222944297.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Boolean simplification and solving&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;73&#34;
+		data-flex-basis=&#34;176px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;variables-and-constants&#34;&gt;Variables and Constants
+&lt;/h3&gt;&lt;p&gt;Declare variables with &lt;code&gt;variable = value&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/14.png&#34;
+	width=&#34;411&#34;
+	height=&#34;211&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/14_hu3663033510452800550.png 480w, https://goodcoder666.github.io/p/mathematica-intro/14_hu6902463154910647318.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Variable creation&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;467px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;All declared variables in expressions get substituted&lt;/strong&gt;. Variables can reference other variables:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/15.png&#34;
+	width=&#34;613&#34;
+	height=&#34;361&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/15_hu18037434960568452087.png 480w, https://goodcoder666.github.io/p/mathematica-intro/15_hu6285275180433370240.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Substitution example&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;169&#34;
+		data-flex-basis=&#34;407px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Use &lt;code&gt;Clear[variable]&lt;/code&gt; to unset variables:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/16.png&#34;
+	width=&#34;348&#34;
+	height=&#34;353&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/16_hu9733903109846378439.png 480w, https://goodcoder666.github.io/p/mathematica-intro/16_hu3354123148698735827.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Clear usage&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;98&#34;
+		data-flex-basis=&#34;236px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Built-in constants&lt;/strong&gt;:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Constant&lt;/th&gt;
+          &lt;th&gt;Name&lt;/th&gt;
+          &lt;th&gt;Approx. Value&lt;/th&gt;
+          &lt;th&gt;Math Form&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;Pi&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Pi&lt;/td&gt;
+          &lt;td&gt;3.141592654&lt;/td&gt;
+          &lt;td&gt;$\pi$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;E&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Euler&amp;rsquo;s number&lt;/td&gt;
+          &lt;td&gt;2.718281828&lt;/td&gt;
+          &lt;td&gt;$\mathrm e$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;I&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Imaginary unit&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;$i$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;Infinity&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Infinity&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;$\infty$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;Degree&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Degree&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;$\degree$&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;functions&#34;&gt;Functions
+&lt;/h3&gt;&lt;h4 id=&#34;invocation&#34;&gt;Invocation
+&lt;/h4&gt;&lt;p&gt;Call functions using &lt;code&gt;FunctionName[param1, param2, ...]&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/17.png&#34;
+	width=&#34;553&#34;
+	height=&#34;425&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/17_hu11502129482819167942.png 480w, https://goodcoder666.github.io/p/mathematica-intro/17_hu3254074341770831689.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Function call 1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;312px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Single-parameter functions can use postfix notation &lt;code&gt;param // FunctionName&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/18.png&#34;
+	width=&#34;590&#34;
+	height=&#34;421&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/18_hu14228190598289844765.png 480w, https://goodcoder666.github.io/p/mathematica-intro/18_hu14521064358398462261.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Function call 2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;336px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Supports chaining:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/19.png&#34;
+	width=&#34;773&#34;
+	height=&#34;162&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/19_hu10396997090978163643.png 480w, https://goodcoder666.github.io/p/mathematica-intro/19_hu1372064968610252677.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Chained calls&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;477&#34;
+		data-flex-basis=&#34;1145px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;definition&#34;&gt;Definition
+&lt;/h4&gt;&lt;p&gt;Define functions with &lt;code&gt;FunctionName[param1_, param2_, ...] := returnValue&lt;/code&gt;. &lt;strong&gt;Each parameter requires trailing underscore&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/20.png&#34;
+	width=&#34;348&#34;
+	height=&#34;152&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/20_hu8576785873755523124.png 480w, https://goodcoder666.github.io/p/mathematica-intro/20_hu4585779803705063955.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Function definition&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;228&#34;
+		data-flex-basis=&#34;549px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Extension - Recursive Functions&lt;/strong&gt;&lt;br&gt;
+Fibonacci sequence example:&lt;br&gt;
+&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/21.png&#34;
+	width=&#34;758&#34;
+	height=&#34;289&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/21_hu2461132375049737524.png 480w, https://goodcoder666.github.io/p/mathematica-intro/21_hu2084775987287008717.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Fibonacci sequence&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;262&#34;
+		data-flex-basis=&#34;629px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;built-in-functions&#34;&gt;Built-in Functions
+&lt;/h2&gt;&lt;p&gt;MMA has nearly 6000 built-in functions&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;. Common ones include:&lt;/p&gt;
+&lt;h3 id=&#34;numerical-evaluation-n&#34;&gt;Numerical Evaluation N
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;N[expr]&lt;/code&gt;: Numerical value&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;N[expr, n]&lt;/code&gt;: n-digit precision&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/22.png&#34;
+	width=&#34;414&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/22_hu310168969608550085.png 480w, https://goodcoder666.github.io/p/mathematica-intro/22_hu6025940822146869332.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;N example&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;97&#34;
+		data-flex-basis=&#34;234px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;trigonometric-functions&#34;&gt;Trigonometric Functions
+&lt;/h3&gt;&lt;p&gt;All trigonometric functions use radians. Add &lt;code&gt;Degree&lt;/code&gt; for angles:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/23.png&#34;
+	width=&#34;430&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/23_hu9097474707163248689.png 480w, https://goodcoder666.github.io/p/mathematica-intro/23_hu1448429849777072865.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Trigonometric functions&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;101&#34;
+		data-flex-basis=&#34;243px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;equation-solving-solvereduce&#34;&gt;Equation Solving Solve/Reduce
+&lt;/h3&gt;&lt;p&gt;Solve equations with &lt;code&gt;Solve&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/24.png&#34;
+	width=&#34;956&#34;
+	height=&#34;657&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/24_hu17516689155522826645.png 480w, https://goodcoder666.github.io/p/mathematica-intro/24_hu6666882671453354033.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Solve equations&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;145&#34;
+		data-flex-basis=&#34;349px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Solve inequalities with &lt;code&gt;Reduce&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/25.png&#34;
+	width=&#34;931&#34;
+	height=&#34;485&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/25_hu13887317408915653641.png 480w, https://goodcoder666.github.io/p/mathematica-intro/25_hu4972572480647116760.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Reduce inequalities&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;191&#34;
+		data-flex-basis=&#34;460px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Reduce&lt;/code&gt; handles complex expressions:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/26.png&#34;
+	width=&#34;719&#34;
+	height=&#34;121&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/26_hu690248974597960530.png 480w, https://goodcoder666.github.io/p/mathematica-intro/26_hu11100787193404740047.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Advanced Reduce usage&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;594&#34;
+		data-flex-basis=&#34;1426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;alternative-solvers-nsolvefindinstance&#34;&gt;Alternative Solvers NSolve/FindInstance
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;NSolve&lt;/code&gt;: Numerical solutions&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FindInstance&lt;/code&gt;: Find specific solution instances&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/27.png&#34;
+	width=&#34;874&#34;
+	height=&#34;279&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/27_hu8343007225474566389.png 480w, https://goodcoder666.github.io/p/mathematica-intro/27_hu18345258842192805947.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;FindInstance usage&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;313&#34;
+		data-flex-basis=&#34;751px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;optimization-maximizeminimize&#34;&gt;Optimization Maximize/Minimize
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Minimize&lt;/code&gt; finds minima with conditions:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/28.png&#34;
+	width=&#34;650&#34;
+	height=&#34;392&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/28_hu15244761361493858462.png 480w, https://goodcoder666.github.io/p/mathematica-intro/28_hu17242040746426218999.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Minimize usage&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;397px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Maximize&lt;/code&gt; works similarly.&lt;/p&gt;
+&lt;h3 id=&#34;differentiation-d&#34;&gt;Differentiation D
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;D[f, x]&lt;/code&gt;: First derivative&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;D[f, {x, n}]&lt;/code&gt;: nth derivative&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;f&#39;[x]&lt;/code&gt;: Shorthand&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/29.png&#34;
+	width=&#34;374&#34;
+	height=&#34;146&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/29_hu6094712853263170053.png 480w, https://goodcoder666.github.io/p/mathematica-intro/29_hu7001004289902476875.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Symbolic differentiation&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;256&#34;
+		data-flex-basis=&#34;614px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;integration-integrate&#34;&gt;Integration Integrate
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Integrate[f, x]&lt;/code&gt;: Indefinite integral&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Integrate[f, {x, min, max}]&lt;/code&gt;: Definite integral&lt;/li&gt;
+&lt;li&gt;Multiple integrals supported&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/30.png&#34;
+	width=&#34;775&#34;
+	height=&#34;154&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/30_hu6724525724242847623.png 480w, https://goodcoder666.github.io/p/mathematica-intro/30_hu10991573836266866285.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Definite integral example&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;503&#34;
+		data-flex-basis=&#34;1207px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;expansion-expandexpandall&#34;&gt;Expansion Expand/ExpandAll
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Expand&lt;/code&gt;: Expands products and powers&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ExpandAll&lt;/code&gt;: Expands nested expressions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;factorization-factor&#34;&gt;Factorization Factor
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Factor[poly]&lt;/code&gt;: Factor polynomials over integers.&lt;/p&gt;
+&lt;h3 id=&#34;plotting-plotplot3d&#34;&gt;Plotting Plot/Plot3D
+&lt;/h3&gt;&lt;p&gt;Basic plotting examples:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/mathematica-intro/31.png&#34;
+	width=&#34;1014&#34;
+	height=&#34;1228&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/mathematica-intro/31_hu6012973142232991113.png 480w, https://goodcoder666.github.io/p/mathematica-intro/31_hu15321259495435351894.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Plot examples&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;82&#34;
+		data-flex-basis=&#34;198px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;When learning MMA, I struggled with fragmented tutorials online. This guide consolidates essential syntax and common pitfalls into one resource. Originally intended as a concise tutorial, it grew to 8000+ characters. Thanks for reading!&lt;/p&gt;
+&lt;p&gt;Future articles may explore Mathematica applications in mathematics and real-world problems. Stay tuned!&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Multiplication can be written as &lt;code&gt;a b&lt;/code&gt; (with space). Most spaces are optional in MMA, but &lt;strong&gt;multiplication spaces are mandatory&lt;/strong&gt; (&lt;code&gt;ab&lt;/code&gt; would be a single variable).&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.wolfram.com/language/fast-introduction-for-programmers/en/built-in-functions/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.wolfram.com/language/fast-introduction-for-programmers/en/built-in-functions/&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

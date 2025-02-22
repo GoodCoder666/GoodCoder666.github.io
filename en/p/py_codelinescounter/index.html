@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rRecently I suddenly wanted to know how many lines of code I&rsquo;ve written, so I created this little tool&hellip;\nPreparation\rFirst consider the desired output:\nLanguage Lines Size Files A 12345 300 KB 193 B 2345 165 KB 98 The program outputs a table sorted by code lines.\nBasic code framework:\n">
+<title>【Python】72-Line Code Lines Counter, Simple and Practical!</title>
+
+<link rel='canonical' href='https://goodcoder666.github.io/en/p/py_codelinescounter/'>
+
+<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【Python】72-Line Code Lines Counter, Simple and Practical!">
+<meta property='og:description' content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rRecently I suddenly wanted to know how many lines of code I&rsquo;ve written, so I created this little tool&hellip;\nPreparation\rFirst consider the desired output:\nLanguage Lines Size Files A 12345 300 KB 193 B 2345 165 KB 98 The program outputs a table sorted by code lines.\nBasic code framework:\n">
+<meta property='og:url' content='https://goodcoder666.github.io/en/p/py_codelinescounter/'>
+<meta property='og:site_name' content='GoodCoder&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Python' /><meta property='article:published_time' content='2022-03-15T15:24:00&#43;08:00'/><meta property='article:modified_time' content='2022-03-15T15:24:00&#43;08:00'/>
+<meta name="twitter:site" content="@stanleys09">
+    <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【Python】72-Line Code Lines Counter, Simple and Practical!">
+<meta name="twitter:description" content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rRecently I suddenly wanted to know how many lines of code I&rsquo;ve written, so I created this little tool&hellip;\nPreparation\rFirst consider the desired output:\nLanguage Lines Size Files A 12345 300 KB 193 B 2345 165 KB 98 The program outputs a table sorted by code lines.\nBasic code framework:\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KJPJLGSR3C');
+        }
+      </script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">GoodCoder&#39;s Blog</a></h1>
+            <h2 class="site-description">Welcome to my blog site!</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GoodCoder666'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/stanleys09'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://goodcoder666.github.io/en/" selected>English</option>
+                                
+                                    <option value="https://goodcoder666.github.io/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#preface">Preface</a></li>
+    <li><a href="#preparation">Preparation</a></li>
+    <li><a href="#implementation">Implementation</a>
+      <ol>
+        <li><a href="#file-scanning">File Scanning</a></li>
+        <li><a href="#line-counting">Line Counting</a></li>
+      </ol>
+    </li>
+    <li><a href="#table-formatting">Table Formatting</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/py_codelinescounter/">【Python】72-Line Code Lines Counter, Simple and Practical!</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022/03/15</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    9 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://goodcoder666.github.io/p/py_codelinescounter/" class="link">中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p><strong>Translation Notice</strong><br>
+This article was machine-translated using DeepSeek-R1.</p>
+<ul>
+<li><strong>Original Version</strong>: Authored in Chinese by myself</li>
+<li><strong>Accuracy Advisory</strong>: Potential discrepancies may exist between translations</li>
+<li><strong>Precedence</strong>: The Chinese text shall prevail in case of ambiguity</li>
+<li><strong>Feedback</strong>: Technical suggestions regarding translation quality are welcomed</li>
+</ul>
+</blockquote>
+<h2 id="preface">Preface
+</h2><p>Recently I suddenly wanted to know how many lines of code I&rsquo;ve written, so I created this little tool&hellip;</p>
+<h2 id="preparation">Preparation
+</h2><p>First consider the desired output:</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Language</th>
+          <th>Lines</th>
+          <th>Size</th>
+          <th>Files</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>A</td>
+          <td>12345</td>
+          <td>300 KB</td>
+          <td>193</td>
+      </tr>
+      <tr>
+          <td>B</td>
+          <td>2345</td>
+          <td>165 KB</td>
+          <td>98</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>The program outputs a table sorted by code lines.<br>
+Basic code framework:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- encoding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Code lines counter class</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CodeLinesCounter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SIZES</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;KB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;MB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;GB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;TB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">4</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">languages</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_languages</span> <span class="o">=</span> <span class="n">languages</span> <span class="c1"># Languages (dict, {file_extension: language})</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_codelines</span> <span class="o">=</span> <span class="p">{</span><span class="n">suffix</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">languages</span><span class="p">}</span> <span class="c1"># Results, {suffix: (lines, size, files)}</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_successful</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Success/Error file counts</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># @param directory: Directory to scan</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># @param log: Whether to print logs</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scanning&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Output results</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">counter</span> <span class="o">=</span> <span class="n">CodeLinesCounter</span><span class="p">(</span><span class="n">languages</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;cpp&#39;</span><span class="p">:</span> <span class="s1">&#39;C++&#39;</span><span class="p">,</span> <span class="s1">&#39;java&#39;</span><span class="p">:</span> <span class="s1">&#39;Java&#39;</span><span class="p">,</span> <span class="s1">&#39;js&#39;</span><span class="p">:</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span> <span class="s1">&#39;HTML&#39;</span><span class="p">,</span> <span class="s1">&#39;css&#39;</span><span class="p">:</span> <span class="s1">&#39;CSS&#39;</span><span class="p">,</span> <span class="s1">&#39;txt&#39;</span><span class="p">:</span> <span class="s1">&#39;Plain text&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="n">counter</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="s1">&#39;E:/&#39;</span><span class="p">)</span> <span class="c1"># Scan E drive (Note: cannot use &#39;E:&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">counter</span><span class="o">.</span><span class="n">report</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now let&rsquo;s move to the ==core implementation==</p>
+<h2 id="implementation">Implementation
+</h2><h3 id="file-scanning">File Scanning
+</h3><p>First, we need to get file lists under root directory using <code>os.walk</code>:<br>
+<code>os.walk(rootdir)</code> returns a walker (iterable) containing file/directory lists for each subdirectory. Example:<br>
+For folder structure:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Folder
+</span></span><span class="line"><span class="cl">|   file1
+</span></span><span class="line"><span class="cl">|   Folder1
+</span></span><span class="line"><span class="cl">|       file2
+</span></span><span class="line"><span class="cl">|       file3
+</span></span><span class="line"><span class="cl">|   Folder2
+</span></span><span class="line"><span class="cl">    |   file4
+</span></span><span class="line"><span class="cl">    |   Folder3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Running:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s1">&#39;Folder&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Folder					[&#39;Folder1&#39;, &#39;Folder2&#39;]	[&#39;file1&#39;]
+</span></span><span class="line"><span class="cl">Folder\Folder1			[]						[&#39;file2&#39;, &#39;file3&#39;]
+</span></span><span class="line"><span class="cl">Folder\Folder2			[&#39;Folder3&#39;]				[&#39;file4&#39;]
+</span></span><span class="line"><span class="cl">Folder\Folder2\Folder3	[]						[]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>First element is current root, second is subdirectories, third is files.<br>
+Implementation code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- encoding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">getsize</span><span class="p">,</span> <span class="n">abspath</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">walk</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CodeLinesCounter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SIZES</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;KB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;MB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;GB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;TB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">4</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">languages</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_languages</span> <span class="o">=</span> <span class="n">languages</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="p">{</span><span class="n">suffix</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">languages</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_successful</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scanning&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">walk</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">directory</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">suffix</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[</span><span class="n">filename</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">filename</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">lines</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">numFiles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">[</span><span class="n">suffix</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">lines</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># Temporary line count, set to 1 first</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">numFiles</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">size</span> <span class="o">+=</span> <span class="n">getsize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="c1"># getsize returns bytes</span>
+</span></span><span class="line"><span class="cl">                        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">[</span><span class="n">suffix</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">numFiles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">User stopped operation&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan finished&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Language</span><span class="se">\t</span><span class="s1">Lines</span><span class="se">\t</span><span class="s1">Size</span><span class="se">\t</span><span class="s1">Files&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">suffix</span><span class="p">,</span> <span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_languages</span><span class="p">[</span><span class="n">suffix</span><span class="p">],</span> <span class="n">lines</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__format_size</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">files</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Unit conversion</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__format_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">suffix</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">SIZES</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nb">bytes</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">bytes</span> <span class="o">/</span> <span class="n">size</span><span class="p">,</span> <span class="n">suffix</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">bytes</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">SIZES</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SIZES</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">counter</span> <span class="o">=</span> <span class="n">CodeLinesCounter</span><span class="p">(</span><span class="n">languages</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;cpp&#39;</span><span class="p">:</span> <span class="s1">&#39;C++&#39;</span><span class="p">,</span> <span class="s1">&#39;java&#39;</span><span class="p">:</span> <span class="s1">&#39;Java&#39;</span><span class="p">,</span> <span class="s1">&#39;js&#39;</span><span class="p">:</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span> <span class="s1">&#39;HTML&#39;</span><span class="p">,</span> <span class="s1">&#39;css&#39;</span><span class="p">:</span> <span class="s1">&#39;CSS&#39;</span><span class="p">,</span> <span class="s1">&#39;txt&#39;</span><span class="p">:</span> <span class="s1">&#39;Plain text&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="n">counter</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="s1">&#39;E:/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">counter</span><span class="o">.</span><span class="n">report</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Sample output (manually formatted):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Language        Lines   Size            Files
+</span></span><span class="line"><span class="cl">C++             667     671.51 KB       667
+</span></span><span class="line"><span class="cl">Python          317     981.01 KB       317
+</span></span><span class="line"><span class="cl">HTML            38      466.52 KB       38
+</span></span><span class="line"><span class="cl">Plain text      34      90.69 KB        34
+</span></span><span class="line"><span class="cl">JavaScript      19      1.43 MB         19
+</span></span><span class="line"><span class="cl">CSS             9       341.04 KB       9
+</span></span><span class="line"><span class="cl">C               2       20.45 KB        2
+</span></span><span class="line"><span class="cl">Java            1       676.00 B        1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Next step: actual line counting.</p>
+<h3 id="line-counting">Line Counting
+</h3><p>Empty lines shouldn&rsquo;t be counted. Modify line 23:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="c1"># Open with utf-8</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span> <span class="c1"># Skip empty lines</span>
+</span></span><span class="line"><span class="cl">            <span class="n">lines</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>But when running:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="ne">UnicodeDecodeError</span><span class="p">:</span> <span class="s1">&#39;utf-8&#39;</span> <span class="n">codec</span> <span class="n">can</span><span class="s1">&#39;t decode byte 0xb5 in position 355: invalid start byte</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Some files use <code>GBK</code> encoding. Improved code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ln</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ln</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span> <span class="c1"># Try GBK</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ln</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">ln</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;[Error: unknown encoding]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lines</span> <span class="o">+=</span> <span class="n">ln</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;[Unknown error: </span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">continue</span>
+</span></span><span class="line"><span class="cl"><span class="n">lines</span> <span class="o">+=</span> <span class="n">ln</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">ln</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">_successful</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now correct results:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Language        Lines   Size            Files
+</span></span><span class="line"><span class="cl">C++             35595   671.51 KB       667
+</span></span><span class="line"><span class="cl">JavaScript      24485   1.43 MB         19
+</span></span><span class="line"><span class="cl">Python          24130   982.16 KB       317
+</span></span><span class="line"><span class="cl">CSS             8203    341.04 KB       9
+</span></span><span class="line"><span class="cl">HTML            6138    466.52 KB       38
+</span></span><span class="line"><span class="cl">Plain text      741     90.69 KB        34
+</span></span><span class="line"><span class="cl">C               557     20.45 KB        2
+</span></span><span class="line"><span class="cl">Java            29      676.00 B        1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Final step: table formatting.</p>
+<h2 id="table-formatting">Table Formatting
+</h2><p>Use <code>PrettyTable</code> library:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- encoding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">getsize</span><span class="p">,</span> <span class="n">abspath</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">walk</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">prettytable</span> <span class="kn">import</span> <span class="n">PrettyTable</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CodeLinesCounter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SIZES</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;KB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;MB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;GB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;TB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">4</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">languages</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_languages</span> <span class="o">=</span> <span class="n">languages</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="p">{</span><span class="n">suffix</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">languages</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_successful</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scanning&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">walk</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">directory</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">suffix</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[</span><span class="n">filename</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">filename</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">lines</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">numFiles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">[</span><span class="n">suffix</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">numFiles</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">size</span> <span class="o">+=</span> <span class="n">getsize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">ln</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                    <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">                                        <span class="n">ln</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">ln</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                        <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">                                            <span class="n">ln</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;[Error: unknown encoding]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">lines</span> <span class="o">+=</span> <span class="n">ln</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;[Unknown error: </span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">lines</span> <span class="o">+=</span> <span class="n">ln</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">ln</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="bp">self</span><span class="o">.</span><span class="n">_successful</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">[</span><span class="n">suffix</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">numFiles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">elif</span> <span class="n">log</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;[None]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">User stopped operation&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan finished&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">table</span> <span class="o">=</span> <span class="n">PrettyTable</span><span class="p">([</span><span class="s1">&#39;Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Lines&#39;</span><span class="p">,</span> <span class="s1">&#39;Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Files&#39;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Scan result (OK </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_successful</span><span class="si">}</span><span class="s1">, Error </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">suffix</span><span class="p">,</span> <span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_languages</span><span class="p">[</span><span class="n">suffix</span><span class="p">],</span> <span class="n">lines</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__format_size</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">files</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__format_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">suffix</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">SIZES</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nb">bytes</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">bytes</span> <span class="o">/</span> <span class="n">size</span><span class="p">,</span> <span class="n">suffix</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">bytes</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">SIZES</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SIZES</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">counter</span> <span class="o">=</span> <span class="n">CodeLinesCounter</span><span class="p">(</span><span class="n">languages</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;cpp&#39;</span><span class="p">:</span> <span class="s1">&#39;C++&#39;</span><span class="p">,</span> <span class="s1">&#39;java&#39;</span><span class="p">:</span> <span class="s1">&#39;Java&#39;</span><span class="p">,</span> <span class="s1">&#39;js&#39;</span><span class="p">:</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span> <span class="s1">&#39;HTML&#39;</span><span class="p">,</span> <span class="s1">&#39;css&#39;</span><span class="p">:</span> <span class="s1">&#39;CSS&#39;</span><span class="p">,</span> <span class="s1">&#39;txt&#39;</span><span class="p">:</span> <span class="s1">&#39;Plain text&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="n">counter</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="s1">&#39;E:/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">counter</span><span class="o">.</span><span class="n">report</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">+----------------------------------------+
+</span></span><span class="line"><span class="cl">|     Scan result (OK 1087, Error 0)     |
+</span></span><span class="line"><span class="cl">+------------+-------+-----------+-------+
+</span></span><span class="line"><span class="cl">|  Language  | Lines |    Size   | Files |
+</span></span><span class="line"><span class="cl">+------------+-------+-----------+-------+
+</span></span><span class="line"><span class="cl">|    C++     | 35595 | 671.51 KB |  667  |
+</span></span><span class="line"><span class="cl">| JavaScript | 24485 |  1.43 MB  |   19  |
+</span></span><span class="line"><span class="cl">|   Python   | 24130 | 982.16 KB |  317  |
+</span></span><span class="line"><span class="cl">|    CSS     |  8203 | 341.04 KB |   9   |
+</span></span><span class="line"><span class="cl">|    HTML    |  6138 | 466.52 KB |   38  |
+</span></span><span class="line"><span class="cl">| Plain text |  741  |  90.69 KB |   34  |
+</span></span><span class="line"><span class="cl">|     C      |  557  |  20.45 KB |   2   |
+</span></span><span class="line"><span class="cl">|    Java    |   29  |  676.00 B |   1   |
+</span></span><span class="line"><span class="cl">+------------+-------+-----------+-------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="conclusion">Conclusion
+</h2><p>Final code (without comments):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- encoding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">getsize</span><span class="p">,</span> <span class="n">abspath</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">walk</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">prettytable</span> <span class="kn">import</span> <span class="n">PrettyTable</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CodeLinesCounter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SIZES</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;KB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;MB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;GB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;TB&#39;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">4</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">languages</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_languages</span> <span class="o">=</span> <span class="n">languages</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="p">{</span><span class="n">suffix</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">languages</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_successful</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scanning&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">walk</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">directory</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">suffix</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[</span><span class="n">filename</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">filename</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">lines</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">numFiles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">[</span><span class="n">suffix</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">numFiles</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">size</span> <span class="o">+=</span> <span class="n">getsize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">ln</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                    <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">                                        <span class="n">ln</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">ln</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                        <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">                                            <span class="n">ln</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;[Error: unknown encoding]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">lines</span> <span class="o">+=</span> <span class="n">ln</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;[Unknown error: </span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">lines</span> <span class="o">+=</span> <span class="n">ln</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">ln</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="bp">self</span><span class="o">.</span><span class="n">_successful</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="p">[</span><span class="n">suffix</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">numFiles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">elif</span> <span class="n">log</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;[None]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">User stopped operation&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">log</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan finished&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">table</span> <span class="o">=</span> <span class="n">PrettyTable</span><span class="p">([</span><span class="s1">&#39;Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Lines&#39;</span><span class="p">,</span> <span class="s1">&#39;Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Files&#39;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Scan result (OK </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_successful</span><span class="si">}</span><span class="s1">, Error </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">suffix</span><span class="p">,</span> <span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_languages</span><span class="p">[</span><span class="n">suffix</span><span class="p">],</span> <span class="n">lines</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__format_size</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">files</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__format_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">suffix</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">SIZES</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nb">bytes</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">bytes</span> <span class="o">/</span> <span class="n">size</span><span class="p">,</span> <span class="n">suffix</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">bytes</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">SIZES</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SIZES</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">counter</span> <span class="o">=</span> <span class="n">CodeLinesCounter</span><span class="p">(</span><span class="n">languages</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;cpp&#39;</span><span class="p">:</span> <span class="s1">&#39;C++&#39;</span><span class="p">,</span> <span class="s1">&#39;java&#39;</span><span class="p">:</span> <span class="s1">&#39;Java&#39;</span><span class="p">,</span> <span class="s1">&#39;js&#39;</span><span class="p">:</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span> <span class="s1">&#39;HTML&#39;</span><span class="p">,</span> <span class="s1">&#39;css&#39;</span><span class="p">:</span> <span class="s1">&#39;CSS&#39;</span><span class="p">,</span> <span class="s1">&#39;txt&#39;</span><span class="p">:</span> <span class="s1">&#39;Plain text&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="n">counter</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="s1">&#39;E:/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">counter</span><span class="o">.</span><span class="n">report</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Future improvements:</p>
+<ul>
+<li>Add regex file ignore</li>
+<li><code>matplotlib</code> visualization</li>
+<li><code>PyQt5</code> GUI</li>
+<li>&hellip; (Welcome valuable suggestions!)</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/en/tags/python/">Python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 GoodCoder&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

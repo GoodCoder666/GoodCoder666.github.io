@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Bug/Fix on GoodCoder&#39;s Blog</title>
+        <link>https://goodcoder666.github.io/en/tags/bug/fix/</link>
+        <description>Recent content in Bug/Fix on GoodCoder&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Sun, 12 Jul 2020 16:03:00 +0800</lastBuildDate><atom:link href="https://goodcoder666.github.io/en/tags/bug/fix/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Resolving Anaconda Spyder Unresponsive Click Issue</title>
+        <link>https://goodcoder666.github.io/en/p/spyderfix/</link>
+        <pubDate>Sun, 12 Jul 2020 16:03:00 +0800</pubDate>
+        
+        <guid>https://goodcoder666.github.io/en/p/spyderfix/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Translation Notice&lt;/strong&gt;&lt;br&gt;
+This article was machine-translated using DeepSeek-R1.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Original Version&lt;/strong&gt;: Authored in Chinese by myself&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accuracy Advisory&lt;/strong&gt;: Potential discrepancies may exist between translations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Precedence&lt;/strong&gt;: The Chinese text shall prevail in case of ambiguity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Feedback&lt;/strong&gt;: Technical suggestions regarding translation quality are welcomed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;problem-analysis&#34;&gt;Problem Analysis
+&lt;/h1&gt;&lt;p&gt;Possible issues with package upgrades or uninstallations related to &lt;code&gt;spyder&lt;/code&gt; dependencies.&lt;br&gt;
+After upgrading &lt;code&gt;PyQt5&lt;/code&gt; to version &lt;code&gt;5.15&lt;/code&gt;, conflicts occurred since &lt;code&gt;spyder&lt;/code&gt; requires &lt;code&gt;PyQt5&amp;lt;5.13&lt;/code&gt;, causing startup failures.&lt;/p&gt;
+&lt;h1 id=&#34;solution&#34;&gt;Solution
+&lt;/h1&gt;&lt;p&gt;Open &lt;code&gt;Anaconda Prompt&lt;/code&gt; and execute:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pip&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;spyder&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Explanation:&lt;br&gt;
+&lt;code&gt;pip&lt;/code&gt; automatically installs dependency-compatible packages. For example, when installing &lt;code&gt;spyder&lt;/code&gt; (which requires &lt;code&gt;PyQt5&amp;lt;5.13&lt;/code&gt;), &lt;code&gt;pip&lt;/code&gt; detects the installed &lt;code&gt;PyQt5 5.15&lt;/code&gt; and downgrades to the highest compatible version (&lt;code&gt;PyQt5 5.12.3&lt;/code&gt;, the latest version below &lt;code&gt;5.13&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;20210923 EDIT:&lt;/strong&gt;&lt;br&gt;
+If encountering &amp;ldquo;Access Denied&amp;rdquo; errors, add the &lt;code&gt;--user&lt;/code&gt; option.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

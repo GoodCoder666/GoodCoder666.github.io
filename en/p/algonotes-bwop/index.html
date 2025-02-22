@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rSuddenly realized that bitwise operations are quite useful, so I&rsquo;m writing this article to share some insights&hellip;\nNote: I&rsquo;ve included all the bitwise operation concepts I could think of, so this article is quite lengthy, please bear with me! If any part is unclear or insufficiently detailed, feel free to supplement in the comments section. Thanks for your support!\n">
+<title>【Algorithm Notes】Detailed Explanation of Bitwise Operations</title>
+
+<link rel='canonical' href='https://goodcoder666.github.io/en/p/algonotes-bwop/'>
+
+<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【Algorithm Notes】Detailed Explanation of Bitwise Operations">
+<meta property='og:description' content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rSuddenly realized that bitwise operations are quite useful, so I&rsquo;m writing this article to share some insights&hellip;\nNote: I&rsquo;ve included all the bitwise operation concepts I could think of, so this article is quite lengthy, please bear with me! If any part is unclear or insufficiently detailed, feel free to supplement in the comments section. Thanks for your support!\n">
+<meta property='og:url' content='https://goodcoder666.github.io/en/p/algonotes-bwop/'>
+<meta property='og:site_name' content='GoodCoder&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Algorithm Competition' /><meta property='article:tag' content='Algorithm Notes' /><meta property='article:published_time' content='2022-10-18T08:30:00&#43;08:00'/><meta property='article:modified_time' content='2022-10-18T08:30:00&#43;08:00'/>
+<meta name="twitter:site" content="@stanleys09">
+    <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【Algorithm Notes】Detailed Explanation of Bitwise Operations">
+<meta name="twitter:description" content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rSuddenly realized that bitwise operations are quite useful, so I&rsquo;m writing this article to share some insights&hellip;\nNote: I&rsquo;ve included all the bitwise operation concepts I could think of, so this article is quite lengthy, please bear with me! If any part is unclear or insufficiently detailed, feel free to supplement in the comments section. Thanks for your support!\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KJPJLGSR3C');
+        }
+      </script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">GoodCoder&#39;s Blog</a></h1>
+            <h2 class="site-description">Welcome to my blog site!</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GoodCoder666'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/stanleys09'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://goodcoder666.github.io/en/" selected>English</option>
+                                
+                                    <option value="https://goodcoder666.github.io/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#preface">Preface</a></li>
+    <li><a href="#basic-operations">Basic Operations</a>
+      <ol>
+        <li><a href="#bitwise-not">Bitwise NOT</a></li>
+        <li><a href="#bitwise-and">Bitwise AND</a></li>
+        <li><a href="#bitwise-or">Bitwise OR</a></li>
+        <li><a href="#xor">XOR</a></li>
+        <li><a href="#shifts">Shifts</a></li>
+        <li><a href="#exercises">Exercises</a>
+          <ol>
+            <li><a href="#determine-power-of-two">Determine Power of Two</a></li>
+            <li><a href="#luogu-p1100-high-low-swaphttpswwwluogucomcnproblemp1100"><a href="https://www.luogu.com.cn/problem/P1100">Luogu P1100 High-Low Swap</a></a></li>
+            <li><a href="#find-unique-number">Find Unique Number</a></li>
+            <li><a href="#atcoder-abc-261-e---many-operationshttpsatcoderjpcontestsabc261tasksabc261_e"><a href="https://atcoder.jp/contests/abc261/tasks/abc261_e">AtCoder ABC 261 E - Many Operations</a></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#extended-concepts--operations">Extended Concepts &amp; Operations</a>
+      <ol>
+        <li><a href="#lowbit">lowbit</a></li>
+        <li><a href="#popcount">popcount</a></li>
+      </ol>
+    </li>
+    <li><a href="#builtin-bitwise-functions">Builtin Bitwise Functions</a>
+      <ol>
+        <li><a href="#__builtin_popcount__builtin_popcountll">__builtin_popcount/__builtin_popcountll</a></li>
+        <li><a href="#__builtin_ctz--__buitlin_ctzll">__builtin_ctz / __buitlin_ctzll</a></li>
+        <li><a href="#__buitlin_clz--__buitlin_clzll">__buitlin_clz / __buitlin_clzll</a></li>
+        <li><a href="#__builtin_ffs--__buitlin_ffsll">__builtin_ffs / __buitlin_ffsll</a></li>
+        <li><a href="#__builtin_parity--__builtin_parityll">__builtin_parity / __builtin_parityll</a></li>
+      </ol>
+    </li>
+    <li><a href="#applications-of-bitwise-operations">Applications of Bitwise Operations</a>
+      <ol>
+        <li><a href="#subset-representation">Subset Representation</a>
+          <ol>
+            <li><a href="#subset-enumeration">Subset Enumeration</a></li>
+            <li><a href="#extension-stdbitset">Extension: std::bitset</a></li>
+          </ol>
+        </li>
+        <li><a href="#dfs-optimization-with-bitwise-operations">DFS Optimization with Bitwise Operations</a></li>
+        <li><a href="#other-applications">Other Applications</a>
+          <ol>
+            <li><a href="#swap-two-numbers">Swap two numbers</a></li>
+            <li><a href="#average-without-overflow">Average without overflow</a></li>
+            <li><a href="#check-power-of-two">Check power of two</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/algonotes-bwop/">【Algorithm Notes】Detailed Explanation of Bitwise Operations</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022/10/18</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    8 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://goodcoder666.github.io/p/algonotes-bwop/" class="link">中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p><strong>Translation Notice</strong><br>
+This article was machine-translated using DeepSeek-R1.</p>
+<ul>
+<li><strong>Original Version</strong>: Authored in Chinese by myself</li>
+<li><strong>Accuracy Advisory</strong>: Potential discrepancies may exist between translations</li>
+<li><strong>Precedence</strong>: The Chinese text shall prevail in case of ambiguity</li>
+<li><strong>Feedback</strong>: Technical suggestions regarding translation quality are welcomed</li>
+</ul>
+</blockquote>
+<h2 id="preface">Preface
+</h2><p>Suddenly realized that bitwise operations are quite useful, so I&rsquo;m writing this article to share some insights&hellip;</p>
+<p>Note: I&rsquo;ve included all the bitwise operation concepts I could think of, so <strong>this article is quite lengthy, please bear with me!</strong> If any part is unclear or insufficiently detailed, feel free to supplement in the comments section. <em><strong>Thanks for your support!</strong></em></p>
+<p><strong>Reference code in this article is written in C++.</strong></p>
+<p>Without further ado, let&rsquo;s get started.</p>
+<hr>
+<h2 id="basic-operations">Basic Operations
+</h2><p><em>Those with prior knowledge can skip this section.</em></p>
+<p>Brief rules of bitwise operations:</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Symbol</th>
+          <th>Name</th>
+          <th>Rule</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&amp;</code></td>
+          <td>Bitwise AND</td>
+          <td>1 only when both bits are 1</td>
+      </tr>
+      <tr>
+          <td><code>|</code></td>
+          <td>Bitwise OR</td>
+          <td>0 only when both bits are 0</td>
+      </tr>
+      <tr>
+          <td><code>^</code></td>
+          <td>XOR</td>
+          <td>1 when bits differ, 0 when same</td>
+      </tr>
+      <tr>
+          <td><code>~</code></td>
+          <td>Bitwise NOT</td>
+          <td>Flip 0 to 1, 1 to 0</td>
+      </tr>
+      <tr>
+          <td><code>&lt;&lt;</code></td>
+          <td>Left Shift</td>
+          <td>Shift bits left, discard high bits, pad 0s on right</td>
+      </tr>
+      <tr>
+          <td><code>&gt;&gt;</code></td>
+          <td>Right Shift</td>
+          <td>Shift bits right, discard low bits, pad 0s on left (for unsigned)</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Detailed explanations:</p>
+<h3 id="bitwise-not">Bitwise NOT
+</h3><p>Bitwise NOT (<code>~x</code>) is the simplest unary operation. Simply flip each bit of the operand. Examples:<br>
+<code>~0011 = 1100</code><br>
+<code>~1011 = 0100</code><br>
+Property: <code>~(~x) = x</code></p>
+<h3 id="bitwise-and">Bitwise AND
+</h3><p>Bitwise AND (<code>x &amp; y</code>) takes two operands. For each corresponding bit pair:</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>x</th>
+          <th>y</th>
+          <th><code>x &amp; y</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Examples:<br>
+<code>0011 &amp; 1100 = 0000</code><br>
+<code>1010 &amp; 1011 = 1010</code></p>
+<p>Properties:</p>
+<ul>
+<li>Commutative: <code>a &amp; b = b &amp; a</code></li>
+<li>Associative: <code>a &amp; b &amp; c = a &amp; (b &amp; c)</code></li>
+<li>Idempotent: <code>a &amp; a = a</code></li>
+<li>AND with 0: <code>0 &amp; a1 &amp; a2 &amp; ... = 0</code></li>
+<li>AND with all-1s: <code>a &amp; inf = a</code></li>
+</ul>
+<h3 id="bitwise-or">Bitwise OR
+</h3><p>Bitwise OR (<code>x | y</code>) takes two operands. For each corresponding bit pair:</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>x</th>
+          <th>y</th>
+          <th><code>x | y</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Examples:<br>
+<code>1100 | 0011 = 1111</code><br>
+<code>1010 | 0001 = 1011</code></p>
+<p>Properties:</p>
+<ul>
+<li>Commutative: <code>a | b = b | a</code></li>
+<li>Associative: <code>a | b | c = a | (b | c)</code></li>
+<li>Idempotent: <code>a | a = a</code></li>
+<li>OR with 0: <code>a | 0 = a</code></li>
+<li>OR with all-1s: <code>a | inf = inf</code></li>
+</ul>
+<h3 id="xor">XOR
+</h3><p>XOR (<code>x ^ y</code> or $x\oplus y$) takes two operands. For each corresponding bit pair:</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>x</th>
+          <th>y</th>
+          <th>$x\oplus y$</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Examples:<br>
+<code>1000 ^ 1011 = 0011</code><br>
+<code>0101 ^ 1010 = 1111</code></p>
+<p>Properties:</p>
+<ul>
+<li>Commutative: $a\oplus b=b\oplus a$</li>
+<li>Associative: $a\oplus b\oplus c=a\oplus(b\oplus c)$</li>
+<li>Self-inverse: $a\oplus a=0$</li>
+<li>XOR with 0: $a\oplus 0=a$</li>
+<li>Multiple XOR: $a\oplus b\oplus b=a\oplus 0=a$</li>
+<li>XOR with all-1s: $a\oplus \infty=~a$</li>
+<li>If $a\oplus b=c$, then $a\oplus c=b$.</li>
+</ul>
+<h3 id="shifts">Shifts
+</h3><p>Shifts include left shift (<code>&lt;&lt;</code>) and right shift (<code>&gt;&gt;</code>).</p>
+<ul>
+<li><code>a &lt;&lt; b</code>: Append b zeros to the right of a&rsquo;s binary.</li>
+<li><code>a &gt;&gt; b</code>: Remove b bits from the right of a&rsquo;s binary.</li>
+</ul>
+<p>Properties:</p>
+<ul>
+<li><code>(a &lt;&lt; b) &gt;&gt; b = a</code> (when no overflow)</li>
+<li><code>a &lt;&lt; b</code> ≈ $a\times 2^b$</li>
+<li><code>a &gt;&gt; b</code> ≈ $\lfloor\frac{a}{2^b}\rfloor$</li>
+</ul>
+<h3 id="exercises">Exercises
+</h3><h4 id="determine-power-of-two">Determine Power of Two
+</h4><p>Problem: Given integer N, check if it&rsquo;s a power of two.</p>
+<h4 id="luogu-p1100-high-low-swaphttpswwwluogucomcnproblemp1100"><a class="link" href="https://www.luogu.com.cn/problem/P1100"  target="_blank" rel="noopener"
+    >Luogu P1100 High-Low Swap</a>
+</h4><p>Problem: Given 32-bit integer x, swap its high 16 bits and low 16 bits.</p>
+<p>Solution: <code>ans = (x &gt;&gt; 16) | (x &lt;&lt; 16)</code> Explanation:</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Value</th>
+          <th>High 16</th>
+          <th>Low 16</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>x</td>
+          <td>A</td>
+          <td>B</td>
+      </tr>
+      <tr>
+          <td>x &raquo;16</td>
+          <td>0s</td>
+          <td>A</td>
+      </tr>
+      <tr>
+          <td>x &laquo;16</td>
+          <td>B</td>
+          <td>0s</td>
+      </tr>
+      <tr>
+          <td>ans</td>
+          <td>B</td>
+          <td>A</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Note: Use <strong>32-bit unsigned integer</strong> to allow natural overflow when shifting.</p>
+<p>Reference code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%u&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%u</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="find-unique-number">Find Unique Number
+</h4><p>Given sequence A=(A₁,A₂,&hellip;,A₂ₙ₊₁) where N numbers appear twice and one appears once. Find the unique number.</p>
+<p><strong>- O(N) time, O(N) space solution</strong><br>
+Count occurrences and find the singleton.</p>
+<p><strong>- O(N) time, O(1) space solution</strong><br>
+Compute XOR sum S = A₁^A₂^&hellip;^A₂ₙ₊₁. All duplicates cancel out, leaving the unique number.</p>
+<p>Reference code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">^=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="atcoder-abc-261-e---many-operationshttpsatcoderjpcontestsabc261tasksabc261_e"><a class="link" href="https://atcoder.jp/contests/abc261/tasks/abc261_e"  target="_blank" rel="noopener"
+    >AtCoder ABC 261 E - Many Operations</a>
+</h4><p>Solution: For each i=1..N, track how each bit of 0/1 transforms after first i operations using prefix-like approach. Time complexity O(N).</p>
+<p>Reference code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// https://atcoder.jp/contests/abc261/submissions/33495431
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">one</span> <span class="o">=</span> <span class="mh">0xffffffff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">one</span> <span class="o">&amp;=</span> <span class="n">a</span><span class="p">,</span> <span class="n">zero</span> <span class="o">&amp;=</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="n">one</span> <span class="o">|=</span> <span class="n">a</span><span class="p">,</span> <span class="n">zero</span> <span class="o">|=</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">one</span> <span class="o">^=</span> <span class="n">a</span><span class="p">,</span> <span class="n">zero</span> <span class="o">^=</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="n">one</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="o">~</span><span class="n">c</span> <span class="o">&amp;</span> <span class="n">zero</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="extended-concepts--operations">Extended Concepts &amp; Operations
+</h2><h3 id="lowbit">lowbit
+</h3><p><code>lowbit(x)</code> returns the least significant 1-bit, e.g., <code>lowbit(10010) = 10</code>, <code>lowbit(1) = 1</code>. Used in Fenwick Trees.</p>
+<p><strong>Calculating lowbit</strong></p>
+<ol>
+<li>Brute force:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">lowbit</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">res</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><code>x &amp; -x</code></li>
+<li><code>x &amp; (x - 1)</code> gives <code>x - lowbit(x)</code>.</li>
+</ol>
+<h3 id="popcount">popcount
+</h3><p><code>popcount(x)</code> counts the number of 1-bits.</p>
+<p><strong>Calculating popcount</strong></p>
+<ol>
+<li>Brute force:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">popcount</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>Optimized with lowbit:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">popcount</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(;</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span><span class="o">&amp;=</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">res</span> <span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>Builtin functions (fastest)</li>
+</ol>
+<hr>
+<h2 id="builtin-bitwise-functions">Builtin Bitwise Functions
+</h2><p>Note: Functions with <code>ll</code> suffix take <code>long long</code> arguments.</p>
+<p>Reference: <a class="link" href="https://blog.csdn.net/zeekliu/article/details/124848210"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/zeekliu/article/details/124848210</a></p>
+<h3 id="__builtin_popcount__builtin_popcountll">__builtin_popcount/__builtin_popcountll
+</h3><p>Returns number of 1-bits.</p>
+<h3 id="__builtin_ctz--__buitlin_ctzll">__builtin_ctz / __buitlin_ctzll
+</h3><p>Count trailing zeros.</p>
+<h3 id="__buitlin_clz--__buitlin_clzll">__buitlin_clz / __buitlin_clzll
+</h3><p>Count leading zeros.</p>
+<h3 id="__builtin_ffs--__buitlin_ffsll">__builtin_ffs / __buitlin_ffsll
+</h3><p>Find position of last set bit (1-indexed).</p>
+<h3 id="__builtin_parity--__builtin_parityll">__builtin_parity / __builtin_parityll
+</h3><p>Return parity (even/odd) of 1-bit count.</p>
+<hr>
+<h2 id="applications-of-bitwise-operations">Applications of Bitwise Operations
+</h2><h3 id="subset-representation">Subset Representation
+</h3><p>For set {0,1,&hellip;,N-1}, use N-bit integer S to represent subsets. Operations:</p>
+<ul>
+<li>Empty set: 0</li>
+<li>Full set: 2ᴺ-1</li>
+<li>Size: <code>__builtin_popcount(S)</code></li>
+<li>Check element i: <code>S &gt;&gt; i &amp; 1</code></li>
+<li>Add i: <code>S |= 1 &lt;&lt; i</code></li>
+<li>Remove i (must exist): <code>S ^= 1 &lt;&lt; i</code></li>
+<li>Remove i (any case): <code>S &amp;= ~(1 &lt;&lt; i)</code></li>
+<li>Intersection: <code>S &amp; T</code></li>
+<li>Union: <code>S | T</code></li>
+<li>Symmetric difference: <code>S ^ T</code></li>
+</ul>
+<h4 id="subset-enumeration">Subset Enumeration
+</h4><p><strong>- Enumerate all subsets</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="o">&lt;</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">N</span><span class="p">);</span> <span class="n">s</span><span class="o">++</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>- Enumerate subsets of a subset</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">S</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">S</span><span class="o">&lt;</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">N</span><span class="p">);</span> <span class="n">S</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">T</span><span class="o">=</span><span class="n">S</span><span class="p">;</span> <span class="n">T</span><span class="p">;</span> <span class="n">T</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&amp;</span><span class="n">S</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Time complexity O(3ᴺ).</p>
+<p><strong>- Enumerate K-sized subsets</strong><br>
+Optimized method from &ldquo;Competitive Programming&rdquo;:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">S</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Process S
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">S</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">S</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">S</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S</span> <span class="o">=</span> <span class="p">((</span><span class="n">S</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="extension-stdbitset">Extension: std::bitset
+</h4><p>C++ STL&rsquo;s bitset for large N:</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Operation</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>b.any()</code></td>
+          <td>True if any bit is set</td>
+      </tr>
+      <tr>
+          <td><code>b.none()</code></td>
+          <td>True if no bits are set</td>
+      </tr>
+      <tr>
+          <td><code>b.count()</code></td>
+          <td>Number of set bits</td>
+      </tr>
+      <tr>
+          <td><code>b.size()</code></td>
+          <td>Total bits</td>
+      </tr>
+      <tr>
+          <td><code>b[pos]</code></td>
+          <td>Access bit at pos</td>
+      </tr>
+      <tr>
+          <td><code>b.test(pos)</code></td>
+          <td>Check bit at pos</td>
+      </tr>
+      <tr>
+          <td><code>b.set(pos)</code></td>
+          <td>Set bit at pos</td>
+      </tr>
+      <tr>
+          <td><code>b.set()</code></td>
+          <td>Set all bits</td>
+      </tr>
+      <tr>
+          <td><code>b.reset(pos)</code></td>
+          <td>Clear bit at pos</td>
+      </tr>
+      <tr>
+          <td><code>b.reset()</code></td>
+          <td>Clear all bits</td>
+      </tr>
+      <tr>
+          <td><code>b.flip()</code></td>
+          <td>Flip all bits</td>
+      </tr>
+      <tr>
+          <td><code>b.flip(pos)</code></td>
+          <td>Flip bit at pos</td>
+      </tr>
+      <tr>
+          <td><code>b.to_ulong()</code></td>
+          <td>Convert to unsigned long</td>
+      </tr>
+      <tr>
+          <td><code>os &lt;&lt; b</code></td>
+          <td>Output bit pattern</td>
+      </tr>
+  </tbody>
+</table></div>
+<h5 id="exercise-atcoder-abc-258-g---trianglehttpsatcoderjpcontestsabc258tasksabc258_g">Exercise: <a class="link" href="https://atcoder.jp/contests/abc258/tasks/abc258_g"  target="_blank" rel="noopener"
+    >AtCoder ABC 258 G - Triangle</a>
+</h5><p>Solution using bitset optimizations. See <a class="link" href="https://goodcoder666.github.io/p/abc258/#problem-description-2"  target="_blank" rel="noopener"
+    >my explanation</a>.</p>
+<h3 id="dfs-optimization-with-bitwise-operations">DFS Optimization with Bitwise Operations
+</h3><p>N-Queens problem solved with bitwise optimizations:</p>
+<p>Standard backtracking vs. optimized version:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Standard backtracking
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">bool</span> <span class="n">row</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">diag_left</span><span class="p">[</span><span class="n">maxn</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">],</span> <span class="n">diag_right</span><span class="p">[</span><span class="n">maxn</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Bitwise optimized
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="kt">int</span> <span class="n">diag_left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">diag_right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="n">mx</span><span class="p">)</span> <span class="p">{</span> <span class="n">ans</span><span class="o">++</span><span class="p">;</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">mx</span> <span class="o">&amp;</span> <span class="o">~</span><span class="p">(</span><span class="n">row</span> <span class="o">|</span> <span class="n">diag_left</span> <span class="o">|</span> <span class="n">diag_right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">a</span><span class="p">;</span> <span class="n">a</span> <span class="o">^=</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dfs</span><span class="p">(</span><span class="n">row</span> <span class="o">|</span> <span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="n">diag_left</span> <span class="o">|</span> <span class="n">p</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">diag_right</span> <span class="o">|</span> <span class="n">p</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Performance comparison (for N=16):</p>
+<ul>
+<li>Standard: 53.4s</li>
+<li>Optimized: 6.23s</li>
+</ul>
+<p>Exercise: <a class="link" href="https://www.luogu.com.cn/problem/P1092"  target="_blank" rel="noopener"
+    >Luogu P1092 [NOIP2004] Alphametic</a></p>
+<h3 id="other-applications">Other Applications
+</h3><h4 id="swap-two-numbers">Swap two numbers
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="n">a</span> <span class="o">^=</span> <span class="n">b</span> <span class="o">^=</span> <span class="n">a</span> <span class="o">^=</span> <span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="average-without-overflow">Average without overflow
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">average1</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">y</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">average2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">x</span> <span class="o">^</span> <span class="n">y</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="check-power-of-two">Check power of two
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">ispowof2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="conclusion">Conclusion
+</h2><p>This article thoroughly explains bitwise operations and their applications.</p>
+<hr>
+<p>If you found this helpful, please give a like and share! Thanks for reading!</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/en/tags/algorithm-competition/">Algorithm Competition</a>
+        
+            <a href="/en/tags/algorithm-notes/">Algorithm Notes</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/en/p/algonotes-lca/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Algorithm Notes] Solving the Lowest Common Ancestor (LCA) Problem – Doubling Algorithm</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/en/p/algonotes-fenwick-tree/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Algorithm Notes】Fenwick Tree/Binary Indexed Tree</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/en/p/algonotes-knapsack-dp/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Three Types of Knapsack Problems — Knapsack DP</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/en/p/algonotes-mst/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Algorithm Notes】Kruskal/Prim Algorithms — Solving Minimum Spanning Tree Problems</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/en/p/algonotes-dijkstra/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Algorithm Notes] Single-Source Shortest Path Problem — Dijkstra&#39;s Algorithm (Unoptimized/Priority Queue/Set Optimized)</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 GoodCoder&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
