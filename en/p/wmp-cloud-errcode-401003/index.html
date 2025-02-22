@@ -10,7 +10,7 @@
 <meta property='og:description' content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Error\r1 2 3 4 5 Uncaught (in promise) thirdScriptError errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; Error: errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; at new u (...) ... Error Cause\rIncorrect Code\r1 2 3 4 5 6 7 8 9 10 11 12 wx.cloud.init({ env: &#39;my-cloud-id&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ // &lt;- Error occurs here &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 }) Correct Code\r1 2 3 4 5 6 7 8 9 10 11 12 13 14 wx.cloud.init({ env: &#39;my-cloud-id&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ data: { // Must include data! &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 } }) ">
 <meta property='og:url' content='https://goodcoder666.github.io/en/p/wmp-cloud-errcode-401003/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='WeChat Mini Program' /><meta property='article:tag' content='Bug/Error Resolution' /><meta property='article:published_time' content='2020-02-02T11:17:00&#43;08:00'/><meta property='article:modified_time' content='2020-02-02T11:17:00&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='WeChat Miniprograms' /><meta property='article:tag' content='Debugging' /><meta property='article:published_time' content='2020-02-02T11:17:00&#43;08:00'/><meta property='article:modified_time' content='2020-02-02T11:17:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
     <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="Error When Using WeChat Mini Program Cloud Development: Error: errCode: -401003 api parameter type error | errMsg: parameter.data should ...">
 <meta name="twitter:description" content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Error\r1 2 3 4 5 Uncaught (in promise) thirdScriptError errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; Error: errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; at new u (...) ... Error Cause\rIncorrect Code\r1 2 3 4 5 6 7 8 9 10 11 12 wx.cloud.init({ env: &#39;my-cloud-id&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ // &lt;- Error occurs here &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 }) Correct Code\r1 2 3 4 5 6 7 8 9 10 11 12 13 14 wx.cloud.init({ env: &#39;my-cloud-id&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ data: { // Must include data! &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 } }) ">
@@ -480,9 +480,9 @@ This article was machine-translated using DeepSeek-R1.</p>
     
     <section class="article-tags">
         
-            <a href="/en/tags/wechat-mini-program/">WeChat Mini Program</a>
+            <a href="/en/tags/wechat-miniprograms/">WeChat Miniprograms</a>
         
-            <a href="/en/tags/bug/error-resolution/">Bug/Error Resolution</a>
+            <a href="/en/tags/debugging/">Debugging</a>
         
     </section>
 
@@ -548,6 +548,45 @@ This article was machine-translated using DeepSeek-R1.</p>
 
         <div class="article-details">
             <h2 class="article-title">WeChat Mini Program Error: Component is not found in path &#34;components/comp/comp.js&#34;</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/en/p/wmp-enable-onpulldownrefresh/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Why the onPullDownRefresh Setting in WeChat Mini Program Doesn&#39;t Work</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/en/p/wmp-cloud-invalidkey-openid/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">WeChat Mini Program - Cloud Development - Database Error: -501007 invalid parameters | errMsg: Invalid Key Name: _openid</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/en/p/wx-showtoast-problem/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">An Issue in wx.showToast</h2>
         </div>
     </a>
 </article>
