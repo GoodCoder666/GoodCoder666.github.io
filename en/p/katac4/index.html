@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" Translation Notice\nThis article was machine-translated by Gemini 2.5 Pro.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rAs the title suggests, this is an exploratory project of mine. Its purpose is not to achieve any specific result, but to learn through the process of experimentation. This article includes a brief technical report, as well as some insights and experiences gained along the way. The comment system is not yet set up, so if you have any thoughts or questions, please feel free to post them directly in the project&rsquo;s Issues / Discussions.\n">
+<title>katac4: An Exploration of Reinforcement Learning Based on AlphaZero</title>
+
+<link rel='canonical' href='https://goodcoder666.github.io/en/p/katac4/'>
+
+<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="katac4: An Exploration of Reinforcement Learning Based on AlphaZero">
+<meta property='og:description' content=" Translation Notice\nThis article was machine-translated by Gemini 2.5 Pro.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rAs the title suggests, this is an exploratory project of mine. Its purpose is not to achieve any specific result, but to learn through the process of experimentation. This article includes a brief technical report, as well as some insights and experiences gained along the way. The comment system is not yet set up, so if you have any thoughts or questions, please feel free to post them directly in the project&rsquo;s Issues / Discussions.\n">
+<meta property='og:url' content='https://goodcoder666.github.io/en/p/katac4/'>
+<meta property='og:site_name' content='GoodCoder&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Artificial Intelligence' /><meta property='article:tag' content='Deep Learning' /><meta property='article:tag' content='Reinforcement Learning' /><meta property='article:published_time' content='2025-06-28T23:49:50&#43;08:00'/><meta property='article:modified_time' content='2025-06-28T23:49:50&#43;08:00'/>
+<meta name="twitter:site" content="@stanleys09">
+    <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="katac4: An Exploration of Reinforcement Learning Based on AlphaZero">
+<meta name="twitter:description" content=" Translation Notice\nThis article was machine-translated by Gemini 2.5 Pro.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rAs the title suggests, this is an exploratory project of mine. Its purpose is not to achieve any specific result, but to learn through the process of experimentation. This article includes a brief technical report, as well as some insights and experiences gained along the way. The comment system is not yet set up, so if you have any thoughts or questions, please feel free to post them directly in the project&rsquo;s Issues / Discussions.\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KJPJLGSR3C');
+        }
+      </script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">GoodCoder&#39;s Blog</a></h1>
+            <h2 class="site-description">Welcome to my blog site!</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GoodCoder666'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/stanleys09'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://goodcoder666.github.io/en/" selected>English</option>
+                                
+                                    <option value="https://goodcoder666.github.io/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#preface">Preface</a></li>
+    <li><a href="#a-quick-look-at-alphazero">A Quick Look at AlphaZero</a></li>
+    <li><a href="#training-annealing">Training, Annealing</a></li>
+    <li><a href="#algorithm-optimizations">Algorithm Optimizations</a>
+      <ol>
+        <li><a href="#gradient-accumulation">Gradient Accumulation</a></li>
+        <li><a href="#action-space-pruning">Action Space Pruning</a></li>
+        <li><a href="#first-play-urgency-fpu">First Play Urgency (FPU)</a></li>
+        <li><a href="#playout-cap-randomization">Playout Cap Randomization</a></li>
+        <li><a href="#forced-playouts--policy-target-pruning">Forced Playouts &amp; Policy Target Pruning</a></li>
+        <li><a href="#dynamic-replay-buffer">Dynamic Replay Buffer</a></li>
+        <li><a href="#monte-carlo-graph-search-mcgs">Monte Carlo Graph Search (MCGS)</a></li>
+      </ol>
+    </li>
+    <li><a href="#engineering-optimizations">Engineering Optimizations</a>
+      <ol>
+        <li><a href="#parallel-self-play">Parallel Self-Play</a></li>
+        <li><a href="#cuda-graphs">CUDA Graphs</a></li>
+      </ol>
+    </li>
+    <li><a href="#test-results">Test Results</a></li>
+    <li><a href="#future-improvement-directions">Future Improvement Directions</a></li>
+    <li><a href="#further-reading">Further Reading</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/p/katac4/">katac4: An Exploration of Reinforcement Learning Based on AlphaZero</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025/06/28</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    17 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://goodcoder666.github.io/p/katac4/" class="link">中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p><strong>Translation Notice</strong><br>
+This article was machine-translated by <strong>Gemini 2.5 Pro</strong>.</p>
+<ul>
+<li><strong>Original Version</strong>: Authored in Chinese by myself</li>
+<li><strong>Accuracy Advisory</strong>: Potential discrepancies may exist between translations</li>
+<li><strong>Precedence</strong>: The Chinese text shall prevail in case of ambiguity</li>
+<li><strong>Feedback</strong>: Technical suggestions regarding translation quality are welcomed</li>
+</ul>
+</blockquote>
+<h2 id="preface">Preface
+</h2><p><em>As the title suggests, this is an exploratory project of mine. Its purpose is not to achieve any specific result, but to learn through the process of experimentation. This article includes a brief technical report, as well as some insights and experiences gained along the way. The comment system is not yet set up, so if you have any thoughts or questions, please feel free to post them directly in the project&rsquo;s Issues / Discussions.</em></p>
+<p>Recently, I&rsquo;ve been studying Reinforcement Learning (RL), and I&rsquo;m particularly fond of the AlphaZero algorithm. It&rsquo;s a general reinforcement learning algorithm that evolved from AlphaGo, which defeated world Go champion Lee Sedol in 2016. Some mainstream introductory books on reinforcement learning typically stop at methods like PPO, SAC, or DDPG (without covering the AlphaZero, MuZero series), which I personally believe is a significant omission.</p>
+<p>Fundamentally, AlphaZero <strong>belongs to the category of Model-Based RL</strong>, which is inherently different from Model-Free RL represented by Q-learning and Actor-Critic. The key difference is its use of an <strong>environment model</strong> (a game simulator) to deduce the optimal policy through tree search, rather than gradually improving expected returns through extensive trial and error. A good environment model is crucial for the success of such algorithms; in board games, clear rules directly provide a perfect environment model. In contrast, the real physical world is incredibly complex and difficult to describe with simple rules, which has become a key bottleneck hindering the practical application of reinforcement learning. Meta&rsquo;s recently open-sourced <a class="link" href="https://ai.meta.com/blog/v-jepa-2-world-model-benchmarks/"  target="_blank" rel="noopener"
+    >V-JEPA 2</a> is an important step towards building world models, and I highly recommend looking into it.</p>
+<p>Due to limited computational resources, I chose <a class="link" href="https://www.saiblo.net/game/3"  target="_blank" rel="noopener"
+    >Saiblo Connect Four</a> as the game environment <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Its state space is relatively small, yet it has a certain level of complexity with no known winning strategy. Additionally, the platform features excellent traditional methods for comparison, allowing for a relatively objective assessment of the algorithm&rsquo;s playing strength. I am very grateful to Tsinghua University for providing this platform, which not only meets the experimental needs of its students but also offers great convenience to enthusiasts outside the university.</p>
+<p>Since my AI uses some algorithmic improvements from <a class="link" href="https://github.com/lightvector/KataGo"  target="_blank" rel="noopener"
+    >KataGo</a>, I named it katac4. The code is fully open-source on <a class="link" href="https://github.com/GoodCoder666/katac4"  target="_blank" rel="noopener"
+    >GitHub</a>.</p>
+<p>As of the time of writing (2025.06.27), katac4 is firmly in first place on the game&rsquo;s ladder with a commanding lead:</p>
+<p><img src="/p/katac4/rank.png"
+	width="1756"
+	height="948"
+	srcset="/p/katac4/rank_hu3571190474406266030.png 480w, /p/katac4/rank_hu8101580597091962575.png 1024w"
+	loading="lazy"
+	
+		alt="Connect Four game ladder on June 27th"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="444px"
+	
+></p>
+<h2 id="a-quick-look-at-alphazero">A Quick Look at AlphaZero
+</h2><p>There are many easy-to-understand articles about AlphaZero online, so I will only provide a brief, more abstract overview here (with ideas referenced from the KataGo paper).</p>
+<p>The algorithm generates training data through self-play guided by Monte Carlo Tree Search (MCTS). The search process involves repeatedly expanding the game tree: each time, starting from the root node, a path is followed to a leaf node. At node $n$, the child node $c$ that maximizes the following formula is chosen for the visit:</p>
+$$
+\mathrm{PUCT}(c)=V(c)+c_\mathrm{PUCT}P(c) \frac{\sqrt{\sum_{c'}N(c')}}{1+N(c)}
+$$<p>Here, $V(c)$ is the average predicted utility value of all nodes in the subtree of $c$, $P(c)$ is the prior probability for the action corresponding to $c$ given by the neural network, $N(c)$ is the number of simulations previously run through node $c$, and the constant $c_\mathrm{PUCT}=1.1$; $c'$ represents all child nodes of $n$.</p>
+<p>Unlike the $\epsilon$-greedy algorithm, AlphaZero enhances exploration by applying Dirichlet noise to the prior probabilities at the root node:</p>
+$$
+P(c)=0.75P_{\text{raw}}(c)+0.25\eta
+$$<p>where $\eta$ is sampled from a Dirichlet distribution with parameter $\alpha=0.8$, and $P_{\text{raw}}$ represents the raw policy distribution given by the neural network.</p>
+<p>Let the root of the search tree have $k$ child nodes $u_1,\dots,u_k$, corresponding to actions $a_1,\dots,a_k$. Then the <em>visit distribution</em> of MCTS is proportional to $N(u_i)$:</p>
+$$
+\pi(a_k|s_t)=\frac{N(u_k)}{\sum_{i=1}^k N(u_i)}
+$$<p>This is the training target for the neural network and is also used to select the next move during self-play (sampled with a dynamically changing temperature $T$). <strong>Self-play starts from the initial board position</strong>. During inference (actual matches), the action with the highest probability in this distribution, i.e., the most visited one, is typically chosen directly.</p>
+<p>The neural network takes the current board state $s_t$ as input and predicts the probability distribution of the next move $\pi$ and the win rate of the position $z$. Its loss function is:</p>
+$$
+L=-c_g \sum_r z(r) \log(\hat z(r))-\sum_m \pi(m) \log(\hat \pi(m))+c_{L2} ||\boldsymbol\theta||^2
+$$<p>where $r \in \{\text{win}, \text{loss}, \text{draw}\}$ represents the game outcome from the current player&rsquo;s perspective, and the constants are $c_g=1.5, c_{L2}=3\times 10^{-5}$. The entire loss function is a weighted sum of the following three parts:</p>
+<ol>
+<li>Cross Entropy between the win rate prediction and the actual result <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>;</li>
+<li>Soft Cross Entropy between the policy distribution prediction and the MCTS visit distribution;</li>
+<li>L2 regularization on the neural network parameters $\boldsymbol\theta$.</li>
+</ol>
+<p>Policy updates are done in an <strong>Off-policy</strong> manner, maintaining a replay buffer. After each self-play game is completed, the new experience data is added to the replay buffer, from which a mini-batch of size $B$ is sampled for gradient descent updates. The SGD with Momentum optimizer is used, with the learning rate adjusted according to the training phase.</p>
+<p>Overall, AlphaZero is consistent with the core idea of <strong>policy iteration algorithms</strong>, but it uses MCTS to perform both <strong>policy evaluation</strong> and <strong>policy improvement</strong> tasks simultaneously.</p>
+<h2 id="training-annealing">Training, Annealing
+</h2><p>The concept of <strong>annealing</strong> is crucial for successfully training an AlphaZero agent. This involves many details, and I recommend referring to the code. Here, I list a few key points:</p>
+<ol>
+<li>The temperature for sampling actions from the visit distribution is $T=0.8^{1+step/boardsize}$. <a class="link" href="https://github.com/junxiaosong/AlphaZero_Gomoku"  target="_blank" rel="noopener"
+    >AlphaZero_Gomoku</a> uses a constant $T=1$, which in practice proves to be completely wrong. In the late game, &ldquo;one false move can lose the whole game.&rdquo; Directly sampling actions based on the visit distribution would generate a large number of incorrect game outcome samples, causing the entire training to collapse.</li>
+<li>For the policy given by the neural network, apply a temperature $T=\max(1.03,1.35\times0.66^{step/boardsize})$ at the root node. This ensures a certain level of exploration and enhances training stability.</li>
+<li>Learning rate annealing. For the early stage of training ($5\%$ of iterations), use $1/3$ of the normal learning rate (to prevent large fluctuations). After $72\%$ of iterations, use $1/10$ of the normal learning rate (to maximize playing strength improvement).</li>
+</ol>
+<p>Many of these hyperparameters are not necessarily optimal and were set somewhat arbitrarily, but their combination has proven effective. I hope they can provide some reference value.</p>
+<h2 id="algorithm-optimizations">Algorithm Optimizations
+</h2><blockquote>
+<p>Recomputing the AlphaGo Zero weights will <a class="link" href="http://web.archive.org/web/20190205013627/http://computer-go.org/pipermail/computer-go/2017-October/010307.html"  target="_blank" rel="noopener"
+    >take about 1700 years on commodity hardware</a>.</p>
+</blockquote>
+<p>This sentence is from the Leela Zero project&rsquo;s README. AlphaZero&rsquo;s exploration process is inherently inefficient, but well-designed algorithmic optimizations can significantly shorten its training cycle. The methods in the <a class="link" href="https://arxiv.org/abs/1902.10565"  target="_blank" rel="noopener"
+    >KataGo paper</a>, when used together, can improve training efficiency by ~50x. Below are some of the optimizations I used, some of which are from KataGo.</p>
+<h3 id="gradient-accumulation">Gradient Accumulation
+</h3><p>Our game environment, Saiblo Connect Four, has variable board sizes, with both width and height ranging in $[9,12]$. This results in a total of $16$ different board sizes.</p>
+<p>To adapt to different board sizes, two improvements were made:</p>
+<ol>
+<li>The neural network uses a fully convolutional (FCN) architecture <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>, with the policy head&rsquo;s output size matching the input state size.</li>
+<li>When sampling from the replay buffer, instead of directly sampling $256$ examples, we sample $16$ examples for each board size. <strong>We perform a forward pass for the samples of each board size, calculate the gradients, and accumulate them</strong>. Then, a normal backward + step is performed.</li>
+</ol>
+<p>KataGo uses board masking to adapt to different inputs, which involves tedious implementation details. I chose the simpler approach of gradient accumulation, which, although slightly less efficient, is much more convenient.</p>
+<h3 id="action-space-pruning">Action Space Pruning
+</h3><p>The motivation for this method is very simple: manually filter out moves that can be proven to be strictly wrong, treating them as illegal moves and excluding them from MCTS calculations.</p>
+<p>The implementation requires very minor code changes and can be summarized by two rules:</p>
+<ol>
+<li>If I can win in one move, I must make that move;</li>
+<li>If the opponent can win in their next move, I must block it.</li>
+</ol>
+<p>This optimization is very simple yet significantly speeds up exploration in the early stages of training, allowing the model to quickly understand the game&rsquo;s rules. It also helps avoid some bad blind spots, especially when an opponent forms a threat of three near the edge of the board, which a CNN might overlook.</p>
+<h3 id="first-play-urgency-fpu">First Play Urgency (FPU)
+</h3><blockquote>
+<p>This optimization originates from Leela Zero.</p>
+</blockquote>
+<p>A careful reader might ask: when calculating PUCT, if a child node has not been visited, i.e., $N(c)=0$, how is $V(c)$ defined?</p>
+<p>AlphaGo Zero provides the standard answer: $V(c)=0$. However, the Leela Zero community found that this is not the optimal choice. They chose:</p>
+$$
+V(c)=V(n)-c_\text{FPU}\sqrt{P_\text{explored}}
+$$<p>where $n$ is the parent node, the constant $c_\text{FPU}=0.2$, and $P_\text{explored}$ is the sum of the prior probabilities of all child nodes that have been visited at least once:</p>
+$$
+P_\text{explored}=\sum_{c'|N(c')>0} P(c')
+$$<p>Readers can ponder the rationale behind this approach. A <a class="link" href="https://github.com/glinscott/leela-chess/issues/160#issuecomment-374912061"  target="_blank" rel="noopener"
+    >discussion on Lc0&rsquo;s GitHub</a> points out that for a strong neural network, this method can lead to an improvement of ~200 Elo.</p>
+<h3 id="playout-cap-randomization">Playout Cap Randomization
+</h3><blockquote>
+<p>Corresponds to <em>Playout Cap Randomization</em> in the KataGo paper.</p>
+</blockquote>
+<p><strong>The two output heads in AlphaZero require different numbers of playouts for optimal training</strong>. Some informal studies suggest that the most efficient number of simulations for training the policy head is very close to AlphaZero&rsquo;s $N=800$, but in the first version of AlphaGo, even $N=1$ was sufficient to train a decent value head. To alleviate the tension between the two, we choose a smaller number of simulations $n < N$ and perform a fast search ($n$ simulations) with probability $p$, and a normal full search ($N$ simulations) otherwise. <strong>Samples generated from fast searches are not used for policy training<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</strong></p>
+<p>My hyperparameter choices are $(N,n)=(800,160)$ and $p=0.25$. I personally feel that for a game like Connect Four, the number of simulations could probably be even smaller.</p>
+<h3 id="forced-playouts--policy-target-pruning">Forced Playouts &amp; Policy Target Pruning
+</h3><blockquote>
+<p>Corresponds to <em>Forced Playouts and Policy Target Pruning</em> in the KataGo paper.</p>
+</blockquote>
+<p>As mentioned earlier, AlphaZero introduces Dirichlet noise at the root node to enhance exploration. However, this method does not guarantee that good moves will definitely be discovered.</p>
+<p>Imagine the following scenario:</p>
+<ol>
+<li>Game state $s_t$. The current neural network strongly favors move $a$, while the actual optimal move is $a^*$. In the output policy distribution, $a$ gets over $80\%$ probability, while $a^*$ gets less than $5\%$.</li>
+<li>Dirichlet noise is introduced. The probability of $a$ is still very high, while $a^*$ is &ldquo;selected&rdquo; and rises to $10\%$. Let&rsquo;s assume $P(a)$ is now exactly $80\%$.</li>
+<li>MCTS visits $a$ and $a^*$ in sequence. The value network still doesn&rsquo;t favor the state $s^*$ reached by $a^*$, preferring the state $s$ from move $a$, giving $V(s^*)=-0.8$ and $V(s)=-0.1$.</li>
+<li>The total number of simulations is now $N=2$. According to the PUCT formula, we have $\text{PUCT}(a)=0.34$ and $\text{PUCT}(a^*)=-0.745$. The PUCT values are already vastly different. If MCTS continuously selects $a$ for visits and $V(s)$ remains unchanged, it would take nearly $200$ simulations before $\text{PUCT}(a^*)\ge\text{PUCT}(a)$. By then, $1/4$ of the simulations have been wasted. And if $a^*$ is given a poor evaluation again, it would take a long time to get another visit.</li>
+</ol>
+<p>This shows that even if Dirichlet noise luckily falls on the correct move, the combined blind spots of the policy and value networks may still not be handled correctly. Therefore, we introduce a Forced Playouts mechanism to ensure that each child of the root node receives at least $\lceil n_\text{forced} \rceil$ visits:</p>
+$$
+n_\text{forced}(c)=\left(kP(c)\sum_{c'}N(c')\right)^{1/2}
+$$<p><br>
+Following KataGo&rsquo;s setting, the constant is $k=2$.</p>
+<p>At the same time, to eliminate the significant noise introduced by both Dirichlet noise and Forced Playouts, we perform policy target pruning on the visit distribution after MCTS is complete:</p>
+<ol>
+<li>Find the child $c^*$ with the most visits $N(c)$.</li>
+<li>For other child nodes $c$, subtract as many visits as possible, ensuring that $\text{PUCT}(a^*) > \text{PUCT}(a)$ and that the number of subtracted visits does not exceed $n_\text{forced}(c)$.</li>
+</ol>
+<p>I chose to directly solve the inequality to find the pruned visit count:</p>
+$$
+N'(c)=\mathrm{clip}\left(\left\lceil\frac{P\sqrt N}{V+\text{PUCT}(c^*)}-1\right\rceil,N-n_\text{forced},N\right)
+$$<p>For readability, the formula above uses $N$ for $N(c)$, $P$ for $P(c)$, etc.</p>
+<p>Below is a comparison of the effect with/without policy pruning from the KataGo paper. Black: $p \approx 2\times 10^{-4}$; Green: $p \approx 1$.</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center"><img src="/p/katac4/logpolicy1.png"
+	width="684"
+	height="686"
+	srcset="/p/katac4/logpolicy1_hu14807721752196513033.png 480w, /p/katac4/logpolicy1_hu17779249405163364952.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="99"
+		data-flex-basis="239px"
+	
+></th>
+          <th style="text-align: center"><img src="/p/katac4/logpolicy2.png"
+	width="684"
+	height="686"
+	srcset="/p/katac4/logpolicy2_hu16634519969668677271.png 480w, /p/katac4/logpolicy2_hu3778008593870311584.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="99"
+		data-flex-basis="239px"
+	
+></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">With Policy Pruning</td>
+          <td style="text-align: center">Without Policy Pruning</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="dynamic-replay-buffer">Dynamic Replay Buffer
+</h3><blockquote>
+<p>From <em>Appendix C: Training Details</em> in the KataGo paper.</p>
+</blockquote>
+<p>In off-policy reinforcement learning algorithms, the size of the replay buffer (number of samples it can hold) is mostly fixed, often set in the range of $[2^{14},2^{20}]$. We, however, adopt a sub-linear growth strategy:</p>
+$$
+N_{\text{window}} = c \left( 1 + \beta \frac{ ( N_{\text{total}} / c ) ^ \alpha - 1} { \alpha } \right)
+$$<p>where $N_{\text{total}}$ is the total number of samples generated so far in the training process, and $c=250000, \alpha=0.75, \beta=0.4$. This is essentially applying a linear transformation to $f(n)=n^\alpha$ such that $f(c)=c$ and $f'(c)=\beta$. This allows for the rapid discarding of low-quality moves generated in the early stages and increases the diversity of training samples later on, effectively suppressing overfitting.</p>
+<h3 id="monte-carlo-graph-search-mcgs">Monte Carlo Graph Search (MCGS)
+</h3><p>See <a class="link" href="https://github.com/lightvector/KataGo/blob/master/docs/GraphSearch.md"  target="_blank" rel="noopener"
+    >KataGo/docs/GraphSearch.md</a>. Many thanks to David Wu for the easy-to-understand explanation; during this project, I even found a typo in it and fixed it with a PR &#x1f606;</p>
+<p>The overall idea:</p>
+<ol>
+<li>
+<p>Implement Zobrist hashing for board positions. When expanding leaves, prioritize looking up identical state nodes in a hash table, turning the search tree into a DAG;</p>
+</li>
+<li>
+<p><strong>Calculate PUCT based on the visit counts of action edges (not nodes)</strong>;</p>
+</li>
+<li>
+<p>Use <strong>incremental updates</strong> during backpropagation:</p>
+$$
+   V(n) \larr \frac{1}{N(n)} \left(U(n)+\sum_c N(c)V(c)\right)
+   $$<p>Note that $U(n)$, the utility estimate from the value network, is essential.</p>
+</li>
+</ol>
+<p>In practice, memory management for MCGS can be tricky. Fortunately, the search trees generated by AlphaZero are not very large, so I just do a DFS cleanup. Currently, MCTS is still used for training, while MCGS is used for inference.</p>
+<h2 id="engineering-optimizations">Engineering Optimizations
+</h2><p>Since the project code is 100% Python, achieving full resource utilization is nearly impossible. However, there are still some tricks to improve training efficiency.</p>
+<h3 id="parallel-self-play">Parallel Self-Play
+</h3><p>This idea is easy to understand and can be applied to most mainstream reinforcement learning algorithms. Use multiple processes in parallel on different GPUs to collect training data and send the results to a main process for model updates.</p>
+<p>Currently, I use a total of 20 different processes for self-play, distributed evenly across 4 GPUs. Note that you should use <code>torch.multiprocessing</code> instead of Python&rsquo;s built-in <code>multiprocessing</code> module.</p>
+<h3 id="cuda-graphs">CUDA Graphs
+</h3><p>This is another relatively general optimization technique that can be used in many machine learning applications. The principle is to <strong>send the entire computation graph to the GPU for execution, significantly reducing front-end/back-end interaction and kernel launch overhead <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></strong>. For smaller networks and batch sizes, CUDA Graphs can provide an unexpected speed boost.</p>
+<p>The project&rsquo;s root directory provides a (rudimentary) benchmark script. The results on a single RTX 4090 are as follows (<code>batch_size=1</code> to simulate the self-play environment):</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Category</th>
+          <th style="text-align: left">Inference Method</th>
+          <th style="text-align: center">Computation Speed (FPS)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Base</td>
+          <td style="text-align: left"><code>torch.no_grad</code></td>
+          <td style="text-align: center">$249.1$</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Base</td>
+          <td style="text-align: left"><code>torch.inference_mode</code></td>
+          <td style="text-align: center">$265.9$</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">TorchScript</td>
+          <td style="text-align: left"><code>torch.jit.script</code></td>
+          <td style="text-align: center">$271.5$</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">TorchScript</td>
+          <td style="text-align: left"><code>torch.jit.trace</code></td>
+          <td style="text-align: center">$501.4$</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CUDA Graphs</td>
+          <td style="text-align: left"><code>torch.cuda.graph</code></td>
+          <td style="text-align: center">$3184.5$</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Additionally, <code>torch.compile(mode='reduce-overhead')</code> can also achieve CUDA Graph-based inference. However, this API is not supported on Windows and has a compilation-time cost, making it less convenient than <code>torch.cuda.graph</code>.</p>
+<h2 id="test-results">Test Results
+</h2><p>Training lasted for about 14 days, totaling $30000 \times 16$ iterations. First, here are the curves for <strong>Loss</strong>, <strong>Entropy</strong> (policy entropy), and <strong>episode_len</strong> (self-play game length) during training:</p>
+<p><img src="/p/katac4/loss.png"
+	width="1977"
+	height="571"
+	srcset="/p/katac4/loss_hu8748415948911956082.png 480w, /p/katac4/loss_hu12831189363981674269.png 1024w"
+	loading="lazy"
+	
+		alt="Total loss / Policy loss / Value loss (Smoothing = 0.9)"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="346"
+		data-flex-basis="830px"
+	
+></p>
+<p><img src="/p/katac4/entropy_episode_len.png"
+	width="1317"
+	height="563"
+	srcset="/p/katac4/entropy_episode_len_hu6489537421821007243.png 480w, /p/katac4/entropy_episode_len_hu3838643575367717094.png 1024w"
+	loading="lazy"
+	
+		alt="Entropy / Episode_len (Smoothing = 0.99)"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="233"
+		data-flex-basis="561px"
+	
+></p>
+<p>The loss and entropy decrease rapidly at the beginning and then stabilize (they don&rsquo;t converge to $0$ because the data distribution is constantly changing); episode_len increases initially and then slightly decreases (possibly due to finding faster winning lines). Overall, this is in line with intuition and shows no unexpected behavior.</p>
+<p>Next is the <strong>Elo</strong><sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> rating curve, reflecting the actual playing strength:</p>
+<p><img src="/p/katac4/elo.png"
+	width="640"
+	height="480"
+	srcset="/p/katac4/elo_hu448779931538444639.png 480w, /p/katac4/elo_hu6305396987888430977.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<p>Overall, the training process was very stable (approximately sub-linear growth), and the training eventually reached near-saturation.</p>
+<p>The <a class="link" href="https://github.com/Lionjump0723/connect4/"  target="_blank" rel="noopener"
+    >best traditional method</a> for the same task, under the same computational power, has only about a 26% win rate against katac4&rsquo;s best checkpoint, corresponding to a -182 Elo difference. As seen in the graph, we reached a comparable level with just 1/4 of the iterations (3 days of training).</p>
+<p><img src="/p/katac4/elo-compare.png"
+	width="640"
+	height="480"
+	srcset="/p/katac4/elo-compare_hu16535128062284470455.png 480w, /p/katac4/elo-compare_hu620230431038270330.png 1024w"
+	loading="lazy"
+	
+		alt="Comparison with Previous SOTA"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<p>In reality, this estimate is not precise—the Epoch 6500 checkpoint can also achieve a win rate of over 50% against it. <em>The above graph is for reference only.</em></p>
+<p>I am very grateful to this predecessor for recently open-sourcing his method; in the early stages of my project&rsquo;s development, I was always curious how he managed to lead the leaderboard by such a margin. A few days ago, I read his project report and was surprised to learn that even traditional methods perform better with PUCT than with UCT. To be honest, if I weren&rsquo;t allowed to use a neural network, I probably wouldn&rsquo;t even make it to the first page of the overall rankings.</p>
+<p>Here are the test results against the Saiblo platform&rsquo;s sample AIs:</p>
+<p><img src="/p/katac4/saiblo-test.png"
+	width="1104"
+	height="298"
+	srcset="/p/katac4/saiblo-test_hu16771255767343640165.png 480w, /p/katac4/saiblo-test_hu12574235412547701487.png 1024w"
+	loading="lazy"
+	
+		alt="Epoch 15500 checkpoint achieves a clean sweep against the sample AIs"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="370"
+		data-flex-basis="889px"
+	
+></p>
+<p>This result sometimes fails to run due to TLE. The strongest checkpoint has never lost (tested for $6\times100$ games), except for TLEs. The platform only has CPUs, so the inference solution uses TorchScript. However, <code>import torch</code> and <code>torch.jit.load</code> both have time overhead. When the evaluation server is under heavy load, it might TLE before the model even finishes loading. There&rsquo;s really nothing I can do about this. (Sigh)</p>
+<p>A few suggestions for the platform:</p>
+<ol>
+<li>Support LibTorch, so I can write inference in C++ and eliminate the import time;</li>
+<li>Provide some lightweight inference frameworks (like ONNX Runtime) to also alleviate slow loading issues.</li>
+<li>As a fallback, the time limit for the first move could be relaxed a bit&hellip;</li>
+</ol>
+<p>I also created a for-fun version called fastc4, which directly selects the move with the highest probability from the neural network&rsquo;s output. This version is actually not bad either:</p>
+<ul>
+<li>97% win rate against the sample AIs;</li>
+<li>65% win rate against <a class="link" href="https://github.com/jiegec/FourChess"  target="_blank" rel="noopener"
+    >jiegec/FourChess</a>;</li>
+<li>48% win rate against frvdec (former rank 2);</li>
+<li>45% win rate against <a class="link" href="https://github.com/Lionjump0723/connect4/"  target="_blank" rel="noopener"
+    >Lionjump0723/connect4</a> (former rank 1).</li>
+</ul>
+<p>After manually observing some games, I feel that the neural network cares more about long-term gains—it plans for many moves ahead and doesn&rsquo;t care about local gains or losses. Traditional methods are naturally focused on short-term tactical calculations and appear much weaker when there is no obvious winning sequence. My AI often loses to other AIs in the first 25 moves due to a tactical blind spot, but by move 50, the position is almost completely under its control. The traditional algorithms are powerless in the late game due to early strategic mistakes. This is somewhat similar to the difference between Stockfish and Leela Chess Zero in chess engines—the former is a meticulous calculator, while the latter relies more on intuition.</p>
+<p>I hope these insights can help with the future development of traditional AI methods. I also welcome everyone to play against and test katac4 on the platform:</p>
+<ul>
+<li><strong>katac4 (Epoch 29000)</strong>: <code>96c96ac2389547958141d932d9279efc</code></li>
+<li>katac4 (Epoch 30000): <code>2c9bd80e1e0e480a8f32214448880a62</code></li>
+<li>katac4 (Epoch 6500): <code>d4e85acaf1ab4025b3c6a7ebec4fd0f0</code></li>
+<li>fastc4 (Epoch 29000): <code>941dafdce03640bfb7ceb3aa32613252</code></li>
+</ul>
+<h2 id="future-improvement-directions">Future Improvement Directions
+</h2><p>There are currently two main issues:</p>
+<ol>
+<li>Low hardware utilization efficiency;</li>
+<li>Many early-game blind spots in the model.</li>
+</ol>
+<p>In the future, I will consider merging leaf states from different self-play games into one large batch, which should largely solve the first problem.</p>
+<p>For the second problem, besides increasing the model size (the next model is planned to be <code>b5c128nbt</code>), there are some algorithmic optimizations yet to be implemented:</p>
+<ol>
+<li>Add auxiliary policy heads (opponent&rsquo;s next move distribution, game&rsquo;s final move location, soft policy) to aid training;</li>
+<li>Optimize the board state representation (positions of moves from more previous turns, positions of threats of two or three, etc.);</li>
+<li>Discard fast game policy samples from Playout Cap Randomization;</li>
+<li>Use importance sampling proportional to $D_\mathrm{KL}(\hat{\boldsymbol\pi}||\boldsymbol\pi)$ to focus training on incorrectly predicted positions;</li>
+<li>Replace Batch Norm with Batch Renorm to prevent inconsistencies between the model&rsquo;s training and inference behavior.</li>
+</ol>
+<p>I&rsquo;ll try to implement some of these if I have time this summer. Anyone who is interested is also welcome to contribute PRs with improvements. You are always welcome!</p>
+<h2 id="further-reading">Further Reading
+</h2><ul>
+<li><a class="link" href="https://www.nature.com/articles/nature24270"  target="_blank" rel="noopener"
+    >Mastering the game of Go without human knowledge</a></li>
+<li><a class="link" href="https://arxiv.org/abs/1712.01815"  target="_blank" rel="noopener"
+    >Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm</a></li>
+<li><a class="link" href="https://arxiv.org/pdf/1902.10565"  target="_blank" rel="noopener"
+    >Accelerating Self-Play Learning in Go</a></li>
+<li><a class="link" href="https://github.com/lightvector/KataGo/blob/master/docs/KataGoMethods.md"  target="_blank" rel="noopener"
+    >Other Methods Implemented in KataGo</a></li>
+<li><a class="link" href="https://hackmd.io/@yrHb-fKBRoyrKDEKdPSDWg/BJgfay0Yc"  target="_blank" rel="noopener"
+    >Sayuri Go Engine Development Log</a></li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Game rules can be found in the <a class="link" href="https://docs.saiblo.net/games/connect4/connect4.html"  target="_blank" rel="noopener"
+    >documentation</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>The original AlphaZero directly predicts the position value $V(s_t) \in [-1,1]$ and uses MSE Loss. Here, I adopted the improved approach from KataGo and Leela Zero.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>The neural network design also references KataGo, using Global Pooling and <a class="link" href="https://github.com/lightvector/KataGo/blob/master/docs/KataGoMethods.md#nested-bottleneck-residual-nets"  target="_blank" rel="noopener"
+    >Nested Bottleneck Residual Nets</a>. The current version is named <code>b3c128nbt</code>, indicating 3 nested bottleneck residual blocks with 128 channels. For brevity, I won&rsquo;t detail the model design optimizations here; interested readers can refer to the <a class="link" href="https://github.com/GoodCoder666/katac4/blob/main/model.py"  target="_blank" rel="noopener"
+    >code</a>.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>My code implementation does not do this, and it doesn&rsquo;t seem to have a major impact. However, removing them would likely be a better choice, and I plan to test this later.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p><a class="link" href="https://pytorch.org/blog/accelerating-pytorch-with-cuda-graphs/"  target="_blank" rel="noopener"
+    >Accelerating PyTorch with CUDA Graphs – PyTorch</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p><a class="link" href="https://en.wikipedia.org/wiki/Elo_rating_system"  target="_blank" rel="noopener"
+    >Elo rating system - Wikipedia</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/en/tags/artificial-intelligence/">Artificial Intelligence</a>
+        
+            <a href="/en/tags/deep-learning/">Deep Learning</a>
+        
+            <a href="/en/tags/reinforcement-learning/">Reinforcement Learning</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 GoodCoder&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

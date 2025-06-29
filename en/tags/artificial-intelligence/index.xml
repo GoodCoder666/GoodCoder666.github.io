@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Artificial Intelligence on GoodCoder&#39;s Blog</title>
+        <link>https://goodcoder666.github.io/en/tags/artificial-intelligence/</link>
+        <description>Recent content in Artificial Intelligence on GoodCoder&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Sat, 28 Jun 2025 23:49:50 +0800</lastBuildDate><atom:link href="https://goodcoder666.github.io/en/tags/artificial-intelligence/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>katac4: An Exploration of Reinforcement Learning Based on AlphaZero</title>
+        <link>https://goodcoder666.github.io/en/p/katac4/</link>
+        <pubDate>Sat, 28 Jun 2025 23:49:50 +0800</pubDate>
+        
+        <guid>https://goodcoder666.github.io/en/p/katac4/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Translation Notice&lt;/strong&gt;&lt;br&gt;
+This article was machine-translated by &lt;strong&gt;Gemini 2.5 Pro&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Original Version&lt;/strong&gt;: Authored in Chinese by myself&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accuracy Advisory&lt;/strong&gt;: Potential discrepancies may exist between translations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Precedence&lt;/strong&gt;: The Chinese text shall prevail in case of ambiguity&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Feedback&lt;/strong&gt;: Technical suggestions regarding translation quality are welcomed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;preface&#34;&gt;Preface
+&lt;/h2&gt;&lt;p&gt;&lt;em&gt;As the title suggests, this is an exploratory project of mine. Its purpose is not to achieve any specific result, but to learn through the process of experimentation. This article includes a brief technical report, as well as some insights and experiences gained along the way. The comment system is not yet set up, so if you have any thoughts or questions, please feel free to post them directly in the project&amp;rsquo;s Issues / Discussions.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Recently, I&amp;rsquo;ve been studying Reinforcement Learning (RL), and I&amp;rsquo;m particularly fond of the AlphaZero algorithm. It&amp;rsquo;s a general reinforcement learning algorithm that evolved from AlphaGo, which defeated world Go champion Lee Sedol in 2016. Some mainstream introductory books on reinforcement learning typically stop at methods like PPO, SAC, or DDPG (without covering the AlphaZero, MuZero series), which I personally believe is a significant omission.&lt;/p&gt;
+&lt;p&gt;Fundamentally, AlphaZero &lt;strong&gt;belongs to the category of Model-Based RL&lt;/strong&gt;, which is inherently different from Model-Free RL represented by Q-learning and Actor-Critic. The key difference is its use of an &lt;strong&gt;environment model&lt;/strong&gt; (a game simulator) to deduce the optimal policy through tree search, rather than gradually improving expected returns through extensive trial and error. A good environment model is crucial for the success of such algorithms; in board games, clear rules directly provide a perfect environment model. In contrast, the real physical world is incredibly complex and difficult to describe with simple rules, which has become a key bottleneck hindering the practical application of reinforcement learning. Meta&amp;rsquo;s recently open-sourced &lt;a class=&#34;link&#34; href=&#34;https://ai.meta.com/blog/v-jepa-2-world-model-benchmarks/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;V-JEPA 2&lt;/a&gt; is an important step towards building world models, and I highly recommend looking into it.&lt;/p&gt;
+&lt;p&gt;Due to limited computational resources, I chose &lt;a class=&#34;link&#34; href=&#34;https://www.saiblo.net/game/3&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Saiblo Connect Four&lt;/a&gt; as the game environment &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. Its state space is relatively small, yet it has a certain level of complexity with no known winning strategy. Additionally, the platform features excellent traditional methods for comparison, allowing for a relatively objective assessment of the algorithm&amp;rsquo;s playing strength. I am very grateful to Tsinghua University for providing this platform, which not only meets the experimental needs of its students but also offers great convenience to enthusiasts outside the university.&lt;/p&gt;
+&lt;p&gt;Since my AI uses some algorithmic improvements from &lt;a class=&#34;link&#34; href=&#34;https://github.com/lightvector/KataGo&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;KataGo&lt;/a&gt;, I named it katac4. The code is fully open-source on &lt;a class=&#34;link&#34; href=&#34;https://github.com/GoodCoder666/katac4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As of the time of writing (2025.06.27), katac4 is firmly in first place on the game&amp;rsquo;s ladder with a commanding lead:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/katac4/rank.png&#34;
+	width=&#34;1756&#34;
+	height=&#34;948&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/katac4/rank_hu3571190474406266030.png 480w, https://goodcoder666.github.io/p/katac4/rank_hu8101580597091962575.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Connect Four game ladder on June 27th&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;444px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;a-quick-look-at-alphazero&#34;&gt;A Quick Look at AlphaZero
+&lt;/h2&gt;&lt;p&gt;There are many easy-to-understand articles about AlphaZero online, so I will only provide a brief, more abstract overview here (with ideas referenced from the KataGo paper).&lt;/p&gt;
+&lt;p&gt;The algorithm generates training data through self-play guided by Monte Carlo Tree Search (MCTS). The search process involves repeatedly expanding the game tree: each time, starting from the root node, a path is followed to a leaf node. At node $n$, the child node $c$ that maximizes the following formula is chosen for the visit:&lt;/p&gt;
+$$
+\mathrm{PUCT}(c)=V(c)+c_\mathrm{PUCT}P(c) \frac{\sqrt{\sum_{c&#39;}N(c&#39;)}}{1+N(c)}
+$$&lt;p&gt;Here, $V(c)$ is the average predicted utility value of all nodes in the subtree of $c$, $P(c)$ is the prior probability for the action corresponding to $c$ given by the neural network, $N(c)$ is the number of simulations previously run through node $c$, and the constant $c_\mathrm{PUCT}=1.1$; $c&#39;$ represents all child nodes of $n$.&lt;/p&gt;
+&lt;p&gt;Unlike the $\epsilon$-greedy algorithm, AlphaZero enhances exploration by applying Dirichlet noise to the prior probabilities at the root node:&lt;/p&gt;
+$$
+P(c)=0.75P_{\text{raw}}(c)+0.25\eta
+$$&lt;p&gt;where $\eta$ is sampled from a Dirichlet distribution with parameter $\alpha=0.8$, and $P_{\text{raw}}$ represents the raw policy distribution given by the neural network.&lt;/p&gt;
+&lt;p&gt;Let the root of the search tree have $k$ child nodes $u_1,\dots,u_k$, corresponding to actions $a_1,\dots,a_k$. Then the &lt;em&gt;visit distribution&lt;/em&gt; of MCTS is proportional to $N(u_i)$:&lt;/p&gt;
+$$
+\pi(a_k|s_t)=\frac{N(u_k)}{\sum_{i=1}^k N(u_i)}
+$$&lt;p&gt;This is the training target for the neural network and is also used to select the next move during self-play (sampled with a dynamically changing temperature $T$). &lt;strong&gt;Self-play starts from the initial board position&lt;/strong&gt;. During inference (actual matches), the action with the highest probability in this distribution, i.e., the most visited one, is typically chosen directly.&lt;/p&gt;
+&lt;p&gt;The neural network takes the current board state $s_t$ as input and predicts the probability distribution of the next move $\pi$ and the win rate of the position $z$. Its loss function is:&lt;/p&gt;
+$$
+L=-c_g \sum_r z(r) \log(\hat z(r))-\sum_m \pi(m) \log(\hat \pi(m))+c_{L2} ||\boldsymbol\theta||^2
+$$&lt;p&gt;where $r \in \{\text{win}, \text{loss}, \text{draw}\}$ represents the game outcome from the current player&amp;rsquo;s perspective, and the constants are $c_g=1.5, c_{L2}=3\times 10^{-5}$. The entire loss function is a weighted sum of the following three parts:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Cross Entropy between the win rate prediction and the actual result &lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;;&lt;/li&gt;
+&lt;li&gt;Soft Cross Entropy between the policy distribution prediction and the MCTS visit distribution;&lt;/li&gt;
+&lt;li&gt;L2 regularization on the neural network parameters $\boldsymbol\theta$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Policy updates are done in an &lt;strong&gt;Off-policy&lt;/strong&gt; manner, maintaining a replay buffer. After each self-play game is completed, the new experience data is added to the replay buffer, from which a mini-batch of size $B$ is sampled for gradient descent updates. The SGD with Momentum optimizer is used, with the learning rate adjusted according to the training phase.&lt;/p&gt;
+&lt;p&gt;Overall, AlphaZero is consistent with the core idea of &lt;strong&gt;policy iteration algorithms&lt;/strong&gt;, but it uses MCTS to perform both &lt;strong&gt;policy evaluation&lt;/strong&gt; and &lt;strong&gt;policy improvement&lt;/strong&gt; tasks simultaneously.&lt;/p&gt;
+&lt;h2 id=&#34;training-annealing&#34;&gt;Training, Annealing
+&lt;/h2&gt;&lt;p&gt;The concept of &lt;strong&gt;annealing&lt;/strong&gt; is crucial for successfully training an AlphaZero agent. This involves many details, and I recommend referring to the code. Here, I list a few key points:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The temperature for sampling actions from the visit distribution is $T=0.8^{1+step/boardsize}$. &lt;a class=&#34;link&#34; href=&#34;https://github.com/junxiaosong/AlphaZero_Gomoku&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AlphaZero_Gomoku&lt;/a&gt; uses a constant $T=1$, which in practice proves to be completely wrong. In the late game, &amp;ldquo;one false move can lose the whole game.&amp;rdquo; Directly sampling actions based on the visit distribution would generate a large number of incorrect game outcome samples, causing the entire training to collapse.&lt;/li&gt;
+&lt;li&gt;For the policy given by the neural network, apply a temperature $T=\max(1.03,1.35\times0.66^{step/boardsize})$ at the root node. This ensures a certain level of exploration and enhances training stability.&lt;/li&gt;
+&lt;li&gt;Learning rate annealing. For the early stage of training ($5\%$ of iterations), use $1/3$ of the normal learning rate (to prevent large fluctuations). After $72\%$ of iterations, use $1/10$ of the normal learning rate (to maximize playing strength improvement).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Many of these hyperparameters are not necessarily optimal and were set somewhat arbitrarily, but their combination has proven effective. I hope they can provide some reference value.&lt;/p&gt;
+&lt;h2 id=&#34;algorithm-optimizations&#34;&gt;Algorithm Optimizations
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Recomputing the AlphaGo Zero weights will &lt;a class=&#34;link&#34; href=&#34;http://web.archive.org/web/20190205013627/http://computer-go.org/pipermail/computer-go/2017-October/010307.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;take about 1700 years on commodity hardware&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This sentence is from the Leela Zero project&amp;rsquo;s README. AlphaZero&amp;rsquo;s exploration process is inherently inefficient, but well-designed algorithmic optimizations can significantly shorten its training cycle. The methods in the &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1902.10565&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;KataGo paper&lt;/a&gt;, when used together, can improve training efficiency by ~50x. Below are some of the optimizations I used, some of which are from KataGo.&lt;/p&gt;
+&lt;h3 id=&#34;gradient-accumulation&#34;&gt;Gradient Accumulation
+&lt;/h3&gt;&lt;p&gt;Our game environment, Saiblo Connect Four, has variable board sizes, with both width and height ranging in $[9,12]$. This results in a total of $16$ different board sizes.&lt;/p&gt;
+&lt;p&gt;To adapt to different board sizes, two improvements were made:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The neural network uses a fully convolutional (FCN) architecture &lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;, with the policy head&amp;rsquo;s output size matching the input state size.&lt;/li&gt;
+&lt;li&gt;When sampling from the replay buffer, instead of directly sampling $256$ examples, we sample $16$ examples for each board size. &lt;strong&gt;We perform a forward pass for the samples of each board size, calculate the gradients, and accumulate them&lt;/strong&gt;. Then, a normal backward + step is performed.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;KataGo uses board masking to adapt to different inputs, which involves tedious implementation details. I chose the simpler approach of gradient accumulation, which, although slightly less efficient, is much more convenient.&lt;/p&gt;
+&lt;h3 id=&#34;action-space-pruning&#34;&gt;Action Space Pruning
+&lt;/h3&gt;&lt;p&gt;The motivation for this method is very simple: manually filter out moves that can be proven to be strictly wrong, treating them as illegal moves and excluding them from MCTS calculations.&lt;/p&gt;
+&lt;p&gt;The implementation requires very minor code changes and can be summarized by two rules:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If I can win in one move, I must make that move;&lt;/li&gt;
+&lt;li&gt;If the opponent can win in their next move, I must block it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This optimization is very simple yet significantly speeds up exploration in the early stages of training, allowing the model to quickly understand the game&amp;rsquo;s rules. It also helps avoid some bad blind spots, especially when an opponent forms a threat of three near the edge of the board, which a CNN might overlook.&lt;/p&gt;
+&lt;h3 id=&#34;first-play-urgency-fpu&#34;&gt;First Play Urgency (FPU)
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;This optimization originates from Leela Zero.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A careful reader might ask: when calculating PUCT, if a child node has not been visited, i.e., $N(c)=0$, how is $V(c)$ defined?&lt;/p&gt;
+&lt;p&gt;AlphaGo Zero provides the standard answer: $V(c)=0$. However, the Leela Zero community found that this is not the optimal choice. They chose:&lt;/p&gt;
+$$
+V(c)=V(n)-c_\text{FPU}\sqrt{P_\text{explored}}
+$$&lt;p&gt;where $n$ is the parent node, the constant $c_\text{FPU}=0.2$, and $P_\text{explored}$ is the sum of the prior probabilities of all child nodes that have been visited at least once:&lt;/p&gt;
+$$
+P_\text{explored}=\sum_{c&#39;|N(c&#39;)&gt;0} P(c&#39;)
+$$&lt;p&gt;Readers can ponder the rationale behind this approach. A &lt;a class=&#34;link&#34; href=&#34;https://github.com/glinscott/leela-chess/issues/160#issuecomment-374912061&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;discussion on Lc0&amp;rsquo;s GitHub&lt;/a&gt; points out that for a strong neural network, this method can lead to an improvement of ~200 Elo.&lt;/p&gt;
+&lt;h3 id=&#34;playout-cap-randomization&#34;&gt;Playout Cap Randomization
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Corresponds to &lt;em&gt;Playout Cap Randomization&lt;/em&gt; in the KataGo paper.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;The two output heads in AlphaZero require different numbers of playouts for optimal training&lt;/strong&gt;. Some informal studies suggest that the most efficient number of simulations for training the policy head is very close to AlphaZero&amp;rsquo;s $N=800$, but in the first version of AlphaGo, even $N=1$ was sufficient to train a decent value head. To alleviate the tension between the two, we choose a smaller number of simulations $n &lt; N$ and perform a fast search ($n$ simulations) with probability $p$, and a normal full search ($N$ simulations) otherwise. &lt;strong&gt;Samples generated from fast searches are not used for policy training&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;My hyperparameter choices are $(N,n)=(800,160)$ and $p=0.25$. I personally feel that for a game like Connect Four, the number of simulations could probably be even smaller.&lt;/p&gt;
+&lt;h3 id=&#34;forced-playouts--policy-target-pruning&#34;&gt;Forced Playouts &amp;amp; Policy Target Pruning
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Corresponds to &lt;em&gt;Forced Playouts and Policy Target Pruning&lt;/em&gt; in the KataGo paper.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As mentioned earlier, AlphaZero introduces Dirichlet noise at the root node to enhance exploration. However, this method does not guarantee that good moves will definitely be discovered.&lt;/p&gt;
+&lt;p&gt;Imagine the following scenario:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Game state $s_t$. The current neural network strongly favors move $a$, while the actual optimal move is $a^*$. In the output policy distribution, $a$ gets over $80\%$ probability, while $a^*$ gets less than $5\%$.&lt;/li&gt;
+&lt;li&gt;Dirichlet noise is introduced. The probability of $a$ is still very high, while $a^*$ is &amp;ldquo;selected&amp;rdquo; and rises to $10\%$. Let&amp;rsquo;s assume $P(a)$ is now exactly $80\%$.&lt;/li&gt;
+&lt;li&gt;MCTS visits $a$ and $a^*$ in sequence. The value network still doesn&amp;rsquo;t favor the state $s^*$ reached by $a^*$, preferring the state $s$ from move $a$, giving $V(s^*)=-0.8$ and $V(s)=-0.1$.&lt;/li&gt;
+&lt;li&gt;The total number of simulations is now $N=2$. According to the PUCT formula, we have $\text{PUCT}(a)=0.34$ and $\text{PUCT}(a^*)=-0.745$. The PUCT values are already vastly different. If MCTS continuously selects $a$ for visits and $V(s)$ remains unchanged, it would take nearly $200$ simulations before $\text{PUCT}(a^*)\ge\text{PUCT}(a)$. By then, $1/4$ of the simulations have been wasted. And if $a^*$ is given a poor evaluation again, it would take a long time to get another visit.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This shows that even if Dirichlet noise luckily falls on the correct move, the combined blind spots of the policy and value networks may still not be handled correctly. Therefore, we introduce a Forced Playouts mechanism to ensure that each child of the root node receives at least $\lceil n_\text{forced} \rceil$ visits:&lt;/p&gt;
+$$
+n_\text{forced}(c)=\left(kP(c)\sum_{c&#39;}N(c&#39;)\right)^{1/2}
+$$&lt;p&gt;&lt;br&gt;
+Following KataGo&amp;rsquo;s setting, the constant is $k=2$.&lt;/p&gt;
+&lt;p&gt;At the same time, to eliminate the significant noise introduced by both Dirichlet noise and Forced Playouts, we perform policy target pruning on the visit distribution after MCTS is complete:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Find the child $c^*$ with the most visits $N(c)$.&lt;/li&gt;
+&lt;li&gt;For other child nodes $c$, subtract as many visits as possible, ensuring that $\text{PUCT}(a^*) &gt; \text{PUCT}(a)$ and that the number of subtracted visits does not exceed $n_\text{forced}(c)$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I chose to directly solve the inequality to find the pruned visit count:&lt;/p&gt;
+$$
+N&#39;(c)=\mathrm{clip}\left(\left\lceil\frac{P\sqrt N}{V+\text{PUCT}(c^*)}-1\right\rceil,N-n_\text{forced},N\right)
+$$&lt;p&gt;For readability, the formula above uses $N$ for $N(c)$, $P$ for $P(c)$, etc.&lt;/p&gt;
+&lt;p&gt;Below is a comparison of the effect with/without policy pruning from the KataGo paper. Black: $p \approx 2\times 10^{-4}$; Green: $p \approx 1$.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/katac4/logpolicy1.png&#34;
+	width=&#34;684&#34;
+	height=&#34;686&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/katac4/logpolicy1_hu14807721752196513033.png 480w, https://goodcoder666.github.io/p/katac4/logpolicy1_hu17779249405163364952.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;99&#34;
+		data-flex-basis=&#34;239px&#34;
+	
+&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/katac4/logpolicy2.png&#34;
+	width=&#34;684&#34;
+	height=&#34;686&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/katac4/logpolicy2_hu16634519969668677271.png 480w, https://goodcoder666.github.io/p/katac4/logpolicy2_hu3778008593870311584.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;99&#34;
+		data-flex-basis=&#34;239px&#34;
+	
+&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;With Policy Pruning&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Without Policy Pruning&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;dynamic-replay-buffer&#34;&gt;Dynamic Replay Buffer
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;From &lt;em&gt;Appendix C: Training Details&lt;/em&gt; in the KataGo paper.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In off-policy reinforcement learning algorithms, the size of the replay buffer (number of samples it can hold) is mostly fixed, often set in the range of $[2^{14},2^{20}]$. We, however, adopt a sub-linear growth strategy:&lt;/p&gt;
+$$
+N_{\text{window}} = c \left( 1 + \beta \frac{ ( N_{\text{total}} / c ) ^ \alpha - 1} { \alpha } \right)
+$$&lt;p&gt;where $N_{\text{total}}$ is the total number of samples generated so far in the training process, and $c=250000, \alpha=0.75, \beta=0.4$. This is essentially applying a linear transformation to $f(n)=n^\alpha$ such that $f(c)=c$ and $f&#39;(c)=\beta$. This allows for the rapid discarding of low-quality moves generated in the early stages and increases the diversity of training samples later on, effectively suppressing overfitting.&lt;/p&gt;
+&lt;h3 id=&#34;monte-carlo-graph-search-mcgs&#34;&gt;Monte Carlo Graph Search (MCGS)
+&lt;/h3&gt;&lt;p&gt;See &lt;a class=&#34;link&#34; href=&#34;https://github.com/lightvector/KataGo/blob/master/docs/GraphSearch.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;KataGo/docs/GraphSearch.md&lt;/a&gt;. Many thanks to David Wu for the easy-to-understand explanation; during this project, I even found a typo in it and fixed it with a PR &amp;#x1f606;&lt;/p&gt;
+&lt;p&gt;The overall idea:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Implement Zobrist hashing for board positions. When expanding leaves, prioritize looking up identical state nodes in a hash table, turning the search tree into a DAG;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Calculate PUCT based on the visit counts of action edges (not nodes)&lt;/strong&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use &lt;strong&gt;incremental updates&lt;/strong&gt; during backpropagation:&lt;/p&gt;
+$$
+   V(n) \larr \frac{1}{N(n)} \left(U(n)+\sum_c N(c)V(c)\right)
+   $$&lt;p&gt;Note that $U(n)$, the utility estimate from the value network, is essential.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In practice, memory management for MCGS can be tricky. Fortunately, the search trees generated by AlphaZero are not very large, so I just do a DFS cleanup. Currently, MCTS is still used for training, while MCGS is used for inference.&lt;/p&gt;
+&lt;h2 id=&#34;engineering-optimizations&#34;&gt;Engineering Optimizations
+&lt;/h2&gt;&lt;p&gt;Since the project code is 100% Python, achieving full resource utilization is nearly impossible. However, there are still some tricks to improve training efficiency.&lt;/p&gt;
+&lt;h3 id=&#34;parallel-self-play&#34;&gt;Parallel Self-Play
+&lt;/h3&gt;&lt;p&gt;This idea is easy to understand and can be applied to most mainstream reinforcement learning algorithms. Use multiple processes in parallel on different GPUs to collect training data and send the results to a main process for model updates.&lt;/p&gt;
+&lt;p&gt;Currently, I use a total of 20 different processes for self-play, distributed evenly across 4 GPUs. Note that you should use &lt;code&gt;torch.multiprocessing&lt;/code&gt; instead of Python&amp;rsquo;s built-in &lt;code&gt;multiprocessing&lt;/code&gt; module.&lt;/p&gt;
+&lt;h3 id=&#34;cuda-graphs&#34;&gt;CUDA Graphs
+&lt;/h3&gt;&lt;p&gt;This is another relatively general optimization technique that can be used in many machine learning applications. The principle is to &lt;strong&gt;send the entire computation graph to the GPU for execution, significantly reducing front-end/back-end interaction and kernel launch overhead &lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/strong&gt;. For smaller networks and batch sizes, CUDA Graphs can provide an unexpected speed boost.&lt;/p&gt;
+&lt;p&gt;The project&amp;rsquo;s root directory provides a (rudimentary) benchmark script. The results on a single RTX 4090 are as follows (&lt;code&gt;batch_size=1&lt;/code&gt; to simulate the self-play environment):&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Category&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Inference Method&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;Computation Speed (FPS)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Base&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;torch.no_grad&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$249.1$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Base&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;torch.inference_mode&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$265.9$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TorchScript&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;torch.jit.script&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$271.5$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TorchScript&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;torch.jit.trace&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$501.4$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;CUDA Graphs&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;torch.cuda.graph&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$3184.5$&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Additionally, &lt;code&gt;torch.compile(mode=&#39;reduce-overhead&#39;)&lt;/code&gt; can also achieve CUDA Graph-based inference. However, this API is not supported on Windows and has a compilation-time cost, making it less convenient than &lt;code&gt;torch.cuda.graph&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;test-results&#34;&gt;Test Results
+&lt;/h2&gt;&lt;p&gt;Training lasted for about 14 days, totaling $30000 \times 16$ iterations. First, here are the curves for &lt;strong&gt;Loss&lt;/strong&gt;, &lt;strong&gt;Entropy&lt;/strong&gt; (policy entropy), and &lt;strong&gt;episode_len&lt;/strong&gt; (self-play game length) during training:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/katac4/loss.png&#34;
+	width=&#34;1977&#34;
+	height=&#34;571&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/katac4/loss_hu8748415948911956082.png 480w, https://goodcoder666.github.io/p/katac4/loss_hu12831189363981674269.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Total loss / Policy loss / Value loss (Smoothing = 0.9)&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;346&#34;
+		data-flex-basis=&#34;830px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/katac4/entropy_episode_len.png&#34;
+	width=&#34;1317&#34;
+	height=&#34;563&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/katac4/entropy_episode_len_hu6489537421821007243.png 480w, https://goodcoder666.github.io/p/katac4/entropy_episode_len_hu3838643575367717094.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Entropy / Episode_len (Smoothing = 0.99)&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;233&#34;
+		data-flex-basis=&#34;561px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The loss and entropy decrease rapidly at the beginning and then stabilize (they don&amp;rsquo;t converge to $0$ because the data distribution is constantly changing); episode_len increases initially and then slightly decreases (possibly due to finding faster winning lines). Overall, this is in line with intuition and shows no unexpected behavior.&lt;/p&gt;
+&lt;p&gt;Next is the &lt;strong&gt;Elo&lt;/strong&gt;&lt;sup id=&#34;fnref:6&#34;&gt;&lt;a href=&#34;#fn:6&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;6&lt;/a&gt;&lt;/sup&gt; rating curve, reflecting the actual playing strength:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/katac4/elo.png&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/katac4/elo_hu448779931538444639.png 480w, https://goodcoder666.github.io/p/katac4/elo_hu6305396987888430977.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Overall, the training process was very stable (approximately sub-linear growth), and the training eventually reached near-saturation.&lt;/p&gt;
+&lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://github.com/Lionjump0723/connect4/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;best traditional method&lt;/a&gt; for the same task, under the same computational power, has only about a 26% win rate against katac4&amp;rsquo;s best checkpoint, corresponding to a -182 Elo difference. As seen in the graph, we reached a comparable level with just 1/4 of the iterations (3 days of training).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/katac4/elo-compare.png&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/katac4/elo-compare_hu16535128062284470455.png 480w, https://goodcoder666.github.io/p/katac4/elo-compare_hu620230431038270330.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Comparison with Previous SOTA&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;In reality, this estimate is not precise—the Epoch 6500 checkpoint can also achieve a win rate of over 50% against it. &lt;em&gt;The above graph is for reference only.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I am very grateful to this predecessor for recently open-sourcing his method; in the early stages of my project&amp;rsquo;s development, I was always curious how he managed to lead the leaderboard by such a margin. A few days ago, I read his project report and was surprised to learn that even traditional methods perform better with PUCT than with UCT. To be honest, if I weren&amp;rsquo;t allowed to use a neural network, I probably wouldn&amp;rsquo;t even make it to the first page of the overall rankings.&lt;/p&gt;
+&lt;p&gt;Here are the test results against the Saiblo platform&amp;rsquo;s sample AIs:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://goodcoder666.github.io/p/katac4/saiblo-test.png&#34;
+	width=&#34;1104&#34;
+	height=&#34;298&#34;
+	srcset=&#34;https://goodcoder666.github.io/p/katac4/saiblo-test_hu16771255767343640165.png 480w, https://goodcoder666.github.io/p/katac4/saiblo-test_hu12574235412547701487.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Epoch 15500 checkpoint achieves a clean sweep against the sample AIs&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;370&#34;
+		data-flex-basis=&#34;889px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;This result sometimes fails to run due to TLE. The strongest checkpoint has never lost (tested for $6\times100$ games), except for TLEs. The platform only has CPUs, so the inference solution uses TorchScript. However, &lt;code&gt;import torch&lt;/code&gt; and &lt;code&gt;torch.jit.load&lt;/code&gt; both have time overhead. When the evaluation server is under heavy load, it might TLE before the model even finishes loading. There&amp;rsquo;s really nothing I can do about this. (Sigh)&lt;/p&gt;
+&lt;p&gt;A few suggestions for the platform:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Support LibTorch, so I can write inference in C++ and eliminate the import time;&lt;/li&gt;
+&lt;li&gt;Provide some lightweight inference frameworks (like ONNX Runtime) to also alleviate slow loading issues.&lt;/li&gt;
+&lt;li&gt;As a fallback, the time limit for the first move could be relaxed a bit&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I also created a for-fun version called fastc4, which directly selects the move with the highest probability from the neural network&amp;rsquo;s output. This version is actually not bad either:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;97% win rate against the sample AIs;&lt;/li&gt;
+&lt;li&gt;65% win rate against &lt;a class=&#34;link&#34; href=&#34;https://github.com/jiegec/FourChess&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;jiegec/FourChess&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;48% win rate against frvdec (former rank 2);&lt;/li&gt;
+&lt;li&gt;45% win rate against &lt;a class=&#34;link&#34; href=&#34;https://github.com/Lionjump0723/connect4/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Lionjump0723/connect4&lt;/a&gt; (former rank 1).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After manually observing some games, I feel that the neural network cares more about long-term gains—it plans for many moves ahead and doesn&amp;rsquo;t care about local gains or losses. Traditional methods are naturally focused on short-term tactical calculations and appear much weaker when there is no obvious winning sequence. My AI often loses to other AIs in the first 25 moves due to a tactical blind spot, but by move 50, the position is almost completely under its control. The traditional algorithms are powerless in the late game due to early strategic mistakes. This is somewhat similar to the difference between Stockfish and Leela Chess Zero in chess engines—the former is a meticulous calculator, while the latter relies more on intuition.&lt;/p&gt;
+&lt;p&gt;I hope these insights can help with the future development of traditional AI methods. I also welcome everyone to play against and test katac4 on the platform:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;katac4 (Epoch 29000)&lt;/strong&gt;: &lt;code&gt;96c96ac2389547958141d932d9279efc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;katac4 (Epoch 30000): &lt;code&gt;2c9bd80e1e0e480a8f32214448880a62&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;katac4 (Epoch 6500): &lt;code&gt;d4e85acaf1ab4025b3c6a7ebec4fd0f0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;fastc4 (Epoch 29000): &lt;code&gt;941dafdce03640bfb7ceb3aa32613252&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;future-improvement-directions&#34;&gt;Future Improvement Directions
+&lt;/h2&gt;&lt;p&gt;There are currently two main issues:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Low hardware utilization efficiency;&lt;/li&gt;
+&lt;li&gt;Many early-game blind spots in the model.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In the future, I will consider merging leaf states from different self-play games into one large batch, which should largely solve the first problem.&lt;/p&gt;
+&lt;p&gt;For the second problem, besides increasing the model size (the next model is planned to be &lt;code&gt;b5c128nbt&lt;/code&gt;), there are some algorithmic optimizations yet to be implemented:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Add auxiliary policy heads (opponent&amp;rsquo;s next move distribution, game&amp;rsquo;s final move location, soft policy) to aid training;&lt;/li&gt;
+&lt;li&gt;Optimize the board state representation (positions of moves from more previous turns, positions of threats of two or three, etc.);&lt;/li&gt;
+&lt;li&gt;Discard fast game policy samples from Playout Cap Randomization;&lt;/li&gt;
+&lt;li&gt;Use importance sampling proportional to $D_\mathrm{KL}(\hat{\boldsymbol\pi}||\boldsymbol\pi)$ to focus training on incorrectly predicted positions;&lt;/li&gt;
+&lt;li&gt;Replace Batch Norm with Batch Renorm to prevent inconsistencies between the model&amp;rsquo;s training and inference behavior.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I&amp;rsquo;ll try to implement some of these if I have time this summer. Anyone who is interested is also welcome to contribute PRs with improvements. You are always welcome!&lt;/p&gt;
+&lt;h2 id=&#34;further-reading&#34;&gt;Further Reading
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.nature.com/articles/nature24270&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Mastering the game of Go without human knowledge&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1712.01815&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/pdf/1902.10565&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Accelerating Self-Play Learning in Go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/lightvector/KataGo/blob/master/docs/KataGoMethods.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Other Methods Implemented in KataGo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://hackmd.io/@yrHb-fKBRoyrKDEKdPSDWg/BJgfay0Yc&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Sayuri Go Engine Development Log&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Game rules can be found in the &lt;a class=&#34;link&#34; href=&#34;https://docs.saiblo.net/games/connect4/connect4.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;documentation&lt;/a&gt;.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;The original AlphaZero directly predicts the position value $V(s_t) \in [-1,1]$ and uses MSE Loss. Here, I adopted the improved approach from KataGo and Leela Zero.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;The neural network design also references KataGo, using Global Pooling and &lt;a class=&#34;link&#34; href=&#34;https://github.com/lightvector/KataGo/blob/master/docs/KataGoMethods.md#nested-bottleneck-residual-nets&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Nested Bottleneck Residual Nets&lt;/a&gt;. The current version is named &lt;code&gt;b3c128nbt&lt;/code&gt;, indicating 3 nested bottleneck residual blocks with 128 channels. For brevity, I won&amp;rsquo;t detail the model design optimizations here; interested readers can refer to the &lt;a class=&#34;link&#34; href=&#34;https://github.com/GoodCoder666/katac4/blob/main/model.py&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;code&lt;/a&gt;.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;My code implementation does not do this, and it doesn&amp;rsquo;t seem to have a major impact. However, removing them would likely be a better choice, and I plan to test this later.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://pytorch.org/blog/accelerating-pytorch-with-cuda-graphs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Accelerating PyTorch with CUDA Graphs – PyTorch&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:6&#34;&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Elo_rating_system&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Elo rating system - Wikipedia&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:6&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
