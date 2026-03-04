@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/abc298/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="TOYOTA MOTOR CORPORATION Programming Contest 2023#1 (AtCoder Beginner Contest 298) A~G 题解">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="TOYOTA MOTOR CORPORATION Programming Contest 2023#1 (AtCoder Beginner Contest 298) A~G 题解">
 <meta property='og:description' content="好久没写题解了，这就来水一篇。\nA - Job Interview\r题目大意\r给定一个长为 $N$ 的字符串 $S$，由 o、-、x 组成。\n判断 $S$ 是否符合下列条件：\n$S$ 中至少有一个 o。 $S$ 中没有 x。 $1\\le N\\le 100$\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/abc298/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -366,7 +366,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2023/04/19</time>
+                <time class="article-time--published" datetime='2023-04-19T18:34:00&#43;08:00'>2023/04/19</time>
             </div>
         
 
@@ -416,7 +416,7 @@
     
     
     <p>好久没写题解了，这就来水一篇。</p>
-<h1 id="a---job-interviewhttpsatcoderjpcontestsabc298tasksabc298_a"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_a"  target="_blank" rel="noopener"
+<h1 id="a---job-interview"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_a"  target="_blank" rel="noopener"
     >A - Job Interview</a>
 </h1><h2 id="题目大意">题目大意
 </h2><p>给定一个长为 $N$ 的字符串 $S$，由 <code>o</code>、<code>-</code>、<code>x</code> 组成。</p>
@@ -455,7 +455,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -494,7 +494,7 @@
 </div><p>成功省掉$208$个字符（<del>逃</del></p>
 </blockquote>
 <hr>
-<h1 id="b---coloring-matrixhttpsatcoderjpcontestsabc298tasksabc298_b"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_b"  target="_blank" rel="noopener"
+<h1 id="b---coloring-matrix"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_b"  target="_blank" rel="noopener"
     >B - Coloring Matrix</a>
 </h1><h2 id="题目大意-1">题目大意
 </h2><p>给定两个 $N\times N$ 的矩阵 $A$ 和 $B$，都由 $0$ 和 $1$ 组成。</p>
@@ -548,7 +548,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 105
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -574,7 +574,7 @@
 </span></span><span class="line"><span class="cl">            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">                    <span class="k">goto</span> <span class="n">bad</span><span class="p">;</span> <span class="c1">// goto 不是好习惯（改不掉了），千万不要学
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Yes&#34;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl">        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Yes&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="nl">bad</span><span class="p">:;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -584,7 +584,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="c---cards-query-problemhttpsatcoderjpcontestsabc298tasksabc298_c"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_c"  target="_blank" rel="noopener"
+<h1 id="c---cards-query-problem"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_c"  target="_blank" rel="noopener"
     >C - Cards Query Problem</a>
 </h1><h2 id="题目大意-2">题目大意
 </h2><p>有 $N$ 个盒子，编号 $1\sim N$，初始均为空。依次处理 $Q$ 次询问：</p>
@@ -650,7 +650,7 @@
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 200005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">multiset</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">box</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">has</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
@@ -688,7 +688,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="d---writing-a-numeralhttpsatcoderjpcontestsabc298tasksabc298_d"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_d"  target="_blank" rel="noopener"
+<h1 id="d---writing-a-numeral"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_d"  target="_blank" rel="noopener"
     >D - Writing a Numeral</a>
 </h1><h2 id="题目大意-3">题目大意
 </h2><p>我们有一个字符串 $S$。初始时，$S=$ <code>1</code>。</p>
@@ -750,7 +750,7 @@
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;deque&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;atcoder/modint&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">modint</span> <span class="o">=</span> <span class="n">atcoder</span><span class="o">::</span><span class="n">modint998244353</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -825,7 +825,7 @@
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define MOD 998244353
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -850,7 +850,7 @@
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">ans</span> <span class="o">-=</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span><span class="p">)</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">*</span> <span class="n">p</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="mi">299473306LL</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span> <span class="c1">// 299473306 是 10 对于 MOD 的逆元，这句话相当于把 p 除以 10 
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span><span class="p">(</span><span class="n">ans</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">MOD</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">ans</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">MOD</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -859,7 +859,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="e---unfair-sugorokuhttpsatcoderjpcontestsabc298tasksabc298_e"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_e"  target="_blank" rel="noopener"
+<h1 id="e---unfair-sugoroku"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_e"  target="_blank" rel="noopener"
     >E - Unfair Sugoroku</a>
 </h1><h2 id="题目大意-4">题目大意
 </h2><p>Takahashi 和 Aoki 将玩一个游戏。游戏规则如下：</p>
@@ -889,6 +889,8 @@ $1\le P,Q\le 10$</p>
 <li>对于 Ta 当前走的每种可能的步数 $k=1,2,\dots,P$，有 $f_{i,j}:=f_{i,j}+\frac1Pg_{\min(i+k,N),j}$。</li>
 <li>对于 Ao 当前走的每种可能的步数 $k=1,2,\dots,Q$，有 $g_{i,j}:=g_{i,j}+\frac1Qf_{i,\min(j+k,N)}$。</li>
 </ul>
+<p>整理上面的式子，得到：<br>
+</p>
 $$
 f_{i,j}=\begin{cases}
 0 & (j=N)\\
@@ -960,11 +962,11 @@ $$<p><br>
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define MOD 998244353
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 105
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="n">LL</span> <span class="nf">inv</span><span class="p">(</span><span class="n">LL</span> <span class="n">x</span><span class="p">)</span> <span class="c1">// x ^ (MOD - 2) % MOD
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">MOD</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">LL</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1LL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -1006,7 +1008,7 @@ $$<p><br>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="f---rook-scorehttpsatcoderjpcontestsabc298tasksabc298_f"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_f"  target="_blank" rel="noopener"
+<h1 id="f---rook-score"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_f"  target="_blank" rel="noopener"
     >F - Rook Score</a>
 </h1><h2 id="题目大意-5">题目大意
 </h2><p>有一个 $10^9\times 10^9$ 的网格。令 $(i,j)$ 表示第 $i$ 行 $j$ 列的格子（$1\le i,j\le 10^9$）。</p>
@@ -1090,7 +1092,7 @@ $(r_i,c_i)\ne (r_j,c_j)~~~~~~(i\ne j)$</p>
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">pii</span> <span class="o">=</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span>
@@ -1141,7 +1143,7 @@ $(r_i,c_i)\ne (r_j,c_j)~~~~~~(i\ne j)$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="g---strawberry-warhttpsatcoderjpcontestsabc298tasksabc298_g"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_g"  target="_blank" rel="noopener"
+<h1 id="g---strawberry-war"><a class="link" href="https://atcoder.jp/contests/abc298/tasks/abc298_g"  target="_blank" rel="noopener"
     >G - Strawberry War</a>
 </h1><h2 id="题目大意-6">题目大意
 </h2><p>==注意本题时间限制为 $6\mathrm s$。==</p>
@@ -1150,7 +1152,7 @@ $(r_i,c_i)\ne (r_j,c_j)~~~~~~(i\ne j)$</p>
 <img src="/p/abc298/1.png"
 	width="800"
 	height="133"
-	srcset="/p/abc298/1_hu3848024600799796528.png 480w, /p/abc298/1_hu15368285187157176634.png 1024w"
+	srcset="/p/abc298/1_hu_f8d3e332ffbd025b.png 480w, /p/abc298/1_hu_fb3c614fa40fd9bc.png 1024w"
 	loading="lazy"
 	
 		alt="切分方式"
@@ -1239,7 +1241,7 @@ $0\le s_{i,j}\le 10^{16}$</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">INF</span> <span class="o">=</span> <span class="mi">1000000000000000000</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">T</span><span class="p">;</span>
@@ -1345,18 +1347,24 @@ $0\le s_{i,j}\le 10^{16}$</p>
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -1449,12 +1457,12 @@ $0\le s_{i,j}\le 10^{16}$</p>
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1536,6 +1544,7 @@ $0\le s_{i,j}\le 10^{16}$</p>
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1543,7 +1552,7 @@ $0\le s_{i,j}\le 10^{16}$</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

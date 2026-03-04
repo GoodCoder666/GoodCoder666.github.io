@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/abc189/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="AtCoder Beginner Contest 189 A~D 题解">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="AtCoder Beginner Contest 189 A~D 题解">
 <meta property='og:description' content="A - Slots\r题目大意\r给定三个大写英文字母$C_1,C_2,C_3$，判断它们是否相同。\n输入格式\r$C_1C_2C_3$\n输出格式\r如果$C_1,C_2,C_3$相等，输出Won；否则，输出Lost。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/abc189/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -376,7 +376,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2021/01/25</time>
+                <time class="article-time--published" datetime='2021-01-25T15:47:00&#43;08:00'>2021/01/25</time>
             </div>
         
 
@@ -425,7 +425,7 @@
     <section class="article-content">
     
     
-    <h1 id="a---slotshttpsatcoderjpcontestsabc189tasksabc189_a"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_a"  target="_blank" rel="noopener"
+    <h1 id="a---slots"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_a"  target="_blank" rel="noopener"
     >A - Slots</a>
 </h1><h2 id="题目大意">题目大意
 </h2><p>给定三个大写英文字母$C_1,C_2,C_3$，判断它们是否相同。</p>
@@ -470,7 +470,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -481,7 +481,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="b---alcoholichttpsatcoderjpcontestsabc189tasksabc189_b"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_b"  target="_blank" rel="noopener"
+<h1 id="b---alcoholic"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_b"  target="_blank" rel="noopener"
     >B - Alcoholic</a>
 </h1><h2 id="题目大意-1">题目大意
 </h2><p>一个人要按顺序喝$N$杯酒。第$i$杯酒有$V_i$毫升，酒精含量为$P_i\%$（$1\le i\le N$）。<br>
@@ -593,7 +593,13 @@ $V_N~P_N$</p>
 </span></span><span class="line"><span class="cl"><span class="mi">35</span> <span class="mi">13</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>$$V_1\times P_1/100+V_2\times P_2/100+...+V_i\times P_i/100 > X$$$$(V_1\times P_1+V_2\times P_2+...+V_i\times P_i)/100 > X$$$$V_1\times P_1+V_2\times P_2+...+V_i\times P_i > 100X$$<p><br>
+</div><p>在很多环境下，程序会输出<code>3</code>，而这组数据的正确答案是<code>-1</code>。所以，我们考虑把前面的式子转化一下。<br>
+</p>
+$$V_1\times P_1/100+V_2\times P_2/100+...+V_i\times P_i/100 > X$$<p><br>
+</p>
+$$(V_1\times P_1+V_2\times P_2+...+V_i\times P_i)/100 > X$$<p><br>
+</p>
+$$V_1\times P_1+V_2\times P_2+...+V_i\times P_i > 100X$$<p><br>
 这时，我们就可以用前面的思路写代码了。</p>
 <h2 id="代码-1">代码
 </h2><div class="highlight"><div class="chroma">
@@ -623,7 +629,7 @@ $V_N~P_N$</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -647,7 +653,7 @@ $V_N~P_N$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="c---mandarin-orangehttpsatcoderjpcontestsabc189tasksabc189_c"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_c"  target="_blank" rel="noopener"
+<h1 id="c---mandarin-orange"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_c"  target="_blank" rel="noopener"
     >C - Mandarin Orange</a>
 </h1><h2 id="题目大意-2">题目大意
 </h2><p>Takahashi面前有$N$个碗排成一行，从左数第$i$个碗中装有$A_i$个橙子。<br>
@@ -749,7 +755,7 @@ $A_1~\dots~A_N$</p>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 10005
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define INF 2147483647
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -778,7 +784,7 @@ $A_1~\dots~A_N$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="d---logical-expressionhttpsatcoderjpcontestsabc189tasksabc189_d"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_d"  target="_blank" rel="noopener"
+<h1 id="d---logical-expression"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_d"  target="_blank" rel="noopener"
     >D - Logical Expression</a>
 </h1><h2 id="题目大意-3">题目大意
 </h2><p>给你$N$个字符串$S_1,S_2,...,S_N$，每个是<code>AND</code>或者<code>OR</code>。<br>
@@ -806,7 +812,7 @@ $S_N$</p>
 <img src="/p/abc189/1.png"
 	width="393"
 	height="107"
-	srcset="/p/abc189/1_hu5063181133248429671.png 480w, /p/abc189/1_hu16788065357701980580.png 1024w"
+	srcset="/p/abc189/1_hu_207fb9be336f8792.png 480w, /p/abc189/1_hu_36a0614506a77dca.png 1024w"
 	loading="lazy"
 	
 		alt="sample1_exp"
@@ -848,7 +854,7 @@ $f(N)=\begin{cases}
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -862,7 +868,7 @@ $f(N)=\begin{cases}
 </span></span><span class="line"><span class="cl">        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;O&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">            <span class="n">ans</span> <span class="o">^=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// 等同于ans += x;这样写速度更快
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -912,18 +918,24 @@ $f(N)=\begin{cases}
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -1016,12 +1028,12 @@ $f(N)=\begin{cases}
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1103,6 +1115,7 @@ $f(N)=\begin{cases}
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1110,7 +1123,7 @@ $f(N)=\begin{cases}
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

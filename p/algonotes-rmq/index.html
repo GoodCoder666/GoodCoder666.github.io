@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/algonotes-rmq/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【算法笔记】【专题】RMQ 问题：ST表/树状数组/线段树">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="【算法笔记】【专题】RMQ 问题：ST表/树状数组/线段树">
 <meta property='og:description' content="前言\r好久没更算法笔记专栏了，正好学了新算法来更新……\n这也是本专栏的第一个专题问题，涉及到三种数据结构，如果写得有问题请各位大佬多多指教，谢谢！\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/algonotes-rmq/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -358,7 +358,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2023/01/05</time>
+                <time class="article-time--published" datetime='2023-01-05T22:48:00&#43;08:00'>2023/01/05</time>
             </div>
         
 
@@ -373,7 +373,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -465,7 +465,7 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 100005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -495,7 +495,7 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 <p><img src="/p/algonotes-rmq/1.png"
 	width="1082"
 	height="323"
-	srcset="/p/algonotes-rmq/1_hu5860068389632640511.png 480w, /p/algonotes-rmq/1_hu11584284122355999411.png 1024w"
+	srcset="/p/algonotes-rmq/1_hu_25faaa60a937e3e9.png 480w, /p/algonotes-rmq/1_hu_560707b0a8ab59ca.png 1024w"
 	loading="lazy"
 	
 		alt="TLE一个点"
@@ -514,13 +514,17 @@ $\to~$给定$1\le l_i\le r_i\le N$，求区间$[l_i,r_i]$的最大值，即$\dis
 </blockquote>
 <p>ST表的初始化时间复杂度为$\mathcal O(N\log N)$，单次查询时间复杂度为$\mathcal O(1)$。</p>
 <h4 id="存储结构">存储结构
-</h4>$$
+</h4><p>ST表的本质是一个$N\times\lceil\log N\rceil$的二维数组，其定义如下（令$A$表示原数组，求最小值同理）：<br>
+</p>
+$$
 st[i][j]=\max\{A_i,A_{i+1},\dots,A_{i+2^j-1}\}
 $$<p><br>
 也就是说，$st[i][j]$表示从$A_i$开始，$2^j$个元素中的最大值。这运用了<strong>倍增</strong>的思想。</p>
 <p>下面考虑如何快速初始化整个数组。</p>
 <h4 id="初始化">初始化
-</h4>$$
+</h4><p>根据<strong>倍增</strong>的常用算法，使用类似于DP的方式填满整个表：<br>
+</p>
+$$
 st[i][j]=\max\{st[i][j-1],st[i+2^{j-1}][j-1]\}
 $$<p><br>
 填表时，<strong>先枚举$j$，再枚举$i$</strong>。由于整个表共有大约$N\log N$个状态，而计算一个状态值的时间复杂度为$\mathcal O(1)$，所以初始化的总时间复杂度为$\mathcal O(N\log N)$。</p>
@@ -564,7 +568,7 @@ $$<p><br>
 </span></span><span class="line"><span class="cl">        <span class="n">st</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">log2</span><span class="p">(</span><span class="n">n</span><span class="p">);</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="p">)</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">// 注意必须是&lt;=n，1&lt;&lt;j即为2^j
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">st</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">st</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">st</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+</span></span></span><span class="line"><span class="cl">            <span class="n">st</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">st</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">st</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -579,6 +583,8 @@ $\to~$如果检查到了多余的元素，且多余的正好大于原区间的�
 </blockquote>
 <p>要满足上述条件，我们可以<strong>让$a$尽可能靠近$r$，让$b$尽可能靠近$l$</strong>，来达到这样的效果。<br>
 此时，我们还需要满足并集的条件$l\le a,b\le r$，因此我们需要找到最大的$k$，使得$a=l+2^k$，$b=r-2^k$。</p>
+<p>则有<br>
+</p>
 $$
 \left\{ \begin{array}{c} 
 l+2^k\le r \\
@@ -599,7 +605,7 @@ $$<p><br>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// query(l, r) = max(A[l], ..., A[r - 1])
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">log2</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">max</span><span class="p">(</span><span class="n">st</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">k</span><span class="p">],</span> <span class="n">st</span><span class="p">[</span><span class="n">r</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">k</span><span class="p">)][</span><span class="n">k</span><span class="p">]);</span>
@@ -654,10 +660,10 @@ $$<p><br>
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 100005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">st</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="mi">17</span><span class="p">];</span> <span class="c1">// 2^17=131072
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">log2</span><span class="p">(</span><span class="n">n</span><span class="p">);</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">t</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
@@ -669,7 +675,7 @@ $$<p><br>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">log2</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">min</span><span class="p">(</span><span class="n">st</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">k</span><span class="p">],</span> <span class="n">st</span><span class="p">[</span><span class="n">r</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">k</span><span class="p">)][</span><span class="n">k</span><span class="p">]);</span> <span class="c1">// 注意此题为min，不是求max
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -677,13 +683,13 @@ $$<p><br>
 </span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="n">st</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> <span class="c1">// 直接读入到ST表中，节约时间和空间
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">init</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl">    <span class="n">init</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">q</span><span class="o">--</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 此处注意因为是左闭右开区间[l,r)，所以只有l需要-1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">query</span><span class="p">(</span><span class="o">--</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">));</span>
+</span></span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">query</span><span class="p">(</span><span class="o">--</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -692,7 +698,7 @@ $$<p><br>
 </div><p><img src="/p/algonotes-rmq/2.png"
 	width="1080"
 	height="327"
-	srcset="/p/algonotes-rmq/2_hu16881225877500169048.png 480w, /p/algonotes-rmq/2_hu18313991146734185120.png 1024w"
+	srcset="/p/algonotes-rmq/2_hu_3528bbb865a96d1b.png 480w, /p/algonotes-rmq/2_hu_c006fbd4464c9b40.png 1024w"
 	loading="lazy"
 	
 		alt="AC"
@@ -738,12 +744,12 @@ $$<p><br>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define INF 2147483647
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define lowbit(x) ((x) &amp; -(x))
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">setmax</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">setmax</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">bit</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// max(A[1], ..., A[i])
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">prefixMax</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">prefixMax</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="n">INF</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(;</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">-=</span><span class="n">lowbit</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
@@ -752,7 +758,7 @@ $$<p><br>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// A[i] = max(A[i], val)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">lowbit</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">        <span class="n">setmax</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">val</span><span class="p">);</span>
@@ -775,7 +781,7 @@ $$<p><br>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">bit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">INF</span><span class="p">;</span> <span class="c1">// 这一段不要忘！
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">update</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
@@ -826,7 +832,10 @@ $$<p><br>
 <p>现在回过来考虑 RMQ 的查询，Min/Max运算不可逆，所以很明显不能用这种计算方式。<br>
 下面我们来介绍针对 RMQ 的树状数组设计。</p>
 <h4 id="rmq-树状数组">RMQ 树状数组
-</h4>$$
+</h4><p>我们令$f(l,r)$表示<code>rangeMax(l, r)</code>，即$[l,r]$的区间最大值。<br>
+令$t=r-\mathrm{lowbit}(r)$，$A$表示原序列，$B$表示树状数组，考虑如下递推式：<br>
+</p>
+$$
 f(l,r)=\begin{cases}
 \max\{B_r,f(l,t)\} & (t\ge l)\\
 \max\{A_r,f(l,r-1)\} & (t<l)\\
@@ -922,10 +931,10 @@ $$<blockquote>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 100005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cp">#define lowbit(x) ((x) &amp; -(x))
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">bit</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">rangeMin</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span>
@@ -969,7 +978,7 @@ $$<blockquote>
 </div><p><img src="/p/algonotes-rmq/3.png"
 	width="1078"
 	height="323"
-	srcset="/p/algonotes-rmq/3_hu13748566317163418258.png 480w, /p/algonotes-rmq/3_hu8760552709576769474.png 1024w"
+	srcset="/p/algonotes-rmq/3_hu_d2babcd2b2fb2958.png 480w, /p/algonotes-rmq/3_hu_f93c16efbec5c34d.png 1024w"
 	loading="lazy"
 	
 		alt="AC"
@@ -1037,11 +1046,11 @@ $$<blockquote>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 100005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cp">#define INF 2147483647
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define lowbit(x) ((x) &amp; -(x))
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">setmin</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">setmin</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">bit</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -1088,7 +1097,7 @@ $$<blockquote>
 </div><p><img src="/p/algonotes-rmq/4.png"
 	width="1081"
 	height="327"
-	srcset="/p/algonotes-rmq/4_hu4562727614704489465.png 480w, /p/algonotes-rmq/4_hu2081930570515462011.png 1024w"
+	srcset="/p/algonotes-rmq/4_hu_337e1c598d2d7b.png 480w, /p/algonotes-rmq/4_hu_351ee25cd405a07c.png 1024w"
 	loading="lazy"
 	
 		alt="AC"
@@ -1107,7 +1116,7 @@ $$<blockquote>
 <p><img src="/p/algonotes-rmq/5.png"
 	width="1683"
 	height="762"
-	srcset="/p/algonotes-rmq/5_hu15838805081200875145.png 480w, /p/algonotes-rmq/5_hu16484210156546016856.png 1024w"
+	srcset="/p/algonotes-rmq/5_hu_3be53fc950c6235f.png 480w, /p/algonotes-rmq/5_hu_60738396f5e6296c.png 1024w"
 	loading="lazy"
 	
 		alt="线段树"
@@ -1163,13 +1172,13 @@ $$<blockquote>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 数组定义
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">N</span><span class="p">];</span>
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">N</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 宏定义
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define INF 2147483647
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define INF 2147483647
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define ls(x) (x &lt;&lt; 1) </span><span class="c1">// 左儿子结点
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define rs(x) (x &lt;&lt; 1 | 1) </span><span class="c1">// 右儿子结点
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define par(x) (x &gt;&gt; 1) </span><span class="c1">// 父亲结点
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define rs(x) (x &lt;&lt; 1 | 1) </span><span class="c1">// 右儿子结点
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define par(x) (x &gt;&gt; 1) </span><span class="c1">// 父亲结点
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>下文中，我们令$N$表示元素个数，$A$表示原数组，$C$表示线段树（数组形式存储）。<br>
@@ -1195,7 +1204,7 @@ $$<blockquote>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 结点p, 区间[l, r]建树
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
@@ -1231,13 +1240,13 @@ $$<blockquote>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 结点p, 查询区间[a, b], 当前区间[l, r]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">)</span> <span class="k">return</span> <span class="n">c</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="n">r</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="n">INF</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">m</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">)</span> <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">ls</span><span class="p">(</span><span class="n">p</span><span class="p">)));</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// m + 1 &lt;= b 即为 m &lt; b
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">m</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span> <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">query</span><span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rs</span><span class="p">(</span><span class="n">p</span><span class="p">)));</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">m</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span> <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">query</span><span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rs</span><span class="p">(</span><span class="n">p</span><span class="p">)));</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
@@ -1301,13 +1310,13 @@ $$<blockquote>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 100005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cp">#define INF 2147483647
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define ls(x) (x &lt;&lt; 1)
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define rs(x) (x &lt;&lt; 1 | 1)
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define par(x) (x &gt;&gt; 1)
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">maxn</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">)</span>
@@ -1352,7 +1361,7 @@ $$<blockquote>
 </div><p><img src="/p/algonotes-rmq/6.png"
 	width="1085"
 	height="330"
-	srcset="/p/algonotes-rmq/6_hu3221991848953270095.png 480w, /p/algonotes-rmq/6_hu12993635556327907539.png 1024w"
+	srcset="/p/algonotes-rmq/6_hu_fffcabd1524c0473.png 480w, /p/algonotes-rmq/6_hu_4e9548dac25daf54.png 1024w"
 	loading="lazy"
 	
 		alt="AC"
@@ -1511,18 +1520,24 @@ $$<blockquote>
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -1615,12 +1630,12 @@ $$<blockquote>
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1702,6 +1717,7 @@ $$<blockquote>
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1709,7 +1725,7 @@ $$<blockquote>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

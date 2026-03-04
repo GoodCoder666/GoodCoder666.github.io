@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/algonotes-knapsack-dp/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【算法笔记】三种背包问题——背包 DP">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="【算法笔记】三种背包问题——背包 DP">
 <meta property='og:description' content="前言\r背包（Knapsack）问题是经典的动态规划问题，也很有实际价值。\n##背包\n洛谷 P2871 [USACO07DEC] Charm Bracelet S\nAtCoder Educational DP Contest D - Knapsack 1\n有$n$个物品和一个总容量为$W$的背包。第$i$件物品的重量是$w_i$，价值是$v_i$。求解将哪些物品装入背包可使这些物品的重量总和不超过背包容量，且价值总和最大。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/algonotes-knapsack-dp/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -288,7 +288,7 @@
   <ol>
     <li><a href="#前言">前言</a>
       <ol>
-        <li><a href="#扩展对付更大的w">扩展：对付更大的</a></li>
+        <li><a href="#扩展对付更大的">扩展：对付更大的</a></li>
       </ol>
     </li>
     <li><a href="#完全背包">完全背包</a></li>
@@ -336,7 +336,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2022/08/18</time>
+                <time class="article-time--published" datetime='2022-08-18T19:05:00&#43;08:00'>2022/08/18</time>
             </div>
         
 
@@ -351,7 +351,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 6 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -399,7 +399,7 @@
 <p><img src="/p/algonotes-knapsack-dp/1.png"
 	width="500"
 	height="433"
-	srcset="/p/algonotes-knapsack-dp/1_hu5868426158313605887.png 480w, /p/algonotes-knapsack-dp/1_hu5794709063122541433.png 1024w"
+	srcset="/p/algonotes-knapsack-dp/1_hu_7f4eb4668532bb5e.png 480w, /p/algonotes-knapsack-dp/1_hu_dc83fde1640f9c52.png 1024w"
 	loading="lazy"
 	
 		alt="knapsack"
@@ -410,6 +410,9 @@
 		data-flex-basis="277px"
 	
 ></p>
+<p>这是最原始的<strong>01背包</strong>问题（即每个物品只能选$0$或$1$次）。下面我们来看如何求解。<br>
+令$f_{i,j}$表示只考虑前$i$个物品的情况下，容量为$j$的背包所能装的最大总价值。则最终答案为$f_{n,W}$，状态转移方程为：<br>
+</p>
 $$
 f_{i,j}=\begin{cases}
 0 & (i=0/j=0) \\
@@ -418,6 +421,8 @@ f_{i,j}=\begin{cases}
 $$<p><br>
 依次递增$i$，逐步增加问题规模即可求解。时间、空间复杂度均为$\mathcal O(nW)$。<br>
 在本题中，$\mathcal O(nW)$的空间复杂度容易MLE，因此考虑使用数组重复利用或者滚动表的优化。</p>
+<p>压缩掉$f$的第一维，变成：<br>
+</p>
 $$
 f_j=\max(f_j,f_{j-w_i}+v_i)
 $$<p><br>
@@ -449,7 +454,7 @@ $$<p><br>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define setmax(x, y) if(x &lt; y) x = y
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">f</span><span class="p">[</span><span class="mi">12881</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -497,7 +502,7 @@ $$<p><br>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define setmax(x, y) if(x &lt; y) x = y
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">f</span><span class="p">[</span><span class="mi">20005</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -517,12 +522,14 @@ $$<p><br>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="扩展对付更大的w">扩展：对付更大的$W$
+</div><h3 id="扩展对付更大的">扩展：对付更大的$W$
 </h3><blockquote>
 <p><a class="link" href="https://atcoder.jp/contests/dp/tasks/dp_e"  target="_blank" rel="noopener"
     >AtCoder Educational DP Contest E - Knapsack 2</a><br>
 本题和普通的01背包完全相同，只是数据范围改为$n\le 100,W\le 10^9,v_i\le 10^3$。</p>
 </blockquote>
+<p>注意数据范围，$W\le 10^9$意味着只要开这么大的数组都会MLE，因此我们考虑修改dp状态。前看原来的dp状态，本质上就是“确定重量，求最大价值”，现在我们反过来，即“确定价值，求最小重量”。令$f_{i,j}$表示只用前$i$个物品，达到总价值为$j$所需的最小空间。由于$n\le 100,v_i\le 10^3$，所以$\sum v_i\le 10^5$，极限情况下dp数组只需要开$n\times\sum v_i\approx10^7$即可，相对而言会好很多。下面考虑dp状态转移方程：<br>
+</p>
 $$
 f_{i,j}=\begin{cases}
 +\infin & (i=0,j\ne0) \\
@@ -570,7 +577,7 @@ $$<p><br>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="kt">long</span> <span class="n">f</span><span class="p">[</span><span class="mi">100005</span><span class="p">],</span> <span class="n">t</span><span class="p">,</span> <span class="n">tot</span><span class="p">,</span> <span class="n">ans</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -603,6 +610,9 @@ $$<p><br>
     >洛谷 P1616 疯狂的采药</a><br>
 有$n$个物品和一个总容量为$W$的背包。第$i$件物品的重量是$w_i$，价值是$v_i$。<strong>每个物品可以使用无限次</strong>。求解将哪些物品装入背包可使这些物品的重量总和不超过背包容量，且价值总和最大。</p>
 </blockquote>
+<p>这种背包与01背包唯一的不同之处在于，<strong>每个物品使用次数不限</strong>，所以参考01背包的dp状态：<br>
+令$f_{i,j}$表示只考虑前$i$个物品的情况下，容量为$j$的背包所能装的最大总价值，则有：<br>
+</p>
 $$
 \begin{aligned}
 f_{i,j}=\max_{k=0}^{+\infin}\{f_{i-1,j-k\times w_i}\}+v_i\times k\\
@@ -610,6 +620,8 @@ f_{i,j}=\max_{k=0}^{+\infin}\{f_{i-1,j-k\times w_i}\}+v_i\times k\\
 \end{aligned}
 $$<p><br>
 可以发现，实际上只需要用$f_{i,j}=\max(f_{i-1,j},f_{i,j-w_i}+v_i)$即可，因为此时的$f_{i,j-w_i}$会被$f_{i,j-2w_i}$更新，$f_{i,j-2w_i}$又会被$f_{i,j-3w_i}$更新，以此类推，这样算与前面的公式等效。</p>
+<p>对比一下01背包和完全背包的状态转移方程：<br>
+</p>
 $$
 \begin{aligned}
 f_{i,j}=\max(f_{i-1,j},f_{i-1,j-w_i}+v_i) \\
@@ -644,7 +656,7 @@ $$<p><br>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define setmax(x, y) if(x &lt; y) x = y
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="kt">long</span> <span class="n">f</span><span class="p">[</span><span class="mi">10000005</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -713,12 +725,12 @@ $$<p><br>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxw 40004
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define setmax(x, y) if(x &lt; y) x = y
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">f</span><span class="p">[</span><span class="n">maxw</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// a: value, b: weight
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">w</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="n">b</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">setmax</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">b</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -873,18 +885,24 @@ $$<p><br>
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -977,12 +995,12 @@ $$<p><br>
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1064,6 +1082,7 @@ $$<p><br>
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1071,7 +1090,7 @@ $$<p><br>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

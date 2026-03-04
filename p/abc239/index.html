@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/abc239/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="Denso Create Programming Contest 2022 (AtCoder Beginner Contest 239) C~E 题解">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="Denso Create Programming Contest 2022 (AtCoder Beginner Contest 239) C~E 题解">
 <meta property='og:description' content="C - Knight Fork\r题目大意\r在二维平面上是否有一个整数坐标点到$(x_1,y_1)$和$(x_2,y_2)$的欧几里得距离都是$\\sqrt5$？\n输入格式\r$x_1~y_1~x_2~y_2$\n输出格式\r如果存在符合条件的点，输出Yes；否则，输出No。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/abc239/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -351,7 +351,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2022/02/25</time>
+                <time class="article-time--published" datetime='2022-02-25T23:08:00&#43;08:00'>2022/02/25</time>
             </div>
         
 
@@ -400,7 +400,7 @@
     <section class="article-content">
     
     
-    <h1 id="c---knight-forkhttpsatcoderjpcontestsabc239tasksabc239_c"><a class="link" href="https://atcoder.jp/contests/abc239/tasks/abc239_c"  target="_blank" rel="noopener"
+    <h1 id="c---knight-fork"><a class="link" href="https://atcoder.jp/contests/abc239/tasks/abc239_c"  target="_blank" rel="noopener"
     >C - Knight Fork</a>
 </h1><h2 id="题目大意">题目大意
 </h2><p>在二维平面上是否有一个整数坐标点到$(x_1,y_1)$和$(x_2,y_2)$的欧几里得距离都是$\sqrt5$？</p>
@@ -444,7 +444,9 @@
   </tbody>
 </table></div>
 <h2 id="分析">分析
-</h2>$$
+</h2><p>我们首先要知道，什么是“距离为$\sqrt5$”。设$\sqrt{(a-c)^2+(b-d)^2}=\sqrt5$（$a,b,c,d$均为整数），则有：<br>
+</p>
+$$
 (a-c)^2+(b-d)^2=5\\
 \{a-c,b-d\}=\{1,2\}
 $$<p><br>
@@ -452,7 +454,7 @@ $$<p><br>
 <img src="/p/abc239/1.jpg"
 	width="256"
 	height="256"
-	srcset="/p/abc239/1_hu16735300424858516532.jpg 480w, /p/abc239/1_hu1476752198394310134.jpg 1024w"
+	srcset="/p/abc239/1_hu_825b4802c84f5f3.jpg 480w, /p/abc239/1_hu_ada29332c70e4d59.jpg 1024w"
 	loading="lazy"
 	
 		alt="距离sqrt5解释图"
@@ -495,7 +497,7 @@ $$<p><br>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">d</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">};</span>
@@ -522,7 +524,7 @@ $$<p><br>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="d---prime-sum-gamehttpsatcoderjpcontestsabc239tasksabc239_d"><a class="link" href="https://atcoder.jp/contests/abc239/tasks/abc239_d"  target="_blank" rel="noopener"
+<h1 id="d---prime-sum-game"><a class="link" href="https://atcoder.jp/contests/abc239/tasks/abc239_d"  target="_blank" rel="noopener"
     >D - Prime Sum Game</a>
 </h1><p><del>==水题警告==</del></p>
 <h2 id="题目大意-1">题目大意
@@ -612,7 +614,7 @@ $1\le C\le D\le 100$</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">bool</span> <span class="nf">isprime</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -640,7 +642,7 @@ $1\le C\le D\le 100$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="e---subtree-k-th-maxhttpsatcoderjpcontestsabc239tasksabc239_e"><a class="link" href="https://atcoder.jp/contests/abc239/tasks/abc239_e"  target="_blank" rel="noopener"
+<h1 id="e---subtree-k-th-max"><a class="link" href="https://atcoder.jp/contests/abc239/tasks/abc239_e"  target="_blank" rel="noopener"
     >E - Subtree K-th Max</a>
 </h1><h2 id="题目大意-2">题目大意
 </h2><p>有一个由$N$个节点（节点$1$，..，节点$N$）组成的树（根节点为节点$1$）。<br>
@@ -736,7 +738,7 @@ $V_Q~K_Q$</p>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 100005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
@@ -831,18 +833,24 @@ $V_Q~K_Q$</p>
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -935,12 +943,12 @@ $V_Q~K_Q$</p>
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1022,6 +1030,7 @@ $V_Q~K_Q$</p>
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1029,7 +1038,7 @@ $V_Q~K_Q$</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

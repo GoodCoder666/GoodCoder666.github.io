@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/en/p/csps2023-t3/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="Luogu P9754 [CSP-S 2023] Struct Solution">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="Luogu P9754 [CSP-S 2023] Struct Solution">
 <meta property='og:description' content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Problem Link\nLuogu Blog Blog Garden\nBasic Approach\rThis problem tests coding implementation skills. The core ideas are:\nRecursive element creation allows up to $100^{100}$ distinct base-type elements. Even considering address limits, elements can reach $10^{18}$. Iteratively constructing each element is infeasible in time and space. However, queries are limited. Only a small subset of elements are accessed during queries. Thus, maintain a list of top-level elements (not nested within others) and traverse hierarchically based on query addresses/names. Specific handling for four operations: For $op=1$: Store type info, compute size and alignment requirements, then output. For $op=2$: Track the first allocatable address. Align, compute, then output. For $op=3$: Start from top-level, traverse layers to compute address. For $op=4$: Start from top-level, compare current address ranges with target, then output element name. Based on this, three storage approaches emerge:\n">
 <meta property='og:url' content='https://goodcoder666.github.io/en/p/csps2023-t3/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -343,7 +343,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2023/12/02</time>
+                <time class="article-time--published" datetime='2023-12-02T22:21:00&#43;08:00'>2023/12/02</time>
             </div>
         
 
@@ -463,13 +463,15 @@ This article was machine-translated using DeepSeek-R1.</p>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">DataType</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">string</span> <span class="n">name</span><span class="p">;</span> <span class="c1">// Type name
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LL</span> <span class="n">size</span><span class="p">,</span> <span class="n">actual_size</span><span class="p">;</span> <span class="c1">// Aligned size and actual data length
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">indent</span><span class="p">;</span> <span class="c1">// Alignment requirement
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">DataType</span><span class="o">*</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">members</span><span class="p">;</span> <span class="c1">// Members stored as &lt;type pointer, name&gt;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></span><span class="line"><span class="cl">    <span class="n">LL</span> <span class="n">size</span><span class="p">,</span> <span class="n">actual_size</span><span class="p">;</span> <span class="c1">// Aligned size and actual data length
+</span></span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">indent</span><span class="p">;</span> <span class="c1">// Alignment requirement
+</span></span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">DataType</span><span class="o">*</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">members</span><span class="p">;</span> <span class="c1">// Members stored as &lt;type pointer, name&gt;
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>$$
+</div><p><strong>Alignment</strong> formula:<br>
+</p>
+$$
 {aligned\_addr} = \lceil \frac {addr} {indent} \rceil \times indent
 $$<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -610,9 +612,9 @@ $$<div class="highlight"><div class="chroma">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Object</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">DataType</span><span class="o">*</span> <span class="n">type</span><span class="p">;</span> <span class="c1">// Element type
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">string</span> <span class="n">name</span><span class="p">;</span>    <span class="c1">// Element name
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LL</span> <span class="n">addr</span><span class="p">;</span>        <span class="c1">// Start address
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">name</span><span class="p">;</span>    <span class="c1">// Element name
+</span></span></span><span class="line"><span class="cl">    <span class="n">LL</span> <span class="n">addr</span><span class="p">;</span>        <span class="c1">// Start address
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Compute and save element:</p>
@@ -1014,7 +1016,7 @@ $$<div class="highlight"><div class="chroma">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">setmax</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -1143,7 +1145,7 @@ $$<div class="highlight"><div class="chroma">
 </span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">addr</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="c1">// op == 4
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">LL</span> <span class="n">addr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">addr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&gt;=</span> <span class="n">cur_addr</span><span class="p">)</span>
@@ -1344,7 +1346,7 @@ $$<div class="highlight"><div class="chroma">
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -1547,18 +1549,24 @@ $$<div class="highlight"><div class="chroma">
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -1651,12 +1659,12 @@ $$<div class="highlight"><div class="chroma">
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -1738,6 +1746,7 @@ $$<div class="highlight"><div class="chroma">
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1745,7 +1754,7 @@ $$<div class="highlight"><div class="chroma">
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

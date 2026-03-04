@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/abc241/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="AtCoder Beginner Contest 241 (Sponsored by Panasonic) D~F 题解">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="AtCoder Beginner Contest 241 (Sponsored by Panasonic) D~F 题解">
 <meta property='og:description' content="D - Sequence Query\r题目大意\r我们有一个空序列$A$。请依次处理$Q$个命令，每个命令有三种类型，每种类型的格式如下：\n1 x：将$x$加入$A$（不去重） 2 x k：求在$A$的$\\le x$的元素中，第$k$大的值。 3 x k：求在$A$的$\\ge x$的元素中，第$k$小的值。 $1\\le Q\\le 2\\times 10^5$\n$1\\le x\\le 10^{18}$\n==$1\\le k\\le 5$==\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/abc241/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -342,7 +342,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2022/03/05</time>
+                <time class="article-time--published" datetime='2022-03-05T23:01:00&#43;08:00'>2022/03/05</time>
             </div>
         
 
@@ -391,7 +391,7 @@
     <section class="article-content">
     
     
-    <h1 id="d---sequence-queryhttpsatcoderjpcontestsabc241tasksabc241_d"><a class="link" href="https://atcoder.jp/contests/abc241/tasks/abc241_d"  target="_blank" rel="noopener"
+    <h1 id="d---sequence-query"><a class="link" href="https://atcoder.jp/contests/abc241/tasks/abc241_d"  target="_blank" rel="noopener"
     >D - Sequence Query</a>
 </h1><h2 id="题目大意">题目大意
 </h2><p>我们有一个空序列$A$。请依次处理$Q$个命令，每个命令有三种类型，每种类型的格式如下：</p>
@@ -467,7 +467,7 @@ $1\le x\le 10^{18}$<br>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -513,7 +513,7 @@ $1\le x\le 10^{18}$<br>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="e---putting-candieshttpsatcoderjpcontestsabc241tasksabc241_e"><a class="link" href="https://atcoder.jp/contests/abc241/tasks/abc241_e"  target="_blank" rel="noopener"
+<h1 id="e---putting-candies"><a class="link" href="https://atcoder.jp/contests/abc241/tasks/abc241_e"  target="_blank" rel="noopener"
     >E - Putting Candies</a>
 </h1><h2 id="题目大意-1">题目大意
 </h2><p>给定长度为$N$的序列$A=(A_0,A_1,\dots,A_{N-1})$。<br>
@@ -574,7 +574,7 @@ $1\le A_i\le 10^6$</p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 200005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">LL</span> <span class="n">A</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">S</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
@@ -613,7 +613,7 @@ $1\le A_i\le 10^6$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="f---skatehttpsatcoderjpcontestsabc241tasksabc241_f"><a class="link" href="https://atcoder.jp/contests/abc241/tasks/abc241_f"  target="_blank" rel="noopener"
+<h1 id="f---skate"><a class="link" href="https://atcoder.jp/contests/abc241/tasks/abc241_f"  target="_blank" rel="noopener"
     >F - Skate</a>
 </h1><h2 id="题目大意-2">题目大意
 </h2><p>有一个$H\times W$的网格。网格上有$N$个障碍物，第$i$个的位置是$(X_i,Y_i)$。<br>
@@ -692,7 +692,7 @@ $(X_i,Y_i)\ne(X_j,Y_j)$（$i\ne j$）</p>
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">;</span>
@@ -786,18 +786,24 @@ $(X_i,Y_i)\ne(X_j,Y_j)$（$i\ne j$）</p>
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -890,12 +896,12 @@ $(X_i,Y_i)\ne(X_j,Y_j)$（$i\ne j$）</p>
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -977,6 +983,7 @@ $(X_i,Y_i)\ne(X_j,Y_j)$（$i\ne j$）</p>
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -984,7 +991,7 @@ $(X_i,Y_i)\ne(X_j,Y_j)$（$i\ne j$）</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

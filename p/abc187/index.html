@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/abc187/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="AtCoder Beginner Contest 187 A~D 题解">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="AtCoder Beginner Contest 187 A~D 题解">
 <meta property='og:description' content="A - Large Digits\r题目大意\r给定两个三位整数$A$和$B$，求它们数位和的最大值。\n数位和：例如，$123$的数位和是$1+2+3=6$。\n$100\\le A,B\\le 999$\n输入格式\r$A~~B$\n输出格式\r一行，即$A$和$B$数位和的最大值。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/abc187/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -385,7 +385,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2021/01/03</time>
+                <time class="article-time--published" datetime='2021-01-03T14:06:00&#43;08:00'>2021/01/03</time>
             </div>
         
 
@@ -434,7 +434,7 @@
     <section class="article-content">
     
     
-    <h1 id="a---large-digitshttpsatcoderjpcontestsabc187tasksabc187_a"><a class="link" href="https://atcoder.jp/contests/abc187/tasks/abc187_a"  target="_blank" rel="noopener"
+    <h1 id="a---large-digits"><a class="link" href="https://atcoder.jp/contests/abc187/tasks/abc187_a"  target="_blank" rel="noopener"
     >A - Large Digits</a>
 </h1><h2 id="题目大意">题目大意
 </h2><p>给定两个三位整数$A$和$B$，求它们数位和的最大值。<br>
@@ -492,7 +492,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -509,7 +509,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="b---gentle-pairshttpsatcoderjpcontestsabc187tasksabc187_b"><a class="link" href="https://atcoder.jp/contests/abc187/tasks/abc187_b"  target="_blank" rel="noopener"
+<h1 id="b---gentle-pairs"><a class="link" href="https://atcoder.jp/contests/abc187/tasks/abc187_b"  target="_blank" rel="noopener"
     >B - Gentle Pairs</a>
 </h1><h2 id="题目大意-1">题目大意
 </h2><p>有$N$个点，每个点的坐标是$(x_i,y_i)$，$x$坐标互不相同。<br>
@@ -616,7 +616,17 @@ $x_n~y_n$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="分析-1">分析
-</h2>$$-1 \le \frac{y_1-y_2}{x_1-x_2} \le 1$$$$|\frac{y_1-y_2}{x_1-x_2}| \le 1$$$$\frac{|y_1-y_2|}{|x_1-x_2|}\le 1$$$$|y_1-y_2|\le|x1-x2|$$<p><br>
+</h2><p>$(x_1,y_1)$到$(x_2,y_2)$的斜率是$\frac{y_1-y_2}{x1-x2}$。<br>
+推理过程：<br>
+</p>
+$$-1 \le \frac{y_1-y_2}{x_1-x_2} \le 1$$<p><br>
+</p>
+$$|\frac{y_1-y_2}{x_1-x_2}| \le 1$$<p><br>
+</p>
+$$\frac{|y_1-y_2|}{|x_1-x_2|}\le 1$$<p><br>
+为了防止浮点数精度误差，我们继续：<br>
+</p>
+$$|y_1-y_2|\le|x1-x2|$$<p><br>
 这时，就可以写代码了。</p>
 <h2 id="代码-1">代码
 </h2><p>枚举所有对点即可。</p>
@@ -653,7 +663,7 @@ $x_n~y_n$</p>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 1005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl"> 
@@ -679,7 +689,7 @@ $x_n~y_n$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="c---1-sathttpsatcoderjpcontestsabc187tasksabc187_c"><a class="link" href="https://atcoder.jp/contests/abc187/tasks/abc187_c"  target="_blank" rel="noopener"
+<h1 id="c---1-sat"><a class="link" href="https://atcoder.jp/contests/abc187/tasks/abc187_c"  target="_blank" rel="noopener"
     >C - 1-SAT</a>
 </h1><h2 id="题目大意-2">题目大意
 </h2><p>给你$N$个字符串$S_1,S_2,...,S_N$。每个字符串都由小写字母组成，前面有至多$1$个<code>!</code>。<br>
@@ -810,7 +820,7 @@ $S_5$为<code>d</code>，$S_6$为<code>!d</code>，所以$S_5$也符合条件，
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span>
@@ -840,7 +850,7 @@ $S_5$为<code>d</code>，$S_6$为<code>!d</code>，所以$S_5$也符合条件，
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="d---choose-mehttpsatcoderjpcontestsabc187tasksabc187_d"><a class="link" href="https://atcoder.jp/contests/abc187/tasks/abc187_d"  target="_blank" rel="noopener"
+<h1 id="d---choose-me"><a class="link" href="https://atcoder.jp/contests/abc187/tasks/abc187_d"  target="_blank" rel="noopener"
     >D - Choose Me</a>
 </h1><h2 id="题目大意-3">题目大意
 </h2><p>题目大意略，请自行前往<a class="link" href="https://atcoder.jp/contests/abc187/tasks/abc187_d"  target="_blank" rel="noopener"
@@ -977,7 +987,7 @@ $A_N~B_N$</p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">LL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -1054,18 +1064,24 @@ $A_N~B_N$</p>
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -1158,12 +1174,12 @@ $A_N~B_N$</p>
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1245,6 +1261,7 @@ $A_N~B_N$</p>
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1252,7 +1269,7 @@ $A_N~B_N$</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

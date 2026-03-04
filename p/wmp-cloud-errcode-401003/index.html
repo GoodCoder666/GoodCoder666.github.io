@@ -2,24 +2,25 @@
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="错误\r1 2 3 4 5 Uncaught (in promise) thirdScriptError errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; Error: errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; at new u (...) ... 错误原因\r错误写法\r1 2 3 4 5 6 7 8 9 10 11 12 wx.cloud.init({ env: &#39;我的云ID&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ // &lt;- 报错 &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 }) 正确写法\r1 2 3 4 5 6 7 8 9 10 11 12 13 14 wx.cloud.init({ env: &#39;我的云ID&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ data: { // 必须加上data! &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 } }) ">
-<title>使用微信小程序-云开发时报错: Error: errCode: -401003 api parameter type error | errMsg: parameter.data should ...</title>
+<title>使用微信小程序-云开发时报错: Error: errCode: -401003 api parameter type error | errMsg:
+parameter.data should ...</title>
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/wmp-cloud-errcode-401003/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="使用微信小程序-云开发时报错: Error: errCode: -401003 api parameter type error | errMsg: parameter.data should ...">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="使用微信小程序-云开发时报错: Error: errCode: -401003 api parameter type error | errMsg:\nparameter.data should ...">
 <meta property='og:description' content="错误\r1 2 3 4 5 Uncaught (in promise) thirdScriptError errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; Error: errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; at new u (...) ... 错误原因\r错误写法\r1 2 3 4 5 6 7 8 9 10 11 12 wx.cloud.init({ env: &#39;我的云ID&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ // &lt;- 报错 &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 }) 正确写法\r1 2 3 4 5 6 7 8 9 10 11 12 13 14 wx.cloud.init({ env: &#39;我的云ID&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ data: { // 必须加上data! &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 } }) ">
 <meta property='og:url' content='https://goodcoder666.github.io/p/wmp-cloud-errcode-401003/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='微信小程序' /><meta property='article:tag' content='Bug/错误解决' /><meta property='article:published_time' content='2020-02-02T11:17:00&#43;08:00'/><meta property='article:modified_time' content='2020-02-02T11:17:00&#43;08:00'/>
 <meta name="twitter:site" content="@stanleys09">
-    <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="使用微信小程序-云开发时报错: Error: errCode: -401003 api parameter type error | errMsg: parameter.data should ...">
+    <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="使用微信小程序-云开发时报错: Error: errCode: -401003 api parameter type error | errMsg:\nparameter.data should ...">
 <meta name="twitter:description" content="错误\r1 2 3 4 5 Uncaught (in promise) thirdScriptError errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; Error: errCode: -401003 api parameter type error | errMsg: parameter.data should be object instead of undefined; at new u (...) ... 错误原因\r错误写法\r1 2 3 4 5 6 7 8 9 10 11 12 wx.cloud.init({ env: &#39;我的云ID&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ // &lt;- 报错 &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 }) 正确写法\r1 2 3 4 5 6 7 8 9 10 11 12 13 14 wx.cloud.init({ env: &#39;我的云ID&#39;, traceUser: true }) const db = wx.cloud.database() const people = db.collection(&#39;people&#39;) people.add({ data: { // 必须加上data! &#39;name&#39;: &#39;OnePerson&#39;, &#39;score&#39;: 15 } }) ">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +74,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -307,7 +308,8 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/wmp-cloud-errcode-401003/">使用微信小程序-云开发时报错: Error: errCode: -401003 api parameter type error | errMsg: parameter.data should ...</a>
+            <a href="/p/wmp-cloud-errcode-401003/">使用微信小程序-云开发时报错: Error: errCode: -401003 api parameter type error | errMsg:
+parameter.data should ...</a>
         </h2>
     
         
@@ -329,7 +331,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2020/02/02</time>
+                <time class="article-time--published" datetime='2020-02-02T11:17:00&#43;08:00'>2020/02/02</time>
             </div>
         
 
@@ -422,7 +424,7 @@
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">people</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;people&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">people</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span> <span class="c1">// &lt;- 报错
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;OnePerson&#39;</span><span class="p">,</span>
+</span></span></span><span class="line"><span class="cl">    <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;OnePerson&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;score&#39;</span><span class="o">:</span> <span class="mi">15</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span></code></pre></td></tr></table>
@@ -456,7 +458,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">people</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// 必须加上data!
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;OnePerson&#39;</span><span class="p">,</span>
+</span></span></span><span class="line"><span class="cl">        <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;OnePerson&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="s1">&#39;score&#39;</span><span class="o">:</span> <span class="mi">15</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
@@ -506,18 +508,24 @@
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -597,12 +605,12 @@
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -684,6 +692,7 @@
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -691,7 +700,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

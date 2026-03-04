@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/en/p/algonotes-knapsack-dp/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="Three Types of Knapsack Problems — Knapsack DP">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="Three Types of Knapsack Problems — Knapsack DP">
 <meta property='og:description' content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Preface\rThe Knapsack Problem is a classic dynamic programming problem with practical significance.\n0-1 Knapsack\rLuogu P2871 [USACO07DEC] Charm Bracelet S\nAtCoder Educational DP Contest D - Knapsack 1\nThere are $n$ items and a knapsack with total capacity $W$. The $i$-th item has weight $w_i$ and value $v_i$. Determine which items to select such that the total weight does not exceed the capacity while maximizing the total value.\n">
 <meta property='og:url' content='https://goodcoder666.github.io/en/p/algonotes-knapsack-dp/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -289,7 +289,7 @@
     <li><a href="#preface">Preface</a></li>
     <li><a href="#0-1-knapsack">0-1 Knapsack</a>
       <ol>
-        <li><a href="#extension-handling-larger-w">Extension: Handling Larger </a></li>
+        <li><a href="#extension-handling-larger">Extension: Handling Larger </a></li>
       </ol>
     </li>
     <li><a href="#unbounded-knapsack">Unbounded Knapsack</a></li>
@@ -337,7 +337,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2022/08/18</time>
+                <time class="article-time--published" datetime='2022-08-18T19:05:00&#43;08:00'>2022/08/18</time>
             </div>
         
 
@@ -352,7 +352,7 @@
 
 
                 <time class="article-time--reading">
-                    5 minute read
+                    6 minute read
                 </time>
             </div>
         
@@ -410,7 +410,7 @@ There are $n$ items and a knapsack with total capacity $W$. The $i$-th item has 
 <p><img src="/p/algonotes-knapsack-dp/1.png"
 	width="500"
 	height="433"
-	srcset="/p/algonotes-knapsack-dp/1_hu5868426158313605887.png 480w, /p/algonotes-knapsack-dp/1_hu5794709063122541433.png 1024w"
+	srcset="/p/algonotes-knapsack-dp/1_hu_7f4eb4668532bb5e.png 480w, /p/algonotes-knapsack-dp/1_hu_dc83fde1640f9c52.png 1024w"
 	loading="lazy"
 	
 		alt="knapsack"
@@ -422,6 +422,8 @@ There are $n$ items and a knapsack with total capacity $W$. The $i$-th item has 
 	
 ></p>
 <p>This is the fundamental <strong>0-1 Knapsack Problem</strong> (each item can be chosen either 0 or 1 times). Let&rsquo;s explore its solution.</p>
+<p>Let $f_{i,j}$ denote the maximum total value achievable by considering the first $i$ items with a knapsack capacity of $j$. The final answer is $f_{n,W}$, and the state transition equation is:<br>
+</p>
 $$
 f_{i,j}=\begin{cases}
 0 & (i=0/j=0) \\
@@ -430,6 +432,8 @@ f_{i,j}=\begin{cases}
 $$<p><br>
 By incrementally increasing $i$ and expanding the problem scale, we can solve it. Both time and space complexity are $\mathcal O(nW)$.<br>
 In practice, $\mathcal O(nW)$ space may cause MLE. Hence, we optimize by reusing arrays or using rolling tables.</p>
+<p>Compress the first dimension of $f$, resulting in:<br>
+</p>
 $$
 f_j=\max(f_j,f_{j-w_i}+v_i)
 $$<p><br>
@@ -461,7 +465,7 @@ Now space complexity reduces to $\mathcal O(W)$.<br>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define setmax(x, y) if(x &lt; y) x = y
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">f</span><span class="p">[</span><span class="mi">12881</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -509,7 +513,7 @@ Now space complexity reduces to $\mathcal O(W)$.<br>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define setmax(x, y) if(x &lt; y) x = y
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">f</span><span class="p">[</span><span class="mi">20005</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -529,12 +533,14 @@ Now space complexity reduces to $\mathcal O(W)$.<br>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="extension-handling-larger-w">Extension: Handling Larger $W$
+</div><h3 id="extension-handling-larger">Extension: Handling Larger $W$
 </h3><blockquote>
 <p><a class="link" href="https://atcoder.jp/contests/dp/tasks/dp_e"  target="_blank" rel="noopener"
     >AtCoder Educational DP Contest E - Knapsack 2</a><br>
 This problem is identical to standard 0-1 Knapsack but with constraints $n\le 100,W\le 10^9,v_i\le 10^3$.</p>
 </blockquote>
+<p>Given $W\le 10^9$, storing such large arrays is impossible. We reverse the DP state: instead of tracking weight to maximize value, track value to minimize weight. Let $f_{i,j}$ denote the minimum capacity required to achieve total value $j$ using the first $i$ items. Since $\sum v_i\le 10^5$, the DP array size becomes manageable ($\approx10^7$). The state transition equation is:<br>
+</p>
 $$
 f_{i,j}=\begin{cases}
 +\infin & (i=0,j\ne0) \\
@@ -581,7 +587,7 @@ The final answer is the maximum $j$ where $f_{n,j}\le W$. Optimizations include:
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="kt">long</span> <span class="n">f</span><span class="p">[</span><span class="mi">100005</span><span class="p">],</span> <span class="n">t</span><span class="p">,</span> <span class="n">tot</span><span class="p">,</span> <span class="n">ans</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -614,9 +620,14 @@ The final answer is the maximum $j$ where $f_{n,j}\le W$. Optimizations include:
     >Luogu P1616 Crazy Herb Gathering</a><br>
 Similar to 0-1 Knapsack, but <strong>each item can be chosen infinitely</strong>.</p>
 </blockquote>
+<p>The key difference lies in unlimited item usage. For DP state $f_{i,j}$:<br>
+</p>
 $$
 f_{i,j}=\max(f_{i-1,j},f_{i,j-w_i}+v_i)
-$$$$
+$$<p><br>
+Compare with 0-1 Knapsack&rsquo;s transition:<br>
+</p>
+$$
 \begin{aligned}
 0\text{-}1: & \max(f_{i-1,j},f_{i-1,j-w_i}+v_i) \\
 \text{Unbounded}: & \max(f_{i-1,j},f_{i,j-w_i}+v_i)
@@ -649,7 +660,7 @@ By changing loop order (forward iteration), we achieve this. Don&rsquo;t forget 
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define setmax(x, y) if(x &lt; y) x = y
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="kt">long</span> <span class="n">f</span><span class="p">[</span><span class="mi">10000005</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -710,12 +721,12 @@ Each item has a maximum selection count $m_i$. Constraints: $n\le100,\sum m_i\le
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxw 40004
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define setmax(x, y) if(x &lt; y) x = y
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">f</span><span class="p">[</span><span class="n">maxw</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// a: value, b: weight
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">w</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="n">b</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">setmax</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">b</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -866,18 +877,24 @@ Each item has a maximum selection count $m_i$. Constraints: $n\le100,\sum m_i\le
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -970,12 +987,12 @@ Each item has a maximum selection count $m_i$. Constraints: $n\le100,\sum m_i\le
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -1057,6 +1074,7 @@ Each item has a maximum selection count $m_i$. Constraints: $n\le100,\sum m_i\le
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1064,7 +1082,7 @@ Each item has a maximum selection count $m_i$. Constraints: $n\le100,\sum m_i\le
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

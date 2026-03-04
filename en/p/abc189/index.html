@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/en/p/abc189/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="AtCoder Beginner Contest 189 A~D Solutions">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="AtCoder Beginner Contest 189 A~D Solutions">
 <meta property='og:description' content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed A - Slots\rProblem Statement\rGiven three uppercase English letters $C_1,C_2,C_3$, determine if they are all identical.\nInput Format\r$C_1C_2C_3$\nOutput Format\rPrint Won if $C_1,C_2,C_3$ are equal; otherwise, print Lost.\n">
 <meta property='og:url' content='https://goodcoder666.github.io/en/p/abc189/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -376,7 +376,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2021/01/25</time>
+                <time class="article-time--published" datetime='2021-01-25T15:47:00&#43;08:00'>2021/01/25</time>
             </div>
         
 
@@ -435,7 +435,7 @@ This article was machine-translated using DeepSeek-R1.</p>
 <li><strong>Feedback</strong>: Technical suggestions regarding translation quality are welcomed</li>
 </ul>
 </blockquote>
-<h1 id="a---slotshttpsatcoderjpcontestsabc189tasksabc189_a"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_a"  target="_blank" rel="noopener"
+<h1 id="a---slots"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_a"  target="_blank" rel="noopener"
     >A - Slots</a>
 </h1><h2 id="problem-statement">Problem Statement
 </h2><p>Given three uppercase English letters $C_1,C_2,C_3$, determine if they are all identical.</p>
@@ -480,7 +480,7 @@ This article was machine-translated using DeepSeek-R1.</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -491,7 +491,7 @@ This article was machine-translated using DeepSeek-R1.</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="b---alcoholichttpsatcoderjpcontestsabc189tasksabc189_b"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_b"  target="_blank" rel="noopener"
+<h1 id="b---alcoholic"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_b"  target="_blank" rel="noopener"
     >B - Alcoholic</a>
 </h1><h2 id="problem-statement-1">Problem Statement
 </h2><p>A person will drink $N$ cups of alcohol in order. The $i$-th cup has $V_i$ milliliters with $P_i\%$ alcohol content ($1\le i\le N$).<br>
@@ -585,6 +585,8 @@ After drinking the second cup, the total $20.5$ ml exceeds $15$ ml, so output $2
 <h2 id="analysis-1">Analysis
 </h2><p>The alcohol in the $i$-th cup is $V_i\times P_i\%$, i.e., $V_i\times P_i/100$ ml.<br>
 We need to find the smallest $i$ where the cumulative sum exceeds $X$ ml. However, due to floating-point precision issues in C++, direct calculation may yield incorrect results.</p>
+<p>Transform the condition:<br>
+</p>
 $$V_1\times P_1 + V_2\times P_2 + \dots + V_i\times P_i > 100X$$<p><br>
 This allows integer arithmetic to avoid precision errors.</p>
 <h2 id="code-1">Code
@@ -615,7 +617,7 @@ This allows integer arithmetic to avoid precision errors.</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -639,7 +641,7 @@ This allows integer arithmetic to avoid precision errors.</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="c---mandarin-orangehttpsatcoderjpcontestsabc189tasksabc189_c"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_c"  target="_blank" rel="noopener"
+<h1 id="c---mandarin-orange"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_c"  target="_blank" rel="noopener"
     >C - Mandarin Orange</a>
 </h1><h2 id="problem-statement-2">Problem Statement
 </h2><p>There are $N$ bowls arranged in a row. The $i$-th bowl contains $A_i$ oranges.<br>
@@ -739,7 +741,7 @@ $A_1~\dots~A_N$</p>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 10005
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define INF 2147483647
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -768,7 +770,7 @@ $A_1~\dots~A_N$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="d---logical-expressionhttpsatcoderjpcontestsabc189tasksabc189_d"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_d"  target="_blank" rel="noopener"
+<h1 id="d---logical-expression"><a class="link" href="https://atcoder.jp/contests/abc189/tasks/abc189_d"  target="_blank" rel="noopener"
     >D - Logical Expression</a>
 </h1><h2 id="problem-statement-3">Problem Statement
 </h2><p>Given $N$ strings $S_1,S_2,...,S_N$ (each being <code>AND</code> or <code>OR</code>), count the number of tuples $(x_0,x_1,...,x_N)$ satisfying:</p>
@@ -788,7 +790,9 @@ $S_N$</p>
 <h2 id="sample-3">Sample
 </h2><p>See original contest page for details.</p>
 <h2 id="analysis-3">Analysis
-</h2>$$f(N)=\begin{cases} 
+</h2><p>Let $f(N)$ be the answer for $S_1$ to $S_N$. The recurrence is:<br>
+</p>
+$$f(N)=\begin{cases} 
   f(N-1) & (S_N=\text{AND})\\
   f(N-1)\times2^N & (S_N=\text{OR})
 \end{cases}$$<p><br>
@@ -818,7 +822,7 @@ This allows efficient computation while processing input.</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -832,7 +836,7 @@ This allows efficient computation while processing input.</p>
 </span></span><span class="line"><span class="cl">        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;O&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">            <span class="n">ans</span> <span class="o">^=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Equivalent to ans += x; this is faster
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -882,18 +886,24 @@ This allows efficient computation while processing input.</p>
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -986,12 +996,12 @@ This allows efficient computation while processing input.</p>
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -1073,6 +1083,7 @@ This allows efficient computation while processing input.</p>
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1080,7 +1091,7 @@ This allows efficient computation while processing input.</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

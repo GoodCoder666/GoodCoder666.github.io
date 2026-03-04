@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/csps2023-t3/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="洛谷 P9754 [CSP-S 2023] 结构体 题解">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="洛谷 P9754 [CSP-S 2023] 结构体 题解">
 <meta property='og:description' content="题目传送门\n洛谷博客 博客园\n基本思路\r本题主要考查编码能力，所以直接给出基本思路：\n由于可以递归式的创建元素，最多可以同时存在 $100^{100}$ 个不同的基础类型的元素。即使算上最大地址的限制，元素的数量也能达到 $10^{18}$。显然，依次构造每个元素，在空间和时间上都是无法接受的。 然而，由于询问数量有限，真正能在查询时用到的元素数量相对很少。因此，我们只需维护一个顶层元素（不隶属于任何其他元素的元素）列表，再根据查询的地址或名称逐层向下找到需要的元素即可。以下是四种操作的具体做法： 对于 $op=1$：储存当前类型信息，计算大小和对齐要求并输出。 对于 $op=2$：用一个变量记录当前第一个可分配内存的地址，操作时先对齐后计算、输出。 对于 $op=3$：从顶层开始，逐层向下寻找，计算地址并输出。 对于 $op=4$：从顶层开始，维护当前考查的元素地址，并与给定地址比对，最终输出底层元素名称。 由以上思路，很容易想到下面三种类型的存储方式：\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/csps2023-t3/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -343,7 +343,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2023/12/02</time>
+                <time class="article-time--published" datetime='2023-12-02T22:21:00&#43;08:00'>2023/12/02</time>
             </div>
         
 
@@ -453,13 +453,15 @@
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">DataType</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">string</span> <span class="n">name</span><span class="p">;</span> <span class="c1">// 类型名
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LL</span> <span class="n">size</span><span class="p">,</span> <span class="n">actual_size</span><span class="p">;</span> <span class="c1">// 对齐后的大小和实际大小（有数据的部分的长度）
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">indent</span><span class="p">;</span> <span class="c1">// 对齐要求
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">DataType</span><span class="o">*</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">members</span><span class="p">;</span> <span class="c1">// 类型成员，&lt;成员类型指针，成员名称&gt; 方式存储
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></span><span class="line"><span class="cl">    <span class="n">LL</span> <span class="n">size</span><span class="p">,</span> <span class="n">actual_size</span><span class="p">;</span> <span class="c1">// 对齐后的大小和实际大小（有数据的部分的长度）
+</span></span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">indent</span><span class="p">;</span> <span class="c1">// 对齐要求
+</span></span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">DataType</span><span class="o">*</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">members</span><span class="p">;</span> <span class="c1">// 类型成员，&lt;成员类型指针，成员名称&gt; 方式存储
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>$$
+</div><p><strong>对齐</strong>操作，依照如下公式：<br>
+</p>
+$$
 {对齐后的地址} = \lceil \frac {对齐前的地址} {对齐要求} \rceil \times {对齐要求}
 $$<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -601,9 +603,9 @@ $$<div class="highlight"><div class="chroma">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Object</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">DataType</span><span class="o">*</span> <span class="n">type</span><span class="p">;</span> <span class="c1">// 类型
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">string</span> <span class="n">name</span><span class="p">;</span> <span class="c1">// 名称
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LL</span> <span class="n">addr</span><span class="p">;</span> <span class="c1">// 地址
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">name</span><span class="p">;</span> <span class="c1">// 名称
+</span></span></span><span class="line"><span class="cl">    <span class="n">LL</span> <span class="n">addr</span><span class="p">;</span> <span class="c1">// 地址
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>计算地址并保存元素</strong>：</p>
@@ -621,10 +623,10 @@ $$<div class="highlight"><div class="chroma">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Object</span> <span class="n">obj</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="n">t</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">t</span> <span class="o">&gt;&gt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">name</span><span class="p">;</span> <span class="c1">// 输入
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">obj</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">types</span><span class="p">[</span><span class="n">t</span><span class="p">];</span> <span class="c1">// 找到类型指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">obj</span><span class="p">.</span><span class="n">addr</span> <span class="o">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">shift</span><span class="p">(</span><span class="n">cur_addr</span><span class="p">);</span> <span class="c1">// 对齐
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cur_addr</span> <span class="o">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">addr</span> <span class="o">+</span> <span class="n">obj</span><span class="p">.</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="c1">// 更新可分配的地址
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">toplevel_objects</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span> <span class="c1">// 保存元素
+</span></span></span><span class="line"><span class="cl"><span class="n">obj</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">types</span><span class="p">[</span><span class="n">t</span><span class="p">];</span> <span class="c1">// 找到类型指针
+</span></span></span><span class="line"><span class="cl"><span class="n">obj</span><span class="p">.</span><span class="n">addr</span> <span class="o">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">shift</span><span class="p">(</span><span class="n">cur_addr</span><span class="p">);</span> <span class="c1">// 对齐
+</span></span></span><span class="line"><span class="cl"><span class="n">cur_addr</span> <span class="o">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">addr</span> <span class="o">+</span> <span class="n">obj</span><span class="p">.</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="c1">// 更新可分配的地址
+</span></span></span><span class="line"><span class="cl"><span class="n">toplevel_objects</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span> <span class="c1">// 保存元素
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>输出元素地址</strong>：</p>
@@ -684,13 +686,13 @@ $$<div class="highlight"><div class="chroma">
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 读入
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span> <span class="n">s</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="n">s</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 分割
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">ord</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">ord</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">split</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="sc">&#39;.&#39;</span><span class="p">,</span> <span class="n">ord</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 根据名称匹配顶层元素
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">LL</span> <span class="n">addr</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="n">LL</span> <span class="n">addr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">DataType</span><span class="o">*</span> <span class="n">type</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">obj</span><span class="p">:</span> <span class="n">toplevel_objects</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">ord</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -721,19 +723,19 @@ $$<div class="highlight"><div class="chroma">
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// ord[0] 对应顶层元素名称，删掉
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ord</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">ord</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span>
+</span></span></span><span class="line"><span class="cl"><span class="n">ord</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">ord</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 逐层向下遍历
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="nl">s</span><span class="p">:</span> <span class="n">ord</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="nl">s</span><span class="p">:</span> <span class="n">ord</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">m</span><span class="p">:</span> <span class="n">type</span><span class="o">-&gt;</span><span class="n">members</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">addr</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">first</span><span class="o">-&gt;</span><span class="n">shift</span><span class="p">(</span><span class="n">addr</span><span class="p">);</span> <span class="c1">// 地址对齐
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="c1">// 名称匹配
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="c1">// 名称匹配
+</span></span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">type</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="c1">// 找到下一层，向下遍历
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">break</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="n">addr</span> <span class="o">+=</span> <span class="n">m</span><span class="p">.</span><span class="n">first</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="c1">// 地址移到下一个元素
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>输出最终地址</strong>：</p>
@@ -775,18 +777,18 @@ $$<div class="highlight"><div class="chroma">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">LL</span> <span class="n">addr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">addr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&gt;=</span> <span class="n">cur_addr</span><span class="p">)</span> <span class="c1">// 大于最高有效地址，直接挂掉
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">continue</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="n">DataType</span><span class="o">*</span> <span class="n">type</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">LL</span> <span class="n">f_addr</span> <span class="o">=</span> <span class="mi">0LL</span><span class="p">;</span> <span class="c1">// 当前考察的地址
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span> <span class="n">res</span><span class="p">;</span> <span class="c1">// 结果字符串
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">obj</span><span class="p">:</span> <span class="n">toplevel_objects</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="n">res</span><span class="p">;</span> <span class="c1">// 结果字符串
+</span></span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">obj</span><span class="p">:</span> <span class="n">toplevel_objects</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">addr</span><span class="p">)</span> <span class="k">goto</span> <span class="n">bad</span><span class="p">;</span> <span class="c1">// 特判由于对齐导致的地址无效
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">addr</span> <span class="o">+</span> <span class="n">obj</span><span class="p">.</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">)</span> <span class="c1">// 地址在当前范围内，记录结果
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">addr</span> <span class="o">+</span> <span class="n">obj</span><span class="p">.</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">)</span> <span class="c1">// 地址在当前范围内，记录结果
+</span></span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">type</span> <span class="o">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">type</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">f_addr</span> <span class="o">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">addr</span><span class="p">;</span>
@@ -820,12 +822,12 @@ $$<div class="highlight"><div class="chroma">
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 循环条件：(1) 地址有效 (2) 不是基本类型（类型有成员）
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">while</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">f_addr</span> <span class="o">+</span> <span class="n">type</span><span class="o">-&gt;</span><span class="n">actual_size</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">members</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">f_addr</span> <span class="o">+</span> <span class="n">type</span><span class="o">-&gt;</span><span class="n">actual_size</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">type</span><span class="o">-&gt;</span><span class="n">members</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">m</span><span class="p">:</span> <span class="n">type</span><span class="o">-&gt;</span><span class="n">members</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">f_addr</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">first</span><span class="o">-&gt;</span><span class="n">shift</span><span class="p">(</span><span class="n">f_addr</span><span class="p">);</span> <span class="c1">// 对齐
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">f_addr</span><span class="p">)</span> <span class="k">goto</span> <span class="n">bad</span><span class="p">;</span> <span class="c1">// 特判，同上
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">f_addr</span> <span class="o">+</span> <span class="n">m</span><span class="p">.</span><span class="n">first</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">f_addr</span><span class="p">)</span> <span class="k">goto</span> <span class="n">bad</span><span class="p">;</span> <span class="c1">// 特判，同上
+</span></span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">f_addr</span> <span class="o">+</span> <span class="n">m</span><span class="p">.</span><span class="n">first</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">type</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;.&#39;</span><span class="p">);</span>
@@ -835,8 +837,8 @@ $$<div class="highlight"><div class="chroma">
 </span></span><span class="line"><span class="cl">        <span class="n">f_addr</span> <span class="o">+=</span> <span class="n">m</span><span class="p">.</span><span class="n">first</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">f_addr</span> <span class="o">+</span> <span class="n">type</span><span class="o">-&gt;</span><span class="n">actual_size</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="c1">// 地址有效则输出结果
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">else</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="c1">// 地址无效
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">continue</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">else</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="c1">// 地址无效
+</span></span></span><span class="line"><span class="cl"><span class="k">continue</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nl">bad</span><span class="p">:</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="c1">// 前面使用的 bad 标签
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1031,7 +1033,7 @@ $$<div class="highlight"><div class="chroma">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">setmax</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -1160,7 +1162,7 @@ $$<div class="highlight"><div class="chroma">
 </span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">addr</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="c1">// op == 4
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">LL</span> <span class="n">addr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">addr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">addr</span> <span class="o">&gt;=</span> <span class="n">cur_addr</span><span class="p">)</span>
@@ -1361,7 +1363,7 @@ $$<div class="highlight"><div class="chroma">
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -1564,18 +1566,24 @@ $$<div class="highlight"><div class="chroma">
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -1668,12 +1676,12 @@ $$<div class="highlight"><div class="chroma">
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1755,6 +1763,7 @@ $$<div class="highlight"><div class="chroma">
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1762,7 +1771,7 @@ $$<div class="highlight"><div class="chroma">
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

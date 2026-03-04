@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/abc194/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="AtCoder Beginner Contest 194 A~E 题解">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="AtCoder Beginner Contest 194 A~E 题解">
 <meta property='og:description' content="A - I Scream\r题目大意\r在日本，有如下四种冰淇淋产品：\n至少有$15\\%$的milk solids和$8\\%$的milk fat的产品称为“冰淇淋”； 至少有$10\\%$的milk solids和$3\\%$的milk fat且不是冰淇淋的产品称为“冰奶”； 至少有$3\\%$的milk solids且不是冰淇淋或冰奶**的产品称为“乳冰”； 不是以上三种的产品称为“调味冰”。 在这里，milk solids由milk fat和milk solids-not-fat组成。\n有一种冰淇淋产品，它由$A\\%$的milk solids-not-fat和$B\\%$的milk fat组成。\n这种产品是上述的哪一类？\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/abc194/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -374,7 +374,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2021/03/17</time>
+                <time class="article-time--published" datetime='2021-03-17T21:25:00&#43;08:00'>2021/03/17</time>
             </div>
         
 
@@ -389,7 +389,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -423,7 +423,7 @@
     <section class="article-content">
     
     
-    <h1 id="a---i-screamhttpsatcoderjpcontestsabc194tasksabc194_a"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_a"  target="_blank" rel="noopener"
+    <h1 id="a---i-scream"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_a"  target="_blank" rel="noopener"
     >A - I Scream</a>
 </h1><h2 id="题目大意">题目大意
 </h2><p>在日本，有如下四种冰淇淋产品：</p>
@@ -497,7 +497,7 @@ $0\le A+B\le 100$</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -513,10 +513,16 @@ $0\le A+B\le 100$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="b---job-assignmenthttpsatcoderjpcontestsabc194tasksabc194_b"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_b"  target="_blank" rel="noopener"
+<h1 id="b---job-assignment"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_b"  target="_blank" rel="noopener"
     >B - Job Assignment</a>
 </h1><h2 id="题目大意-1">题目大意
-</h2>$$t=
+</h2><p>你的公司有$N$位员工，他们叫员工$1$，员工$2$，……，员工$N$。<br>
+你有两份重要工作要完成——工作A和工作B。<br>
+员工$i$可以在$A_i$分钟内完成工作A并在$B_i$分钟内完成工作B。<br>
+你要将两个工作分别分给某一位员工。<br>
+假设工作A分给了员工$i$，工作B分给了员工$j$，将要花的分钟数设为$t$，则：<br>
+</p>
+$$t=
 \begin{cases}
 A_i+B_i & (i=j) \\
 \max\{A_i,B_j\} & (i\ne j) \\
@@ -575,7 +581,7 @@ $A_N~B_N$</p>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 1005
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define INF 2147483647
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -592,7 +598,7 @@ $A_N~B_N$</p>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">setmin</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> <span class="c1">// i == j
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">setmin</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]));</span>
 </span></span><span class="line"><span class="cl">            <span class="n">setmin</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
@@ -604,7 +610,7 @@ $A_N~B_N$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="c---squared-errorhttpsatcoderjpcontestsabc194tasksabc194_c"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_c"  target="_blank" rel="noopener"
+<h1 id="c---squared-error"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_c"  target="_blank" rel="noopener"
     >C - Squared Error</a>
 </h1><h2 id="题目大意-2">题目大意
 </h2><p>给你一个长度为$N$的序列$A$。<br>
@@ -659,7 +665,16 @@ $A_1~A_2~A_3~\dots~A_N$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="分析-2">分析
-</h2>$$\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} (A_i - A_j)^2$$$$\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} {A_i}^2+{A_j}^2-2A_iA_j$$$$(\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} {A_i}^2)+(\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} {A_j}^2)-(\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} 2A_iA_j)$$$$(n-1)(\sum_{i = 1}^{N} {A_i}^2)-2(\sum_{i = 1}^{N} S_iA_i)$$<p><br>
+</h2><p>根据公式$(a-b)^2=a^2+b^2-2ab$，我们可以使用如下推理：<br>
+</p>
+$$\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} (A_i - A_j)^2$$<p><br>
+</p>
+$$\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} {A_i}^2+{A_j}^2-2A_iA_j$$<p><br>
+</p>
+$$(\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} {A_i}^2)+(\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} {A_j}^2)-(\sum_{i = 2}^{N} \sum_{j = 1}^{i - 1} 2A_iA_j)$$<p><br>
+这时，我们设$S_i=\sum\limits_{j=1}^{i-1} A_i$，则：<br>
+</p>
+$$(n-1)(\sum_{i = 1}^{N} {A_i}^2)-2(\sum_{i = 1}^{N} S_iA_i)$$<p><br>
 这时，计算所有$S_i$的时间复杂度为$\mathcal O(n)$，求最终结果的时间复杂度也是$\mathcal O(n)$，所以总时间复杂度为$\mathcal O(n)$。</p>
 <h2 id="代码-2">代码
 </h2><div class="highlight"><div class="chroma">
@@ -690,7 +705,7 @@ $A_1~A_2~A_3~\dots~A_N$</p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 300005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -713,7 +728,7 @@ $A_1~A_2~A_3~\dots~A_N$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="d---journeyhttpsatcoderjpcontestsabc194tasksabc194_d"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_d"  target="_blank" rel="noopener"
+<h1 id="d---journey"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_d"  target="_blank" rel="noopener"
     >D - Journey</a>
 </h1><h2 id="题目大意-3">题目大意
 </h2><p>我们有一个$N$个顶点（称为顶点$1$、顶点$2$、……、顶点$N$）。<br>
@@ -768,7 +783,7 @@ Takahashi会重复执行以下操作，直到这个图变为连通图：</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -783,7 +798,7 @@ Takahashi会重复执行以下操作，直到这个图变为连通图：</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="e---mex-minhttpsatcoderjpcontestsabc194tasksabc194_e"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_e"  target="_blank" rel="noopener"
+<h1 id="e---mex-min"><a class="link" href="https://atcoder.jp/contests/abc194/tasks/abc194_e"  target="_blank" rel="noopener"
     >E - Mex Min</a>
 </h1><h2 id="题目大意-4">题目大意
 </h2><p>我们定义$\mathrm{mex}(x_1, x_2, x_3, \dots, x_k)$为最小的不出现在$x_1, x_2, x_3, \dots, x_k$中的自然数。<br>
@@ -840,7 +855,7 @@ Takahashi会重复执行以下操作，直到这个图变为连通图：</p>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 1500005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">cnt</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
@@ -920,18 +935,24 @@ Takahashi会重复执行以下操作，直到这个图变为连通图：</p>
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -1024,12 +1045,12 @@ Takahashi会重复执行以下操作，直到这个图变为连通图：</p>
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1111,6 +1132,7 @@ Takahashi会重复执行以下操作，直到这个图变为连通图：</p>
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1118,7 +1140,7 @@ Takahashi会重复执行以下操作，直到这个图变为连通图：</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

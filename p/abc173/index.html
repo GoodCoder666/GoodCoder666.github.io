@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/p/abc173/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="AtCoder Beginner Contest 173 A~D 题解">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="AtCoder Beginner Contest 173 A~D 题解">
 <meta property='og:description' content="A - Payment\r题目大意\r如果使用价值$1000$元的纸币（假设有）支付$N$元，服务员会找多少钱？\n$1\\le N\\le 10000$\n输入格式\r$N$\n输出格式\r一行，即服务员找的钱数。\n样例\r输入 输出 1900 100 3000 0 分析\r特判：\n如果$N$除以$1000$能整除，那么不需要找钱，输出$0$；\n如果有余，输出$1000 - (n\\mod1000)$。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/abc173/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -385,7 +385,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2020/07/20</time>
+                <time class="article-time--published" datetime='2020-07-20T11:59:00&#43;08:00'>2020/07/20</time>
             </div>
         
 
@@ -434,7 +434,7 @@
     <section class="article-content">
     
     
-    <h1 id="a---paymenthttpsatcoderjpcontestsabc173tasksabc173_a"><a class="link" href="https://atcoder.jp/contests/abc173/tasks/abc173_a"  target="_blank" rel="noopener"
+    <h1 id="a---payment"><a class="link" href="https://atcoder.jp/contests/abc173/tasks/abc173_a"  target="_blank" rel="noopener"
     >A - Payment</a>
 </h1><h2 id="题目大意">题目大意
 </h2><p>如果使用价值$1000$元的纸币（假设有）支付$N$元，服务员会找多少钱？</p>
@@ -483,7 +483,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -496,7 +496,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="b---judge-status-summaryhttpsatcoderjpcontestsabc173tasksabc173_b"><a class="link" href="https://atcoder.jp/contests/abc173/tasks/abc173_b"  target="_blank" rel="noopener"
+<h1 id="b---judge-status-summary"><a class="link" href="https://atcoder.jp/contests/abc173/tasks/abc173_b"  target="_blank" rel="noopener"
     >B - Judge Status Summary</a>
 </h1><h2 id="题目大意-1">题目大意
 </h2><p>某人完成了某道算法竞赛题，有<code>AC</code>、<code>WA</code>、<code>TLE</code>、<code>RE</code>四种结果（<em>status</em>）。题目有$N$个测试样例，测试结果分别为$S_1, S_2, \dots, S_N$，请分别统计并输出<code>AC</code>、<code>WA</code>、<code>TLE</code>、<code>RE</code>的个数。（格式详见输出格式）</p>
@@ -641,7 +641,7 @@ $S_N$</p>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">cnt</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -665,7 +665,7 @@ $S_N$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="c---h-and-vhttpsatcoderjpcontestsabc173tasksabc173_c"><a class="link" href="https://atcoder.jp/contests/abc173/tasks/abc173_c"  target="_blank" rel="noopener"
+<h1 id="c---h-and-v"><a class="link" href="https://atcoder.jp/contests/abc173/tasks/abc173_c"  target="_blank" rel="noopener"
     >C - H and V</a>
 </h1><h2 id="题目大意-2">题目大意
 </h2><p>给定$H$行$W$列的方格。在第$i$行$j$列（$1\le i\le H$, $1\le j\le W$）的方格是$c_i$$_,$$_j$。它可能是<code>#</code>（黑色）或<code>.</code>（白色）。<br>
@@ -836,7 +836,7 @@ $c_{H,1}~c_{H,2}~\dots~c_{1,W}$</p>
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 6
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">c</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
@@ -852,14 +852,14 @@ $c_{H,1}~c_{H,2}~\dots~c_{1,W}$</p>
 </span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">ws</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">ws</span><span class="o">&lt;</span><span class="n">m2</span><span class="p">;</span> <span class="n">ws</span><span class="o">++</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">tmp</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">];</span> <span class="c1">// 不能修改原数组，所以复制一个数组
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">memcpy</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+</span></span></span><span class="line"><span class="cl">            <span class="n">memcpy</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">h</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">// 行
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">if</span><span class="p">(</span><span class="n">hs</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">))</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">w</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="c1">// 列
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;.&#39;</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">hs</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">))</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">w</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="c1">// 列
+</span></span></span><span class="line"><span class="cl">                    <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;.&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">w</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">// 列
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">if</span><span class="p">(</span><span class="n">ws</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">))</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">h</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="c1">// 行
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="n">tmp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;.&#39;</span><span class="p">;</span> <span class="c1">// 注意：绝对不能写成tmp[i][j]!
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">ws</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">))</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">h</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="c1">// 行
+</span></span></span><span class="line"><span class="cl">                    <span class="n">tmp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;.&#39;</span><span class="p">;</span> <span class="c1">// 注意：绝对不能写成tmp[i][j]!
+</span></span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">h</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">w</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                    <span class="n">cnt</span> <span class="o">++</span><span class="p">;</span>
@@ -871,7 +871,7 @@ $c_{H,1}~c_{H,2}~\dots~c_{1,W}$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="d---chat-in-a-circlehttpsatcoderjpcontestsabc173tasksabc173_d"><a class="link" href="https://atcoder.jp/contests/abc173/tasks/abc173_d"  target="_blank" rel="noopener"
+<h1 id="d---chat-in-a-circle"><a class="link" href="https://atcoder.jp/contests/abc173/tasks/abc173_d"  target="_blank" rel="noopener"
     >D - Chat in a Circle</a>
 </h1><h2 id="题目大意-3">题目大意
 </h2><p>有$N$个人要在某地会和，编号为$i$的人的<strong>友情值</strong>为整数$A_i$。这些人要围成一圈，每人到达该地后会在某个位置插入圈子。每个人的<strong>舒适度</strong>是入圈时相邻两个人的友情值中较小的一个（第一个人的舒适度为$0$）。现在，由你决定他们的入圈顺序和插入位置，问：$N$个人的最大舒适度之和是多少？</p>
@@ -907,7 +907,7 @@ $A_1~A_2~\dots~A_N$</p>
 <img src="/p/abc173/1.png"
 	width="800"
 	height="246"
-	srcset="/p/abc173/1_hu16063584059645263360.png 480w, /p/abc173/1_hu15550972327064388502.png 1024w"
+	srcset="/p/abc173/1_hu_7603a04df8fdd90f.png 480w, /p/abc173/1_hu_9c162c90681b801c.png 1024w"
 	loading="lazy"
 	
 		alt="舒适度"
@@ -995,7 +995,7 @@ $A_1~A_2~\dots~A_N$</p>
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 200005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">n</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -1082,18 +1082,24 @@ $A_1~A_2~\dots~A_N$</p>
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -1186,12 +1192,12 @@ $A_1~A_2~\dots~A_N$</p>
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1273,6 +1279,7 @@ $A_1~A_2~\dots~A_N$</p>
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1280,7 +1287,7 @@ $A_1~A_2~\dots~A_N$</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

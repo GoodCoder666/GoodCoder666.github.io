@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://goodcoder666.github.io/en/p/algonotes-tree-dp/'>
 
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="【Algorithm Notes】Tree DP Algorithm Summary & Detailed Explanation">
+<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="【Algorithm Notes】Tree DP Algorithm Summary & Detailed Explanation">
 <meta property='og:description' content=" Translation Notice\nThis article was machine-translated using DeepSeek-R1.\nOriginal Version: Authored in Chinese by myself Accuracy Advisory: Potential discrepancies may exist between translations Precedence: The Chinese text shall prevail in case of ambiguity Feedback: Technical suggestions regarding translation quality are welcomed Definition\rTree DP, also known as Tree-shaped DP, refers to DP (Dynamic Programming) performed on trees, and is one of the more complex types in DP algorithms.\nBasics\rLet $f[u]=~$data related to tree node $u$, and perform $\\text{DP}$ in topological order (from leaf nodes up to the root) to ensure a node&rsquo;s children have updated DP values before updating the current node. Typically implemented via DFS:\n">
 <meta property='og:url' content='https://goodcoder666.github.io/en/p/algonotes-tree-dp/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -19,7 +19,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu3086030834252304089.png" width="300"
+                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -290,19 +290,19 @@
     <li><a href="#basics">Basics</a>
       <ol>
         <li><a href="#example-11subtree-size">【Example 1.1】Subtree Size</a></li>
-        <li><a href="#example-12luogu-p1352httpswwwluogucomcnproblemp1352-no-bosss-party">【Example 1.2】<a href="https://www.luogu.com.cn/problem/P1352">Luogu P1352</a> No Boss&rsquo;s Party</a></li>
+        <li><a href="#example-12luogu-p1352-no-bosss-party">【Example 1.2】Luogu P1352 No Boss’s Party</a></li>
         <li><a href="#exercises">Exercises</a></li>
       </ol>
     </li>
     <li><a href="#tree-knapsack">Tree Knapsack</a>
       <ol>
-        <li><a href="#example-21luogu-p2014httpswwwluogucomcnproblemp2014--acwing-286httpswwwacwingcomproblemcontent288-course-selection">【Example 2.1】<a href="https://www.luogu.com.cn/problem/P2014">Luogu P2014</a> / <a href="https://www.acwing.com/problem/content/288/">AcWing 286</a> Course Selection</a></li>
+        <li><a href="#example-21luogu-p2014--acwing-286-course-selection">【Example 2.1】Luogu P2014 / AcWing 286 Course Selection</a></li>
         <li><a href="#exercises-1">Exercises</a></li>
       </ol>
     </li>
     <li><a href="#rerooting-dp">Rerooting DP</a>
       <ol>
-        <li><a href="#example-31luogu-p3478httpswwwluogucomcnproblemp3478-poi2008-sta-station">【Example 3.1】<a href="https://www.luogu.com.cn/problem/P3478">Luogu P3478</a> [POI2008] STA-Station</a></li>
+        <li><a href="#example-31luogu-p3478-poi2008-sta-station">【Example 3.1】Luogu P3478 [POI2008] STA-Station</a></li>
         <li><a href="#exercises-2">Exercises</a></li>
       </ol>
     </li>
@@ -348,7 +348,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2022/08/12</time>
+                <time class="article-time--published" datetime='2022-08-12T10:15:00&#43;08:00'>2022/08/12</time>
             </div>
         
 
@@ -423,11 +423,11 @@ This article was machine-translated using DeepSeek-R1.</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Traverse node v
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">dp</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">...;</span> <span class="c1">// Initialize
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">u</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// Traverse all children of v
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl">    <span class="n">dp</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="p">...;</span> <span class="c1">// Initialize
+</span></span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">u</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// Traverse all children of v
+</span></span></span><span class="line"><span class="cl">        <span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">update</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// Update current node&#39;s DP value using child&#39;s DP value
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -435,6 +435,8 @@ This article was machine-translated using DeepSeek-R1.</p>
 </h3><blockquote>
 <p>Given a tree with $N$ nodes rooted at node 1. For each $i=1,2,\dots,N$, compute the size of the subtree rooted at node $i$.</p>
 </blockquote>
+<p>Let $f[v]=~$size of subtree rooted at $v$. Then:<br>
+</p>
 $$
 f[v]=1+\sum_{i=1}^{\text{deg}_v} G[v][i]
 $$<div class="highlight"><div class="chroma">
@@ -477,19 +479,19 @@ $$<div class="highlight"><div class="chroma">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 100
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span> <span class="c1">// Adjacency list
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">sz</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span> <span class="c1">// DP array, sz[v] = size of subtree v
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">sz</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span> <span class="c1">// DP array, sz[v] = size of subtree v
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">sz</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Initial size is 1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">u</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="c1">// Traverse children
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">u</span><span class="p">:</span> <span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="c1">// Traverse children
+</span></span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">);</span> 
 </span></span><span class="line"><span class="cl">        <span class="n">sz</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">[</span><span class="n">u</span><span class="p">];</span> <span class="c1">// Update subtree size
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
@@ -509,7 +511,7 @@ $$<div class="highlight"><div class="chroma">
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="example-12luogu-p1352httpswwwluogucomcnproblemp1352-no-bosss-party">【Example 1.2】<a class="link" href="https://www.luogu.com.cn/problem/P1352"  target="_blank" rel="noopener"
+</div><h3 id="example-12luogu-p1352-no-bosss-party">【Example 1.2】<a class="link" href="https://www.luogu.com.cn/problem/P1352"  target="_blank" rel="noopener"
     >Luogu P1352</a> No Boss&rsquo;s Party
 </h3><p>This is the <strong>Maximum Independent Set on a Tree</strong> problem.</p>
 <p>Let $f(v)$ be the optimal solution when selecting $v$, and $g(v)$ when not selecting $v$. Transitions:</p>
@@ -569,7 +571,7 @@ $$<div class="highlight"><div class="chroma">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 6005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">max</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">?</span> <span class="nl">x</span><span class="p">:</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -624,7 +626,7 @@ $$<div class="highlight"><div class="chroma">
     >Luogu P3574 [POI2014] FAR-FarmCraft</a></li>
 </ul>
 <h2 id="tree-knapsack">Tree Knapsack
-</h2><h3 id="example-21luogu-p2014httpswwwluogucomcnproblemp2014--acwing-286httpswwwacwingcomproblemcontent288-course-selection">【Example 2.1】<a class="link" href="https://www.luogu.com.cn/problem/P2014"  target="_blank" rel="noopener"
+</h2><h3 id="example-21luogu-p2014--acwing-286-course-selection">【Example 2.1】<a class="link" href="https://www.luogu.com.cn/problem/P2014"  target="_blank" rel="noopener"
     >Luogu P2014</a> / <a class="link" href="https://www.acwing.com/problem/content/288/"  target="_blank" rel="noopener"
     >AcWing 286</a> Course Selection
 </h3><p>Construct a tree with virtual root 0. Let $f[i][j]$ be the maximum credit when selecting $j$ courses in subtree $i$. Add 1 to $M$ since root 0 must be selected.</p>
@@ -678,7 +680,7 @@ $$<div class="highlight"><div class="chroma">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 305
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">setmax</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -726,7 +728,7 @@ $$<div class="highlight"><div class="chroma">
     >LOJ #2268. 「SDOI2017」Apple Tree</a></li>
 </ul>
 <h2 id="rerooting-dp">Rerooting DP
-</h2><h3 id="example-31luogu-p3478httpswwwluogucomcnproblemp3478-poi2008-sta-station">【Example 3.1】<a class="link" href="https://www.luogu.com.cn/problem/P3478"  target="_blank" rel="noopener"
+</h2><h3 id="example-31luogu-p3478-poi2008-sta-station">【Example 3.1】<a class="link" href="https://www.luogu.com.cn/problem/P3478"  target="_blank" rel="noopener"
     >Luogu P3478</a> [POI2008] STA-Station
 </h3><p>Compute depth sum for all nodes when treating each node as root. Use two-pass DFS for $\mathcal O(N)$ solution.</p>
 <div class="highlight"><div class="chroma">
@@ -783,7 +785,7 @@ $$<div class="highlight"><div class="chroma">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 1000005
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">LL</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -895,18 +897,24 @@ $$<div class="highlight"><div class="chroma">
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -999,12 +1007,12 @@ $$<div class="highlight"><div class="chroma">
         
             2020 - 
         
-        2025 GoodCoder&#39;s Blog
+        2026 GoodCoder&#39;s Blog
     </section>
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -1086,6 +1094,7 @@ $$<div class="highlight"><div class="chroma">
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
+    
 
             </main>
         </div>
@@ -1093,7 +1102,7 @@ $$<div class="highlight"><div class="chroma">
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
