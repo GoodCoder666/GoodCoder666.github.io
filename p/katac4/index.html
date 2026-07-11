@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="zh" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r如题，这是我的一个探索型项目。其目的并不是为了达成什么效果，而是在尝试的过程中学习知识。本文包含简要的技术报告，亦有过程中的一些心得体会。评论系统还没弄好，若有任何想法或疑问欢迎直接在项目的 Issue / Discussion 中发出来。\n">
 <title>katac4: 基于 AlphaZero 的强化学习探索</title>
 
-<link rel='canonical' href='https://goodcoder666.github.io/p/katac4/'>
 
-<link rel="stylesheet" href="/scss/style.min.c141fa7f089dce101a8f37fe2e449c3f3179af78da35bef65eef05d9a75c80ed.css"><meta property='og:title' content="katac4: 基于 AlphaZero 的强化学习探索">
+<link rel="canonical" href="https://goodcoder666.github.io/p/katac4/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.59c5eb617b2b83358d0baf163162325d5249a2be44239b430beb29a87c1ddbe4.css"><meta property='og:title' content="katac4: 基于 AlphaZero 的强化学习探索">
 <meta property='og:description' content="前言\r如题，这是我的一个探索型项目。其目的并不是为了达成什么效果，而是在尝试的过程中学习知识。本文包含简要的技术报告，亦有过程中的一些心得体会。评论系统还没弄好，若有任何想法或疑问欢迎直接在项目的 Issue / Discussion 中发出来。\n">
 <meta property='og:url' content='https://goodcoder666.github.io/p/katac4/'>
 <meta property='og:site_name' content='GoodCoder&#39;s Blog'>
@@ -64,25 +70,19 @@
     </button>
 
     <header>
-        
-            
-            <figure class="site-avatar">
+        <figure class="site-avatar">
                 <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/avatar_hu_2e33e66f3f044e8c.png" width="300"
-                            height="300" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
+                    <img src="/img/avatar.png" 
+                        width="320"
+                        height="320"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
                 </a>
                 
                     <span class="emoji">🍥</span>
                 
             </figure>
-            
         
         
         <div class="site-meta">
@@ -94,7 +94,7 @@
                 <li>
                     <a 
                         href='https://github.com/GoodCoder666'
-                        target="_blank"
+                        
                         title="GitHub"
                         rel="me"
                     >
@@ -114,7 +114,7 @@
                 <li>
                     <a 
                         href='https://x.com/stanleys09'
-                        target="_blank"
+                        
                         title="Twitter"
                         rel="me"
                     >
@@ -138,8 +138,6 @@
         <li >
             <a href='/' >
                 
-                
-                
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <polyline points="5 12 3 12 12 3 21 12 19 12" />
@@ -157,8 +155,6 @@
         
         <li >
             <a href='/archives/' >
-                
-                
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -178,8 +174,6 @@
         <li >
             <a href='/search/' >
                 
-                
-                
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="10" cy="10" r="7" />
@@ -197,8 +191,6 @@
         <li >
             <a href='/about/' >
                 
-                
-                
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="12" cy="7" r="4" />
@@ -214,9 +206,8 @@
         
         <li class="menu-bottom-section">
             <ol class="menu">
-                    
-                        <li id="i18n-switch">  
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <li id="i18n-switch">  
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <path d="M4 5h7" />
   <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
@@ -227,15 +218,30 @@
 
 
 
-                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                            
                                 
-                                    <option value="https://goodcoder666.github.io/en/" >English</option>
                                 
-                                    <option value="https://goodcoder666.github.io/" selected>中文</option>
+                                    
+                                        
+                                    
                                 
-                            </select>
-                        </li>
-                    
+                                    
+                                
+                                <option value="/en/p/katac4/" >English</option>
+                            
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                    
+                                
+                                <option value="/p/katac4/" selected>中文</option>
+                            
+                        </select>
+                    </li>
                 
 
                 
@@ -284,7 +290,8 @@
         <h2 class="widget-title section-title">目录</h2>
         
         <div class="widget--toc">
-            <nav id="TableOfContents">
+            <nav class="toc-nav" id="TableOfContents">
+                
   <ol>
     <li><a href="#前言">前言</a></li>
     <li><a href="#alphazero-速览">AlphaZero 速览</a></li>
@@ -310,7 +317,8 @@
     <li><a href="#后续改进方向">后续改进方向</a></li>
     <li><a href="#拓展阅读">拓展阅读</a></li>
   </ol>
-</nav>
+
+            </nav>
         </div>
     </section>
 
@@ -338,10 +346,14 @@
     
     
     
-    <footer class="article-time">
+    
+    
+    
+    <footer class="article-meta">
         
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
   <circle cx="18" cy="18" r="4" />
@@ -350,13 +362,11 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2025-06-28T23:49:50&#43;08:00'>2025/06/28</time>
-            </div>
-        
+                    <time class="article-time--published" datetime='2025-06-28T23:49:50&#43;08:00'>2025/06/28</time>
+                
 
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="12" cy="12" r="9" />
   <polyline points="12 7 12 12 15 15" />
@@ -364,17 +374,16 @@
 
 
 
-                <time class="article-time--reading">
-                    阅读时长: 14 分钟
-                </time>
+                    <time class="article-time--reading">
+                        阅读时长: 14 分钟
+                    </time>
+                
             </div>
         
-    </footer>
-    
 
-    
-        <footer class="article-translations">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        
+            <div class="inline-meta">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <path d="M4 5h7" />
   <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
@@ -385,16 +394,60 @@
 
 
 
-            <div>
                 
-                    <a href="https://goodcoder666.github.io/en/p/katac4/" class="link">English</a>
+                    <a href="/en/p/katac4/" class="link">English</a>
                 
             </div>
-        </footer>
+        
+
+        
+    </footer>
     
 </div>
 
 </header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>目录</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#alphazero-速览">AlphaZero 速览</a></li>
+    <li><a href="#训练退火">训练，退火</a></li>
+    <li><a href="#算法优化">算法优化</a>
+      <ol>
+        <li><a href="#梯度累加">梯度累加</a></li>
+        <li><a href="#动作空间剪枝">动作空间剪枝</a></li>
+        <li><a href="#first-play-urgency-fpu">First Play Urgency (FPU)</a></li>
+        <li><a href="#模拟上限随机化">模拟上限随机化</a></li>
+        <li><a href="#强制探索--策略剪枝">强制探索 &amp; 策略剪枝</a></li>
+        <li><a href="#动态经验回放池">动态经验回放池</a></li>
+        <li><a href="#蒙特卡洛图搜索mcgs">蒙特卡洛图搜索（MCGS）</a></li>
+      </ol>
+    </li>
+    <li><a href="#工程优化">工程优化</a>
+      <ol>
+        <li><a href="#并行自对弈">并行自对弈</a></li>
+        <li><a href="#cuda-graphs">CUDA Graphs</a></li>
+      </ol>
+    </li>
+    <li><a href="#测试结果">测试结果</a></li>
+    <li><a href="#后续改进方向">后续改进方向</a></li>
+    <li><a href="#拓展阅读">拓展阅读</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
 
     <section class="article-content">
     
@@ -410,20 +463,7 @@
     >KataGo</a> 中的一些算法改进，故命名为 katac4，代码在 <a class="link" href="https://github.com/GoodCoder666/katac4"  target="_blank" rel="noopener"
     >GitHub</a> 上完全开源。</p>
 <p>截至文章写作时间（2025.06.27），katac4 在游戏天梯上以遥遥领先的分数稳居榜一：</p>
-<p><img src="/p/katac4/rank.png"
-	width="1756"
-	height="948"
-	srcset="/p/katac4/rank_hu_b5109a7e84fd264e.png 480w, /p/katac4/rank_hu_62efb07893057ce.png 1024w"
-	loading="lazy"
-	
-		alt="6月27日的四子棋游戏天梯"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="185"
-		data-flex-basis="444px"
-	
-></p>
+<p><img alt="6月27日的四子棋游戏天梯" class="gallery-image" data-flex-basis="444px" data-flex-grow="185" height="948" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/katac4/rank.png" srcset="/p/katac4/rank_hu_7aee596d51c14311.png 800w, /p/katac4/rank_hu_530c4357819b74c9.png 1600w, /p/katac4/rank.png 1756w" width="1756"></p>
 <h2 id="alphazero-速览">AlphaZero 速览
 </h2><p>网上通俗易懂地介绍 AlphaZero 的文章不在少数，因此这里仅作较为抽象的简要概述（思路参考 KataGo 论文）。</p>
 <p>算法通过神经网络引导的蒙特卡洛树搜索（MCTS）进行自我对弈以生成训练数据。搜索过程即反复扩展游戏树：每次从根节点出发沿一条链走到叶子节点，在节点 $n$ 处选择使以下式子最大的子节点 $c$ 进行访问：</p>
@@ -459,10 +499,12 @@ $$<p>其中 $r \in \{\text{win}, \text{loss}, \text{draw}\}$ 表示当前玩家�
 </ol>
 <p>很多超参数不一定最优，都是随手设置的，但是它们的组合确实有效，希望能给大家提供一些参考价值。</p>
 <h2 id="算法优化">算法优化
-</h2><blockquote>
-<p>Recomputing the AlphaGo Zero weights will <a class="link" href="http://web.archive.org/web/20190205013627/http://computer-go.org/pipermail/computer-go/2017-October/010307.html"  target="_blank" rel="noopener"
+</h2>
+    <blockquote>
+        <p>Recomputing the AlphaGo Zero weights will <a class="link" href="http://web.archive.org/web/20190205013627/http://computer-go.org/pipermail/computer-go/2017-October/010307.html"  target="_blank" rel="noopener"
     >take about 1700 years on commodity hardware</a>.</p>
-</blockquote>
+
+    </blockquote>
 <p>这句话来自 Leela Zero 项目的 README 文档。AlphaZero 本身的探索过程十分低效，但是利用精心设计的算法优化可以显著缩短其训练周期。<a class="link" href="https://arxiv.org/abs/1902.10565"  target="_blank" rel="noopener"
     >KataGo 论文</a>中的方法共同作用，可将训练效率提升 ~50x。下面介绍我使用的一些算法优化，其中部分来自 KataGo。</p>
 <h3 id="梯度累加">梯度累加
@@ -482,9 +524,11 @@ $$<p>其中 $r \in \{\text{win}, \text{loss}, \text{draw}\}$ 表示当前玩家�
 </ol>
 <p>这种优化非常简单，却能显著加快训练前期探索，让模型迅速理解游戏规则。同时，这也能避免一些很糟糕的盲点，尤其是对手在棋盘边缘成三有可能会被 CNN 忽视。</p>
 <h3 id="first-play-urgency-fpu">First Play Urgency (FPU)
-</h3><blockquote>
-<p>这项优化源自 Leela Zero。</p>
-</blockquote>
+</h3>
+    <blockquote>
+        <p>这项优化源自 Leela Zero。</p>
+
+    </blockquote>
 <p>细心的读者肯定会问：PUCT 计算时，若子节点没有访问即 $N(c)=0$，$V(c)$ 怎么定义？</p>
 <p>AlphaGo Zero 给出了标准答案：$V(c)=0$。但 Leela Zero 社区讨论发现，这并不是最优选择。他们选择：</p>
 $$
@@ -495,15 +539,19 @@ P_\text{explored}=\sum_{c'|N(c')>0} P(c')
 $$<p>读者可以自行思考这种做法的合理性。<a class="link" href="https://github.com/glinscott/leela-chess/issues/160#issuecomment-374912061"  target="_blank" rel="noopener"
     >Lc0 的一个讨论</a>指出，对于实力较强的神经网络，此法足以带来 ~200 Elo 的提升。</p>
 <h3 id="模拟上限随机化">模拟上限随机化
-</h3><blockquote>
-<p>对应 KataGo 论文中的 <em>Playout Cap Randomization</em>。</p>
-</blockquote>
+</h3>
+    <blockquote>
+        <p>对应 KataGo 论文中的 <em>Playout Cap Randomization</em>。</p>
+
+    </blockquote>
 <p><strong>AlphaZero 中的两个输出头训练所需 playouts 并不相同</strong>。一些非正式研究表明，训练 policy head 最高效的模拟次数设置与 AlphaZero 的 $N=800$ 十分接近，但在 AlphaGo 的第一个版本中只用 $N=1$ 也能训练出较好的 value head。为了缓解二者的紧张关系，我们取一个较小的模拟次数 $n < N$，并以概率 $p$ 执行 fast search（$n$ 次模拟），其余情况正常 full search（$N$ 次模拟）。<strong>fast search 产生的样本不用于策略训练<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>。</strong></p>
 <p>我的超参数选择是 $(N,n)=(800,160)$，以及 $p=0.25$。个人感觉对于四子棋这种游戏，模拟次数再小一点应该也没事。</p>
 <h3 id="强制探索--策略剪枝">强制探索 &amp; 策略剪枝
-</h3><blockquote>
-<p>对应 KataGo 论文中的 <em>Forced Playouts and Policy Target Pruning</em>。</p>
-</blockquote>
+</h3>
+    <blockquote>
+        <p>对应 KataGo 论文中的 <em>Forced Playouts and Policy Target Pruning</em>。</p>
+
+    </blockquote>
 <p>前面提到，为了增强探索，AlphaZero 在根节点处引入 Dirichlet noise。然而这种方式并不能保证好的着法一定能被发现。</p>
 <p>设想下面这个场景：</p>
 <ol>
@@ -528,45 +576,25 @@ N'(c)=\mathrm{clip}\left(\left\lceil\frac{P\sqrt N}{V+\text{PUCT}(c^*)}-1\right\
 $$<p>为了方便阅读，以上公式中直接用 $N$ 指代 $N(c)$，$P$ 指代 $P(c)$，etc.</p>
 <p>以下使用/不使用策略剪枝的效果对比来自 KataGo 论文。黑：$p \approx 2\times 10^{-4}$；绿： $p \approx 1$。</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th style="text-align: center"><img src="/p/katac4/logpolicy1.png"
-	width="684"
-	height="686"
-	srcset="/p/katac4/logpolicy1_hu_f9ceb047e1da7cd9.png 480w, /p/katac4/logpolicy1_hu_46da9b8d787eef3e.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="99"
-		data-flex-basis="239px"
-	
-></th>
-          <th style="text-align: center"><img src="/p/katac4/logpolicy2.png"
-	width="684"
-	height="686"
-	srcset="/p/katac4/logpolicy2_hu_eeb37beee4074d52.png 480w, /p/katac4/logpolicy2_hu_9680415ae2de505b.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="99"
-		data-flex-basis="239px"
-	
-></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">使用策略剪枝</td>
-          <td style="text-align: center">不使用策略剪枝</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center"><img class="gallery-image" data-flex-basis="239px" data-flex-grow="99" height="686" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/katac4/logpolicy1.png" width="684"></th>
+					<th style="text-align: center"><img class="gallery-image" data-flex-basis="239px" data-flex-grow="99" height="686" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/katac4/logpolicy2.png" width="684"></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">使用策略剪枝</td>
+					<td style="text-align: center">不使用策略剪枝</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="动态经验回放池">动态经验回放池
-</h3><blockquote>
-<p>来自 KataGo 论文中 <em>Appendix C: Training Details</em>。</p>
-</blockquote>
+</h3>
+    <blockquote>
+        <p>来自 KataGo 论文中 <em>Appendix C: Training Details</em>。</p>
+
+    </blockquote>
 <p>Off-policy 的强化学习算法中，经验回放池的大小（容纳样本数）大多是固定的，常设置在 $[2^{14},2^{20}]$ 区间内。而我们采取一种亚线性的增长策略：</p>
 $$
 N_{\text{window}} = c \left( 1 + \beta \frac{ ( N_{\text{total}} / c ) ^ \alpha - 1} { \alpha } \right)
@@ -599,120 +627,57 @@ $$
 </h3><p>这也是一个比较通用的优化技巧，在很多机器学习应用中都可以使用。其原理是<strong>将整个计算图发送到 GPU 上执行，显著减少前/后端交互和 kernel 启动开销 <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></strong>。对于较小的网络和 batch_size，CUDA Graph 可以带来意料之外的速度提升。</p>
 <p>项目根目录下提供了（简陋的）benchmark 脚本，在单张 RTX 4090 上测试结果如下（<code>batch_size=1</code> 模拟 self-play 环境）：</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>类别</th>
-          <th style="text-align: left">推理方法</th>
-          <th style="text-align: center">计算速度（FPS）</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Base</td>
-          <td style="text-align: left"><code>torch.no_grad</code></td>
-          <td style="text-align: center">$249.1$</td>
-      </tr>
-      <tr>
-          <td>Base</td>
-          <td style="text-align: left"><code>torch.inference_mode</code></td>
-          <td style="text-align: center">$265.9$</td>
-      </tr>
-      <tr>
-          <td>TorchScript</td>
-          <td style="text-align: left"><code>torch.jit.script</code></td>
-          <td style="text-align: center">$271.5$</td>
-      </tr>
-      <tr>
-          <td>TorchScript</td>
-          <td style="text-align: left"><code>torch.jit.trace</code></td>
-          <td style="text-align: center">$501.4$</td>
-      </tr>
-      <tr>
-          <td>CUDA Graphs</td>
-          <td style="text-align: left"><code>torch.cuda.graph</code></td>
-          <td style="text-align: center">$3184.5$</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类别</th>
+					<th style="text-align: left">推理方法</th>
+					<th style="text-align: center">计算速度（FPS）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Base</td>
+					<td style="text-align: left"><code>torch.no_grad</code></td>
+					<td style="text-align: center">$249.1$</td>
+			</tr>
+			<tr>
+					<td>Base</td>
+					<td style="text-align: left"><code>torch.inference_mode</code></td>
+					<td style="text-align: center">$265.9$</td>
+			</tr>
+			<tr>
+					<td>TorchScript</td>
+					<td style="text-align: left"><code>torch.jit.script</code></td>
+					<td style="text-align: center">$271.5$</td>
+			</tr>
+			<tr>
+					<td>TorchScript</td>
+					<td style="text-align: left"><code>torch.jit.trace</code></td>
+					<td style="text-align: center">$501.4$</td>
+			</tr>
+			<tr>
+					<td>CUDA Graphs</td>
+					<td style="text-align: left"><code>torch.cuda.graph</code></td>
+					<td style="text-align: center">$3184.5$</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>另外 <code>torch.compile(mode='reduce-overhead')</code> 也可以实现基于 CUDA Graph 的推理。不过这个 API 不支持 Windows，且编译耗时，没有 <code>torch.cuda.graph</code> 用的舒服。</p>
 <h2 id="测试结果">测试结果
 </h2><p>训练持续约 $14$ 天，共 $30000 \times 16$ 次迭代。首先是训练过程的 <strong>Loss</strong>、<strong>Entropy</strong>（策略熵）和 <strong>episode_len</strong>（自对弈棋局长度）曲线：</p>
-<p><img src="/p/katac4/loss.png"
-	width="1977"
-	height="571"
-	srcset="/p/katac4/loss_hu_78c763f0e110d2cb.png 480w, /p/katac4/loss_hu_28d364c67eaefa46.png 1024w"
-	loading="lazy"
-	
-		alt="Total loss / Policy loss / Value loss (Smoothing = 0.9)"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="346"
-		data-flex-basis="830px"
-	
-></p>
-<p><img src="/p/katac4/entropy_episode_len.png"
-	width="1317"
-	height="563"
-	srcset="/p/katac4/entropy_episode_len_hu_9e505db228e7e05.png 480w, /p/katac4/entropy_episode_len_hu_d76f320106f349be.png 1024w"
-	loading="lazy"
-	
-		alt="Entropy / Episode_len (Smoothing = 0.99)"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="233"
-		data-flex-basis="561px"
-	
-></p>
+<p><img alt="Total loss / Policy loss / Value loss (Smoothing = 0.9)" class="gallery-image" data-flex-basis="830px" data-flex-grow="346" height="571" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/katac4/loss.png" srcset="/p/katac4/loss_hu_dd85dc8036422959.png 800w, /p/katac4/loss_hu_8f7e829d925f2d6d.png 1600w, /p/katac4/loss.png 1977w" width="1977"></p>
+<p><img alt="Entropy / Episode_len (Smoothing = 0.99)" class="gallery-image" data-flex-basis="561px" data-flex-grow="233" height="563" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/katac4/entropy_episode_len.png" srcset="/p/katac4/entropy_episode_len_hu_9270ea2dc86e4bf5.png 800w, /p/katac4/entropy_episode_len.png 1317w" width="1317"></p>
 <p>loss 和 entropy 前期快速下降，后期趋于稳定（不会向 $0$ 收敛是由于数据分布在不断改变）；episode_len 前期提升，后期略有下降（可能是因为找到了更快的杀棋走法）。总体来说符合直觉，没有出现什么不同于预期的表现。</p>
 <p>下面是 <strong>ELO</strong><sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> 评分曲线，体现真实棋力：</p>
-<p><img src="/p/katac4/elo.png"
-	width="640"
-	height="480"
-	srcset="/p/katac4/elo_hu_1890f61e0b347452.png 480w, /p/katac4/elo_hu_d9f3df45e8ba0690.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="133"
-		data-flex-basis="320px"
-	
-></p>
+<p><img class="gallery-image" data-flex-basis="320px" data-flex-grow="133" height="480" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/katac4/elo.png" width="640"></p>
 <p>整体来看训练过程十分稳定（近似亚线性增长），最终训练基本饱和。</p>
 <p>解决相同任务的<a class="link" href="https://github.com/Lionjump0723/connect4/"  target="_blank" rel="noopener"
     >最优传统方法</a>在相同算力下对 katac4 的最佳检查点只有约 $26\%$ 的胜率，对应 -182 ELO 分差。画在图上可以看出，我们只用 $1/4$ 的迭代次数（$3$ 天训练）就达到了与之相当的水平。</p>
-<p><img src="/p/katac4/elo-compare.png"
-	width="640"
-	height="480"
-	srcset="/p/katac4/elo-compare_hu_4e6fba42c667d560.png 480w, /p/katac4/elo-compare_hu_6d44f5d4c7ca93d4.png 1024w"
-	loading="lazy"
-	
-		alt="对比 Previous SOTA"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="133"
-		data-flex-basis="320px"
-	
-></p>
+<p><img alt="对比 Previous SOTA" class="gallery-image" data-flex-basis="320px" data-flex-grow="133" height="480" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/katac4/elo-compare.png" width="640"></p>
 <p>实际上这个估计并不准确——Epoch 6500 的检查点也能对其取得超过 $50\%$ 的胜率。<em>上图仅供参考。</em></p>
 <p>我非常感激这位前辈能在最近开源出他的方法；在项目开发前期，我一直很好奇他为什么能在榜上遥遥领先。前两天看了他的项目报告，真没想到传统方法用 PUCT 也比 UCT 效果更好。说实话，不让我用神经网络，估计连总榜第一页都进不去。</p>
 <p>附上对战 Saiblo 平台样例 AI 的测试结果：</p>
-<p><img src="/p/katac4/saiblo-test.png"
-	width="1104"
-	height="298"
-	srcset="/p/katac4/saiblo-test_hu_950e751adeceb2e3.png 480w, /p/katac4/saiblo-test_hu_f0f0189f3d9d4327.png 1024w"
-	loading="lazy"
-	
-		alt="Epoch 15500 检查点对样例 AI 大获全胜"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="370"
-		data-flex-basis="889px"
-	
-></p>
+<p><img alt="Epoch 15500 检查点对样例 AI 大获全胜" class="gallery-image" data-flex-basis="889px" data-flex-grow="370" height="298" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/katac4/saiblo-test.png" srcset="/p/katac4/saiblo-test_hu_9b19ceef1c6f00a3.png 800w, /p/katac4/saiblo-test.png 1104w" width="1104"></p>
 <p>这个结果有时跑不出来，会 TLE。最强的 checkpoint 除了 TLE 之外从来就没输过（测了 $6\times100$ 场）。平台上只有 CPU，因此推理方案用的是 TorchScript。然而 <code>import torch</code> 和 <code>torch.jit.load</code> 都需要时间开销，评测机负载比较大的时候可能还没加载完模型就 TLE 了，这个我真的无能为力。（叹气）</p>
 <p>给平台几个建议：</p>
 <ol>
@@ -798,7 +763,7 @@ $$
 </section>
 
 
-    <footer class="article-footer">
+    <footer class="article-meta article-footer">
     
     <section class="article-tags">
         
@@ -812,7 +777,7 @@ $$
 
 
     
-    <section class="article-copyright">
+    <section class="article-copyright inline-meta">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="12" cy="12" r="9" />
@@ -868,6 +833,8 @@ $$
      
     
         
+
+
     
 
     <footer class="site-footer">
@@ -881,108 +848,48 @@ $$
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.1">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.3">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
 
     
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
     
-    <div class="pswp__bg"></div>
+    if (shouldLoad) {
+        gallery(articleContent);
 
-    
-    <div class="pswp__scroll-wrap">
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
 
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
 
-        
-        <div class="pswp__ui pswp__ui--hidden">
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
 
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
     
 
             </main>
         </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+        
+<script type="text/javascript" src="/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js" defer></script>
 
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
 
     </body>
 </html>
