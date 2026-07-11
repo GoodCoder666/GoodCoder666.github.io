@@ -1,1697 +1,454 @@
-<!DOCTYPE html>
-<html lang="zh" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n">
-<title>【算法笔记】位运算详解</title>
-
-
-<link rel="canonical" href="https://goodcoder666.github.io/p/algonotes-bwop/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
-
-
-<link rel="stylesheet" href="/scss/style.min.59c5eb617b2b83358d0baf163162325d5249a2be44239b430beb29a87c1ddbe4.css"><meta property='og:title' content="【算法笔记】位运算详解">
-<meta property='og:description' content="前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n">
-<meta property='og:url' content='https://goodcoder666.github.io/p/algonotes-bwop/'>
-<meta property='og:site_name' content='GoodCoder&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法竞赛' /><meta property='article:tag' content='算法笔记' /><meta property='article:published_time' content='2022-10-18T08:30:00&#43;08:00'/><meta property='article:modified_time' content='2022-10-18T08:30:00&#43;08:00'/>
-<meta name="twitter:site" content="@stanleys09">
-    <meta name="twitter:creator" content="@stanleys09"><meta name="twitter:title" content="【算法笔记】位运算详解">
-<meta name="twitter:description" content="前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n">
-    <link rel="shortcut icon" href="/favicon.ico" />
-
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script>
-      <script>
-        var doNotTrack = false;
-        if ( true ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-KJPJLGSR3C');
-        }
-      </script>
-    </head>
-    <body class="
-    article-page
-    ">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
-            }
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <header>
-        <figure class="site-avatar">
-                <a href="/">
-                    <img src="/img/avatar.png" 
-                        width="320"
-                        height="320"
-                        class="site-logo"
-                        loading="lazy"
-                        alt="Avatar">
-                </a>
-                
-                    <span class="emoji">🍥</span>
-                
-            </figure>
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">GoodCoder&#39;s Blog</a></h1>
-            <h2 class="site-description">欢迎来到我的小站！</h2>
-        </div>
-    </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://github.com/GoodCoder666'
-                        
-                        title="GitHub"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://x.com/stanleys09'
-                        
-                        title="Twitter"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-        <li >
-            <a href='/' >
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>主页</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/archives/' >
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>文章</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/search/' >
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>搜索</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/about/' >
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="7" r="4" />
-  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-</svg>
-
-
-
-                
-                <span>关于我</span>
-            </a>
-        </li>
-        
-        <li class="menu-bottom-section">
-            <ol class="menu">
-                    <li id="i18n-switch">  
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                        <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                            
-                                
-                                
-                                    
-                                        
-                                    
-                                
-                                    
-                                
-                                <option value="/en/p/algonotes-bwop/" >English</option>
-                            
-                                
-                                
-                                    
-                                
-                                    
-                                        
-                                    
-                                
-                                <option value="/p/algonotes-bwop/" selected>中文</option>
-                            
-                        </select>
-                    </li>
-                
-
-                
-                    <li id="dark-mode-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="8" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="16" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <span>暗色模式</span>
-                    </li>
-                
-            </ol>
-        </li>
-    </ol>
-</aside>
-
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">目录</h2>
-        
-        <div class="widget--toc">
-            <nav class="toc-nav" id="TableOfContents">
-                
-  <ol>
-    <li><a href="#前言">前言</a></li>
-    <li><a href="#基本运算">基本运算</a>
-      <ol>
-        <li><a href="#取反">取反</a></li>
-        <li><a href="#按位与">按位与</a></li>
-        <li><a href="#按位或">按位或</a></li>
-        <li><a href="#异或">异或</a></li>
-        <li><a href="#位移">位移</a></li>
-        <li><a href="#练习题">练习题</a>
-          <ol>
-            <li><a href="#判断的整数次幂">判断$2$的整数次幂</a></li>
-            <li><a href="#洛谷-p1100-高低位交换">洛谷 P1100 高低位交换</a></li>
-            <li><a href="#找出不同的数">找出不同的数</a></li>
-            <li><a href="#atcoder-beginner-contest-261-e---many-operations">AtCoder Beginner Contest 261 E - Many Operations</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#扩展概念运算">扩展概念&amp;运算</a>
-      <ol>
-        <li><a href="#lowbit">lowbit</a></li>
-        <li><a href="#popcount">popcount</a></li>
-      </ol>
-    </li>
-    <li><a href="#builtin-位运算函数">builtin 位运算函数</a>
-      <ol>
-        <li><a href="#__builtin_popcount__builtin_popcountll">__builtin_popcount/__builtin_popcountll</a></li>
-        <li><a href="#__builtin_ctz--__buitlin_ctzll">__builtin_ctz / __buitlin_ctzll</a></li>
-        <li><a href="#__buitlin_clz--__buitlin_clzll">__buitlin_clz / __buitlin_clzll</a></li>
-        <li><a href="#__builtin_ffs--__buitlin_ffsll">__builtin_ffs / __buitlin_ffsll</a></li>
-        <li><a href="#__builtin_parity--__builtin_parityll">__builtin_parity / __builtin_parityll</a></li>
-      </ol>
-    </li>
-    <li><a href="#位运算的应用">位运算的应用</a>
-      <ol>
-        <li><a href="#子集表示法">子集表示法</a>
-          <ol>
-            <li><a href="#子集操作">子集操作</a></li>
-            <li><a href="#子集枚举">子集枚举</a></li>
-            <li><a href="#扩展stdbitset">扩展：std::bitset</a></li>
-          </ol>
-        </li>
-        <li><a href="#深度优先搜索dfs的位运算优化">深度优先搜索（DFS）的位运算优化</a>
-          <ol>
-            <li><a href="#附n皇后问题的两种解法耗时对比">附：N皇后问题的两种解法耗时对比</a></li>
-          </ol>
-        </li>
-        <li><a href="#其他应用">其他应用</a>
-          <ol>
-            <li><a href="#两数交换">两数交换</a></li>
-            <li><a href="#两数平均数防溢出">两数平均数（防溢出）</a></li>
-            <li><a href="#判断一个数是否为的整数次幂">判断一个数是否为$2$的整数次幂</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#总结">总结</a></li>
-  </ol>
-
-            </nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
-            <main class="main full-width">
-    <article class="main-article">
-    <header class="article-header">
-
-    <div class="article-details">
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/p/algonotes-bwop/">【算法笔记】位运算详解</a>
-        </h2>
-    
-        
-    </div>
-
-    
-    
-    
-    
-    
-    
-    
-    <footer class="article-meta">
-        
-            <div class="inline-meta">
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                    <time class="article-time--published" datetime='2022-10-18T08:30:00&#43;08:00'>2022/10/18</time>
-                
-
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                    <time class="article-time--reading">
-                        阅读时长: 12 分钟
-                    </time>
-                
-            </div>
-        
-
-        
-            <div class="inline-meta">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                
-                    <a href="/en/p/algonotes-bwop/" class="link">English</a>
-                
-            </div>
-        
-
-        
-    </footer>
-    
-</div>
-
-</header>
-
-    
-    <aside class="article-toc">
-        <details>
-            <summary>
-                <div class="article-toc-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
-                    <span>目录</span>
-                </div>
-            </summary>
-            <nav class="toc-nav">
-                
-  <ol>
-    <li><a href="#前言">前言</a></li>
-    <li><a href="#基本运算">基本运算</a>
-      <ol>
-        <li><a href="#取反">取反</a></li>
-        <li><a href="#按位与">按位与</a></li>
-        <li><a href="#按位或">按位或</a></li>
-        <li><a href="#异或">异或</a></li>
-        <li><a href="#位移">位移</a></li>
-        <li><a href="#练习题">练习题</a>
-          <ol>
-            <li><a href="#判断的整数次幂">判断$2$的整数次幂</a></li>
-            <li><a href="#洛谷-p1100-高低位交换">洛谷 P1100 高低位交换</a></li>
-            <li><a href="#找出不同的数">找出不同的数</a></li>
-            <li><a href="#atcoder-beginner-contest-261-e---many-operations">AtCoder Beginner Contest 261 E - Many Operations</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#扩展概念运算">扩展概念&amp;运算</a>
-      <ol>
-        <li><a href="#lowbit">lowbit</a></li>
-        <li><a href="#popcount">popcount</a></li>
-      </ol>
-    </li>
-    <li><a href="#builtin-位运算函数">builtin 位运算函数</a>
-      <ol>
-        <li><a href="#__builtin_popcount__builtin_popcountll">__builtin_popcount/__builtin_popcountll</a></li>
-        <li><a href="#__builtin_ctz--__buitlin_ctzll">__builtin_ctz / __buitlin_ctzll</a></li>
-        <li><a href="#__buitlin_clz--__buitlin_clzll">__buitlin_clz / __buitlin_clzll</a></li>
-        <li><a href="#__builtin_ffs--__buitlin_ffsll">__builtin_ffs / __buitlin_ffsll</a></li>
-        <li><a href="#__builtin_parity--__builtin_parityll">__builtin_parity / __builtin_parityll</a></li>
-      </ol>
-    </li>
-    <li><a href="#位运算的应用">位运算的应用</a>
-      <ol>
-        <li><a href="#子集表示法">子集表示法</a>
-          <ol>
-            <li><a href="#子集操作">子集操作</a></li>
-            <li><a href="#子集枚举">子集枚举</a></li>
-            <li><a href="#扩展stdbitset">扩展：std::bitset</a></li>
-          </ol>
-        </li>
-        <li><a href="#深度优先搜索dfs的位运算优化">深度优先搜索（DFS）的位运算优化</a>
-          <ol>
-            <li><a href="#附n皇后问题的两种解法耗时对比">附：N皇后问题的两种解法耗时对比</a></li>
-          </ol>
-        </li>
-        <li><a href="#其他应用">其他应用</a>
-          <ol>
-            <li><a href="#两数交换">两数交换</a></li>
-            <li><a href="#两数平均数防溢出">两数平均数（防溢出）</a></li>
-            <li><a href="#判断一个数是否为的整数次幂">判断一个数是否为$2$的整数次幂</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#总结">总结</a></li>
-  </ol>
-
-            </nav>
-        </details>
-    </aside>
-    
-
-    <section class="article-content">
-    
-    
-    <h2 id="前言">前言
-</h2><p>突然想到位运算是个好东西，就来水一波文章了……</p>
-<p>注意：我把能想到的有关位运算的所有内容都放进来了，所以<strong>篇幅较长，请谅解</strong>！若有写的不清楚或者不够详细的地方欢迎在评论区补充，<em><strong>谢谢支持！</strong></em></p>
-<p><strong>本文中参考代码均使用C++编写。</strong></p>
-<p>废话不多说，下面步入正题。</p>
-<hr>
-<h2 id="基本运算">基本运算
-</h2><p><em>有一定基础的可以跳过该部分。</em></p>
-<p>位运算的简要法则：</p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>符号</th>
-					<th>描述</th>
-					<th>规则</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>&amp;</code></td>
-					<td>按位与</td>
-					<td>两位都为1才为1，不同为0</td>
-			</tr>
-			<tr>
-					<td><code>|</code></td>
-					<td>按位或</td>
-					<td>两位都为0才为0，不同为1</td>
-			</tr>
-			<tr>
-					<td><code>^</code></td>
-					<td>异或</td>
-					<td>相同为0，不同为1</td>
-			</tr>
-			<tr>
-					<td><code>~</code></td>
-					<td>取反</td>
-					<td>0变1，1变0</td>
-			</tr>
-			<tr>
-					<td><code>&lt;&lt;</code></td>
-					<td>左移</td>
-					<td>二进制位向左移动，高位去掉，低位补0</td>
-			</tr>
-			<tr>
-					<td><code>&gt;&gt;</code></td>
-					<td>右移</td>
-					<td>二进制位向右移动，低位去掉，高位补0</td>
-			</tr>
-	</tbody>
-</table></div>
-<p>详细解释：</p>
-<h3 id="取反">取反
-</h3><p>取反（<code>~x</code>）是最简单的位运算操作，只有一个参数$x$。将参数上的每一位对应取反即可。例如：<br>
-<code>~0011 = 1100</code><br>
-<code>~1011 = 0100</code><br>
-性质：<code>~(~x) = x</code></p>
-<h3 id="按位与">按位与
-</h3><p>按位与（<code>x &amp; y</code>）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：</p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>$x$</th>
-					<th>$y$</th>
-					<th><code>x &amp; y</code></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>$0$</td>
-					<td>$0$</td>
-					<td>$0$</td>
-			</tr>
-			<tr>
-					<td>$0$</td>
-					<td>$1$</td>
-					<td>$0$</td>
-			</tr>
-			<tr>
-					<td>$1$</td>
-					<td>$0$</td>
-					<td>$0$</td>
-			</tr>
-			<tr>
-					<td>$1$</td>
-					<td>$1$</td>
-					<td>$1$</td>
-			</tr>
-	</tbody>
-</table></div>
-<p>例子：<br>
-<code>0011 &amp; 1100 = 0000</code><br>
-<code>1010 &amp; 1011 = 1010</code></p>
-<p>性质：</p>
-<ul>
-<li>交换律：<code>a &amp; b = b &amp; a</code></li>
-<li>结合律：<code>a &amp; b &amp; c = a &amp; (b &amp; c)</code></li>
-<li>自与：<code>a &amp; a = a</code></li>
-<li>与$0$：<code>0 &amp; a1 &amp; a2 &amp; a3 &amp; ... = 0</code></li>
-<li>与$\infty$（全$1$）：<code>a &amp; inf = a</code></li>
-</ul>
-<h3 id="按位或">按位或
-</h3><p>按位与（<code>x | y</code>）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：</p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>$x$</th>
-					<th>$y$</th>
-					<th><code>x | y</code></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>$0$</td>
-					<td>$0$</td>
-					<td>$0$</td>
-			</tr>
-			<tr>
-					<td>$0$</td>
-					<td>$1$</td>
-					<td>$1$</td>
-			</tr>
-			<tr>
-					<td>$1$</td>
-					<td>$0$</td>
-					<td>$1$</td>
-			</tr>
-			<tr>
-					<td>$1$</td>
-					<td>$1$</td>
-					<td>$1$</td>
-			</tr>
-	</tbody>
-</table></div>
-<p>例子：<br>
-<code>1100 | 0011 = 1111</code><br>
-<code>1010 | 0001 = 1011</code></p>
-<p>性质：</p>
-<ul>
-<li>交换律：<code>a | b = b | a</code></li>
-<li>结合律：<code>a | b | c = a | (b | c)</code></li>
-<li>自或：<code>a | a = a</code></li>
-<li>或$0$：<code>a | 0 = a</code></li>
-<li>或$\infty$（全$1$）：<code>a | inf = inf</code></li>
-</ul>
-<h3 id="异或">异或
-</h3><p>异或（$x\oplus y$或<code>x ^ y</code>）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：</p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>$x$</th>
-					<th>$y$</th>
-					<th>$x\oplus y$</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>$0$</td>
-					<td>$0$</td>
-					<td>$0$</td>
-			</tr>
-			<tr>
-					<td>$0$</td>
-					<td>$1$</td>
-					<td>$1$</td>
-			</tr>
-			<tr>
-					<td>$1$</td>
-					<td>$0$</td>
-					<td>$1$</td>
-			</tr>
-			<tr>
-					<td>$1$</td>
-					<td>$1$</td>
-					<td>$0$</td>
-			</tr>
-	</tbody>
-</table></div>
-<p>举例：<br>
-<code>1000 ^ 1011 = 0011</code><br>
-<code>0101 ^ 1010 = 1111</code></p>
-<p>性质：</p>
-<ul>
-<li>交换律：$a\oplus b=b\oplus a$</li>
-<li>结合律：$a\oplus b\oplus c=a\oplus(b\oplus c)$</li>
-<li>自异或：$a\oplus a=0$</li>
-<li>异或$0$：$a\oplus 0=a$</li>
-<li>多重异或：$a\oplus b\oplus b=a\oplus (b\oplus b)=a\oplus 0=a$</li>
-<li>异或$\infty$（全$1$）：$a\oplus \infty=~$<code>~a</code></li>
-<li>若$a\oplus b=c$，则$a\oplus c=b$。</li>
-</ul>
-<h3 id="位移">位移
-</h3><p>位移分为左移（<code>&lt;&lt;</code>）和右移（<code>&gt;&gt;</code>）。</p>
-<ul>
-<li><code>a &lt;&lt; b</code>：将$a$末尾添上$b$个$0$的结果。</li>
-<li><code>a &gt;&gt; b</code>：从$a$末尾删掉$b$位的结果。</li>
-</ul>
-<p>性质：</p>
-<ul>
-<li><code>(a &lt;&lt; b) &gt;&gt; b = a</code></li>
-<li><code>a &lt;&lt; b</code>$~=a\times 2^b$</li>
-<li><code>a &gt;&gt; b</code>$~=\lfloor\frac a {2^b}\rfloor$</li>
-</ul>
-<h3 id="练习题">练习题
-</h3><h4 id="判断的整数次幂">判断$2$的整数次幂
-</h4><p>题意：给定整数$N$，判断其是否为$2$的整数次幂。</p>
-<h4 id="洛谷-p1100-高低位交换"><a class="link" href="https://www.luogu.com.cn/problem/P1100"  target="_blank" rel="noopener"
-    >洛谷 P1100 高低位交换</a>
-</h4><p>题意：给定一个$32$位整数$x$，在二进制下交换其前$16$位与后$16$位，输出最终的数。</p>
-<p>答案为<code>ans = (x &gt;&gt; 16) | (x &lt;&lt; 16)</code>，这样解释：</p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>数值</th>
-					<th>前$16$位</th>
-					<th>后$16$位</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>$x$</td>
-					<td>$A$</td>
-					<td>$B$</td>
-			</tr>
-			<tr>
-					<td><code>x &gt;&gt; 16</code></td>
-					<td>$16$个$0$</td>
-					<td>$A$</td>
-			</tr>
-			<tr>
-					<td><code>x &lt;&lt; 16</code></td>
-					<td>$B$</td>
-					<td>$16$个$0$</td>
-			</tr>
-			<tr>
-					<td><code>ans</code></td>
-					<td>$B$</td>
-					<td>$A$</td>
-			</tr>
-	</tbody>
-</table></div>
-<p>注意此处<strong>使用$32$位无符号整数</strong>进行计算，这样<code>x &lt;&lt; 16</code>会自然溢出，导致前$16$位被丢弃，恰好满足要求。</p>
-<p>参考程序：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%u&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%u</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="找出不同的数">找出不同的数
-</h4><p>给定一个序列$A=(A_1,A_2,\dots,A_{2N+1})$，其中有$N$个数各出现$2$次，还有一个数正好出现$1$次。找到这个数。请尽可能优化程序的时间和空间复杂度。</p>
-<p><strong>- 时间$\mathcal O(N)$或$\mathcal O(N\log N)$，空间$\mathcal O(N)$解法</strong><br>
-简单统计每个数的出现次数，最后找到正好出现$1$次的数。</p>
-<p><strong>- 时间$\mathcal O(N)$，空间$\mathcal O(1)$解法</strong><br>
-考虑所有数的异或和$S=A_1\oplus A_2\oplus\dots\oplus A_{2N+1}$，则$A$中所有出现两次的数抵消为$0$，剩下的即为唯一出现一次的数，所以直接输出$S$即可。</p>
-<p>参考程序：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">^=</span> <span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="atcoder-beginner-contest-261-e---many-operations"><a class="link" href="https://atcoder.jp/contests/abc261/tasks/abc261_e"  target="_blank" rel="noopener"
-    >AtCoder Beginner Contest 261 E - Many Operations</a>
-</h4><p>解法：对于$i=1,2,\dots,N$，记录操作$1,2,\dots,i$后每一位上的$0$和$1$分别变成什么，可以在$\mathcal O(N)$的时间内用类似于前缀和的方法完成；最后用位运算快速模拟$N$次连续操作即可，总时间复杂度为$\mathcal O(N)$。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// https://atcoder.jp/contests/abc261/submissions/33495431
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">zero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">one</span> <span class="o">=</span> <span class="mh">0xffffffff</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">one</span> <span class="o">&amp;=</span> <span class="n">a</span><span class="p">,</span> <span class="n">zero</span> <span class="o">&amp;=</span> <span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="n">one</span> <span class="o">|=</span> <span class="n">a</span><span class="p">,</span> <span class="n">zero</span> <span class="o">|=</span> <span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">one</span> <span class="o">^=</span> <span class="n">a</span><span class="p">,</span> <span class="n">zero</span> <span class="o">^=</span> <span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="n">one</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="o">~</span><span class="n">c</span> <span class="o">&amp;</span> <span class="n">zero</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
-<h2 id="扩展概念运算">扩展概念&amp;运算
-</h2><h3 id="lowbit">lowbit
-</h3><p><code>lowbit(x)</code>即为二进制下$x$的最低位，如<code>lowbit(10010) = 10</code>、<code>lowbit(1) = 1</code>。严格来说$0$没有<code>lowbit</code>，部分情况下可视为<code>lowbit(0) = 1</code>。利用<code>lowbit</code>函数可实现<a class="link" href="https://goodcoder666.github.io/p/algonotes-fenwick-tree/"  target="_blank" rel="noopener"
-    >树状数组</a>等数据结构。</p>
-<p><strong>lowbit 计算方式</strong></p>
-<ol>
-<li>暴力计算<br>
-简单粗暴的按位直接计算，如下：
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">lowbit</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">res</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div>时间复杂度$\mathcal O(\log X)$。缺点：速度慢，代码长，没有体现位运算的优势</li>
-<li><code>x &amp; -x</code><br>
-巧妙利用<code>lowbit(x) = x &amp; -x</code>。感兴趣的读者可自行尝试证明。<br>
-时间复杂度$\mathcal O(1)$。相比(1)来说，代码更短，速度更快。</li>
-<li><code>x &amp; (x - 1)</code><br>
-<strong>注意：<code>x &amp; (x - 1)</code>不是<code>lowbit(x)</code>，而是<code>x - lowbit(x)</code>。</strong><br>
-这种方法常用于<a class="link" href="https://goodcoder666.github.io/p/algonotes-fenwick-tree/"  target="_blank" rel="noopener"
-    >树状数组</a>中，可提升<code>x - lowbit(x)</code>的计算速度。</li>
-</ol>
-<h3 id="popcount">popcount
-</h3><p><code>popcount(x)</code>定义为$x$在二进制下$1$的个数，如<code>popcount(10101) = 3</code>，<code>popcount(0) = 0</code>。</p>
-<p><strong>popcount 计算方式</strong></p>
-<ol>
-<li>暴力计算检查<br>
-还是最粗暴的算法，通过枚举每一位并检查是否为$1$达到目的，时间复杂度为$\mathcal O(\log X)$。
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">popcount</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li><code>lowbit</code> 优化<br>
-时间复杂度还是$\mathcal O(\log X)$，不过平均用时会比(1)快2~3倍左右。
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">popcount</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(;</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span><span class="o">&amp;=</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">res</span> <span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>builtin 函数（最快）<br>
-详见<code>3.1 __builtin_popcount/__builtin_popcountll</code>。</li>
-</ol>
-<hr>
-<h2 id="builtin-位运算函数">builtin 位运算函数
-</h2><p>注意：后面带<code>ll</code>的传入<code>long long</code>类型，不带<code>ll</code>接受<code>int</code>类型。本部分内容按常用程度递减排序。<br>
-参考：<a class="link" href="https://blog.csdn.net/zeekliu/article/details/124848210"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/zeekliu/article/details/124848210</a></p>
-<h3 id="__builtin_popcount__builtin_popcountll">__builtin_popcount/__builtin_popcountll
-</h3><p>返回参数在二进制下$1$的个数。</p>
-<h3 id="__builtin_ctz--__buitlin_ctzll">__builtin_ctz / __buitlin_ctzll
-</h3><p>返回参数在二进制下末尾$0$的个数。</p>
-<h3 id="__buitlin_clz--__buitlin_clzll">__buitlin_clz / __buitlin_clzll
-</h3><p>返回参数在二进制下前导$0$的个数。</p>
-<h3 id="__builtin_ffs--__buitlin_ffsll">__builtin_ffs / __buitlin_ffsll
-</h3><p>返回参数在二进制下最后一个1在第几位（从后往前）。<br>
-注意：一般来说，<code>builtin_ffs(x) = __builtin_ctz(x) + 1</code>。当$x=0$时，<code>builtin_ffs(x) = 0</code>。</p>
-<h3 id="__builtin_parity--__builtin_parityll">__builtin_parity / __builtin_parityll
-</h3><p>返回参数在二进制下$1$的个数的奇偶性（偶：0，奇：1），即<code>__builtin_parity(x) = __builtin_popcount(x) % 2</code>。<br>
-P.S. 这函数，不知是哪位神仙想出来的……</p>
-<hr>
-<h2 id="位运算的应用">位运算的应用
-</h2><h3 id="子集表示法">子集表示法
-</h3><p>对于集合$\{0,1,\dots,N-1\}$，我们使用一个$N$位的二进制整数$S$来表示它的一个子集。从右往左第$i$位表示子集是否包含了$i$。容易发现，对于任意子集$S$，$S\in [0,2^N-1]$，且对于任意$S\in [0,2^N-1]$，$S$都是$\{0,1,\dots,N-1\}$的一个有效子集。下面我们来讲这种子集表示的具体操作。</p>
-<h4 id="子集操作">子集操作
-</h4><p>子集的操作如下（规定$N$为集合元素个数）：</p>
-<ul>
-<li>空集：$0$</li>
-<li>满集：$2^N-1$（$N$个$1$）</li>
-<li>集合$S$的元素个数：<code>__builtin_popcount(S)</code>或<code>__builtin_popcountll(S)</code></li>
-<li>集合$S$是否包含$i$：<code>S &gt;&gt; i &amp; 1</code></li>
-<li>将$i$加入$S$（操作前$S$是否包含$i$不影响操作结果）：<code>S |= 1 &lt;&lt; i</code></li>
-<li>将$i$从$S$中删除（操作前$S$必须包含$i$）：<code>S ^= 1 &lt;&lt; i</code></li>
-<li>将$i$从$S$中删除（操作前$S$是否包含$i$不影响操作结果）：<code>S &amp;= ~(1 &lt;&lt; i)</code></li>
-<li>$S$和$T$的交集（$S$和$T$都包含的集合）：<code>S &amp; T</code></li>
-<li>$S$和$T$的并集（$S$和$T$中有任意一个包含的集合）：<code>S | T</code></li>
-<li>$S$和$T$的差集（$S$和$T$中恰好有一个包含的集合）：<code>S ^ T</code></li>
-</ul>
-<h4 id="子集枚举">子集枚举
-</h4><p>讲了这么多，也该到子集的实际应用了吧。下面我们来看子集最初步的应用——子集枚举。</p>
-<p><strong>- 必会：枚举$N$个元素的所有子集</strong><br>
-这个很简单，直接枚举$S\in [0,2^N-1]$即可。代码如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;N = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">s</span><span class="o">&lt;=</span><span class="n">full</span><span class="p">;</span> <span class="n">s</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Subset %d:&#34;</span><span class="p">,</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">s</span> <span class="o">&gt;&gt;</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">                <span class="n">printf</span><span class="p">(</span><span class="s">&#34; %d&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>- 必会：枚举子集的子集</strong><br>
-如果我们想枚举$\{0,1,\dots,N-1\}$的子集的子集，怎么办？这是一个经典套路，常用于状压DP，写法如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">S</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">S</span><span class="o">&lt;</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">N</span><span class="p">);</span> <span class="n">S</span><span class="o">++</span><span class="p">)</span> <span class="c1">// 枚举子集S
-</span></span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">T</span><span class="o">=</span><span class="n">S</span><span class="p">;</span> <span class="n">T</span><span class="p">;</span> <span class="n">T</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&amp;</span><span class="n">S</span><span class="p">)</span> <span class="c1">// 枚举子集的子集T
-</span></span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Do something...
-</span></span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>请注意：这个算法的时间复杂度为$\mathcal O(3^N)$，不是$\mathcal O(4^N)$，使用此算法时请准确估算时间复杂度。</p>
-<p><strong>- 扩展：枚举$N$个元素中大小为$K$的子集</strong><br>
-首先很容易想到先枚举所有$\{0,1,\dots,N-1\}$的所有子集，再依次检查大小是否为$K$。代码如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="o">&lt;</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">);</span> <span class="n">s</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">__builtin_popcount</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">cnt</span> <span class="o">!=</span> <span class="n">K</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Do something...
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>这种做法虽然正确，也很易懂，但可惜效率太低，$2^N$次<code>popcount</code>操作浪费了很多时间。我们考虑优化。《挑战程序设计竞赛》上给出了一种算法，如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">S</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Do something...
-</span></span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">S</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 移到下一个合法子集
-</span></span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">S</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">S</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">S</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">S</span> <span class="o">=</span> <span class="p">((</span><span class="n">S</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">y</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>这样可保证每次枚举到的都是大小为$K$的子集，可以大大提高算法效率。</p>
-<h4 id="扩展stdbitset">扩展：std::bitset
-</h4><p><code>bitset</code>，顾名思义，即为用位运算操作的集合。<br>
-对于元素个数$N\in [1,64]$，集合$\{0,1,\dots,N-1\}$的任意子集都可以用一个$32$或$64$位整数表示出来，操作时间复杂度为$\mathcal O(1)$。那么对于$N > 64$，怎么办？我们可以用多个$32$或$64$位无符号整数拼凑为一个$N$位的<code>bitset</code>，容易发现其操作的时间复杂度为$\mathcal O(\frac Nw)$（$N$位的二进制数可用$\lceil\frac Nw\rceil$个$w$位无符号整数拼凑而成），其中$w$一般为$32$或$64$。</p>
-<p>C++的<code>Standard Template Library</code>（<code>STL</code>）为我们提供了<code>&lt;bitset&gt;</code>头文件，用于<code>bitset</code>的定义。</p>
-<p>用法如下：</p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>函数/操作</th>
-					<th>作用</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>b.any()</code></td>
-					<td><code>b</code>中是否存在至少1位的二进制位？</td>
-			</tr>
-			<tr>
-					<td><code>b.none()</code></td>
-					<td><code>b</code>中不存在至少1位的二进制位吗？</td>
-			</tr>
-			<tr>
-					<td><code>b.count()</code></td>
-					<td><code>b</code>中值为1的二进制位的个数</td>
-			</tr>
-			<tr>
-					<td><code>b.size()</code></td>
-					<td><code>b</code>中二进制位的个数</td>
-			</tr>
-			<tr>
-					<td><code>b[pos]</code></td>
-					<td>访问<code>b</code>中<code>pos</code>处的二进制位</td>
-			</tr>
-			<tr>
-					<td><code>b.test(pos)</code></td>
-					<td>检测<code>b</code>中<code>pos</code>处的二进制位是否为1</td>
-			</tr>
-			<tr>
-					<td><code>b.set(pos)</code></td>
-					<td>把<code>b</code>中<code>pos</code>处的二进制位设置为1</td>
-			</tr>
-			<tr>
-					<td><code>b.set()</code></td>
-					<td>把<code>b</code>中的所有二进制位设置为1</td>
-			</tr>
-			<tr>
-					<td><code>b.reset(pos)</code></td>
-					<td>把<code>b</code>中<code>pos</code>处的二进制位设置为0</td>
-			</tr>
-			<tr>
-					<td><code>b.reset()</code></td>
-					<td>把<code>b</code>中的所有二进制位设置为0</td>
-			</tr>
-			<tr>
-					<td><code>b.flip()</code></td>
-					<td>把<code>b</code>中的所有二进制位按位取反</td>
-			</tr>
-			<tr>
-					<td><code>b.flip(pos)</code></td>
-					<td>把<code>b</code>中<code>pos</code>处的二进制位按位取反</td>
-			</tr>
-			<tr>
-					<td><code>b.to_ulong()</code></td>
-					<td>用<code>b</code>中所有的二进制位返回<code>unsigned long</code>值</td>
-			</tr>
-			<tr>
-					<td><code>os &lt;&lt; b</code></td>
-					<td>把<code>b</code>的值输出到流<code>os</code>中</td>
-			</tr>
-	</tbody>
-</table></div>
-<p>用法示例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bitset&gt;</span><span class="cp"> </span><span class="c1">// 头文件
-</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bitset</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span> <span class="n">S</span><span class="p">;</span> <span class="c1">// 定义大小为N的bitset S，初始为全0
-</span></span></span><span class="line"><span class="cl">    <span class="n">S</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">// 将S的第1位设为1
-</span></span></span><span class="line"><span class="cl">    <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>    <span class="c1">// 将S的第0位设为1，注意bitset可使用下标访问和赋值
-</span></span></span><span class="line"><span class="cl">    <span class="n">S</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  <span class="c1">// 将S的第1位设为0
-</span></span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;S[1]: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// 输出S第2位上的值
-</span></span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Count: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">S</span><span class="p">.</span><span class="n">count</span><span class="p">());</span> <span class="c1">// S的popcount（二进制下1的个数）
-</span></span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Size: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">S</span><span class="p">.</span><span class="n">size</span><span class="p">());</span> <span class="c1">// S的二进制位数（N）
-</span></span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;None? %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">S</span><span class="p">.</span><span class="n">none</span><span class="p">());</span> <span class="c1">// S是否为空？
-</span></span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Any?  %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">S</span><span class="p">.</span><span class="n">any</span><span class="p">());</span>  <span class="c1">// S是否有1？
-</span></span></span><span class="line"><span class="cl">    <span class="n">bitset</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span> <span class="n">T</span><span class="p">;</span> <span class="c1">// 定义一个新的bitset -- T
-</span></span></span><span class="line"><span class="cl">    <span class="n">T</span><span class="p">.</span><span class="n">set</span><span class="p">();</span> <span class="c1">// T置为全1
-</span></span></span><span class="line"><span class="cl">    <span class="n">S</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">T</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Intersection: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">S</span> <span class="o">&amp;</span> <span class="n">T</span><span class="p">).</span><span class="n">count</span><span class="p">());</span> <span class="c1">// 交集
-</span></span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Union: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">S</span> <span class="o">|</span> <span class="n">T</span><span class="p">).</span><span class="n">count</span><span class="p">());</span> <span class="c1">// 并集
-</span></span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Difference: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">S</span> <span class="o">^</span> <span class="n">T</span><span class="p">).</span><span class="n">count</span><span class="p">());</span> <span class="c1">// 差集
-</span></span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h5 id="习题atcoder-beginner-contest-258-g---triangle">习题：<a class="link" href="https://atcoder.jp/contests/abc258/tasks/abc258_g"  target="_blank" rel="noopener"
-    >AtCoder Beginner Contest 258 G - Triangle</a>
-</h5><p>题意和解法见<a class="link" href="https://goodcoder666.github.io/p/abc258/#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-2"  target="_blank" rel="noopener"
-    >我的题解</a>。</p>
-<h3 id="深度优先搜索dfs的位运算优化">深度优先搜索（DFS）的位运算优化
-</h3><p>本算法其实还是<strong>二进制表示子集</strong>的一种优化，不过内容较多，所以单独放了出来。</p>
-<p>考虑经典的<strong>八皇后问题</strong>：</p>
-
-    <blockquote>
-        <p>有一个$8\times 8$的国际象棋棋盘，要在其中摆$8$个皇后，求有多少种不同的摆法，使得任意两个皇后之间都没有互相攻击。<br>
-<strong>注：皇后的攻击范围是一个“米”字，如下图所示：</strong><br>
-<img alt="皇后攻击范围" class="gallery-image" data-flex-basis="240px" data-flex-grow="100" height="419" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/algonotes-bwop/1.png" width="419"></p>
-
-    </blockquote>
-<p>八皇后问题很容易求解，用一个简单的回溯就可以了。<br>
-考虑$N$皇后问题，即：</p>
-
-    <blockquote>
-        <p>有一个$N\times N$的国际象棋棋盘，要在其中摆$N$个皇后，求有多少种不同的摆法，使得任意两个皇后之间都没有互相攻击。</p>
-
-    </blockquote>
-<p>此时，还是先用标准的「回溯」算法解决问题：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define maxn 20
-</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">row</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span> <span class="n">diag_left</span><span class="p">[</span><span class="n">maxn</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">],</span> <span class="n">diag_right</span><span class="p">[</span><span class="n">maxn</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">ans</span><span class="p">,</span> <span class="n">n</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">row</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">diag_left</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">diag_right</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span> <span class="o">+</span> <span class="n">n</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">row</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">diag_left</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">diag_right</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span> <span class="o">+</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">dfs</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="n">row</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">diag_left</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">diag_right</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span> <span class="o">+</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>代码很移动，也不是重点，这里就不详细解释了。对于$N=13$，搜索时间约为$243\mathrm{ms}$；$N=14$，$1.31\mathrm s$；$N=15$，$8.14\mathrm s$；$N=16$…… $53.4\mathrm s$。</p>
-<p>明显，这样的算法效率太低，我们来考虑使用位运算优化。<br>
-首先，我们把上面程序里的<code>row</code>、<code>diag_left</code>和<code>diag_right</code>换成一个<code>int</code>整数，赋值、取值全部改用位运算。但这样对整体的时间优化还是不大，我们要充分发挥位运算的优势——“百发百中”，即利用<code>lowbit</code>算法，确保每次枚举到的都是目前一步可放置的位置，减少不必要的判断。此时，我们改变<code>diag_left</code>和<code>diag_right</code>的含义，使<code>diag_left</code>表示左下-右上的$45\degree$对角线上<strong>当前一步</strong>可放置的皇后位置集合，<code>diag_right</code>同理。见代码：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">ans</span><span class="p">,</span> <span class="n">mx</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="kt">int</span> <span class="n">diag_left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">diag_right</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="n">mx</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">mx</span> <span class="o">&amp;</span> <span class="o">~</span><span class="p">(</span><span class="n">row</span> <span class="o">|</span> <span class="n">diag_left</span> <span class="o">|</span> <span class="n">diag_right</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">a</span><span class="p">;</span> <span class="n">a</span> <span class="o">^=</span> <span class="n">p</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dfs</span><span class="p">(</span><span class="n">row</span> <span class="o">|</span> <span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="n">diag_left</span> <span class="o">|</span> <span class="n">p</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">diag_right</span> <span class="o">|</span> <span class="n">p</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mx</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>此时，计算$16$皇后只需$6.23\mathrm s$！<br>
-习题：<a class="link" href="https://www.luogu.com.cn/problem/P1092"  target="_blank" rel="noopener"
-    >洛谷 P1092 [NOIP2004 提高组] 虫食算</a></p>
-<h4 id="附n皇后问题的两种解法耗时对比">附：N皇后问题的两种解法耗时对比
-</h4><p>本测试中，两种算法耗时均为在<code>Intel i7-12700H</code> CPU上$5$次程序运行的最快速度。</p>
-<div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>$N$</th>
-					<th>无优化</th>
-					<th>位运算优化</th>
-					<th>速度提升</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>$13$</td>
-					<td>$253\mathrm{ms}$</td>
-					<td>$66\mathrm{ms}$</td>
-					<td>$2.83\text x$</td>
-			</tr>
-			<tr>
-					<td>$14$</td>
-					<td>$1.31\mathrm s$</td>
-					<td>$179\mathrm{ms}$</td>
-					<td>$6.32\text x$</td>
-			</tr>
-			<tr>
-					<td>$15$</td>
-					<td>$8.14\mathrm s$</td>
-					<td>$955\mathrm{ms}$</td>
-					<td>$7.52\text x$</td>
-			</tr>
-			<tr>
-					<td>$16$</td>
-					<td>$53.4\mathrm s$</td>
-					<td>$6.23\mathrm s$</td>
-					<td>$7.57\text x$</td>
-			</tr>
-	</tbody>
-</table></div>
-<h3 id="其他应用">其他应用
-</h3><h4 id="两数交换">两数交换
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">^=</span> <span class="n">b</span> <span class="o">^=</span> <span class="n">a</span> <span class="o">^=</span> <span class="n">b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>位运算交换法扩展：<strong>超快GCD</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">while</span><span class="p">(</span><span class="n">b</span> <span class="o">^=</span> <span class="n">a</span> <span class="o">^=</span> <span class="n">b</span> <span class="o">^=</span> <span class="n">a</span> <span class="o">%=</span> <span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="两数平均数防溢出">两数平均数（防溢出）
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">average1</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">y</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">average2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">x</span> <span class="o">^</span> <span class="n">y</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="判断一个数是否为的整数次幂">判断一个数是否为$2$的整数次幂
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">bool</span> <span class="nf">ispowof2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
-<h2 id="总结">总结
-</h2><p>本文详细讲解了位运算的使用和扩展。</p>
-<hr>
-<p>创作不易，各位如果觉得好的话就请给个三连，感谢大家的支持！</p>
-
-</section>
-
-
-    <footer class="article-meta article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/">算法竞赛</a>
-        
-            <a href="/tags/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a>
-        
-    </section>
-
-
-    
-    <section class="article-copyright inline-meta">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
-    </footer>
-
-
-    
-        <link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
-            ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
-                defer
-                >
-            </script><script>
-    window.addEventListener("DOMContentLoaded", () => {
-        const elementsToRender = [".main-article", ".widget--toc"];
-
-        elementsToRender.forEach(selector => {
-            const element = document.querySelector(selector);
-            if (element) {
-                renderMathInElement(element, {
-                    delimiters: [
-                        { left: "$$", right: "$$", display: true },
-                        { left: "$", right: "$", display: false },
-                        { left: "\\(", right: "\\)", display: false },
-                        { left: "\\[", right: "\\]", display: true }
-                    ],
-                    ignoredClasses: ["gist"]
-                });
-            }
-        });
-    });
-</script>
-    
-</article>
-
-    
-
-    
-
-<aside>
-    <h2 class="section-title">相关文章</h2>
-    <div class="subsection-list">
-        <div class="article-list--tile">
-            
-                
-<article class="">
-    <a href="/p/algonotes-lca/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【算法笔记】最近公共祖先（LCA）问题求解——倍增算法</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/algonotes-rmq/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【算法笔记】【专题】RMQ 问题：ST表/树状数组/线段树</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/algonotes-fenwick-tree/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【算法笔记】树状数组/Binary Indexed Tree/Fenwick Tree</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/algonotes-knapsack-dp/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【算法笔记】三种背包问题——背包 DP</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/algonotes-mst/">
-        
-
-        <div class="article-details">
-            <h2 class="article-title">【算法笔记】Kruskal/Prim算法——求解最小生成树问题</h2>
-        </div>
-    </a>
-</article>
-            
-        </div>
-    </div>
-</aside>
-
-     
-    
-        
-
-
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2020 - 
-        
-        2026 GoodCoder&#39;s Blog
-    </section>
-    
-    <section class="powerby">
-        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.3">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
-    </section>
-</footer>
-
-
-    
-
-
-
-<script type="module">
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n"><title>【算法笔记】位运算详解</title><link rel=canonical href=https://goodcoder666.github.io/p/algonotes-bwop/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.59c5eb617b2b83358d0baf163162325d5249a2be44239b430beb29a87c1ddbe4.css><meta property='og:title' content="【算法笔记】位运算详解"><meta property='og:description' content="前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n"><meta property='og:url' content='https://goodcoder666.github.io/p/algonotes-bwop/'><meta property='og:site_name' content="GoodCoder's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='算法竞赛'><meta property='article:tag' content='算法笔记'><meta property='article:published_time' content='2022-10-18T08:30:00+08:00'><meta property='article:modified_time' content='2022-10-18T08:30:00+08:00'><meta name=twitter:site content="@stanleys09"><meta name=twitter:creator content="@stanleys09"><meta name=twitter:title content="【算法笔记】位运算详解"><meta name=twitter:description content="前言\r突然想到位运算是个好东西，就来水一波文章了……\n注意：我把能想到的有关位运算的所有内容都放进来了，所以篇幅较长，请谅解！若有写的不清楚或者不够详细的地方欢迎在评论区补充，谢谢支持！\n"><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-KJPJLGSR3C"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-KJPJLGSR3C")}</script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=320 height=320 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>GoodCoder's Blog</a></h1><h2 class=site-description>欢迎来到我的小站！</h2></div></header><ol class=menu-social><li><a href=https://github.com/GoodCoder666 title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://x.com/stanleys09 title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>文章</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于我</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=/en/p/algonotes-bwop/>English</option><option value=/p/algonotes-bwop/ selected>中文</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#基本运算>基本运算</a><ol><li><a href=#取反>取反</a></li><li><a href=#按位与>按位与</a></li><li><a href=#按位或>按位或</a></li><li><a href=#异或>异或</a></li><li><a href=#位移>位移</a></li><li><a href=#练习题>练习题</a><ol><li><a href=#判断的整数次幂>判断$2$的整数次幂</a></li><li><a href=#洛谷-p1100-高低位交换>洛谷 P1100 高低位交换</a></li><li><a href=#找出不同的数>找出不同的数</a></li><li><a href=#atcoder-beginner-contest-261-e---many-operations>AtCoder Beginner Contest 261 E - Many Operations</a></li></ol></li></ol></li><li><a href=#扩展概念运算>扩展概念&运算</a><ol><li><a href=#lowbit>lowbit</a></li><li><a href=#popcount>popcount</a></li></ol></li><li><a href=#builtin-位运算函数>builtin 位运算函数</a><ol><li><a href=#__builtin_popcount__builtin_popcountll>__builtin_popcount/__builtin_popcountll</a></li><li><a href=#__builtin_ctz--__buitlin_ctzll>__builtin_ctz / __buitlin_ctzll</a></li><li><a href=#__buitlin_clz--__buitlin_clzll>__buitlin_clz / __buitlin_clzll</a></li><li><a href=#__builtin_ffs--__buitlin_ffsll>__builtin_ffs / __buitlin_ffsll</a></li><li><a href=#__builtin_parity--__builtin_parityll>__builtin_parity / __builtin_parityll</a></li></ol></li><li><a href=#位运算的应用>位运算的应用</a><ol><li><a href=#子集表示法>子集表示法</a><ol><li><a href=#子集操作>子集操作</a></li><li><a href=#子集枚举>子集枚举</a></li><li><a href=#扩展stdbitset>扩展：std::bitset</a></li></ol></li><li><a href=#深度优先搜索dfs的位运算优化>深度优先搜索（DFS）的位运算优化</a><ol><li><a href=#附n皇后问题的两种解法耗时对比>附：N皇后问题的两种解法耗时对比</a></li></ol></li><li><a href=#其他应用>其他应用</a><ol><li><a href=#两数交换>两数交换</a></li><li><a href=#两数平均数防溢出>两数平均数（防溢出）</a></li><li><a href=#判断一个数是否为的整数次幂>判断一个数是否为$2$的整数次幂</a></li></ol></li></ol></li><li><a href=#总结>总结</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/p/algonotes-bwop/>【算法笔记】位运算详解</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2022-10-18T08:30:00+08:00>2022/10/18</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 12 分钟</time></div><div class=inline-meta><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<a href=/en/p/algonotes-bwop/ class=link>English</a></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#前言>前言</a></li><li><a href=#基本运算>基本运算</a><ol><li><a href=#取反>取反</a></li><li><a href=#按位与>按位与</a></li><li><a href=#按位或>按位或</a></li><li><a href=#异或>异或</a></li><li><a href=#位移>位移</a></li><li><a href=#练习题>练习题</a><ol><li><a href=#判断的整数次幂>判断$2$的整数次幂</a></li><li><a href=#洛谷-p1100-高低位交换>洛谷 P1100 高低位交换</a></li><li><a href=#找出不同的数>找出不同的数</a></li><li><a href=#atcoder-beginner-contest-261-e---many-operations>AtCoder Beginner Contest 261 E - Many Operations</a></li></ol></li></ol></li><li><a href=#扩展概念运算>扩展概念&运算</a><ol><li><a href=#lowbit>lowbit</a></li><li><a href=#popcount>popcount</a></li></ol></li><li><a href=#builtin-位运算函数>builtin 位运算函数</a><ol><li><a href=#__builtin_popcount__builtin_popcountll>__builtin_popcount/__builtin_popcountll</a></li><li><a href=#__builtin_ctz--__buitlin_ctzll>__builtin_ctz / __buitlin_ctzll</a></li><li><a href=#__buitlin_clz--__buitlin_clzll>__buitlin_clz / __buitlin_clzll</a></li><li><a href=#__builtin_ffs--__buitlin_ffsll>__builtin_ffs / __buitlin_ffsll</a></li><li><a href=#__builtin_parity--__builtin_parityll>__builtin_parity / __builtin_parityll</a></li></ol></li><li><a href=#位运算的应用>位运算的应用</a><ol><li><a href=#子集表示法>子集表示法</a><ol><li><a href=#子集操作>子集操作</a></li><li><a href=#子集枚举>子集枚举</a></li><li><a href=#扩展stdbitset>扩展：std::bitset</a></li></ol></li><li><a href=#深度优先搜索dfs的位运算优化>深度优先搜索（DFS）的位运算优化</a><ol><li><a href=#附n皇后问题的两种解法耗时对比>附：N皇后问题的两种解法耗时对比</a></li></ol></li><li><a href=#其他应用>其他应用</a><ol><li><a href=#两数交换>两数交换</a></li><li><a href=#两数平均数防溢出>两数平均数（防溢出）</a></li><li><a href=#判断一个数是否为的整数次幂>判断一个数是否为$2$的整数次幂</a></li></ol></li></ol></li><li><a href=#总结>总结</a></li></ol></nav></details></aside><section class=article-content><h2 id=前言>前言</h2><p>突然想到位运算是个好东西，就来水一波文章了……</p><p>注意：我把能想到的有关位运算的所有内容都放进来了，所以<strong>篇幅较长，请谅解</strong>！若有写的不清楚或者不够详细的地方欢迎在评论区补充，<em><strong>谢谢支持！</strong></em></p><p><strong>本文中参考代码均使用C++编写。</strong></p><p>废话不多说，下面步入正题。</p><hr><h2 id=基本运算>基本运算</h2><p><em>有一定基础的可以跳过该部分。</em></p><p>位运算的简要法则：</p><div class=table-wrapper><table><thead><tr><th>符号</th><th>描述</th><th>规则</th></tr></thead><tbody><tr><td><code>&</code></td><td>按位与</td><td>两位都为1才为1，不同为0</td></tr><tr><td><code>|</code></td><td>按位或</td><td>两位都为0才为0，不同为1</td></tr><tr><td><code>^</code></td><td>异或</td><td>相同为0，不同为1</td></tr><tr><td><code>~</code></td><td>取反</td><td>0变1，1变0</td></tr><tr><td><code>&lt;&lt;</code></td><td>左移</td><td>二进制位向左移动，高位去掉，低位补0</td></tr><tr><td><code>>></code></td><td>右移</td><td>二进制位向右移动，低位去掉，高位补0</td></tr></tbody></table></div><p>详细解释：</p><h3 id=取反>取反</h3><p>取反（<code>~x</code>）是最简单的位运算操作，只有一个参数$x$。将参数上的每一位对应取反即可。例如：<br><code>~0011 = 1100</code><br><code>~1011 = 0100</code><br>性质：<code>~(~x) = x</code></p><h3 id=按位与>按位与</h3><p>按位与（<code>x & y</code>）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：</p><div class=table-wrapper><table><thead><tr><th>$x$</th><th>$y$</th><th><code>x & y</code></th></tr></thead><tbody><tr><td>$0$</td><td>$0$</td><td>$0$</td></tr><tr><td>$0$</td><td>$1$</td><td>$0$</td></tr><tr><td>$1$</td><td>$0$</td><td>$0$</td></tr><tr><td>$1$</td><td>$1$</td><td>$1$</td></tr></tbody></table></div><p>例子：<br><code>0011 & 1100 = 0000</code><br><code>1010 & 1011 = 1010</code></p><p>性质：</p><ul><li>交换律：<code>a & b = b & a</code></li><li>结合律：<code>a & b & c = a & (b & c)</code></li><li>自与：<code>a & a = a</code></li><li>与$0$：<code>0 & a1 & a2 & a3 & ... = 0</code></li><li>与$\infty$（全$1$）：<code>a & inf = a</code></li></ul><h3 id=按位或>按位或</h3><p>按位与（<code>x | y</code>）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：</p><div class=table-wrapper><table><thead><tr><th>$x$</th><th>$y$</th><th><code>x | y</code></th></tr></thead><tbody><tr><td>$0$</td><td>$0$</td><td>$0$</td></tr><tr><td>$0$</td><td>$1$</td><td>$1$</td></tr><tr><td>$1$</td><td>$0$</td><td>$1$</td></tr><tr><td>$1$</td><td>$1$</td><td>$1$</td></tr></tbody></table></div><p>例子：<br><code>1100 | 0011 = 1111</code><br><code>1010 | 0001 = 1011</code></p><p>性质：</p><ul><li>交换律：<code>a | b = b | a</code></li><li>结合律：<code>a | b | c = a | (b | c)</code></li><li>自或：<code>a | a = a</code></li><li>或$0$：<code>a | 0 = a</code></li><li>或$\infty$（全$1$）：<code>a | inf = inf</code></li></ul><h3 id=异或>异或</h3><p>异或（$x\oplus y$或<code>x ^ y</code>）有两个参数$x$和$y$。对于$x$和$y$中的每个对应位，参照下表输出到结果的对应位：</p><div class=table-wrapper><table><thead><tr><th>$x$</th><th>$y$</th><th>$x\oplus y$</th></tr></thead><tbody><tr><td>$0$</td><td>$0$</td><td>$0$</td></tr><tr><td>$0$</td><td>$1$</td><td>$1$</td></tr><tr><td>$1$</td><td>$0$</td><td>$1$</td></tr><tr><td>$1$</td><td>$1$</td><td>$0$</td></tr></tbody></table></div><p>举例：<br><code>1000 ^ 1011 = 0011</code><br><code>0101 ^ 1010 = 1111</code></p><p>性质：</p><ul><li>交换律：$a\oplus b=b\oplus a$</li><li>结合律：$a\oplus b\oplus c=a\oplus(b\oplus c)$</li><li>自异或：$a\oplus a=0$</li><li>异或$0$：$a\oplus 0=a$</li><li>多重异或：$a\oplus b\oplus b=a\oplus (b\oplus b)=a\oplus 0=a$</li><li>异或$\infty$（全$1$）：$a\oplus \infty=~$<code>~a</code></li><li>若$a\oplus b=c$，则$a\oplus c=b$。</li></ul><h3 id=位移>位移</h3><p>位移分为左移（<code>&lt;&lt;</code>）和右移（<code>>></code>）。</p><ul><li><code>a &lt;&lt; b</code>：将$a$末尾添上$b$个$0$的结果。</li><li><code>a >> b</code>：从$a$末尾删掉$b$位的结果。</li></ul><p>性质：</p><ul><li><code>(a &lt;&lt; b) >> b = a</code></li><li><code>a &lt;&lt; b</code>$~=a\times 2^b$</li><li><code>a >> b</code>$~=\lfloor\frac a {2^b}\rfloor$</li></ul><h3 id=练习题>练习题</h3><h4 id=判断的整数次幂>判断$2$的整数次幂</h4><p>题意：给定整数$N$，判断其是否为$2$的整数次幂。</p><h4 id=洛谷-p1100-高低位交换><a class=link href=https://www.luogu.com.cn/problem/P1100 target=_blank rel=noopener>洛谷 P1100 高低位交换</a></h4><p>题意：给定一个$32$位整数$x$，在二进制下交换其前$16$位与后$16$位，输出最终的数。</p><p>答案为<code>ans = (x >> 16) | (x &lt;&lt; 16)</code>，这样解释：</p><div class=table-wrapper><table><thead><tr><th>数值</th><th>前$16$位</th><th>后$16$位</th></tr></thead><tbody><tr><td>$x$</td><td>$A$</td><td>$B$</td></tr><tr><td><code>x >> 16</code></td><td>$16$个$0$</td><td>$A$</td></tr><tr><td><code>x &lt;&lt; 16</code></td><td>$B$</td><td>$16$个$0$</td></tr><tr><td><code>ans</code></td><td>$B$</td><td>$A$</td></tr></tbody></table></div><p>注意此处<strong>使用$32$位无符号整数</strong>进行计算，这样<code>x &lt;&lt; 16</code>会自然溢出，导致前$16$位被丢弃，恰好满足要求。</p><p>参考程序：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;cstdio&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>unsigned</span> <span class=kt>int</span> <span class=n>x</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%u&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>x</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%u</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=p>(</span><span class=n>x</span> <span class=o>&gt;&gt;</span> <span class=mi>16</span><span class=p>)</span> <span class=o>|</span> <span class=p>(</span><span class=n>x</span> <span class=o>&lt;&lt;</span> <span class=mi>16</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=找出不同的数>找出不同的数</h4><p>给定一个序列$A=(A_1,A_2,\dots,A_{2N+1})$，其中有$N$个数各出现$2$次，还有一个数正好出现$1$次。找到这个数。请尽可能优化程序的时间和空间复杂度。</p><p><strong>- 时间$\mathcal O(N)$或$\mathcal O(N\log N)$，空间$\mathcal O(N)$解法</strong><br>简单统计每个数的出现次数，最后找到正好出现$1$次的数。</p><p><strong>- 时间$\mathcal O(N)$，空间$\mathcal O(1)$解法</strong><br>考虑所有数的异或和$S=A_1\oplus A_2\oplus\dots\oplus A_{2N+1}$，则$A$中所有出现两次的数抵消为$0$，剩下的即为唯一出现一次的数，所以直接输出$S$即可。</p><p>参考程序：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;cstdio&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>n</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%d&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>n</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>n</span> <span class=o>=</span> <span class=p>(</span><span class=n>n</span> <span class=o>&lt;&lt;</span> <span class=mi>1</span><span class=p>)</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>ans</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span><span class=p>(</span><span class=n>n</span><span class=o>--</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kt>int</span> <span class=n>x</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%d&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>x</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=n>ans</span> <span class=o>^=</span> <span class=n>x</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>ans</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=atcoder-beginner-contest-261-e---many-operations><a class=link href=https://atcoder.jp/contests/abc261/tasks/abc261_e target=_blank rel=noopener>AtCoder Beginner Contest 261 E - Many Operations</a></h4><p>解法：对于$i=1,2,\dots,N$，记录操作$1,2,\dots,i$后每一位上的$0$和$1$分别变成什么，可以在$\mathcal O(N)$的时间内用类似于前缀和的方法完成；最后用位运算快速模拟$N$次连续操作即可，总时间复杂度为$\mathcal O(N)$。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=c1>// https://atcoder.jp/contests/abc261/submissions/33495431
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;cstdio&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>unsigned</span> <span class=n>n</span><span class=p>,</span> <span class=n>c</span><span class=p>,</span> <span class=n>zero</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span> <span class=n>one</span> <span class=o>=</span> <span class=mh>0xffffffff</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%d%d&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>n</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>c</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span><span class=p>(</span><span class=n>n</span><span class=o>--</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kt>int</span> <span class=n>t</span><span class=p>,</span> <span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%d%d&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>t</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>a</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>t</span> <span class=o>==</span> <span class=mi>1</span><span class=p>)</span> <span class=n>one</span> <span class=o>&amp;=</span> <span class=n>a</span><span class=p>,</span> <span class=n>zero</span> <span class=o>&amp;=</span> <span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>t</span> <span class=o>==</span> <span class=mi>2</span><span class=p>)</span> <span class=n>one</span> <span class=o>|=</span> <span class=n>a</span><span class=p>,</span> <span class=n>zero</span> <span class=o>|=</span> <span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span> <span class=n>one</span> <span class=o>^=</span> <span class=n>a</span><span class=p>,</span> <span class=n>zero</span> <span class=o>^=</span> <span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>c</span> <span class=o>=</span> <span class=p>(</span><span class=n>c</span> <span class=o>&amp;</span> <span class=n>one</span><span class=p>)</span> <span class=o>|</span> <span class=p>(</span><span class=o>~</span><span class=n>c</span> <span class=o>&amp;</span> <span class=n>zero</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=扩展概念运算>扩展概念&运算</h2><h3 id=lowbit>lowbit</h3><p><code>lowbit(x)</code>即为二进制下$x$的最低位，如<code>lowbit(10010) = 10</code>、<code>lowbit(1) = 1</code>。严格来说$0$没有<code>lowbit</code>，部分情况下可视为<code>lowbit(0) = 1</code>。利用<code>lowbit</code>函数可实现<a class=link href=https://goodcoder666.github.io/p/algonotes-fenwick-tree/ target=_blank rel=noopener>树状数组</a>等数据结构。</p><p><strong>lowbit 计算方式</strong></p><ol><li>暴力计算<br>简单粗暴的按位直接计算，如下：<div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=nf>lowbit</span><span class=p>(</span><span class=kt>int</span> <span class=n>x</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>res</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span><span class=p>(</span><span class=n>x</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=p>(</span><span class=n>x</span> <span class=o>&amp;</span> <span class=mi>1</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>x</span> <span class=o>&gt;&gt;=</span> <span class=mi>1</span><span class=p>,</span> <span class=n>res</span> <span class=o>&lt;&lt;=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>res</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div>时间复杂度$\mathcal O(\log X)$。缺点：速度慢，代码长，没有体现位运算的优势</li><li><code>x & -x</code><br>巧妙利用<code>lowbit(x) = x & -x</code>。感兴趣的读者可自行尝试证明。<br>时间复杂度$\mathcal O(1)$。相比(1)来说，代码更短，速度更快。</li><li><code>x & (x - 1)</code><br><strong>注意：<code>x & (x - 1)</code>不是<code>lowbit(x)</code>，而是<code>x - lowbit(x)</code>。</strong><br>这种方法常用于<a class=link href=https://goodcoder666.github.io/p/algonotes-fenwick-tree/ target=_blank rel=noopener>树状数组</a>中，可提升<code>x - lowbit(x)</code>的计算速度。</li></ol><h3 id=popcount>popcount</h3><p><code>popcount(x)</code>定义为$x$在二进制下$1$的个数，如<code>popcount(10101) = 3</code>，<code>popcount(0) = 0</code>。</p><p><strong>popcount 计算方式</strong></p><ol><li>暴力计算检查<br>还是最粗暴的算法，通过枚举每一位并检查是否为$1$达到目的，时间复杂度为$\mathcal O(\log X)$。<div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=nf>popcount</span><span class=p>(</span><span class=kt>int</span> <span class=n>x</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>res</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span><span class=p>(</span><span class=n>x</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>+=</span> <span class=n>x</span> <span class=o>&amp;</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=n>x</span> <span class=o>&gt;&gt;=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>res</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></li><li><code>lowbit</code> 优化<br>时间复杂度还是$\mathcal O(\log X)$，不过平均用时会比(1)快2~3倍左右。<div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=nf>popcount</span><span class=p>(</span><span class=kt>int</span> <span class=n>x</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>res</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(;</span> <span class=n>x</span><span class=p>;</span> <span class=n>x</span><span class=o>&amp;=</span><span class=n>x</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span> <span class=n>res</span> <span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>res</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></li><li>builtin 函数（最快）<br>详见<code>3.1 __builtin_popcount/__builtin_popcountll</code>。</li></ol><hr><h2 id=builtin-位运算函数>builtin 位运算函数</h2><p>注意：后面带<code>ll</code>的传入<code>long long</code>类型，不带<code>ll</code>接受<code>int</code>类型。本部分内容按常用程度递减排序。<br>参考：<a class=link href=https://blog.csdn.net/zeekliu/article/details/124848210 target=_blank rel=noopener>https://blog.csdn.net/zeekliu/article/details/124848210</a></p><h3 id=__builtin_popcount__builtin_popcountll>__builtin_popcount/__builtin_popcountll</h3><p>返回参数在二进制下$1$的个数。</p><h3 id=__builtin_ctz--__buitlin_ctzll>__builtin_ctz / __buitlin_ctzll</h3><p>返回参数在二进制下末尾$0$的个数。</p><h3 id=__buitlin_clz--__buitlin_clzll>__buitlin_clz / __buitlin_clzll</h3><p>返回参数在二进制下前导$0$的个数。</p><h3 id=__builtin_ffs--__buitlin_ffsll>__builtin_ffs / __buitlin_ffsll</h3><p>返回参数在二进制下最后一个1在第几位（从后往前）。<br>注意：一般来说，<code>builtin_ffs(x) = __builtin_ctz(x) + 1</code>。当$x=0$时，<code>builtin_ffs(x) = 0</code>。</p><h3 id=__builtin_parity--__builtin_parityll>__builtin_parity / __builtin_parityll</h3><p>返回参数在二进制下$1$的个数的奇偶性（偶：0，奇：1），即<code>__builtin_parity(x) = __builtin_popcount(x) % 2</code>。<br>P.S. 这函数，不知是哪位神仙想出来的……</p><hr><h2 id=位运算的应用>位运算的应用</h2><h3 id=子集表示法>子集表示法</h3><p>对于集合$\{0,1,\dots,N-1\}$，我们使用一个$N$位的二进制整数$S$来表示它的一个子集。从右往左第$i$位表示子集是否包含了$i$。容易发现，对于任意子集$S$，$S\in [0,2^N-1]$，且对于任意$S\in [0,2^N-1]$，$S$都是$\{0,1,\dots,N-1\}$的一个有效子集。下面我们来讲这种子集表示的具体操作。</p><h4 id=子集操作>子集操作</h4><p>子集的操作如下（规定$N$为集合元素个数）：</p><ul><li>空集：$0$</li><li>满集：$2^N-1$（$N$个$1$）</li><li>集合$S$的元素个数：<code>__builtin_popcount(S)</code>或<code>__builtin_popcountll(S)</code></li><li>集合$S$是否包含$i$：<code>S >> i & 1</code></li><li>将$i$加入$S$（操作前$S$是否包含$i$不影响操作结果）：<code>S |= 1 &lt;&lt; i</code></li><li>将$i$从$S$中删除（操作前$S$必须包含$i$）：<code>S ^= 1 &lt;&lt; i</code></li><li>将$i$从$S$中删除（操作前$S$是否包含$i$不影响操作结果）：<code>S &= ~(1 &lt;&lt; i)</code></li><li>$S$和$T$的交集（$S$和$T$都包含的集合）：<code>S & T</code></li><li>$S$和$T$的并集（$S$和$T$中有任意一个包含的集合）：<code>S | T</code></li><li>$S$和$T$的差集（$S$和$T$中恰好有一个包含的集合）：<code>S ^ T</code></li></ul><h4 id=子集枚举>子集枚举</h4><p>讲了这么多，也该到子集的实际应用了吧。下面我们来看子集最初步的应用——子集枚举。</p><p><strong>- 必会：枚举$N$个元素的所有子集</strong><br>这个很简单，直接枚举$S\in [0,2^N-1]$即可。代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;cstdio&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>const</span> <span class=kt>int</span> <span class=n>N</span> <span class=o>=</span> <span class=mi>3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;N = %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>N</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>s</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span> <span class=n>full</span><span class=o>=</span><span class=p>(</span><span class=mi>1</span><span class=o>&lt;&lt;</span><span class=n>N</span><span class=p>)</span><span class=o>-</span><span class=mi>1</span><span class=p>;</span> <span class=n>s</span><span class=o>&lt;=</span><span class=n>full</span><span class=p>;</span> <span class=n>s</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Subset %d:&#34;</span><span class=p>,</span> <span class=n>s</span> <span class=o>+</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span><span class=o>&lt;</span><span class=n>N</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span><span class=p>(</span><span class=n>s</span> <span class=o>&gt;&gt;</span> <span class=n>i</span> <span class=o>&amp;</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>printf</span><span class=p>(</span><span class=s>&#34; %d&#34;</span><span class=p>,</span> <span class=n>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=n>putchar</span><span class=p>(</span><span class=sc>&#39;\n&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>- 必会：枚举子集的子集</strong><br>如果我们想枚举$\{0,1,\dots,N-1\}$的子集的子集，怎么办？这是一个经典套路，常用于状压DP，写法如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>S</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>S</span><span class=o>&lt;</span><span class=p>(</span><span class=mi>1</span><span class=o>&lt;&lt;</span><span class=n>N</span><span class=p>);</span> <span class=n>S</span><span class=o>++</span><span class=p>)</span> <span class=c1>// 枚举子集S
+</span></span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>T</span><span class=o>=</span><span class=n>S</span><span class=p>;</span> <span class=n>T</span><span class=p>;</span> <span class=n>T</span><span class=o>=</span><span class=p>(</span><span class=n>T</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span><span class=o>&amp;</span><span class=n>S</span><span class=p>)</span> <span class=c1>// 枚举子集的子集T
+</span></span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Do something...
+</span></span></span><span class=line><span class=cl>        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>t</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>请注意：这个算法的时间复杂度为$\mathcal O(3^N)$，不是$\mathcal O(4^N)$，使用此算法时请准确估算时间复杂度。</p><p><strong>- 扩展：枚举$N$个元素中大小为$K$的子集</strong><br>首先很容易想到先枚举所有$\{0,1,\dots,N-1\}$的所有子集，再依次检查大小是否为$K$。代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>s</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>s</span><span class=o>&lt;</span><span class=p>(</span><span class=mi>1</span><span class=o>&lt;&lt;</span><span class=n>n</span><span class=p>);</span> <span class=n>s</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>cnt</span> <span class=o>=</span> <span class=n>__builtin_popcount</span><span class=p>(</span><span class=n>s</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>cnt</span> <span class=o>!=</span> <span class=n>K</span><span class=p>)</span> <span class=k>continue</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Do something...
+</span></span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>这种做法虽然正确，也很易懂，但可惜效率太低，$2^N$次<code>popcount</code>操作浪费了很多时间。我们考虑优化。《挑战程序设计竞赛》上给出了一种算法，如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=n>S</span> <span class=o>=</span> <span class=p>(</span><span class=mi>1</span> <span class=o>&lt;&lt;</span> <span class=n>k</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>while</span><span class=p>(</span><span class=n>S</span> <span class=o>&lt;</span> <span class=mi>1</span> <span class=o>&lt;&lt;</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Do something...
+</span></span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>S</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 移到下一个合法子集
+</span></span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>x</span> <span class=o>=</span> <span class=n>S</span> <span class=o>&amp;</span> <span class=o>-</span><span class=n>S</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=n>S</span> <span class=o>+</span> <span class=n>x</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>S</span> <span class=o>=</span> <span class=p>((</span><span class=n>S</span> <span class=o>&amp;</span> <span class=o>~</span><span class=n>y</span><span class=p>)</span> <span class=o>/</span> <span class=n>x</span> <span class=o>&gt;&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=o>|</span> <span class=n>y</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>这样可保证每次枚举到的都是大小为$K$的子集，可以大大提高算法效率。</p><h4 id=扩展stdbitset>扩展：std::bitset</h4><p><code>bitset</code>，顾名思义，即为用位运算操作的集合。<br>对于元素个数$N\in [1,64]$，集合$\{0,1,\dots,N-1\}$的任意子集都可以用一个$32$或$64$位整数表示出来，操作时间复杂度为$\mathcal O(1)$。那么对于$N > 64$，怎么办？我们可以用多个$32$或$64$位无符号整数拼凑为一个$N$位的<code>bitset</code>，容易发现其操作的时间复杂度为$\mathcal O(\frac Nw)$（$N$位的二进制数可用$\lceil\frac Nw\rceil$个$w$位无符号整数拼凑而成），其中$w$一般为$32$或$64$。</p><p>C++的<code>Standard Template Library</code>（<code>STL</code>）为我们提供了<code>&lt;bitset></code>头文件，用于<code>bitset</code>的定义。</p><p>用法如下：</p><div class=table-wrapper><table><thead><tr><th>函数/操作</th><th>作用</th></tr></thead><tbody><tr><td><code>b.any()</code></td><td><code>b</code>中是否存在至少1位的二进制位？</td></tr><tr><td><code>b.none()</code></td><td><code>b</code>中不存在至少1位的二进制位吗？</td></tr><tr><td><code>b.count()</code></td><td><code>b</code>中值为1的二进制位的个数</td></tr><tr><td><code>b.size()</code></td><td><code>b</code>中二进制位的个数</td></tr><tr><td><code>b[pos]</code></td><td>访问<code>b</code>中<code>pos</code>处的二进制位</td></tr><tr><td><code>b.test(pos)</code></td><td>检测<code>b</code>中<code>pos</code>处的二进制位是否为1</td></tr><tr><td><code>b.set(pos)</code></td><td>把<code>b</code>中<code>pos</code>处的二进制位设置为1</td></tr><tr><td><code>b.set()</code></td><td>把<code>b</code>中的所有二进制位设置为1</td></tr><tr><td><code>b.reset(pos)</code></td><td>把<code>b</code>中<code>pos</code>处的二进制位设置为0</td></tr><tr><td><code>b.reset()</code></td><td>把<code>b</code>中的所有二进制位设置为0</td></tr><tr><td><code>b.flip()</code></td><td>把<code>b</code>中的所有二进制位按位取反</td></tr><tr><td><code>b.flip(pos)</code></td><td>把<code>b</code>中<code>pos</code>处的二进制位按位取反</td></tr><tr><td><code>b.to_ulong()</code></td><td>用<code>b</code>中所有的二进制位返回<code>unsigned long</code>值</td></tr><tr><td><code>os &lt;&lt; b</code></td><td>把<code>b</code>的值输出到流<code>os</code>中</td></tr></tbody></table></div><p>用法示例：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;cstdio&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;bitset&gt;</span><span class=cp> </span><span class=c1>// 头文件
+</span></span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>const</span> <span class=kt>int</span> <span class=n>N</span> <span class=o>=</span> <span class=mi>500</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>bitset</span><span class=o>&lt;</span><span class=n>N</span><span class=o>&gt;</span> <span class=n>S</span><span class=p>;</span> <span class=c1>// 定义大小为N的bitset S，初始为全0
+</span></span></span><span class=line><span class=cl>    <span class=n>S</span><span class=p>.</span><span class=n>set</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>    <span class=c1>// 将S的第1位设为1
+</span></span></span><span class=line><span class=cl>    <span class=n>S</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>    <span class=c1>// 将S的第0位设为1，注意bitset可使用下标访问和赋值
+</span></span></span><span class=line><span class=cl>    <span class=n>S</span><span class=p>.</span><span class=n>reset</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>  <span class=c1>// 将S的第1位设为0
+</span></span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;S[1]: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=n>S</span><span class=p>[</span><span class=mi>1</span><span class=p>]);</span> <span class=c1>// 输出S第2位上的值
+</span></span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Count: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=n>S</span><span class=p>.</span><span class=n>count</span><span class=p>());</span> <span class=c1>// S的popcount（二进制下1的个数）
+</span></span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Size: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=n>S</span><span class=p>.</span><span class=n>size</span><span class=p>());</span> <span class=c1>// S的二进制位数（N）
+</span></span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;None? %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=n>S</span><span class=p>.</span><span class=n>none</span><span class=p>());</span> <span class=c1>// S是否为空？
+</span></span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Any?  %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=n>S</span><span class=p>.</span><span class=n>any</span><span class=p>());</span>  <span class=c1>// S是否有1？
+</span></span></span><span class=line><span class=cl>    <span class=n>bitset</span><span class=o>&lt;</span><span class=n>N</span><span class=o>&gt;</span> <span class=n>T</span><span class=p>;</span> <span class=c1>// 定义一个新的bitset -- T
+</span></span></span><span class=line><span class=cl>    <span class=n>T</span><span class=p>.</span><span class=n>set</span><span class=p>();</span> <span class=c1>// T置为全1
+</span></span></span><span class=line><span class=cl>    <span class=n>S</span><span class=p>.</span><span class=n>set</span><span class=p>(</span><span class=mi>2</span><span class=p>),</span> <span class=n>T</span><span class=p>.</span><span class=n>reset</span><span class=p>(</span><span class=mi>2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Intersection: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=p>(</span><span class=kt>int</span><span class=p>)(</span><span class=n>S</span> <span class=o>&amp;</span> <span class=n>T</span><span class=p>).</span><span class=n>count</span><span class=p>());</span> <span class=c1>// 交集
+</span></span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Union: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=p>(</span><span class=kt>int</span><span class=p>)(</span><span class=n>S</span> <span class=o>|</span> <span class=n>T</span><span class=p>).</span><span class=n>count</span><span class=p>());</span> <span class=c1>// 并集
+</span></span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Difference: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=p>(</span><span class=kt>int</span><span class=p>)(</span><span class=n>S</span> <span class=o>^</span> <span class=n>T</span><span class=p>).</span><span class=n>count</span><span class=p>());</span> <span class=c1>// 差集
+</span></span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h5 id=习题atcoder-beginner-contest-258-g---triangle>习题：<a class=link href=https://atcoder.jp/contests/abc258/tasks/abc258_g target=_blank rel=noopener>AtCoder Beginner Contest 258 G - Triangle</a></h5><p>题意和解法见<a class=link href=https://goodcoder666.github.io/p/abc258/#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-2 target=_blank rel=noopener>我的题解</a>。</p><h3 id=深度优先搜索dfs的位运算优化>深度优先搜索（DFS）的位运算优化</h3><p>本算法其实还是<strong>二进制表示子集</strong>的一种优化，不过内容较多，所以单独放了出来。</p><p>考虑经典的<strong>八皇后问题</strong>：</p><blockquote><p>有一个$8\times 8$的国际象棋棋盘，要在其中摆$8$个皇后，求有多少种不同的摆法，使得任意两个皇后之间都没有互相攻击。<br><strong>注：皇后的攻击范围是一个“米”字，如下图所示：</strong><br><img alt=皇后攻击范围 class=gallery-image data-flex-basis=240px data-flex-grow=100 height=419 loading=lazy sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src=/p/algonotes-bwop/1.png width=419></p></blockquote><p>八皇后问题很容易求解，用一个简单的回溯就可以了。<br>考虑$N$皇后问题，即：</p><blockquote><p>有一个$N\times N$的国际象棋棋盘，要在其中摆$N$个皇后，求有多少种不同的摆法，使得任意两个皇后之间都没有互相攻击。</p></blockquote><p>此时，还是先用标准的「回溯」算法解决问题：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;cstdio&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#define maxn 20
+</span></span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>bool</span> <span class=n>row</span><span class=p>[</span><span class=n>maxn</span><span class=p>],</span> <span class=n>diag_left</span><span class=p>[</span><span class=n>maxn</span> <span class=o>&lt;&lt;</span> <span class=mi>1</span><span class=p>],</span> <span class=n>diag_right</span><span class=p>[</span><span class=n>maxn</span> <span class=o>&lt;&lt;</span> <span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>ans</span><span class=p>,</span> <span class=n>n</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>dfs</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>i</span> <span class=o>==</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>ans</span> <span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>j</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>j</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=o>!</span><span class=n>row</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=n>diag_left</span><span class=p>[</span><span class=n>i</span> <span class=o>+</span> <span class=n>j</span><span class=p>]</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=n>diag_right</span><span class=p>[</span><span class=n>i</span> <span class=o>-</span> <span class=n>j</span> <span class=o>+</span> <span class=n>n</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>row</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=n>diag_left</span><span class=p>[</span><span class=n>i</span> <span class=o>+</span> <span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=n>diag_right</span><span class=p>[</span><span class=n>i</span> <span class=o>-</span> <span class=n>j</span> <span class=o>+</span> <span class=n>n</span><span class=p>]</span> <span class=o>=</span> <span class=nb>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>dfs</span><span class=p>(</span><span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=n>row</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=n>diag_left</span><span class=p>[</span><span class=n>i</span> <span class=o>+</span> <span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=n>diag_right</span><span class=p>[</span><span class=n>i</span> <span class=o>-</span> <span class=n>j</span> <span class=o>+</span> <span class=n>n</span><span class=p>]</span> <span class=o>=</span> <span class=nb>false</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%d&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>n</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>ans</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>dfs</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>ans</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>代码很移动，也不是重点，这里就不详细解释了。对于$N=13$，搜索时间约为$243\mathrm{ms}$；$N=14$，$1.31\mathrm s$；$N=15$，$8.14\mathrm s$；$N=16$…… $53.4\mathrm s$。</p><p>明显，这样的算法效率太低，我们来考虑使用位运算优化。<br>首先，我们把上面程序里的<code>row</code>、<code>diag_left</code>和<code>diag_right</code>换成一个<code>int</code>整数，赋值、取值全部改用位运算。但这样对整体的时间优化还是不大，我们要充分发挥位运算的优势——“百发百中”，即利用<code>lowbit</code>算法，确保每次枚举到的都是目前一步可放置的位置，减少不必要的判断。此时，我们改变<code>diag_left</code>和<code>diag_right</code>的含义，使<code>diag_left</code>表示左下-右上的$45\degree$对角线上<strong>当前一步</strong>可放置的皇后位置集合，<code>diag_right</code>同理。见代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;cstdio&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>ans</span><span class=p>,</span> <span class=n>mx</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>dfs</span><span class=p>(</span><span class=kt>int</span> <span class=n>row</span><span class=p>,</span> <span class=kt>int</span> <span class=n>diag_left</span><span class=p>,</span> <span class=kt>int</span> <span class=n>diag_right</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>row</span> <span class=o>==</span> <span class=n>mx</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>ans</span> <span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>a</span> <span class=o>=</span> <span class=n>mx</span> <span class=o>&amp;</span> <span class=o>~</span><span class=p>(</span><span class=n>row</span> <span class=o>|</span> <span class=n>diag_left</span> <span class=o>|</span> <span class=n>diag_right</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span><span class=p>(</span><span class=n>a</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kt>int</span> <span class=n>p</span> <span class=o>=</span> <span class=n>a</span> <span class=o>&amp;</span> <span class=o>-</span><span class=n>a</span><span class=p>;</span> <span class=n>a</span> <span class=o>^=</span> <span class=n>p</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=n>dfs</span><span class=p>(</span><span class=n>row</span> <span class=o>|</span> <span class=n>p</span><span class=p>,</span> <span class=p>(</span><span class=n>diag_left</span> <span class=o>|</span> <span class=n>p</span><span class=p>)</span> <span class=o>&gt;&gt;</span> <span class=mi>1</span><span class=p>,</span> <span class=p>(</span><span class=n>diag_right</span> <span class=o>|</span> <span class=n>p</span><span class=p>)</span> <span class=o>&lt;&lt;</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>n</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>scanf</span><span class=p>(</span><span class=s>&#34;%d&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>n</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>ans</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>mx</span> <span class=o>=</span> <span class=p>(</span><span class=mi>1</span> <span class=o>&lt;&lt;</span> <span class=n>n</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>dfs</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>ans</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>此时，计算$16$皇后只需$6.23\mathrm s$！<br>习题：<a class=link href=https://www.luogu.com.cn/problem/P1092 target=_blank rel=noopener>洛谷 P1092 [NOIP2004 提高组] 虫食算</a></p><h4 id=附n皇后问题的两种解法耗时对比>附：N皇后问题的两种解法耗时对比</h4><p>本测试中，两种算法耗时均为在<code>Intel i7-12700H</code> CPU上$5$次程序运行的最快速度。</p><div class=table-wrapper><table><thead><tr><th>$N$</th><th>无优化</th><th>位运算优化</th><th>速度提升</th></tr></thead><tbody><tr><td>$13$</td><td>$253\mathrm{ms}$</td><td>$66\mathrm{ms}$</td><td>$2.83\text x$</td></tr><tr><td>$14$</td><td>$1.31\mathrm s$</td><td>$179\mathrm{ms}$</td><td>$6.32\text x$</td></tr><tr><td>$15$</td><td>$8.14\mathrm s$</td><td>$955\mathrm{ms}$</td><td>$7.52\text x$</td></tr><tr><td>$16$</td><td>$53.4\mathrm s$</td><td>$6.23\mathrm s$</td><td>$7.57\text x$</td></tr></tbody></table></div><h3 id=其他应用>其他应用</h3><h4 id=两数交换>两数交换</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>void</span> <span class=nf>swap</span><span class=p>(</span><span class=kt>int</span><span class=o>&amp;</span> <span class=n>a</span><span class=p>,</span> <span class=kt>int</span><span class=o>&amp;</span> <span class=n>b</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>a</span> <span class=o>^=</span> <span class=n>b</span> <span class=o>^=</span> <span class=n>a</span> <span class=o>^=</span> <span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>位运算交换法扩展：<strong>超快GCD</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kr>inline</span> <span class=kt>int</span> <span class=nf>gcd</span><span class=p>(</span><span class=kt>int</span> <span class=n>a</span><span class=p>,</span> <span class=kt>int</span> <span class=n>b</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>b</span><span class=p>)</span> <span class=k>while</span><span class=p>(</span><span class=n>b</span> <span class=o>^=</span> <span class=n>a</span> <span class=o>^=</span> <span class=n>b</span> <span class=o>^=</span> <span class=n>a</span> <span class=o>%=</span> <span class=n>b</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=两数平均数防溢出>两数平均数（防溢出）</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kr>inline</span> <span class=kt>int</span> <span class=nf>average1</span><span class=p>(</span><span class=kt>int</span> <span class=n>x</span><span class=p>,</span> <span class=kt>int</span> <span class=n>y</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>(</span><span class=n>x</span> <span class=o>&gt;&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=o>+</span> <span class=p>(</span><span class=n>y</span> <span class=o>&gt;&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=o>+</span> <span class=p>(</span><span class=n>x</span> <span class=o>&amp;</span> <span class=n>y</span> <span class=o>&amp;</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>inline</span> <span class=kt>int</span> <span class=nf>average2</span><span class=p>(</span><span class=kt>int</span> <span class=n>x</span><span class=p>,</span> <span class=kt>int</span> <span class=n>y</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>(</span><span class=n>x</span> <span class=o>&amp;</span> <span class=n>y</span><span class=p>)</span> <span class=o>+</span> <span class=p>((</span><span class=n>x</span> <span class=o>^</span> <span class=n>y</span><span class=p>)</span> <span class=o>&gt;&gt;</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=判断一个数是否为的整数次幂>判断一个数是否为$2$的整数次幂</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kr>inline</span> <span class=kt>bool</span> <span class=nf>ispowof2</span><span class=p>(</span><span class=kt>int</span> <span class=n>x</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>x</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=p>(</span><span class=n>x</span> <span class=o>&amp;</span> <span class=n>x</span> <span class=o>-</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=总结>总结</h2><p>本文详细讲解了位运算的使用和扩展。</p><hr><p>创作不易，各位如果觉得好的话就请给个三连，感谢大家的支持！</p></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/>算法竞赛</a>
+<a href=/tags/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/>算法笔记</a></section><section class="article-copyright inline-meta"><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css integrity=sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js integrity=sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{const e=[".main-article",".widget--toc"];e.forEach(e=>{const t=document.querySelector(e);t&&renderMathInElement(t,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],ignoredClasses:["gist"]})})})</script></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/algonotes-lca/><div class=article-details><h2 class=article-title>【算法笔记】最近公共祖先（LCA）问题求解——倍增算法</h2></div></a></article><article><a href=/p/algonotes-rmq/><div class=article-details><h2 class=article-title>【算法笔记】【专题】RMQ 问题：ST表/树状数组/线段树</h2></div></a></article><article><a href=/p/algonotes-fenwick-tree/><div class=article-details><h2 class=article-title>【算法笔记】树状数组/Binary Indexed Tree/Fenwick Tree</h2></div></a></article><article><a href=/p/algonotes-knapsack-dp/><div class=article-details><h2 class=article-title>【算法笔记】三种背包问题——背包 DP</h2></div></a></article><article><a href=/p/algonotes-mst/><div class=article-details><h2 class=article-title>【算法笔记】Kruskal/Prim算法——求解最小生成树问题</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 GoodCoder's Blog</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
     import gallery from '\/ts\/gallery.js';
 
     const articleContent = document.querySelector('.article-content');
@@ -1715,15 +472,4 @@ P.S. 这函数，不知是哪位神仙想出来的……</p>
         });
         lightbox.init();
     }
-</script>
-
-    
-
-            </main>
-        </div>
-        
-<script type="text/javascript" src="/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js" defer></script>
-
-
-    </body>
-</html>
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>
